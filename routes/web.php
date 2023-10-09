@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\RecruiterRegistrationController;
+use App\Http\Controllers\InstitutionRegistrationController;
+
 
 
 
@@ -22,6 +24,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+// routes for agent registration
+
+
 Route::get('/recruiter/registration/step1', [RecruiterRegistrationController::class, 'step1']);
 
 Route::get('/recruiter/registration/step2', [RecruiterRegistrationController::class, 'step2']);
@@ -37,8 +45,49 @@ Route::post('/recruiter/registration/step4', [RecruiterRegistrationController::c
 
 Route::post('/recruiter/registration/step5', [RecruiterRegistrationController::class, 'step5'])->name('recruiter.registration.step5');
 
+
+
+
+
+// routes for institution registration
+
+// Institution Registration Routes
+Route::get('/institution/registration/step1', [InstitutionRegistrationController::class, 'step1']);
+Route::post('/institution/registration/step1', [InstitutionRegistrationController::class, 'step1'])->name('institution.registration.step1');
+
+Route::get('/institution/registration/step2', [InstitutionRegistrationController::class, 'step2']);
+Route::post('/institution/registration/step2', [InstitutionRegistrationController::class, 'step2'])->name('institution.registration.step2');
+
+Route::get('/institution/registration/step3', [InstitutionRegistrationController::class, 'step3']);
+Route::post('/institution/registration/step3', [InstitutionRegistrationController::class, 'step3'])->name('institution.registration.step3');
+
+Route::get('/institution/registration/step4', [InstitutionRegistrationController::class, 'step4']);
+Route::post('/institution/registration/step4', [InstitutionRegistrationController::class, 'step4'])->name('institution.registration.step4');
+
+Route::post('/institution/registration/step5', [InstitutionRegistrationController::class, 'step5'])->name('institution.registration.step5');
+
+
+
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(["prefix" => "/agent", "middleware" => "CheckUserRole:Agent"], function () {
+    require __DIR__.'/agent/web.php';
+
+    // ...
+});
+
+Route::group(["prefix" => "/student", "middleware" => "CheckUserRole:Student"], function () {
+    require __DIR__.'/student/web.php';
+
+});
+
+Route::group(["prefix" => "/institution", "middleware" => "CheckUserRole:Institution"], function () {
+    require __DIR__.'/institution/web.php';
+
+    // ...
+});
+
+
 
 

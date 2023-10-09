@@ -176,12 +176,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="signin.html" tabindex="-1">
+                            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-box-arrow-right"></i></div>
                                 <div class="col">Logout</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
                         </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
                     </ul>
                 </div>
             </div>

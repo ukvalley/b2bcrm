@@ -21,7 +21,19 @@ class RedirectIfAuthenticated
 
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
-                return redirect(RouteServiceProvider::HOME);
+                if(Auth::user()->userType->name == "Agent")
+                {
+                    return redirect()->route('agent.home');
+                }
+                elseif(Auth::user()->userType->name == "Institution")
+                {
+                    return redirect()->route('institution.home');
+                }
+                elseif(Auth::user()->userType->name == "Student")
+                {
+                    return redirect()->route('student.home');
+                }
+                
             }
         }
 

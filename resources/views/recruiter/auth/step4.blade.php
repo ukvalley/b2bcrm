@@ -1,5 +1,5 @@
 
-@extends('auth.recruiter.layout') 
+@extends('recruiter.auth.layout') 
 {{-- Extend your main layout if applicable --}}
 
 @section('content') {{-- Define the content section --}}
@@ -14,7 +14,7 @@
                         </a>
                     </div>
                     <div class="col align-self-center">
-                        <h5>Institution Registration - Step 4</h5>
+                        <h5>Recruiter Registration - Step 4</h5>
                     </div>
                     <div class="col-auto">
                         <a class="btn btn-light btn-44 invisible"></a>
@@ -28,7 +28,7 @@
                     <h1>Complete Registration</h1>
                 </div>
                 <div class="card-body">
-                    <form method="POST" action="{{ route('institution.registration.step5') }}" class="was-validated">
+                    <form method="POST" action="{{ route('recruiter.registration.step5') }}" class="was-validated">
                         @csrf {{-- Add CSRF protection --}}
 
                         {{-- Add checkboxes for T&C and authorization --}}

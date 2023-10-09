@@ -14,13 +14,13 @@ class RecruiterRegistrationController extends Controller
     public function step1()
     {
         $Recruiter = new \App\Models\Recruiter();
-        return view('auth.recruiter.step1');
+        return view('recruiter.auth.step1');
     }
 
     public function step2(Request $request)
     {
         if ($request->isMethod('get')) {
-        return view('auth.recruiter.step2');
+        return view('recruiter.auth.step2');
     }
 
         // Validate the data for step 2
@@ -41,14 +41,14 @@ class RecruiterRegistrationController extends Controller
         // Store data in session
         $request->session()->put('step1_data', $request->all());
 
-        return view('auth.recruiter.step2');
+        return view('recruiter.auth.step2');
     }
 
     public function step3(Request $request)
     {
 
         if ($request->isMethod('get')) {
-        return view('auth.recruiter.step3');
+        return view('recruiter.auth.step3');
     }
 
 
@@ -70,14 +70,14 @@ class RecruiterRegistrationController extends Controller
         // Store the data in the session
         $request->session()->put('step2_data', $request->all());
 
-        return view('auth.recruiter.step3');
+        return view('recruiter.auth.step3');
     }
 
     public function step4(Request $request)
 {
     // Handle GET request to display the form
     if ($request->isMethod('get')) {
-        return view('auth.recruiter.step4');
+        return view('recruiter.auth.step4');
     }
 
     // Handle POST request for form submission and validation
@@ -93,7 +93,7 @@ class RecruiterRegistrationController extends Controller
     $request->session()->put('step3_data', $data);
 
     // Redirect to the next step (step 4) or complete the registration process
-    return view('auth.recruiter.step4');
+    return view('recruiter.auth.step4');
     }
 
 
@@ -146,7 +146,7 @@ class RecruiterRegistrationController extends Controller
         $request->session()->forget(['step1_data', 'step2_data', 'step3_data', 'step4_data']);
 
         auth()->login($user);
-        return redirect()->route('home');
+        return redirect()->route('agent.home');
 
 
 
@@ -154,6 +154,6 @@ class RecruiterRegistrationController extends Controller
         // Capture additional information and perform any required actions
 
         // Redirect to the next step (step 5) or complete the registration process
-      //  return view('auth.recruiter.step5');
+      //  return view('recruiter.auth.step5');
     }
 }

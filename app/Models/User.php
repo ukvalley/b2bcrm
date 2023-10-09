@@ -48,4 +48,9 @@ class User extends Authenticatable
 {
     return $this->belongsTo(UserType::class);
 }
+
+public function institution()
+{
+    return $this->hasOne(Institution::class);
+}
 }
