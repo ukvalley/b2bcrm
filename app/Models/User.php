@@ -53,4 +53,9 @@ public function institution()
 {
     return $this->hasOne(Institution::class);
 }
+
+public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
 }
