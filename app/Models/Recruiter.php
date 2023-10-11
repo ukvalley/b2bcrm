@@ -18,6 +18,9 @@ class Recruiter extends Model
         'employee_count',
         'students_sent_count',
         'aimed_students_count',
+        'timezone',
+        'avatar'
+        
     ];
 
     // Define a relationship with the User model if needed

@@ -44,7 +44,7 @@
         <div class="row h-100">
             <div class="col-10 col-md-6 col-lg-5 col-xl-3 mx-auto text-center align-self-center">
                 <div class="loader-cube-wrap loader-cube-animate mx-auto">
-                    <img src="assets/img/logo.png" alt="Logo">
+                    <img src="https://civs.online/wp-content/uploads/2023/01/CIVS-White-01-1024x285.png" alt="Logo">
                 </div>
                 <p class="mt-4">It's time for track budget<br><strong>Please wait...</strong></p>
             </div>
@@ -70,8 +70,8 @@
                                     </figure>
                                 </div>
                                 <div class="col px-0 align-self-center">
-                                    <p class="mb-1">Maxartkiller</p>
-                                    <p class="text-muted size-12">New York City, US</p>
+                                    <p class="mb-1">{{$siteName}}</p>
+                                    <p class="text-muted size-12"></p>
                                 </div>
                                 <div class="col-auto">
                                     <button class="btn btn-44 btn-light">
@@ -80,22 +80,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card bg-opac text-white border-0">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h1 class="display-4">100.00</h1>
-                                    </div>
-                                    <div class="col-auto">
-                                        <p class="text-muted">Wallet Balance</p>
-                                    </div>
-                                    <div class="col text-end">
-                                        <p class="text-muted"><a href="addmoney.html" >+ Top up</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -105,7 +90,7 @@
                 <div class="col-12">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">
+                            <a class="nav-link active" aria-current="page" href="{{route('agent.home')}}">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-house-door"></i></div>
                                 <div class="col">Dashboard</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
@@ -121,23 +106,23 @@
                                 </div>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item nav-link" href="profile.html">
+                                <li><a class="dropdown-item nav-link" href="{{route('agent.edit')}}">
                                         <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar2"></i></div>
                                         <div class="col">Profile</div>
                                         <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                                     </a></li>
-                                <li><a class="dropdown-item nav-link" href="settings.html">
+                                <li><a class="dropdown-item nav-link" href="{{ route('agent.editPassword') }}">
                                         <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar-check"></i>
                                         </div>
-                                        <div class="col">Settings</div>
+                                        <div class="col">Security</div>
                                         <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                                     </a></li>
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="chat.html" tabindex="-1">
+                            <a class="nav-link" href="{{route('agent.student_basic')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
-                                <div class="col">Messages</div>
+                                <div class="col">Add Student</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
                         </li>
@@ -285,6 +270,38 @@
             </div>
         </div>
     </div>
+
+
+
+    <script>
+    // Get all elements with the "nav-link" class
+    const navLinks = document.querySelectorAll('.nav-item');
+
+    // Add click event listeners to each nav link
+    navLinks.forEach(navLink => {
+        navLink.addEventListener('click', function (event) {
+            // Check if the clicked nav link has a dropdown-menu
+            console.log('hi');
+            const dropdownMenu = navLink.querySelector('.dropdown-menu');
+            
+            if (dropdownMenu) {
+                // Toggle the "show" class for the dropdown-menu
+                dropdownMenu.classList.toggle('show');
+            }
+        });
+    });
+
+    // Close the menu when clicking on the "Close Menu" button
+    const closeMenuButton = document.querySelector('.closemenu');
+    closeMenuButton.addEventListener('click', function () {
+        // Find all dropdown menus and hide them
+        const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+        dropdownMenus.forEach(dropdownMenu => {
+            dropdownMenu.classList.remove('show');
+        });
+    });
+</script>
+
 
 
     <!-- Required jquery and libraries -->

@@ -28,18 +28,7 @@
         </header>
         <!-- Header ends -->
          <div class="main-container container">
-            <!-- welcome user -->
-            <div class="row mb-4">
-                <div class="col-auto">
-                    <div class="avatar avatar-50 shadow rounded-10">
-                        <img src="{{url('/')}}/theme/img/user1.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col align-self-center ps-0">
-                    <h4 class="text-color-theme"><span class="fw-normal">Hi</span>, {{ Auth::user()->name }}!</h4>
-                    <p class="text-muted">Welcome back, we're happy to have you here!</p>
-                </div>
-            </div>
+            
 
 
         <!-- Student Registration Step 1 Form -->
@@ -47,45 +36,97 @@
             <div class="col-12">
                 <div class="card shadow-sm">
                     <div class="card-body">
+
+
+                        @include('recruiter.panel.student.nav_pill_studen')
+
+
                         <h4 class="card-title">Step 1: Personal Information</h4>
                         <p class="card-text">Please provide your personal information.</p>
-                        <form method="POST" action="{{ route('agent.student_basic_registration') }}">
-                            @csrf
-                            <div class="mb-3">
-                                <label for="full_name" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="full_name" name="full_name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="date_of_birth" class="form-label">Date of Birth</label>
-                                <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="gender" class="form-label">Gender</label>
-                                <select class="form-select" id="gender" name="gender" required>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                            <div class="mb-3">
-                                <label for="nationality" class="form-label">Nationality</label>
-                                <input type="text" class="form-control" id="nationality" name="nationality" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="address" class="form-label">Address</label>
-                                <textarea class="form-control" id="address" name="address" rows="3" required></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <label for="phone_number" class="form-label">Phone Number</label>
-                                <input type="tel" class="form-control" id="phone_number" name="phone_number" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="email" name="email" required>
-                            </div>
+                       <form class="mt-3" method="POST" action="{{ route('agent.student_basic_registration') }}">
+    @csrf
 
-                            <button type="submit" class="btn btn-primary">Next</button>
-                        </form>
+    <div class="col mb-3">
+        <h6>Basic Information</h6>
+    </div>
+
+    <div class="mb-3">
+        <label for="full_name" class="form-label">Full Name</label>
+        <input type="text" class="form-control @error('full_name') is-invalid @enderror" id="full_name" name="full_name" required>
+        @error('full_name')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="mb-3">
+        <label for="date_of_birth" class="form-label">Date of Birth</label>
+        <input type="date" class="form-control @error('date_of_birth') is-invalid @enderror" id="date_of_birth" name="date_of_birth" required>
+        @error('date_of_birth')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="mb-3">
+        <label for="gender" class="form-label">Gender</label>
+        <select class="form-select @error('gender') is-invalid @enderror" id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+        </select>
+        @error('gender')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="mb-3">
+        <label for="nationality" class="form-label">Nationality</label>
+        <input type="text" class="form-control @error('nationality') is-invalid @enderror" id="nationality" name="nationality" required>
+        @error('nationality')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" rows="3" required></textarea>
+        @error('address')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="mb-3">
+        <label for="phone_number" class="form-label">Phone Number</label>
+        <input type="tel" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" name="phone_number" required>
+        @error('phone_number')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" required>
+        @error('email')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    </div>
+
+    <button type="submit" class="btn btn-primary">Next</button>
+</form>
+
                     </div>
                 </div>
             </div>

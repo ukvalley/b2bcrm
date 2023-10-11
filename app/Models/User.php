@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\UserType;
+use App\Models\Recruiter;
+
 
 class User extends Authenticatable
 {
@@ -57,5 +59,10 @@ public function institution()
 public function student()
     {
         return $this->hasOne(Student::class);
+    }
+
+    public function recruiter()
+    {
+        return $this->hasOne(Recruiter::class);
     }
 }

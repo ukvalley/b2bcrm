@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('field_of_study')->default('')->nullable();
             $table->unsignedInteger('expected_graduation_year')->nullable();;
             $table->text('academic_interests')->default('')->nullable();
-            $table->decimal('gpa', 4, 2)->nullable();;
+            $table->string('gpa')->nullable();;
             $table->text('languages_spoken')->default('')->nullable();
             $table->text('language_proficiency_levels')->default('')->nullable();
             $table->text('test_scores')->default('')->nullable();
