@@ -10973,6 +10973,10 @@ fieldset:disabled .btn {
   z-index: 10;
 }
 
+.z-index-11 {
+  z-index: 11;
+}
+
 .overflow-x-auto {
   overflow-x: auto;
 }

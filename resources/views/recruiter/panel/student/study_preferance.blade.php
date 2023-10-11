@@ -259,8 +259,8 @@
     </div>
 
     <!-- Submit Button -->
-    <div class="mb-3">
-        <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="mb-3 z-index-11">
+        <button type="submit" class="btn btn-default btn-lg w-100">Submit</button>
     </div>
 </form>
 

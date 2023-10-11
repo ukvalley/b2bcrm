@@ -10,6 +10,11 @@ use App\Models\UserType;
 use App\Models\EducationType;
 use App\Models\StudyType;
 use App\Models\Country;
+use App\Models\PersonaDetail;
+use App\Models\Timezone;
+use App\Models\Currency;
+
+
 
 
 
@@ -209,6 +214,158 @@ class StudentController extends Controller
         return redirect()->back()->with('success', 'Student data has been successfully saved.');
     }
     
+
+
+     public function StudentLeadTracking($student_id)
+    {
+        $student = Student::findOrFail($student_id);
+        $countries = Country::get();
+        return view('recruiter.panel.student.student_lead_tracking',compact('student','countries'));
+    }
+
+
+    public function StudentLeadTrackingRegstration(Request $request)
+    {
+        $student = Student::find($request->input('id'));
+        // Validate the incoming data
+        $validatedData = $request->validate([
+        'lead_status' => 'required|string|max:255',
+        'prospect_rating' => 'required|string|max:255',
+        'preferred_appointment_date' => 'date',
+        'preferred_appointment_time' => 'date_format:H:i',
+        'lead_source' => 'string|max:255',
+        'candidate_comments' => 'string',
+        'signup_country' => 'string|max:255',
+        'signup_city' => 'string|max:255',
+        'signup_state_province' => 'string|max:255',
+        ]);
+
+        // Create a new Student instance and fill it with the validated data
+        
+        $student->fill($validatedData);
+
+        // Save the student to the database
+        $student->save();
+
+        // Redirect back to the previous page or a specific route
+        return redirect()->back()->with('success', 'Student data has been successfully saved.');
+    }
+    
+
+
+    public function StudentPersonalDetail($student_id)
+    {
+        $student = Student::findOrFail($student_id);
+        $personaDetail = $student->personaDetail ?? new PersonaDetail();
+
+      //  var_dump($student->personaDetail); // Check the value of $student->personaDetail
+
+        
+        $personaDetail = $student->personaDetail ?? new PersonaDetail();
+      //  var_dump($personaDetail); // Check the value of $personaDetail
+
+
+        $timezones = TimeZone::get();
+        $currency = Currency::get();
+      //   print_r($personaDetail->address1); die();
+        $countries = Country::get();
+        return view('recruiter.panel.student.studen_personal_detail',compact('student','countries','personaDetail','timezones','currency'));
+    }
+
+
+
+    public function StudentPersonalDetailRegistration(Request $request)
+{
+    $student = Student::findOrFail($request->input('id'));
+
+   // print_r($student); die();
+
+    $validatedData = $request->validate([
+        'address1' => 'required|string',
+        'address2' => 'nullable|string',
+        'city' => 'required|string',
+        'state_province' => 'required|string',
+        'country' => 'required|string', // Validate that the selected country exists in the "countries" table.
+        'postcode' => 'required|string',
+        'date_of_birth' => 'required|date',
+        'marital_status' => 'required|string',
+        'timezone' => 'required|string',
+        'currency' => 'required|string',
+        'image_profile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image upload if needed.
+    ]);
+
+   // die();
+
+
+
+    $personaDetail = $student->personaDetail ?? new PersonaDetail();
+    $personaDetail->student_id = $student->id;
+    $personaDetail->fill($validatedData);
+    $student->personaDetail()->save($personaDetail);
+
+
+    if ($request->hasFile('image_profile')) {
+        // Delete the old avatar if it exists
+        
+
+        
+        
+            $file = $request->file('image_profile');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images/avtar'), $fileName); // Store in the root folder
+
+           
+        
+
+        
+        $personaDetail->update(['image_profile' => $fileName]);
+    }
+
+    
+    return redirect()->back();
+}
+
+
+public function StudentBasicUpdate($student_id)
+{
+    $student = Student::findOrFail($student_id);
+    return view('recruiter.panel.student.student_basic_update',compact('student'));
+
+
+}
+
+public function StudentBasicUpdateRegistration(Request $request)
+{
+
+    // Validate the form data
+        $validatedData = $request->validate([
+            'full_name' => 'required|string|max:255',
+            'date_of_birth' => 'required|date',
+            'gender' => 'required|in:male,female,other',
+            'nationality' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:15',
+            'email' => 'required|email|unique:users'
+        ]);
+
+
+        $student =  Student::find($request->input('id'));
+        $student->first_name = $validatedData['full_name'];
+        $student->date_of_birth = $validatedData['date_of_birth'];
+        $student->gender = $validatedData['gender'];
+        $student->nationality = $validatedData['nationality'];
+        $student->address = $validatedData['address'];
+        $student->phone_number = $validatedData['phone_number'];
+        $student->email = $validatedData['email'];
+        
+        // You can add more fields and data saving logic as needed
+
+        // Save the student profile
+        $student->save();
+
+        return redirect()->back();
+
+}
 
 
 }

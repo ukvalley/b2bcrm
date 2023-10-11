@@ -4,11 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\PersonaDetail;
+
 
 class Student extends Model
 {
     use HasFactory;
-
 
     protected $fillable = [
     'current_school',
@@ -32,11 +33,26 @@ class Student extends Model
     'intended_destination_1',
     'intended_destination_2',
     'intended_destination_3',
-    'intended_destination_comments'
+    'intended_destination_comments',
+    'lead_status',
+    'prospect_rating',
+    'preferred_appointment_date',
+    'preferred_appointment_time',
+    'lead_source',
+    'candidate_comments',
+    'signup_country',
+    'signup_city',
+    'signup_state_province',
     ];
+
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function personaDetail()
+    {
+    return $this->hasOne(PersonaDetail::class);
     }
 }

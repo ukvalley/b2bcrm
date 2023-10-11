@@ -171,7 +171,9 @@
     </div>
 
     <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary">Save Academic Information</button>
+    <div class="mb-3 z-index-11">
+    <button type="submit" class="btn btn-default btn-lg w-100">Save Academic Information</button>
+</div>
 </form>
 
                     </div>

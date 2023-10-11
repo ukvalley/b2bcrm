@@ -45,6 +45,22 @@ Route::get('StudentStudyPreferance/{student_id}', [App\Http\Controllers\Agent\St
 Route::post('StudentStudyPreferanceRegstration', [App\Http\Controllers\Agent\StudentController::class, 'StudentStudyPreferanceRegstration'])->name('agent.StudentStudyPreferanceRegstration');
 
 
+Route::get('StudentLeadTracking/{student_id}', [App\Http\Controllers\Agent\StudentController::class, 'StudentLeadTracking'])->name('agent.StudentLeadTracking');
+
+Route::post('StudentLeadTrackingRegstration', [App\Http\Controllers\Agent\StudentController::class, 'StudentLeadTrackingRegstration'])->name('agent.StudentLeadTrackingRegstration');
+
+Route::get('StudentPersonalDetail/{student_id}', [App\Http\Controllers\Agent\StudentController::class, 'StudentPersonalDetail'])->name('agent.StudentPersonalDetail');
+
+Route::post('StudentPersonalDetailRegistration', [App\Http\Controllers\Agent\StudentController::class, 'StudentPersonalDetailRegistration'])->name('agent.StudentPersonalDetailRegistration');
+
+
+
+
+Route::get('StudentBasicUpdate/{student_id}', [App\Http\Controllers\Agent\StudentController::class, 'StudentBasicUpdate'])->name('agent.StudentBasicUpdate');
+
+Route::post('StudentBasicUpdateRegistration', [App\Http\Controllers\Agent\StudentController::class, 'StudentBasicUpdateRegistration'])->name('agent.StudentBasicUpdateRegistration');
+
+
 
 
 
