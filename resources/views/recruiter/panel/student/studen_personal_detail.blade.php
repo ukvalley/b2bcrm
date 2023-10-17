@@ -222,8 +222,8 @@
         @enderror
     </div>
 
-    <div class="mb-3">
-        <button type="submit" class="btn btn-primary">Save</button>
+    <div class="form-group mb-3">
+        <button type="submit" class="btn btn-default btn-lg w-100">Save</button>
     </div>
 </form>
 

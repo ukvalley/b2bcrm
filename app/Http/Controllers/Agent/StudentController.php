@@ -13,6 +13,7 @@ use App\Models\Country;
 use App\Models\PersonaDetail;
 use App\Models\Timezone;
 use App\Models\Currency;
+use App\DataTables\StudentsDataTable;
 
 
 
@@ -366,6 +367,26 @@ public function StudentBasicUpdateRegistration(Request $request)
         return redirect()->back();
 
 }
+
+
+    public function getStudents(Request $request)
+{
+    return (new StudentsDataTable())->ajax();
+}
+
+
+ public function Students(Request $request)
+{
+    return view('recruiter.panel.studentView.students');
+}
+
+public function PreviewStudents($id)
+{
+    $Student = Student::find($id);
+    return view('recruiter.panel.studentView.PreviewStudents',compact('Student'));
+}
+
+
 
 
 }

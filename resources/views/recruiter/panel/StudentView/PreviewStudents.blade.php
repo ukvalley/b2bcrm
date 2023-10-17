@@ -1,0 +1,252 @@
+@extends('recruiter.panel.layout')
+
+@section('content')
+
+<!-- Begin page -->
+ <!-- Begin page -->
+    <main class="">
+
+               <link rel="text/css" href="//cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
+
+
+        <!-- Header -->
+        <header class="header position-fixed">
+            <div class="row">
+                <div class="col-auto">
+                    <a href="javascript:void(0)" target="_self" class="btn btn-light btn-44 menu-btn">
+                        <i class="bi bi-list"></i>
+                    </a>
+                </div>
+                <div class="col align-self-center text-center">
+                    <img src="https://civs.online/wp-content/uploads/2023/01/CIVS-White-01-1024x285.png" width="200px" alt="">
+                    
+                </div>
+                <div class="col-auto">
+                    <a href="notifications.html" target="_self" class="btn btn-light btn-44">
+                        <i class="bi bi-bell"></i>
+                        <span class="count-indicator"></span>
+                    </a>
+                </div>
+            </div>
+        </header>
+        <!-- Header ends -->
+         <div class="main-container container">
+            <!-- welcome user -->
+            
+
+
+        <!-- Student Registration Step 1 Form -->
+        <div class="row">
+            <div class="col-12">
+                
+
+
+
+                   
+
+
+
+                <div class="card shadow-sm mb-4">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-auto">
+                            <figure class="avatar avatar-60 rounded-10">
+                                <img src="{{url('/')}}/public/images/avatar/{{$Student->avatar OR '1696936589_a-happy-indian-cartoon-a-young-male-wearing-a-suite-322338942.png'}}" alt="">
+                            </figure>
+                        </div>
+                        <div class="col px-0 align-self-center">
+                            <h3 class="mb-0 text-color-theme">{{$Student->first_name}}</h3>
+
+                            
+                            <p class="text-muted ">{{$Student->signup_city}}, {{$Student->signup_country}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    
+                <div class="row p-3">
+
+                 <div class="col-md-10"> 
+
+                <div class="row p3 mb-3">
+                    <div class="col-md-4">
+                    <p class="font-weight-bold"><i class="bi bi-phone-fill"></i>: <span class="text-muted">{{$Student->phone_number}}</span></p>
+                    </div>
+                    <div class="col-md-4">
+                    <p class="font-weight-bold"><i class="bi bi-envelope-at-fill"></i>: <a href="mailto:user@example.com">{{$Student->email}}</a></p>
+                    </div>
+                    <div class="col-md-4">
+                    <p class="font-italic"><i class="bi bi-pin-map-fill"></i>: {{$Student->address}}</p>
+                    </div>
+
+
+                </div>
+
+                </div>  
+
+                <div class="col-md-2">
+                
+                     <button type="button" class="btn btn-warning" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Add Notes
+                      </button>
+
+                </div>
+
+
+
+            </div>
+
+            <hr>
+
+                
+
+
+
+                <div style="" class="col-md-12 flex ">
+                    
+                  <!-- Example single danger button -->
+                  
+                    
+                    <div class="btn-group mb-1 m3">
+                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Student Information
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{url('/')}}/agent/PreviewStudents/{{$Student->id}}">Activity & Overview</a>
+                        <a class="dropdown-item" href="{{url('/')}}/agent/StudentBasicUpdate/{{$Student->id}}">Student Details</a>
+                        
+                      </div>
+                    </div>
+                    
+
+
+                    
+                    <div class="btn-group mb-1 m3">
+                      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Search & Apply
+                      </button>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#">Course Search</a>
+                        <a class="dropdown-item" href="#">Shortlist</a>
+                        <a class="dropdown-item" href="#">Application form</a>
+                       
+                        <a class="dropdown-item" href="#">Documents</a>
+                        <a class="dropdown-item" href="#">Review & Submit</a>
+                        <a class="dropdown-item" href="#">Visa Information</a>
+                      </div>
+                    </div>
+                    
+
+                     <div class="btn-group mb-1 m3">
+                      <button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Applications
+                      </button>
+                    
+                    </div>
+                    
+
+               
+
+                </div>
+
+
+                
+
+
+                </div>
+
+
+
+
+                    
+                </div>
+            </div>
+                    
+
+
+
+
+
+      
+
+                    </div>
+
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h3>Activity</h3>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="col-md-12 flex scroll-container">
+                            <div class="d-flex flex-nowrap">
+                            <button class="btn btn-outline-primary m3">Message</button>
+                            <button class="btn btn-outline-primary m3">Task</button>
+                            <button class="btn btn-outline-primary m3">Notes</button>
+                            <button class="btn btn-outline-primary m3">Timeline</button>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-12" id="messgae">
+                            
+                        </div>
+                        
+                    </div>
+                </div>
+               
+
+
+                <div class="card mt-3">
+                    <div class="card-header">
+                   <h3>Overview</h3> 
+                </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6 p-3"><p class=""><span class="text-muted"> Email: </span> <br> <span class="font-weight-bold">{{$Student->email}}</span> </p> 
+                            </div>
+
+                            <div class="col-md-6 p-3"><p class=""><span class="text-muted"> Phone: </span> <br> <span class="font-weight-bold">{{$Student->phone_number}}</span> </p> 
+                            </div>
+
+                            <div class="col-md-6 p-3"><p class=""><span class="text-muted"> Nationality: </span> <br> <span class="font-weight-bold">{{$Student->nationality}}</span> </p> 
+                            </div>
+
+                            <div class="col-md-6 p-3"><p class=""><span class="text-muted"> Address: </span> <br> <span class="font-weight-bold">{{$Student->address}}</span> </p> 
+                            </div>
+
+
+                            <div class="col-md-6 p-3"><p class=""><span class="text-muted"> CIVS Student ID: </span> <br> <span class="font-weight-bold">{{$Student->id}}</span> </p> 
+                            </div>
+
+                            <div class="col-md-6 p-3"><p class=""><span class="text-muted"> Lead Status: </span> <br> <span class="font-weight-bold">{{$Student->lead_status}}</span> </p> 
+                            </div>
+
+
+                            <div class="col-md-6 p-3"><p class=""><span class="text-muted"> Prospect Ratings: </span> <br> <span class="font-weight-bold">{{$Student->prospect_rating}}</span> </p> 
+                            </div>
+
+                            
+
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+    <!-- Main page content ends -->
+</div>
+</main>
+<!-- Page ends -->
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- Include DataTables script -->
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+<script>
+    var j = jQuery.noConflict();
+</script>
+
+
+@endsection

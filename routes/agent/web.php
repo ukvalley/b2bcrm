@@ -61,6 +61,14 @@ Route::get('StudentBasicUpdate/{student_id}', [App\Http\Controllers\Agent\Studen
 Route::post('StudentBasicUpdateRegistration', [App\Http\Controllers\Agent\StudentController::class, 'StudentBasicUpdateRegistration'])->name('agent.StudentBasicUpdateRegistration');
 
 
+Route::get('getStudents', [App\Http\Controllers\Agent\StudentController::class,'getStudents'])->name('agent.getStudents');
+
+Route::get('Students', [App\Http\Controllers\Agent\StudentController::class,'Students'])->name('agent.Students');
+
+Route::get('PreviewStudents/{id}', [App\Http\Controllers\Agent\StudentController::class,'PreviewStudents'])->name('agent.PreviewStudents');
+
+
+
 
 
 

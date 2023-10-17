@@ -30,8 +30,17 @@
 
     <!-- style css for this template -->
 
+
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    
     <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet" id="style">
-    <link href="{{ asset('/vendor/swiperjs-6.6.2/swiper-bundle.min.css') }}" rel="stylesheet" id="style">
+    <link href="{{ asset('theme/vendor/swiperjs-6.6.2/swiper-bundle.min.css') }}" rel="stylesheet" id="style">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+
 
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -127,6 +136,15 @@
                             </a>
                         </li>
 
+
+                         <li class="nav-item">
+                            <a class="nav-link" href="{{route('agent.Students')}}" tabindex="-1">
+                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
+                                <div class="col">Student</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+
                         
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" tabindex="-1">
@@ -155,7 +173,7 @@
                 <li class="nav-item">
                     <a class="nav-link active" href="index.html">
                         <span>
-                            <i class="nav-icon bi bi-house"></i>
+                            <i class="bi bi-house-door-fill"></i>
                             <span class="nav-text">Home</span>
                         </span>
                     </a>
@@ -163,8 +181,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="stats.html">
                         <span>
-                            <i class="nav-icon bi bi-laptop"></i>
-                            <span class="nav-text">Statistics</span>
+                            <i class="bi bi-person-bounding-box"></i>
+                            <span class="nav-text">Students</span>
                         </span>
                     </a>
                 </li>
@@ -172,27 +190,27 @@
                     <div class="nav-link">
                         <span class="theme-radial-gradient">
                             <i class="close bi bi-x"></i>
-                            <img src="assets/img/centerbutton.svg" class="nav-icon" alt="" />
+                            <img src="{{ asset('theme/img/centerbutton.svg') }}" class="nav-icon" alt="" />
                         </span>
                         <div class="nav-menu-popover justify-content-between">
                             <button type="button" class="btn btn-lg btn-icon-text"
                                 onclick="window.location.replace('pay.html');">
-                                <i class="bi bi-credit-card size-32"></i><span>Pay</span>
+                                <i class="bi bi-credit-card size-32"></i><span>Add Student</span>
                             </button>
 
                             <button type="button" class="btn btn-lg btn-icon-text"
                                 onclick="window.location.replace('sendmoney.html');">
-                                <i class="bi bi-arrow-up-right-circle size-32"></i><span>Send</span>
+                                <i class="bi bi-arrow-up-right-circle size-32"></i><span>Submit Application</span>
                             </button>
 
                             <button type="button" class="btn btn-lg btn-icon-text"
                                 onclick="window.location.replace('bills.html');">
-                                <i class="bi bi-receipt size-32"></i><span>Bills</span>
+                                <i class="bi bi-receipt size-32"></i><span>Add Missing info</span>
                             </button>
 
                             <button type="button" class="btn btn-lg btn-icon-text"
                                 onclick="window.location.replace('receivemoney.html');">
-                                <i class="bi bi-arrow-down-left-circle size-32"></i><span>Receive</span>
+                                <i class="bi bi-arrow-down-left-circle size-32"></i><span>Accept Offers</span>
                             </button>
                         </div>
                     </div>
@@ -200,16 +218,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="rewards.html">
                         <span>
-                            <i class="nav-icon bi bi-gift"></i>
-                            <span class="nav-text">Rewards</span>
+                            <i class="bi bi-globe-americas"></i>
+                            <span class="nav-text">Countries</span>
                         </span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="wallet.html">
                         <span>
-                            <i class="nav-icon bi bi-wallet2"></i>
-                            <span class="nav-text">Wallet</span>
+                            <i class="bi bi-gear-fill"></i>
+                            <span class="nav-text">Settings</span>
                         </span>
                     </a>
                 </li>
@@ -280,6 +298,9 @@
 
     <script src="{{ asset('theme/js/popper.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/bootstrap-5/js/bootstrap.bundle.min.js') }}"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!-- cookie js -->
     <script src="{{ asset('theme/js/jquery.cookie.js') }}"></script>
