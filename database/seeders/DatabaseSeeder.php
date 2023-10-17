@@ -21,5 +21,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CountrySeeder::class);
         $this->call(UserTypeSeeder::class);
+        $this->call(CurrencySeeder::class);
+        $this->call(EducationTypesSeeder::class);
+        $this->call(StudyTypeSeeder::class);
+        $this->call(TimezonesSeeder::class);
+        $this->call(UserTypeSeeder::class);
     }
 }
