@@ -75,7 +75,7 @@ Route::group(["prefix" => "/agent", "middleware" => "CheckUserRole:Agent"], func
     require __DIR__.'/agent/web.php';
 
     // ...
-});
+}); 
 
 Route::group(["prefix" => "/student", "middleware" => "CheckUserRole:Student"], function () {
     require __DIR__.'/student/web.php';
