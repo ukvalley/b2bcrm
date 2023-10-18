@@ -4,12 +4,12 @@
                     @if(isset($institution))
 
 
-                     <a class="nav-link {{ request()->routeIs('institution.courseBasicUpdate') ? 'active' : '' }}" href="{{ route('institution.CourseBasicUpdate', ['student_id' => $student->id]) }}">Academic Achievement</a>
+                     <a class="nav-link {{ request()->routeIs('institution.courseBasicUpdate') ? 'active' : '' }}" href="{{ route('institution.CourseBasicUpdate', ['student_id' => $student->id]) }}"> Resistration 1</a>
 
-                    <a class="nav-link {{ request()->routeIs('institution.course_basic2') ? 'active' : '' }}" href="{{ route('institution.course_basic2', ['course_id' => $course_id]) }}">Academic Achievement</a>
+                    <a class="nav-link {{ request()->routeIs('institution.course_basic2') ? 'active' : '' }}" href="{{ route('institution.course_basic2', ['course_id' => $course_id]) }}">Resistration 2</a>
 
 
-                    <a class="nav-link {{ request()->routeIs('institution.cousece_persona') ? 'active' : '' }}" href="{{ route('institution.course_persona', ['student_id' => $student->id]) }}">Student Persona</a>
+                    <a class="nav-link {{ request()->routeIs('institution.course_basic3') ? 'active' : '' }}" href="{{ route('institution.course_basic2', ['student_id' => $student->id]) }}">Resistration 3</a>
 
 
 
