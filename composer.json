@@ -11,12 +11,12 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
-        "maatwebsite/excel": "^3.1",
         "phpoffice/phpspreadsheet": "^1.29",
         "pragmarx/countries": "*",
         "psr/simple-cache": "^2.0",
         "yajra/laravel-datatables-buttons": "^10.0",
-        "yajra/laravel-datatables-oracle": "^10.3.1"
+        "yajra/laravel-datatables-oracle": "^10.3.1",
+        "maatwebsite/excel": "^3.1.48"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
