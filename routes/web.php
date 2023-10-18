@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\RecruiterRegistrationController;
 use App\Http\Controllers\InstitutionRegistrationController;
@@ -25,6 +26,8 @@ Route::get('/', function () {
 });
 
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
 
 
 // routes for agent registration
