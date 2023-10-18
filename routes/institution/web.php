@@ -22,11 +22,16 @@ Route::post('PasswordUpdate', [App\Http\Controllers\Institution\InstitutionContr
 
 Route::get('CourseBasic', [App\Http\Controllers\Institution\CourceController::class, 'CourseBasic'])->name('institution.course_basic');
 
+Route::get('CourseBasic2/{course_id}', [App\Http\Controllers\Institution\CourceController::class, 'CourseBasic2'])->name('institution.course_Basic2');
+
+Route::get('CourseBasic3/{course_id}', [App\Http\Controllers\Institution\CourceController::class, 'CourseBasic3'])->name('institution.course_basic3');
 
 
 
 Route::post('CourseBasicRegistration', [App\Http\Controllers\Institution\CourceController::class, 'CourseBasicRegistration'])->name('institution.course_basic_registration');
 
+Route::post('CourseBasicRegistration2/{course_id}', [App\Http\Controllers\Institution\CourceController::class, 'CourceBasicResistration2'])->name('institution.course_basic_registration2');
+Route::post('CourseBasicRegistration3/{course_id}', [App\Http\Controllers\Institution\CourceController::class, 'CourseBasicRegistration3'])->name('institution.course_basic_registration3');
 
 
 
@@ -37,7 +42,7 @@ Route::post('CourseBasicRegistration', [App\Http\Controllers\Institution\CourceC
 
 
 
-Route::get('CourseBasicUpdate/{student_id}', [App\Http\Controllers\Institution\CourceController::class, 'CourseBasicUpdate'])->name('institution.StudentBasicUpdate');
+Route::get('CourseBasicUpdate/{course_id}', [App\Http\Controllers\Institution\CourceController::class, 'CourseBasicUpdate'])->name('institution.CourseBasicUpdate');
 
-Route::post('CourseBasicUpdateRegistration', [App\Http\Controllers\Institution\CourceController::class, 'CourseBasicUpdateRegistration'])->name('institution.StudentBasicUpdateRegistration');
+Route::post('CourseBasicUpdateRegistration/{course_id}', [App\Http\Controllers\Institution\CourceController::class, 'CourseBasicUpdateRegistration'])->name('institution.CourseBasicUpdateRegistration');
 

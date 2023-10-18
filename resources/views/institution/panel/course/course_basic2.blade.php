@@ -22,8 +22,20 @@
 
                         <h4 class="card-title"> Course Information</h4>
                         <p class="card-text">Please provide Course information.</p>
-                       <form class="mt-3" method="POST" action="{{ route('institution.student_basic_registration',['id' => $student->id]) }}">
+                       <form class="mt-3" method="POST" action="{{ route('institution.course_basic_registration2',['course_id' => $course->id]) }}">
     @csrf
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
 <!-- 
     <div class="col mb-3">
         <h6>Basic Information</h6>
@@ -71,7 +83,7 @@
         <label for="fees_types" class="form-label">Fees Type</label>
         <select class="form-select @error('fees_types') is-invalid @enderror" id="fees_types" name="fees_types" required>
             <option value="semister">Semister</option>
-            <option value="yearly">Yearly</option>
+            <option value="yearly" >Yearly</option>
         </select>
         @error('fees_types')
             <span class="invalid-feedback" role="alert">

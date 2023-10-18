@@ -22,7 +22,7 @@
 
                         <h4 class="card-title"> Personal Information</h4>
                         <p class="card-text">Please provide Details information.</p>
-                       <form class="mt-3" method="POST" action="{{ route('institution.student_basic_registration',['id' => $student->id]) }}">
+                       <form class="mt-3" method="POST" action="{{ route('institution.course_basic_registration3',['course_id' => $course->id]) }}">
     @csrf
 
     <div class="col mb-3">
