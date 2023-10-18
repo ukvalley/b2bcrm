@@ -35,7 +35,7 @@
                             <div class="row">
                                 <img src="{{ asset('images/country_header_image/' . $CountryData->country_header_image) }}">
                             </div>
-                            <div class="row">
+                            <div class="row mt-5">
                             <div class="col-md-8">
 
                                 <h4>Stay in {{$CountryData->country_name}}</h5>

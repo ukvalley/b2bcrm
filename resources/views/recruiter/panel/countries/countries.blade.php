@@ -35,11 +35,14 @@
                                 <h3>Available Countries</h3>
                                 <div class="row">
                                 @foreach($CountryData as $country)
-
+                                
                                  <div class="col-md-6 p-3">
+                                    <a href="{{ route('agent.country_details', ['id' => $country->id]) }}">
                                      <h5>{{$country->country_name}}</h5>
-                                     <img src="{{ asset('images/country_header_image/' . $country->country_header_image) }}">
-                                 </div>   
+                                     <img width="100%" src="{{ asset('images/country_header_image/' . $country->country_header_image) }}">
+                                     </a> 
+                                 </div>  
+                                 
 
                                 @endforeach
                                 </div>

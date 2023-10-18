@@ -71,8 +71,8 @@ public function show($id)
 }
 public function edit($id)
 {
-    $country = CountryData::find($id); // Find the record by its ID.
-    return view('admin.countries.edit', compact('country'));
+    $countryData = CountryData::find($id); // Find the record by its ID.
+    return view('admin.panel.countries.edit', compact('countryData'));
 }
 public function update(Request $request, $id)
 {
@@ -91,6 +91,23 @@ public function update(Request $request, $id)
     // Update the existing record.
     $country = CountryData::find($id);
     $country->update($validatedData);
+
+    if ($request->hasFile('country_header_image')) {
+        // Delete the old avatar if it exists
+        
+
+        
+        
+            $file = $request->file('country_header_image');
+            $fileName = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('images/country_header_image'), $fileName); // Store in the root folder
+
+           
+        
+
+        
+        $country->update(['country_header_image' => '' . $fileName]);
+    }
 
     return redirect()->route('country-data.index')->with('success', 'Record updated successfully.');
 }

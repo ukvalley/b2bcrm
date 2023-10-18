@@ -25,7 +25,7 @@ Route::get('country-data/{id}', 'App\Http\Controllers\Admin\CountryDataControlle
 Route::get('country-data/{id}/edit', 'App\Http\Controllers\Admin\CountryDataController@edit')->name('country-data.edit');
 
 // Update a specific country_data record
-Route::put('country-data/{id}', 'App\Http\Controllers\Admin\CountryDataController@update')->name('country-data.update');
+Route::put('admin/country-data/{country_data}', 'App\Http\Controllers\Admin\CountryDataController@update')->name('admin.country-data.update');
 
 // Delete a specific country_data record
 Route::delete('country-data/{id}', 'App\Http\Controllers\Admin\CountryDataController@destroy')->name('country-data.destroy');
