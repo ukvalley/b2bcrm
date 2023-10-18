@@ -18,4 +18,14 @@ class CountryData extends Model
     'country_header_image', // Add the new field here.
     'youtube_link',
 ];
+
+public function news()
+{
+    return $this->hasMany(News::class, 'country_id');
+}
+
+public function links()
+{
+    return $this->hasMany(Links::class, 'country_id');
+}
 }

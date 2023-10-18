@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Timezone;
 use Illuminate\Support\Facades\Storage;
+use App\Models\CountryData;
 
 
 
@@ -121,4 +122,25 @@ public function updatePassword(Request $request)
         return back()->withErrors(['current_password' => 'Incorrect current password.'])->withInput();
     }
 }
+
+
+    public function countries()
+    {
+        $CountryData = CountryData::get();
+        return view('recruiter.panel.countries.countries',compact('CountryData'));
+
+    }
+
+    public function country_details($id)
+    {
+        $CountryData = CountryData::find($id);
+        $news = $CountryData->news()->get();
+        $links = $CountryData->links()->get();
+        return view('recruiter.panel.countries.country_details',compact('CountryData','news','links'));
+
+    }
+
+
+    
+
 }

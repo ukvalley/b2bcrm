@@ -30,6 +30,9 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 
 
+
+
+
 // routes for agent registration
 
 
@@ -87,6 +90,13 @@ Route::group(["prefix" => "/student", "middleware" => "CheckUserRole:Student"], 
 
 Route::group(["prefix" => "/institution", "middleware" => "CheckUserRole:Institution"], function () {
     require __DIR__.'/institution/web.php';
+
+    // ...
+});
+
+
+Route::group(["prefix" => "/admin"], function () {
+    require __DIR__.'/admin/web.php';
 
     // ...
 });

@@ -19,7 +19,18 @@ Route::post('PasswordUpdate', [App\Http\Controllers\Agent\AgentController::class
 
 
 
+// countries
+
+Route::get('countries', [App\Http\Controllers\Agent\AgentController::class, 'countries'])->name('agent.countries');
+Route::get('country_details/{id}', [App\Http\Controllers\Agent\AgentController::class, 'country_details'])->name('agent.country_details');
+
+
+
 // student registration and updation routes
+
+
+
+
 
 
 

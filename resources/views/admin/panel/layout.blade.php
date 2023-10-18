@@ -99,61 +99,14 @@
                 <div class="col-12">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{route('agent.home')}}">
+                            <a class="nav-link active" aria-current="page" href="{{route('admin.home')}}">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-house-door"></i></div>
                                 <div class="col">Dashboard</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
                         </li>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                                aria-expanded="false">
-                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-person"></i></div>
-                                <div class="col">Account</div>
-                                <div class="arrow"><i class="bi bi-plus plus"></i> <i class="bi bi-dash minus"></i>
-                                </div>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item nav-link" href="{{route('agent.edit')}}">
-                                        <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar2"></i></div>
-                                        <div class="col">Profile</div>
-                                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
-                                    </a></li>
-                                <li><a class="dropdown-item nav-link" href="{{ route('agent.editPassword') }}">
-                                        <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar-check"></i>
-                                        </div>
-                                        <div class="col">Security</div>
-                                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
-                                    </a></li>
-                            </ul>
-                        </li>
-
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('agent.countries')}}" tabindex="-1">
-                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
-                                <div class="col">Countries</div>
-                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('agent.student_basic')}}" tabindex="-1">
-                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
-                                <div class="col">Add Student</div>
-                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
-                            </a>
-                        </li>
-
-
-                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('agent.Students')}}" tabindex="-1">
-                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
-                                <div class="col">Student</div>
-                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
-                            </a>
-                        </li>
+                        
 
                         
                         <li class="nav-item">
@@ -172,7 +125,7 @@
     <!-- Sidebar main menu ends -->
 
 
-         @include('recruiter.panel.header')
+         @include('admin.panel.header')
 
         @yield('content')
 
@@ -180,7 +133,7 @@
 
 
         <!-- Footer -->
-    <footer class="footer">
+   <!--  <footer class="footer">
         <div class="container">
             <ul class="nav nav-pills nav-justified">
                 <li class="nav-item">
@@ -246,7 +199,7 @@
                 </li>
             </ul>
         </div>
-    </footer>
+    </footer> -->
     <!-- Footer ends-->
 
     <!-- PWA app install toast message -->
