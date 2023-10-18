@@ -30,23 +30,32 @@
 
     <!-- style css for this template -->
 
+
+         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+    
     <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet" id="style">
-    <link href="{{ asset('/vendor/swiperjs-6.6.2/swiper-bundle.min.css') }}" rel="stylesheet" id="style">
+    <link href="{{ asset('theme/vendor/swiperjs-6.6.2/swiper-bundle.min.css') }}" rel="stylesheet" id="style">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+
 
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
-<body class="body-scroll d-flex flex-column h-100" data-page="signup">
+<body class="body-scroll d-flex flex-column" data-page="signup">
 
     <!-- loader section -->
     <div class="container-fluid loader-wrap">
         <div class="row h-100">
             <div class="col-10 col-md-6 col-lg-5 col-xl-3 mx-auto text-center align-self-center">
                 <div class="loader-cube-wrap loader-cube-animate mx-auto">
-                    <img src="assets/img/logo.png" alt="Logo">
+                    <img src="https://civs.online/wp-content/uploads/2023/01/CIVS-White-01-1024x285.png" alt="Logo">
                 </div>
-                <p class="mt-4">It's time for track budget<br><strong>Please wait...</strong></p>
+                <p class="mt-4">Your Journey to Success<br><strong>Starts from Here!</strong></p>
             </div>
         </div>
     </div>
@@ -70,8 +79,8 @@
                                     </figure>
                                 </div>
                                 <div class="col px-0 align-self-center">
-                                    <p class="mb-1">Maxartkiller</p>
-                                    <p class="text-muted size-12">New York City, US</p>
+                                    <p class="mb-1">{{$siteName}}</p>
+                                    <p class="text-muted size-12"></p>
                                 </div>
                                 <div class="col-auto">
                                     <button class="btn btn-44 btn-light">
@@ -80,23 +89,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card bg-opac text-white border-0">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h1 class="display-4">100.00</h1>
-                                    </div>
-                                    <div class="col-auto">
-                                        <p class="text-muted">Wallet Balance</p>
-                                    </div>
-                                    <div class="col text-end">
-                                        <p class="text-muted"><a href="addmoney.html" >+ Top up</a>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                        
+                    </div>  
                 </div>
             </div>
 
@@ -105,12 +99,15 @@
                 <div class="col-12">
                     <ul class="nav nav-pills">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html">
+                            <a class="nav-link active" aria-current="page" href="{{route('institution.home')}}">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-house-door"></i></div>
                                 <div class="col">Dashboard</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
                         </li>
+
+
+                       
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -121,64 +118,38 @@
                                 </div>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item nav-link" href="profile.html">
+                                <li><a class="dropdown-item nav-link" href="{{route('institution.edit')}}">
                                         <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar2"></i></div>
                                         <div class="col">Profile</div>
                                         <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                                     </a></li>
-                                <li><a class="dropdown-item nav-link" href="settings.html">
+                                <li><a class="dropdown-item nav-link" href="{{ route('institution.editPassword') }}">
                                         <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar-check"></i>
                                         </div>
-                                        <div class="col">Settings</div>
+                                        <div class="col">Security</div>
                                         <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                                     </a></li>
                             </ul>
                         </li>
+  
                         <li class="nav-item">
-                            <a class="nav-link" href="chat.html" tabindex="-1">
+                            <a class="nav-link" href="{{route('agent.student_basic')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
-                                <div class="col">Messages</div>
-                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                                <div class="col">New Course</div>
+                                <div class="arrow"><i class="bi bi-plus plus"></i></div>
                             </a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="notifications.html" tabindex="-1">
-                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-bell"></i></div>
-                                <div class="col">Notification</div>
-                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
-                            </a>
-                        </li>
+                       
 
+                        
                         <li class="nav-item">
-                            <a class="nav-link" href="blog.html" tabindex="-1">
-                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-newspaper"></i></div>
-                                <div class="col">Blogs</div>
-                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="style.html" tabindex="-1">
-                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-palette"></i></div>
-                                <div class="col">Style <i class="bi bi-star-fill text-warning small"></i></div>
-                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="pages.html" tabindex="-1">
-                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-file-earmark-text"></i></div>
-                                <div class="col">Pages <span class="badge bg-info fw-light">new</span></div>
-                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{url('/')}}/logout" tabindex="-1">
+                            <a class="nav-link" href="{{ route('logout') }}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-box-arrow-right"></i></div>
-                                <div class="col">Logout</div>
+                                <div class="col">{{ __('Logout') }}</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
+                            
                         </li>
                     </ul>
                 </div>
@@ -186,6 +157,9 @@
         </div>
     </div>
     <!-- Sidebar main menu ends -->
+
+
+         @include('recruiter.panel.header')
 
         @yield('content')
 
@@ -197,18 +171,18 @@
         <div class="container">
             <ul class="nav nav-pills nav-justified">
                 <li class="nav-item">
-                    <a class="nav-link active" href="index.html">
+                    <a class="nav-link active" href="{{route('institution.home')}}">
                         <span>
-                            <i class="nav-icon bi bi-house"></i>
+                            <i class="bi bi-house-door-fill"></i>
                             <span class="nav-text">Home</span>
                         </span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="stats.html">
+                    <a class="nav-link" href="{{route('institution.home')}}">
                         <span>
-                            <i class="nav-icon bi bi-laptop"></i>
-                            <span class="nav-text">Statistics</span>
+                            <i class="bi bi-person-bounding-box"></i>
+                            <span class="nav-text">Students</span>
                         </span>
                     </a>
                 </li>
@@ -216,44 +190,44 @@
                     <div class="nav-link">
                         <span class="theme-radial-gradient">
                             <i class="close bi bi-x"></i>
-                            <img src="assets/img/centerbutton.svg" class="nav-icon" alt="" />
+                            <img src="{{ asset('theme/img/centerbutton.svg') }}" class="nav-icon" alt="" />
                         </span>
                         <div class="nav-menu-popover justify-content-between">
                             <button type="button" class="btn btn-lg btn-icon-text"
-                                onclick="window.location.replace('pay.html');">
-                                <i class="bi bi-credit-card size-32"></i><span>Pay</span>
+                                onclick="window.location.replace('{{route('institution.home')}}');">
+                                <i class="bi bi-credit-card size-32"></i><span>Add Student</span>
                             </button>
 
                             <button type="button" class="btn btn-lg btn-icon-text"
-                                onclick="window.location.replace('sendmoney.html');">
-                                <i class="bi bi-arrow-up-right-circle size-32"></i><span>Send</span>
+                                onclick="window.location.replace('{{route('institution.home')}}');">
+                                <i class="bi bi-arrow-up-right-circle size-32"></i><span>Submit Application</span>
                             </button>
 
                             <button type="button" class="btn btn-lg btn-icon-text"
-                                onclick="window.location.replace('bills.html');">
-                                <i class="bi bi-receipt size-32"></i><span>Bills</span>
+                                onclick="window.location.replace('{{route('institution.home')}}');">
+                                <i class="bi bi-receipt size-32"></i><span>Add Missing info</span>
                             </button>
 
                             <button type="button" class="btn btn-lg btn-icon-text"
-                                onclick="window.location.replace('receivemoney.html');">
-                                <i class="bi bi-arrow-down-left-circle size-32"></i><span>Receive</span>
+                                onclick="window.location.replace('{{route('institution.home')}}');">
+                                <i class="bi bi-arrow-down-left-circle size-32"></i><span>Accept Offers</span>
                             </button>
                         </div>
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="rewards.html">
+                    <a class="nav-link" href="{{route('institution.home')}}">
                         <span>
-                            <i class="nav-icon bi bi-gift"></i>
-                            <span class="nav-text">Rewards</span>
+                            <i class="bi bi-globe-americas"></i>
+                            <span class="nav-text">Countries</span>
                         </span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="wallet.html">
+                    <a class="nav-link" href="{{route('institution.edit')}}">
                         <span>
-                            <i class="nav-icon bi bi-wallet2"></i>
-                            <span class="nav-text">Wallet</span>
+                            <i class="bi bi-gear-fill"></i>
+                            <span class="nav-text">Settings</span>
                         </span>
                     </a>
                 </li>
@@ -263,7 +237,7 @@
     <!-- Footer ends-->
 
     <!-- PWA app install toast message -->
-    <div class="position-fixed bottom-0 start-50 translate-middle-x  z-index-10">
+    <!-- <div class="position-fixed bottom-0 start-50 translate-middle-x">
         <div class="toast mb-3" role="alert" aria-live="assertive" aria-atomic="true" id="toastinstall"
             data-bs-animation="true">
             <div class="toast-header">
@@ -283,7 +257,39 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
+
+
+
+    <script>
+    // Get all elements with the "nav-link" class
+    const navLinks = document.querySelectorAll('.nav-item');
+
+    // Add click event listeners to each nav link
+    navLinks.forEach(navLink => {
+        navLink.addEventListener('click', function (event) {
+            // Check if the clicked nav link has a dropdown-menu
+            console.log('hi');
+            const dropdownMenu = navLink.querySelector('.dropdown-menu');
+            
+            if (dropdownMenu) {
+                // Toggle the "show" class for the dropdown-menu
+                dropdownMenu.classList.toggle('show');
+            }
+        });
+    });
+
+    // Close the menu when clicking on the "Close Menu" button
+    const closeMenuButton = document.querySelector('.closemenu');
+    closeMenuButton.addEventListener('click', function () {
+        // Find all dropdown menus and hide them
+        const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+        dropdownMenus.forEach(dropdownMenu => {
+            dropdownMenu.classList.remove('show');
+        });
+    });
+</script>
+
 
 
     <!-- Required jquery and libraries -->
@@ -292,6 +298,9 @@
 
     <script src="{{ asset('theme/js/popper.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/bootstrap-5/js/bootstrap.bundle.min.js') }}"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!-- cookie js -->
     <script src="{{ asset('theme/js/jquery.cookie.js') }}"></script>
