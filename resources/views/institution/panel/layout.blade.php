@@ -133,10 +133,19 @@
                         </li>
   
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('agent.student_basic')}}" tabindex="-1">
+                            <a class="nav-link" href="{{route('institution.course_basic')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
-                                <div class="col">New Course</div>
-                                <div class="arrow"><i class="bi bi-plus plus"></i></div>
+                                <div class="col">Add Course</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+
+
+                         <li class="nav-item">
+                            <a class="nav-link" href="#" tabindex="-1">
+                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
+                                <div class="col">Course</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
                         </li>
 
@@ -159,7 +168,7 @@
     <!-- Sidebar main menu ends -->
 
 
-         @include('recruiter.panel.header')
+         @include('institution.panel.header')
 
         @yield('content')
 

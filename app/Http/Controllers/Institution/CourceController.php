@@ -7,6 +7,9 @@ use Illuminate\Http\Request;
 
 use App\Models\Student; // Make sure to import the Student model
 use App\Models\User;
+use App\Models\Course;
+use Illuminate\Support\Facades\Auth;
+
 use App\Models\UserType;
 use App\Models\EducationType;
 use App\Models\StudyType;
@@ -38,68 +41,53 @@ class CourceController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
 
-    public function StudentBasic()
+    public function CourseBasic()
     {
-        return view('institution.panel.course.student_basic_profile');
+        return view('institution.panel.course.course_basic_profile');
     }
 
 
 
-    public function StudentBasicRegistration(Request $request)
+    public function  CourseBasicRegistration(Request $request)
     {
         // Validate the form data
         $validatedData = $request->validate([
-            'full_name' => 'required|string|max:255',
-            'date_of_birth' => 'required|date',
-            'gender' => 'required|in:male,female,other',
-            'nationality' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
-            'phone_number' => 'required|string|max:15',
-            'email' => 'required|email|unique:users'
+            'name' => 'required|string|max:255',
+            'level' => 'required',
+            'course_code' => 'required',
+            'duration' => 'required|string|max:15',
         ]);
 
         // Create a new user or institution profile in your database
-    $user = new User();
-    $user->name =  $validatedData['full_name'];
-    $user->email = $validatedData['email'];
-    $user->password = bcrypt($validatedData['email']);
+    $course = new Course();
+    $course->name =  $validatedData['name'];
+    $course->level = $validatedData['level'];
+    $course->course_code = $validatedData['course_code'];
+    $course->duration = $validatedData['duration'];
     // Add other user-specific fields as needed
+    $course->institution_id = Auth::user()->institution->id;
 
     // Save the user
-    $user->save();
+    $course->save();
 
-    $user->userType()->associate(UserType::where('name', 'Student')->first());
-    $user->save();
 
-        // Create a new student profile and save the data
-        $student = new Student();
-        $student->first_name = $validatedData['full_name'];
-        $student->user_id = $user->id;
-        $student->date_of_birth = $validatedData['date_of_birth'];
-        $student->gender = $validatedData['gender'];
-        $student->nationality = $validatedData['nationality'];
-        $student->address = $validatedData['address'];
-        $student->phone_number = $validatedData['phone_number'];
-        $student->email = $validatedData['email'];
-        $student->username = $validatedData['email'];
+     $course_id =Auth::user()->institution->id;
+     
+   
+     
         
-        // You can add more fields and data saving logic as needed
-
-        // Save the student profile
-        $student->save();
 
         // Redirect to the next step of the registration process
-        return redirect()->route('agent.student_academic', ['student_id' => $student->id]);
+        return redirect()->route('institution.cource_academic', ['course_id' => $course_id]);
     }
 
     // ...
 
-    public function StudentAcademic($student_id)
+    public function CourseBasic2($course_id)
     {
         
-        $student = Student::findOrFail($student_id);
-        $educationTypes = EducationType::get();
-        return view('institution.panel.course.student_academic',compact('student','educationTypes'));
+        $course = Course::findOrFail($course_id);
+        return view('institution.panel.course.course_basic2',compact('course'));
     }
 
     public function StudentAcademicRegistration(Request $request)
@@ -140,14 +128,14 @@ class CourceController extends Controller
             
     }
 
-    public function StudentPersona($student_id)
+    public function CoursePersona($student_id)
     {
         $student = Student::findOrFail($student_id);
-        return view('institution.panel.course.student_persona',compact('student'));
+        return view('institution.panel.course.course_persona',compact('student'));
 
     }
 
-    public function StudentPersonaRegistration(Request $request)
+    public function CoursePersonaRegistration(Request $request)
     {
         // Validation rules for the fields
         $validatedData = $request->validate([
@@ -177,16 +165,16 @@ class CourceController extends Controller
     }
 
 
-    public function StudentStudyPreferance($student_id)
+    public function CourseStudyPreferance($student_id)
     {
         $student = Student::findOrFail($student_id);
         $countries = Country::get();
         $StudyTypes = StudyType::get();
-        return view('institution.panel.course.study_preferance',compact('student','StudyTypes','countries'));
+        return view('institution.panel.course.course_preferance',compact('student','StudyTypes','countries'));
     }
 
 
-    public function StudentStudyPreferanceRegstration(Request $request)
+    public function CourseStudyPreferanceRegstration(Request $request)
     {
         // Validate the incoming data
         $validatedData = $request->validate([
@@ -218,7 +206,7 @@ class CourceController extends Controller
     
 
 
-     public function StudentLeadTracking($student_id)
+     public function CourseLeadTracking($student_id)
     {
         $student = Student::findOrFail($student_id);
         $countries = Country::get();
@@ -226,7 +214,7 @@ class CourceController extends Controller
     }
 
 
-    public function StudentLeadTrackingRegstration(Request $request)
+    public function CourseLeadTrackingRegstration(Request $request)
     {
         $student = Student::find($request->input('id'));
         // Validate the incoming data
@@ -255,7 +243,7 @@ class CourceController extends Controller
     
 
 
-    public function StudentPersonalDetail($student_id)
+    public function CoursetPersonalDetail($student_id)
     {
         $student = Student::findOrFail($student_id);
         $personaDetail = $student->personaDetail ?? new PersonaDetail();
@@ -271,12 +259,12 @@ class CourceController extends Controller
         $currency = Currency::get();
       //   print_r($personaDetail->address1); die();
         $countries = Country::get();
-        return view('institution.panel.course.studen_personal_detail',compact('student','countries','personaDetail','timezones','currency'));
+        return view('institution.panel.course.course_personal_detail',compact('student','countries','personaDetail','timezones','currency'));
     }
 
 
 
-    public function StudentPersonalDetailRegistration(Request $request)
+    public function CoursePersonalDetailRegistration(Request $request)
 {
     $student = Student::findOrFail($request->input('id'));
 
@@ -328,15 +316,15 @@ class CourceController extends Controller
 }
 
 
-public function StudentBasicUpdate($student_id)
+public function CourseBasicUpdate($student_id)
 {
     $student = Student::findOrFail($student_id);
-    return view('institution.panel.course.student_basic_update',compact('student'));
+    return view('institution.panel.course.course_basic_update',compact('student'));
 
 
 }
 
-public function StudentBasicUpdateRegistration(Request $request)
+public function CourseBasicUpdateRegistration(Request $request)
 {
 
     // Validate the form data
@@ -370,24 +358,8 @@ public function StudentBasicUpdateRegistration(Request $request)
 }
 
 
-    public function getStudents(Request $request)
-{
-    return (new StudentsDataTable())->ajax();
-}
 
-
- public function Students(Request $request)
-{
-    return view('institution.course.studentView.students');
-}
-
-public function PreviewStudents($id)
-{
-    $Student = Student::find($id);
-    return view('institution.panel.studentView.PreviewStudents',compact('Student'));
-}
-
-
+ 
 
 
 }
