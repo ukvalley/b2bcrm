@@ -47,7 +47,7 @@ Route::post('/recruiter/registration/step5', [RecruiterRegistrationController::c
 
 
   
-
+   
 
 // routes for institution registration
 
