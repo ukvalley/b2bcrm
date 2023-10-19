@@ -61,7 +61,7 @@
 
                 <div class="col-md-2">
                 
-                     <button type="button" class="btn btn-warning" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                     <button type="button" class="btn btn-warning"  id="submitNote">
                         Add Notes
                       </button>
 
@@ -210,6 +210,69 @@
                     </div>
                 </div>
             </div>
+
+
+
+
+
+            <div id="addNoteModal" class="modal">
+            <div class="modal-content">
+                <h4>Add Note</h4>
+                <form id="noteForm">
+                    <div class="input-field">
+                        <select id="medium" name="medium">
+                            <option value="" disabled selected>Select Conversation Medium</option>
+                            <option value="Phone">Phone</option>
+                            <option value="Email">Email</option>
+                            <option value="In-Person">In-Person</option>
+                        </select>
+                        <label for="medium">Conversation Medium</label>
+                    </div>
+                    <div class="input-field">
+                        <textarea id="note" name="note" class="materialize-textarea"></textarea>
+                        <label for="note">Note</label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+                <a href="#" class="waves-effect waves-light btn" id="submitNote">Submit</a>
+            </div>
+        </div>
+
+
+        <div id="addNoteModal" class="modal">
+    <div class="modal-content">
+        <h4>Add Note</h4>
+        <form id="noteForm">
+            <div class="input-field">
+                <select id="medium" name="medium">
+                    <option value="" disabled selected>Select Conversation Medium</option>
+                    <option value="Phone">Phone</option>
+                    <option value="Email">Email</option>
+                    <option value="In-Person">In-Person</option>
+                </select>
+                <label for="medium">Conversation Medium</label>
+            </div>
+            <div class="input-field">
+                <textarea id="note" name="note" class="materialize-textarea"></textarea>
+                <label for="note">Note</label>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
+        <a href="#" class="waves-effect waves-light btn" id="submitNote">Submit</a>
+    </div>
+</div>
+
+
+
+
+
+
+
+
     <!-- Main page content ends -->
 </div>
 </main>
@@ -219,9 +282,13 @@
     <!-- Include DataTables script -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
-<script>
-    var j = jQuery.noConflict();
-</script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+    $('.modal').modal();
+});
+    </script>
+
 
 
 @endsection

@@ -45,7 +45,7 @@
                                 <hr>
 
                                 <h4 class="mt-5">Urban Enviornment<h6>
-                                <p>{{$CountryData->urban_environment}}</p>
+                                <p>{!! $CountryData->urban_environment !!}</p>
                                 <hr>
 
                                 <h4 class="mt-5">Diverse Scenery<h6>

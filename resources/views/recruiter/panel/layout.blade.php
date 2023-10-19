@@ -307,7 +307,7 @@
 
     <!-- Required jquery and libraries -->
     
-    <script src="{{ asset('theme/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script src="{{ asset('theme/js/popper.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/bootstrap-5/js/bootstrap.bundle.min.js') }}"></script>
@@ -329,6 +329,9 @@
 
     <!-- page level custom script -->
     <script src="{{ asset('theme/js/app.js') }}"></script>
+
+
+    
 </body>
 
 </html>
