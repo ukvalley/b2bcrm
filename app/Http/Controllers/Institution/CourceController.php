@@ -18,6 +18,7 @@ use App\Models\PersonaDetail;
 use App\Models\Timezone;
 use App\Models\Currency;
 use App\DataTables\StudentsDataTable;
+use DataTables;
 
 
 
@@ -46,7 +47,44 @@ class CourceController extends Controller
         return view('institution.panel.course.course_basic_profile');
     }
 
+    public function course()
+    {
+        return view('institution.panel.course_view.course');
+    }
+    public function previewCourse()
+    {
+        return view('institution.panel.course_view.previewCourse');
+    }
+    public function courseView()
+    {
+        return view('institution.panel.course_view.course_view');
+    }
+    public function courseById($course_id)
+    {
+        
+        $course = Course::findOrFail($course_id);
+        return view('institution.panel.course_view.course_view',compact('course'));
+    }
 
+    public function getCourse(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Course::select('*');
+            return Datatables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+     
+                           $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+       
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+        }
+        // $course = Course::get();
+      //  return view('institution.panel.course_view.course',compact('course'));
+    }
+    
 
     public function  CourseBasicRegistration(Request $request)
     {
@@ -92,20 +130,23 @@ class CourceController extends Controller
     public function CourceBasicResistration2(Request $request,$course_id)
     {
 
+        
+
         $validatedData = $request->validate([
         'code' => 'nullable|string|max:255',
         'currency' => 'nullable|string|max:255',
-        'application_fees' => 'nullable|',
+        'application_fees' => 'nullable|numeric|between:0,999999.99',
         'tuition_fee' => 'nullable|string|max:65535',
         'fees_type' => 'nullable|string|max:65535',
         'course_code' => 'nullable|string|max:65535',
         'duration' => 'nullable|string|max:65535',
         'duration_type' => 'nullable|string|max:65535',
+
         ]);
 
         
 
-        $Course =Course::find($course_id);
+        $Course = Course::find($course_id);
 
         $Course->code = $request->code;
         $Course->currency = $request->currency;
@@ -133,28 +174,33 @@ class CourceController extends Controller
 
     }
 
-    public function CourceBasicResistration3(Request $request,$course_id)
+    public function CourseBasicRegistration3 (Request $request,$course_id)
     {
         // Validation rules for the fields
         $validatedData = $request->validate([
-            'summary' => 'nullable|string|max:65535',
-            'attendance_pattern' => 'nullable|string|max:65535',
-            'learning_objectives' => 'nullable|string|max:65535',
-            'outcomes' => 'nullable|string|max:255',
-            'course_particulars' => 'nullable|string|max:65535',
+            'admission_requirements' => 'nullable|string|max:65535',
+            'international_students' => 'nullable|string|max:65535',
+            'english_requirements' => 'nullable|string|max:65535',
+            'course_dates' => 'nullable|string|max:255',
+            'institution_overview' => 'nullable|string|max:65535',
+            'university_ownership' => 'nullable|string|max:255',
+            'institution_type' => 'nullable|string|max:65535',
         ]);
 
         // Find the student by ID or any other criteria
-        $Course = Course::find($request->input('id'));
+        $Course = Course::find($request->input('course_id'));
 
         // Update the student's academic information
-        $Course->summary = $request->extracurriculsummaryar_activities;
-        $Course->attendance_pattern = $request->attendance_pattern;
-        $Course->learning_objectives = $request->learning_objectives;
-        $Course->outcomes = $request->outcomes;
-        $Course->course_particulars = $request->course_particulars;
+        $Course->admission_requirements = $request->admission_requirements;
+        $Course->international_students = $request->international_students;
+        $Course->english_requirements = $request->english_requirements;
+        $Course->institution_overview = $request->institution_overview;
+        $Course->course_dates = $request->course_dates;
         
-
+        $Course->university_ownership = $request->university_ownership;
+        $Course->institution_type = $request->institution_type;
+        
+   
         $Course->save();
 
         return redirect()->back()->with('success', 'Course information updated successfully');

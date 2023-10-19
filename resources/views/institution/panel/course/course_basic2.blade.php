@@ -43,7 +43,7 @@
 
     <div class="mb-3">
         <label for="code" class="form-label">CIVS Code</label>
-        <input type="text" class="form-control @error('code') is-invalid @enderror" id="code" name="code" required>
+        <input type="text" class="form-control @error('code') is-invalid @enderror" value="{{$course->code}}" id="code" name="code" required>
         @error('code')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -52,7 +52,7 @@
     </div>
     <div class="mb-3">
         <label for="currency" class="form-label">Currency</label>
-        <input type="text" class="form-control @error('currency') is-invalid @enderror" id="currency" name="currency" required>
+        <input type="text" class="form-control @error('currency') is-invalid @enderror" value="{{$course->currency}}" id="currency" name="currency" required>
         @error('currency')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -61,7 +61,7 @@
     </div>
     <div class="mb-3">
         <label for="application_fees" class="form-label">Application Fees</label>
-        <input type="text" class="form-control @error('application_fees') is-invalid @enderror" id="application_fees" name="application_fees" required>
+        <input type="text" class="form-control @error('application_fees') is-invalid @enderror" value="{{$course->application_fees}}" id="application_fees" name="application_fees" required>
         @error('application_fees')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -70,7 +70,7 @@
     </div>
     <div class="mb-3">
         <label for="tuition_fees" class="form-label">Tution Fees</label>
-        <input type="text" class="form-control @error('tuition_fees') is-invalid @enderror" id="tuition_fees" name="tuition_fees" required>
+        <input type="text" class="form-control @error('tuition_fees') is-invalid @enderror" value="{{$course->tuition_fee}}" id="tuition_fees" name="tuition_fees" required>
         @error('tuition_fees')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -81,9 +81,9 @@
 
     <div class="mb-3">
         <label for="fees_types" class="form-label">Fees Type</label>
-        <select class="form-select @error('fees_types') is-invalid @enderror" id="fees_types" name="fees_types" required>
-            <option value="semister">Semister</option>
-            <option value="yearly" >Yearly</option>
+        <select class="form-select @error('fees_types') is-invalid @enderror" id="fees_types"  name="fees_types" required>
+            <option value="semister" @if($course->fees_type == "semister") selected @endif>Semister</option>
+            <option value="yearly" @if($course->fees_type == "yearly") selected @endif >Yearly</option>
         </select>
         @error('fees_types')
             <span class="invalid-feedback" role="alert">
@@ -94,7 +94,7 @@
 
     <div class="mb-3">
         <label for="course_code" class="form-label">Course Code</label>
-        <input type="text" class="form-control @error('course_code') is-invalid @enderror" id="course_code" name="course_code" required>
+        <input type="text" class="form-control @error('course_code') is-invalid @enderror"  value="{{$course->course_code}}" id="course_code" name="course_code" required>
         @error('course_code')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -105,7 +105,7 @@
 
     <div class="mb-3">
         <label for="duration" class="form-label">Duration</label>
-        <input type="text" class="form-control @error('duration') is-invalid @enderror" id="duration" name="duration" required>
+        <input type="text" class="form-control @error('duration') is-invalid @enderror"  value="{{$course->duration}}" id="duration" name="duration" required>
         @error('duration')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -116,9 +116,9 @@
     <div class="mb-3">
         <label for="duration_type" class="form-label">Duration Type</label>
         <select class="form-select @error('duration_type') is-invalid @enderror" id="duration_type" name="duration_type" required>
-            <option value="year">Year</option>
-            <option value="month">Month</option>
-            <option value="week">Week</option>
+            <option value="year" @if($course->duration_type == "year") selected @endif>Year</option>
+            <option value="month" @if($course->duration_type == "month") selected @endif>Month</option>
+            <option value="week" @if($course->duration_type == "week") selected @endif>Week</option>
 
         </select>
         @error('duration_type')

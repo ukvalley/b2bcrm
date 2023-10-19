@@ -35,10 +35,11 @@ Route::post('CourseBasicRegistration3/{course_id}', [App\Http\Controllers\Instit
 
 
 
-
-
-
-
+Route::get('course', [App\Http\Controllers\Institution\CourceController::class, 'course'])->name('institution.course');
+Route::get('getCourse', [App\Http\Controllers\Institution\CourceController::class,'getCourse'])->name('institution.getCourse');
+Route::get('courseView/{course_id}', [App\Http\Controllers\Institution\CourceController::class,'courseById'])->name('institution.courseView');
+Route::get('previewCourse', [App\Http\Controllers\Institution\CourceController::class, 'previewCourse'])->name('institution.previewCourse');
+Route::get('courseView', [App\Http\Controllers\Institution\CourceController::class, 'courseView'])->name('institution.course_view');
 
 
 
