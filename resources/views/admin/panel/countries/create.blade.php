@@ -4,6 +4,8 @@
 @section('content')
 
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.css">
+
  <!-- main page content -->
 <div class="main-container container">
 
@@ -46,24 +48,15 @@
 
 
         <div class="form-group">
-            <label for="urban_environment">Urban Environment</label>
-            <textarea name="urban_environment" class="form-control" rows="4"></textarea>
+            <label for="information_data">Enter Data</label>
+
+           
+    <textarea name="information_data" id="information_data" style="display: none;"></textarea>
+            
+
         </div>
 
-        <div class="form-group">
-            <label for="diverse_scenery">Diverse Scenery</label>
-            <textarea name="diverse_scenery" class="form-control" rows="4"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="distinctive_native_animals">Distinctive Native Animals</label>
-            <textarea name="distinctive_native_animals" class="form-control" rows="4"></textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="student_cities">Student Cities (comma-separated)</label>
-            <input type="text" name="student_cities" class="form-control" placeholder="City 1, City 2, City 3">
-        </div>
+       
 
         <div class="form-group">
             <label for="country_header_image">Country Header Image</label>
@@ -83,4 +76,30 @@
 </div>
 </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+
+
+<script>
+    ClassicEditor
+    .create( document.querySelector( '#information_data' ) )
+    .then( newEditor => {
+        editor = newEditor;
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
+
+
+
+</script>
+
+<script>
+    // When the form is submitted, update the textarea with CKEditor's content
+    document.querySelector('form').addEventListener('submit', function() {
+        const ckeditorContent = ClassicEditor.instances.information_data.getData();
+        document.querySelector('#information_data').value = ckeditorContent;
+    });
+</script>
 @endsection

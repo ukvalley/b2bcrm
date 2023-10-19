@@ -38,11 +38,11 @@
                         <td>
                             <a href="{{ route('country-data.show', $country->id) }}" class="btn btn-info">View</a>
                             <a href="{{ route('country-data.edit', $country->id) }}" class="btn btn-primary">Edit</a>
-                            <form action="{{ route('country-data.destroy', $country->id) }}" method="POST" style="display: inline;">
+                            <!-- <form action="{{ route('country-data.destroy', $country->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
-                            </form>
+                            </form> -->
                         </td>
                     </tr>
                 @endforeach

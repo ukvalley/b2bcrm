@@ -25,30 +25,33 @@
         @csrf
         @method('PUT') <!-- Use the PUT method for updates -->
 
+         <div class="validation-errors">
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+</div>
+
         <div class="form-group">
             <label for="country_name">Country Name</label>
             <input type="text" name="country_name" class="form-control" value="{{ $countryData->country_name }}">
         </div>
 
         <div class="form-group">
-            <label for="urban_environment">Urban Environment</label>
-            <textarea name="urban_environment" class="form-control">{{ $countryData->urban_environment }}</textarea>
+            <label for="information_data">Enter Data</label>
+
+           
+         <textarea name="information_data" id="information_data" style="display: none;">{{$countryData->information_data}}</textarea>
+            
+
         </div>
 
-        <div class="form-group">
-            <label for="diverse_scenery">Diverse Scenery</label>
-            <textarea name="diverse_scenery" class="form-control">{{ $countryData->diverse_scenery }}</textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="distinctive_native_animals">Distinctive Native Animals</label>
-            <textarea name="distinctive_native_animals" class="form-control">{{ $countryData->distinctive_native_animals }}</textarea>
-        </div>
-
-        <div class="form-group">
-            <label for="student_cities">Student Cities (comma-separated)</label>
-            <input type="text" name="student_cities" class="form-control" value="{{ $countryData->student_cities }}">
-        </div>
+       
 
         <div class="form-group">
             <label for="country_header_image">Country Header Image</label>
@@ -68,4 +71,30 @@
 </div>
 </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+
+
+<script>
+    ClassicEditor
+    .create( document.querySelector( '#information_data' ) )
+    .then( newEditor => {
+        editor = newEditor;
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
+
+
+
+</script>
+
+<script>
+    // When the form is submitted, update the textarea with CKEditor's content
+    document.querySelector('form').addEventListener('submit', function() {
+        const ckeditorContent = ClassicEditor.instances.information_data.getData();
+        document.querySelector('#information_data').value = ckeditorContent;
+    });
+</script>
 @endsection

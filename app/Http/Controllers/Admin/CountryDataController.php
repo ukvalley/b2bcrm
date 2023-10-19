@@ -25,21 +25,22 @@ public function create()
 
 public function store(Request $request)
 {
+    //print_r($request->input('information_data')); die();
     // Validate user input.
     $validatedData = $request->validate([
-        'country_name' => 'required',
         'country_name' => 'required|string|max:255',
-        'urban_environment' => 'required|string',
-        'diverse_scenery' => 'required|string',
-        'distinctive_native_animals' => 'required|string',
-        'student_cities' => 'required|string',
+        'information_data' => 'nullable|string|max:65535',
         'country_header_image' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'youtube_link' => 'sometimes|nullable|string|max:255',
+        'youtube_link' => 'sometimes|nullable|string|max:9999',
 
     ]);
 
+   // print_r($validatedData); die();
+
     // Create a new record.
     $CuountryData =CountryData::create($validatedData);
+
+    
 
 
 
@@ -78,14 +79,10 @@ public function update(Request $request, $id)
 {
     // Validate user input.
     $validatedData = $request->validate([
-        'country_name' => 'required',
         'country_name' => 'required|string|max:255',
-        'urban_environment' => 'required|string',
-        'diverse_scenery' => 'required|string',
-        'distinctive_native_animals' => 'required|string',
-        'student_cities' => 'required|string',
+        'information_data' => 'nullable|string|max:65535',
         'country_header_image' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-        'youtube_link' => 'sometimes|nullable|string|max:255',
+        'youtube_link' => 'sometimes|nullable|string|max:9999',
     ]);
 
     // Update the existing record.
