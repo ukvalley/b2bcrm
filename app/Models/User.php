@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\UserType;
 use App\Models\Recruiter;
+use App\Models\Messages;
 
 
 class User extends Authenticatable
@@ -65,4 +66,8 @@ public function student()
     {
         return $this->hasOne(Recruiter::class);
     }
-}
+
+    public function Message()
+    {
+        return $this->hasMany(Messages::class);    }
+    }

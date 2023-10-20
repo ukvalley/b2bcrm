@@ -19,6 +19,10 @@ use App\Models\Timezone;
 use App\Models\Currency;
 use App\DataTables\StudentsDataTable;
 use DataTables;
+use App\Models\CountryData;
+use App\Models\Institution;
+use App\Models\News;
+use App\Models\Links;
 
 
 
@@ -62,8 +66,17 @@ class CourceController extends Controller
     public function courseById($course_id)
     {
         
-        $course = Course::findOrFail($course_id);
-        return view('institution.panel.course_view.course_view',compact('course'));
+         $course = Course::findOrFail($course_id);
+
+         $institution = Institution::where('id',$course->institution_id)->first();
+         $c = Country::where('name',$institution->country)->first();
+
+        
+         $countryData = CountryData::where('country_name',$institution->country)->first();
+         $news = News::where('country_id',$c->id)->get();
+         $links = Institution::where('id',$c->id)->get();
+
+        return view('institution.panel.course_view.course_view',compact('course','countryData','news','links'));
     }
 
     public function getCourse(Request $request)

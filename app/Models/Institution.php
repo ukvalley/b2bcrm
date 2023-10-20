@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Course;
-
+use App\Models\CountryData;
 class Institution extends Model
 {
     use HasFactory;
@@ -18,6 +18,11 @@ class Institution extends Model
 public function Courses()
 {
     return $this->hasMany(Course::class);
+}
+
+public function CountryData()
+{
+    return $this->belongsTo(CountryData::class);
 }
 }
 

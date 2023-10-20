@@ -51,7 +51,7 @@
                                 @foreach($news as $news_data)
                                 <div>
 
-                                    <h4>{{$news_data->title}}</h4>
+                                    <h4 style="style=color: green;">{{$news_data->title}}</h4>
                                     <p>{{$news_data->content}}</p>
                                     <hr>
                                 </div>
@@ -70,6 +70,35 @@
                                 <div>
 
                                     @if(isset($CountryData->youtube_link))
+
+
+                                      <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary video-btn" data-toggle="modal" data-src="https://player.vimeo.com/video/58385453?badge=0&autoplay=1&loop=1" data-target="#myModal">
+  Play Vimeo Video
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      
+      <div class="modal-body">
+
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>        
+        <!-- 16:9 aspect ratio -->
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+</div>
+        
+        
+      </div>
+
+    </div>
+  </div>
+</div> 
                                     
                                     
                                     
@@ -92,7 +121,7 @@
                                 @foreach($links as $links_data)
                                 <div>
 
-                                    <li>  <a href="{{$links_data->url}}">
+                                    <li>  <a style="color: green;" href="{{$links_data->url}}">
                                         <i class="bi bi-box-arrow-up-right"></i>
                                         {{$links_data->title}} 
                                     </a> </li> 
@@ -123,6 +152,8 @@
 
     </main>
     <!-- Page ends-->
+
+
 
 
 

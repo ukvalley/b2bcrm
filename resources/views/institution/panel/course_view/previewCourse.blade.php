@@ -1,4 +1,4 @@
-@extends('recruiter.panel.layout')
+@extends('institution.panel.layout')
 
 @section('content')
 

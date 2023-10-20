@@ -1,4 +1,4 @@
-@extends('recruiter.panel.layout')
+@extends('institution.panel.layout')
 
 @section('content')
 
@@ -78,10 +78,145 @@
                       
                        </div>
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-                    <div class="tab-pane fade" id="country" role="tabpanel" aria-labelledby="country-tab">...</div>
-                    <div class="tab-pane fade" id="accommodation" role="tabpanel" aria-labelledby="accommodation-tab">...</div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="mt-3 ml-3">
+                            <h6>Course Requirements:</h6>
+                            <p class="mt-3">Any university, university/college preparation course in Canadian and world studies, English, or social sciences and humanities</p>
+                            <p class="mt-5">English Requirements:</p>
+                            <p class="mt-3">IELTS of 6.5 or equivalent</p>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="mt-3 ml-3">
+                            <h6>Institution overview:</h6>
+                            <p class="mt-1">About Our Virtual Campus</p>
+                            <p class="mt-3">{!! $course->institution->overview !!}</p>
+                            <h6 class="mt-3">Institution Type:</h6>
+                            <p class="mt-3">{!! $course->institution->institution_type !!}</p>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="country" role="tabpanel" aria-labelledby="country-tab">
+                       <div class="col-md-12">
+                       <div class="row mb-4">
+                <div class="col-12">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+
+                            <div class="row">
+                                <img src="{{ asset('images/country_header_image/' . $countryData->country_header_image) }}">
+                            </div>
+                            <div class="row mt-5">
+                            <div class="col-md-8">
+
+                                {!! $countryData->information_data !!}
+                                
+                                
+
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <div class="row mb-5">
+                                <h3 class="mb-3">News</h3>
+                                @foreach($news as $news_data)
+                                <div>
+
+                                    <h4 style="style=color: green;">{{$news_data->title}}</h4>
+                                    <p>{{$news_data->content}}</p>
+                                    <hr>
+                                </div>
+                                @endforeach
+                            </div>
+                        
+
+
+                            <div class="row mb-5">
+                                <h3 class="mb-3">Video</h3>
+                                
+                                <div>
+
+                                    @if(isset($countryData->youtube_link))
+
+
+                                      <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary video-btn" data-toggle="modal" data-src="https://player.vimeo.com/video/58385453?badge=0&autoplay=1&loop=1" data-target="#myModal">
+  Play Vimeo Video
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+
+      
+      <div class="modal-body">
+
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>        
+        <!-- 16:9 aspect ratio -->
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
+</div>
+        
+        
+      </div>
+
+    </div>
+  </div>
+</div> 
+                                    
+                                    
+                                    
+                                   
+
+                                    {!! $countryData->youtube_link !!}
+
+                                    @else
+                                    <img width="100%" src="https://app.adventus.io/img/blank-news.svg">
+                                    @endif
+                                   
+                                </div>
+                                
+                            </div>
+
+
+                            <div class="row mb-5">
+                                <h3 class="mb-3">Links</h3>
+                                @if(count($links) != 0)
+                                @foreach($links as $links_data)
+                                <div>
+
+                                    <li>  <a style="color: green;" href="{{$links_data->url}}">
+                                        <i class="bi bi-box-arrow-up-right"></i>
+                                        {{$links_data->title}} 
+                                    </a> </li> 
+                                    
+                                    <hr>
+                                </div>
+                                @endforeach
+                                @else
+                                <img width="100%" src="https://img.freepik.com/premium-vector/no-data-concept-illustration_86047-488.jpg?size=626&ext=jpg&ga=GA1.1.27262691.1695136376&semt=ais">
+                                @endif
+                            </div>
+
+                            
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+                       </div>
+                       
+                       
+                    </div>
+                    <div class="tab-pane fade" id="accommodation" role="tabpanel" aria-labelledby="accommodation-tab">
+                        <h6 class="mt-3">Campus Locations:</h6>
+                    </div>
 
                     
                     </div>                   

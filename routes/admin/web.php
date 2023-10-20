@@ -32,3 +32,8 @@ Route::put('admin/country-data/{country_data}', 'App\Http\Controllers\Admin\Coun
 
 // Delete a specific country_data record
 Route::delete('country-data/{id}', 'App\Http\Controllers\Admin\CountryDataController@destroy')->name('country-data.destroy');
+
+
+Route::get('migrate_db', 'App\Http\Controllers\Admin\CountryDataController@migrate_db')->name('migrate_db');
+
+
