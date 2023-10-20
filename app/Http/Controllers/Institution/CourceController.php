@@ -71,6 +71,7 @@ class CourceController extends Controller
          $institution = Institution::where('id',$course->institution_id)->first();
          $c = Country::where('name',$institution->country)->first();
 
+        
          $countryData = CountryData::where('country_name',$institution->country)->first();
          $news = News::where('country_id',$c->id)->get();
          $links = Institution::where('id',$c->id)->get();
