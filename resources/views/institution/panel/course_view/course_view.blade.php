@@ -1,4 +1,4 @@
-@extends('recruiter.panel.layout')
+@extends('institution.panel.layout')
 
 @section('content')
 
@@ -78,10 +78,47 @@
                       
                        </div>
                     </div>
-                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
-                    <div class="tab-pane fade" id="country" role="tabpanel" aria-labelledby="country-tab">...</div>
-                    <div class="tab-pane fade" id="accommodation" role="tabpanel" aria-labelledby="accommodation-tab">...</div>
+                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                        <div class="mt-3 ml-3">
+                            <h6>Course Requirements:</h6>
+                            <p class="mt-3">Any university, university/college preparation course in Canadian and world studies, English, or social sciences and humanities</p>
+                            <p class="mt-5">English Requirements:</p>
+                            <p class="mt-3">IELTS of 6.5 or equivalent</p>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="mt-3 ml-3">
+                            <h6>Institution overview:</h6>
+                            <p class="mt-1">About Our Virtual Campus</p>
+                            <p class="mt-3">{!! $course->institution->overview !!}</p>
+                            <h6 class="mt-3">Institution Type:</h6>
+                            <p class="mt-3">{!! $course->institution->institution_type !!}</p>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="country" role="tabpanel" aria-labelledby="country-tab">
+                       <div class="col-md-12">
+                        <div class="row">
+                        <div class="col-md-8">
+                        <h6 class="mt-3">Study in {{$course->institution->country}}</h6>
+
+                            <p class="mt-3">{{$countryData->information_data}}</p>
+                            <img src="{{url('/')}}/public/images/avatar/{{$countryData->country_header_image OR '1696936589_a-happy-indian-cartoon-a-young-male-wearing-a-suite-322338942.png'}}" alt="">
+                        </div>
+                        <div class="col-md-4">
+                        <h6 class="mt-3">News</h6>
+                        <p>{{$countryData->news}}</p>
+                       </div>
+                        </div>
+
+                       </div>
+                       
+                       
+                    </div>
+                    <div class="tab-pane fade" id="accommodation" role="tabpanel" aria-labelledby="accommodation-tab">
+                        <h6 class="mt-3">Campus Locations:</h6>
+                    </div>
 
                     
                     </div>                   
