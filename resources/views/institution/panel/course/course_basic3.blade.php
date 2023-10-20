@@ -16,21 +16,24 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
 
-
                         @include('institution.panel.course.nav_pill_course')
-
 
                         <h4 class="card-title"> Requirments</h4>
                         <p class="card-text">Please provide Details information.</p>
-                       <form class="mt-3" method="POST" action="{{ route('institution.course_basic_registration3',['course_id' => $course->id]) }}">
+                       <form class="mt-3" method="POST" action="{{ route('institution.course_basic_registration3',['course_id' => $course->id]) }}" enctype="multipart/form-data" >
                         @csrf
 
-
-
-
-
-    
-    
+                        <div class="validation-errors">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+                        </div>
 
     <div class="mb-3">
         <label for="admission_requirements" class="form-label">Admission Requirments</label>
@@ -87,7 +90,7 @@
     </div>
 
     <div class="mb-3">
-        <label for="university_ownership" class="form-label">University Ownership[</label>
+        <label for="university_ownership" class="form-label">University Ownership</label>
         <input type="text" class="form-control @error('	university_ownership') is-invalid @enderror" value="{{$course->university_ownership}}" id="university_ownership" name="university_ownership" required>
         @error('university_ownership')
             <span class="invalid-feedback" role="alert">
@@ -106,7 +109,19 @@
         @enderror
     </div>
 
-    
+    <div class="mb-3">
+        <label for="image" class="form-label">Profile Image</label>
+
+        <div class="input-group mb-3">
+        <input type="file" class="form-control" id="image" name="image">
+        <label class="input-group-text" for="image">Upload</label>
+        @error('image')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+        </div>
+    </div>
     
     <div class="mb-3 z-index-11">
         <button type="submit" class="btn btn-default btn-lg w-100">Submit</button>

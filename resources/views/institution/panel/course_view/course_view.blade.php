@@ -23,8 +23,8 @@
                     </div>
                     <h4 class="card-title">{{$course->name}}</h4>
                     <p class="card-text">{{$course->institution->name}}</p>
-                    <!-- <hr>     -->
-
+                    <hr>    
+                    <a href="{{url('/')}}/institution/CourseBasicUpdate/{{$course->id}}"class="btn btn-primary" style="margin-left: 930px;">Edit</a>
                 </div>
             </div>
 
