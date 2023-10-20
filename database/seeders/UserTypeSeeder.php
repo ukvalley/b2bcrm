@@ -11,12 +11,13 @@ class UserTypeSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-    public function run()
+    public function run():void
 {
     DB::table('user_types')->insert([
         ['name' => 'Institution'],
         ['name' => 'Agent'],
         ['name' => 'Student'],
+        ['name' => 'Admin'],
         // Add more user types if needed
     ]);
 }

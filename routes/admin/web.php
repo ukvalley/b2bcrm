@@ -4,10 +4,13 @@ use App\Http\Controllers\RecruiterRegistrationController;
 
 // dashboard routes
 
-Route::get('home', [App\Http\Controllers\Agent\AgentController::class, 'index'])->name('admin.home');
+Route::get('home','App\Http\Controllers\Admin\AdminController@index')->name('admin.home');
 
+//Settings display a specific project record 
+Route::get('setting', 'App\Http\Controllers\Admin\ProjectController@show')->name('project.show');
 
-Route::get('country-data/create', 'App\Http\Controllers\Admin\CountryDataController@create')->name('country-data.create');
+// Update a specific project record
+Route::put('setting/{id}','App\Http\Controllers\Admin\ProjectController@update')->name('project.update');
 
 // List all country_data records
 Route::get('country-data', 'App\Http\Controllers\Admin\CountryDataController@index')->name('country-data.index');

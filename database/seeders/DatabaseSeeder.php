@@ -26,6 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(EducationTypesTableSeeder::class);
         $this->call(StudyTypeSeeder::class);
         $this->call(TimezonesSeeder::class);
-        $this->call(UserTypeSeeder::class);
+        $this->call(ProjectSettngSeeder::class);
     }
 }

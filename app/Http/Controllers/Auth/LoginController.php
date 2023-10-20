@@ -42,6 +42,9 @@ class LoginController extends Controller
         elseif (Auth::user()->userType->name == 'Institution') {
             return route('institution.home');
         } 
+        elseif (Auth::user()->userType->name == 'Admin') {
+            return route('admin.home');
+        } 
         else {
             // Default redirect for other user types or unauthenticated users
             return route('login');

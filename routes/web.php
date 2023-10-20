@@ -95,7 +95,7 @@ Route::group(["prefix" => "/institution", "middleware" => "CheckUserRole:Institu
 });
 
 
-Route::group(["prefix" => "/admin"], function () {
+Route::group(["prefix" => "/admin" , "middleware" => "CheckUserRole:Admin"], function () {
     require __DIR__.'/admin/web.php';
 
     // ...

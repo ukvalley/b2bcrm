@@ -106,8 +106,13 @@
                             </a>
                         </li>
 
-                        
-
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{route('project.show')}}">
+                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-gear"></i></div>
+                                <div class="col">Setting</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
                         
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" tabindex="-1">
