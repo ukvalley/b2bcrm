@@ -61,7 +61,7 @@
 
                 <div class="col-md-2">
                 
-                     <button type="button" class="btn btn-warning"  id="submitNote">
+                     <button type="button" class="btn btn-warning"  id="submitNote" data-bs-toggle="modal" data-bs-target="#myModal">
                         Add Notes
                       </button>
 
@@ -152,21 +152,159 @@
                     </div>
 
                     <div class="card-body">
-                        <div class="col-md-12 flex scroll-container">
-                            <div class="d-flex flex-nowrap">
-                            <button class="btn btn-outline-primary m3">Message</button>
-                            <button class="btn btn-outline-primary m3">Task</button>
-                            <button class="btn btn-outline-primary m3">Notes</button>
-                            <button class="btn btn-outline-primary m3">Timeline</button>
+
+
+                        <ul class="nav nav-tabs" id="myTab" role="tablist">
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="message-tab" data-bs-toggle="tab" data-bs-target="#message" type="button" role="tab" aria-controls="message" aria-selected="true">Messages</button>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="task-tab" data-bs-toggle="tab" data-bs-target="#task" type="button" role="tab" aria-controls="task" aria-selected="false">Tasks</button>
+                          </li>
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="notes-tab" data-bs-toggle="tab" data-bs-target="#notes" type="button" role="tab" aria-controls="notes" aria-selected="false">Notes</button>
+                          </li>
+
+
+                          <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="timeline-tab" data-bs-toggle="tab" data-bs-target="#timeline" type="button" role="tab" aria-controls="timeline" aria-selected="false">Timeline</button>
+                          </li>
+                        </ul>
+
+
+
+
+                        <div class="tab-content" id="myTabContent">
+                          
+                          <div class="tab-pane fade show active" id="message" role="tabpanel" aria-labelledby="message-tab">
+
+                            @if(count($messages) != 0)
+                            <div class="container mt-5 mb-5 fix-container-height-400px">
+                                <h1>Messages</h1>
+                                <ul class="list-group">
+                                    @foreach($messages as $message)
+                                        <li class="list-group-item">
+                                            <h6>{{ $message->content }}</h6>
+                                            <small class="text-muted">Created by <span style="color:green;"> {{ $message->sender->name }} </span> on {{ $messages->created_at->format('F d, Y') }}</small>
+                                            <!-- <span class="float-right btn btn-sm btn-primary">{{ $note->communicationMedium }}</span> -->
+                                        </li>
+                                    @endforeach
+                                </ul>
                             </div>
-                        </div>
+
+                            @else
+                            <div class="container mt-5 mb-5 fix-container-height-400px">
+                                <img class="fix-container-image" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?size=626&ext=jpg&ga=GA1.1.27262691.1695136376&semt=ais">
+                            </div>
+                            @endif
 
 
-                        <div class="col-md-12" id="messgae">
-                            
-                        </div>
+                          </div>
+                          
+
+                          <div class="tab-pane fade" id="task" role="tabpanel" aria-labelledby="task-tab">
+
+
+                            @if(count($notes) != 0)
+                            <div class="container mt-5 mb-5 fix-container-height-400px">
+                                <h1>Tasks</h1>
+                                <ul class="list-group">
+                                    @foreach($notes as $note)
+                                        <li class="list-group-item">
+                                            <h6>{{ $note->content }}</h6>
+                                            <small class="text-muted">Created by <span style="color:green;"> {{ $note->Student->first_name }} </span> on {{ $note->created_at->format('F d, Y') }}</small>
+                                            <span class="float-right btn btn-sm btn-primary">{{ $note->communicationMedium }}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                            @else
+                            <div class="container mt-5 mb-5 fix-container-height-400px">
+                                <img src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?size=626&ext=jpg&ga=GA1.1.27262691.1695136376&semt=ais">
+                            </div>
+                            @endif
+
+
+                          </div>
+                          
+
+                          <div class="tab-pane fade" id="notes" role="tabpanel" aria-labelledby="notes-tab">
+                              
+
+                            @if(count($notes) != 0)
+                            <div class="container mt-5 mb-5 fix-container-height-400px">
+                                <h1>Notes</h1>
+                                <ul class="list-group">
+                                    @foreach($notes as $note)
+                                        <li class="list-group-item">
+                                            <h6>{{ $note->content }}</h6>
+                                            <small class="text-muted">Created by <span style="color:green;"> {{ $note->Student->first_name }} </span> on {{ $note->created_at->format('F d, Y') }}</small>
+                                            <span class="float-right btn btn-sm btn-primary">{{ $note->communicationMedium }}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                            @else
+                            <div class="container mt-5 mb-5 fix-container-height-400px">
+                                <img src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?size=626&ext=jpg&ga=GA1.1.27262691.1695136376&semt=ais">
+                            </div>
+                            @endif
+
+
+
+                          </div>
+
+
                         
+
+
+
+                        <div class="tab-pane fade" id="timeline" role="tabpanel" aria-labelledby="timeline-tab">
+                              
+
+                            @if(count($notes) != 0)
+                            <div class="container mt-5 mb-5 fix-container-height-400px">
+                                <h1>Timeline</h1>
+                                <ul class="list-group">
+                                    @foreach($notes as $note)
+                                        <li class="list-group-item">
+                                            <h6>{{ $note->content }}</h6>
+                                            <small class="text-muted">Created by <span style="color:green;"> {{ $note->Student->first_name }} </span> on {{ $note->created_at->format('F d, Y') }}</small>
+                                            <span class="float-right btn btn-sm btn-primary">{{ $note->communicationMedium }}</span>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                            @else
+                            <div class="container mt-5 mb-5 fix-container-height-400px">
+                                <img src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?size=626&ext=jpg&ga=GA1.1.27262691.1695136376&semt=ais">
+                            </div>
+                            @endif
+
+
+
+                          </div>
+
+
+                       
+
+
+
+
+
+
+
+                        
+
                     </div>
+
+
+
+                        
+                    
                 </div>
                
 
@@ -215,56 +353,73 @@
 
 
 
-            <div id="addNoteModal" class="modal">
-            <div class="modal-content">
-                <h4>Add Note</h4>
-                <form id="noteForm">
-                    <div class="input-field">
-                        <select id="medium" name="medium">
-                            <option value="" disabled selected>Select Conversation Medium</option>
-                            <option value="Phone">Phone</option>
-                            <option value="Email">Email</option>
-                            <option value="In-Person">In-Person</option>
-                        </select>
-                        <label for="medium">Conversation Medium</label>
-                    </div>
-                    <div class="input-field">
-                        <textarea id="note" name="note" class="materialize-textarea"></textarea>
-                        <label for="note">Note</label>
-                    </div>
-                </form>
+            <!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Notes</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-                <a href="#" class="waves-effect waves-light btn" id="submitNote">Submit</a>
+            <div class="modal-body">
+                
+                <form action="{{route('agent.StudentAddNotes')}}" method="POST" id="addNotesForm">
+
+                    @csrf
+        <div class="form-group">
+            <label for="notesContent">Notes Content</label>
+            <textarea class="form-control" id="notesContent" name="notesContent" rows="5" style="height: 200px;"></textarea>
+        </div>
+
+        <div class="form-group">
+            
+            <input type="hidden" value="{{$Student->id}}" class="form-control" id="student_id" name="student_id"/>
+            <input type="hidden" value="{{Auth::User()->id}}" class="form-control" id="recruiter_id" name="recruiter_id"/>
+        </div>
+
+        <div class="form-group">
+            <label for="communicationMedium">Select Communication Medium</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="communicationMedium" id="whatsapp" value="whatsapp">
+                <label class="form-check-label" for="whatsapp">Whatsapp</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="communicationMedium" id="messages" value="messages">
+                <label class="form-check-label" for="messages">Messages</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="communicationMedium" id="email" value="email">
+                <label class="form-check-label" for="email">Email</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="communicationMedium" id="faceToFace" value="faceToFace">
+                <label class="form-check-label" for="faceToFace">Face to Face</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="communicationMedium" id="videoCall" value="videoCall">
+                <label class="form-check-label" for="videoCall">Video Call</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="communicationMedium" id="other" value="other">
+                <label class="form-check-label" for="other">Other</label>
             </div>
         </div>
 
+        <button type="submit" class="btn btn-primary">Submit</button>
 
-        <div id="addNoteModal" class="modal">
-    <div class="modal-content">
-        <h4>Add Note</h4>
-        <form id="noteForm">
-            <div class="input-field">
-                <select id="medium" name="medium">
-                    <option value="" disabled selected>Select Conversation Medium</option>
-                    <option value="Phone">Phone</option>
-                    <option value="Email">Email</option>
-                    <option value="In-Person">In-Person</option>
-                </select>
-                <label for="medium">Conversation Medium</label>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    </form>
+
+
+
             </div>
-            <div class="input-field">
-                <textarea id="note" name="note" class="materialize-textarea"></textarea>
-                <label for="note">Note</label>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-        <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cancel</a>
-        <a href="#" class="waves-effect waves-light btn" id="submitNote">Submit</a>
+            
+        </div>
     </div>
 </div>
+
+
+        
 
 
 
@@ -282,12 +437,23 @@
     <!-- Include DataTables script -->
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
+    <script src="path/to/jquery.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function () {
-    $('.modal').modal();
-});
-    </script>
+
+
+<script>
+    // JavaScript validation
+    document.getElementById("addNotesForm").addEventListener("submit", function (event) {
+        const notesContent = document.getElementById("notesContent").value;
+        const communicationMedium = document.querySelector('input[name="communicationMedium"]:checked');
+
+        if (!notesContent || !communicationMedium) {
+            alert("Both fields are required.");
+            event.preventDefault();
+        }
+    });
+</script>
 
 
 

@@ -51,7 +51,7 @@
             <label for="information_data">Enter Data</label>
 
            
-    <textarea name="information_data" id="information_data" style="display: none;"></textarea>
+         <textarea name="information_data" id="information_data" style="display: none;"></textarea>
             
 
         </div>

@@ -5,6 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\PersonaDetail;
+use App\Models\Note;
+use App\Models\Message;
+
 
 
 class Student extends Model
@@ -54,5 +57,16 @@ class Student extends Model
     public function personaDetail()
     {
     return $this->hasOne(PersonaDetail::class);
+    }
+
+
+    public function Notes()
+    {
+    return $this->hasMany(Note::class);
+    }
+
+    public function Messages()
+    {
+    return $this->hasMany(Message::class);
     }
 }

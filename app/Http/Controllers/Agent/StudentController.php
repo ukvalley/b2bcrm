@@ -14,6 +14,7 @@ use App\Models\PersonaDetail;
 use App\Models\Timezone;
 use App\Models\Currency;
 use App\DataTables\StudentsDataTable;
+use App\Models\Note;
 
 
 
@@ -383,7 +384,36 @@ public function StudentBasicUpdateRegistration(Request $request)
 public function PreviewStudents($id)
 {
     $Student = Student::find($id);
-    return view('recruiter.panel.studentView.PreviewStudents',compact('Student'));
+    $notes = $Student->Notes;
+    $messages = $Student->Messages;
+    return view('recruiter.panel.studentView.PreviewStudents',compact('Student','notes','messages'));
+}
+
+
+
+public function StudentAddNotes(Request $request)
+{
+
+    $validatedData = $request->validate([
+            'notesContent' => 'required|string|max:2550',
+            'communicationMedium' => 'required',
+            'student_id' => 'required',
+            'recruiter_id' => 'required',
+        ]);
+
+
+    $Note = new Note;
+    $Note->student_id = $validatedData['student_id'];
+    $Note->recruiter_id = $validatedData['recruiter_id'];
+    $Note->content = $validatedData['notesContent'];
+    $Note->student_id = $validatedData['student_id'];
+    $Note->communicationMedium = $validatedData['communicationMedium'];
+
+    $Note->save();
+
+    return redirect()->back();
+
+
 }
 
 

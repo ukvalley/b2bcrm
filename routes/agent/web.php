@@ -81,6 +81,13 @@ Route::get('PreviewStudents/{id}', [App\Http\Controllers\Agent\StudentController
 
 
 
+// notes section
+
+
+Route::post('StudentAddNotes', [App\Http\Controllers\Agent\StudentController::class, 'StudentAddNotes'])->name('agent.StudentAddNotes');
+
+
+
 
 
 
