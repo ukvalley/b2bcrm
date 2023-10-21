@@ -19,7 +19,7 @@
                         @include('institution.panel.course.nav_pill_course')
 
                         <h4 class="card-title"> Requirments</h4>
-                        <p class="card-text">Please provide Details information.</p>
+                        <!-- <p class="card-text">Please provide Details information.</p> -->
                        <form class="mt-3" method="POST" action="{{ route('institution.course_basic_registration3',['course_id' => $course->id]) }}" enctype="multipart/form-data" >
                         @csrf
 

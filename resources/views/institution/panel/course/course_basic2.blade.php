@@ -21,7 +21,7 @@
 
 
                         <h4 class="card-title"> Course Information</h4>
-                        <p class="card-text">Please provide Course information.</p>
+                        <!-- <p class="card-text">Please provide Course information.</p> -->
                        <form class="mt-3" method="POST" action="{{ route('institution.course_basic_registration2',['course_id' => $course->id]) }}">
     @csrf
 
