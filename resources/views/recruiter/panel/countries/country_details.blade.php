@@ -52,7 +52,7 @@
                                 <div>
 
                                     <h4 style="style=color: green;">{{$news_data->title}}</h4>
-                                    <p>{{$news_data->content}}</p>
+                                    {!! $news_data->content !!}
                                     <hr>
                                 </div>
                                 @endforeach
@@ -73,9 +73,7 @@
 
 
                                       <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary video-btn" data-toggle="modal" data-src="https://player.vimeo.com/video/58385453?badge=0&autoplay=1&loop=1" data-target="#myModal">
-  Play Vimeo Video
-</button>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -125,6 +125,17 @@
                 </div>
 
 
+
+
+
+
+
+
+
+
+
+
+
                 
 
 
@@ -133,10 +144,25 @@
 
 
 
+
+
+
                     
                 </div>
             </div>
                     
+
+
+
+
+            <x-course-filter-view :student="$Student" :courses="$courses" />
+
+
+
+
+
+
+
 
 
 

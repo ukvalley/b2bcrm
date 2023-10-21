@@ -13,6 +13,24 @@ use Illuminate\Support\Facades\Artisan;
 class CountryDataController extends Controller
 {
 
+<<<<<<< HEAD
+=======
+
+     public function migrate_db()
+    {
+        Artisan::call('migrate');
+
+        // Capture the output of the migration command
+        $output = Artisan::output();
+
+        // Return the migration output or a success message
+        return $output ?: 'Migrations completed successfully.';
+
+    }
+
+
+
+>>>>>>> e5869fc2a4841d9dd8d892ce6f0dc5ece1e0443c
     public function index()
     {
         $countries = CountryData::all(); // Fetch all records from the table.

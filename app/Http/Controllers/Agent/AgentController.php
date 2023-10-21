@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Timezone;
 use Illuminate\Support\Facades\Storage;
 use App\Models\CountryData;
+use Illuminate\Support\Facades\Artisan;
 
 
 
@@ -27,6 +28,10 @@ class AgentController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+
+
+
+
     public function index()
     {
        // return view('home');
@@ -133,10 +138,10 @@ public function updatePassword(Request $request)
 
     public function country_details($id)
     {
-        $CountryData = CountryData::find($id);
-        $news = $CountryData->news()->get();
-        $links = $CountryData->links()->get();
-        return view('recruiter.panel.countries.country_details',compact('CountryData','news','links'));
+        $countryData = CountryData::find($id);
+        $news = $countryData->news()->get();
+        $links = $countryData->links()->get();
+        return view('recruiter.panel.countries.country_details',compact('countryData','news','links'));
 
     }
 
