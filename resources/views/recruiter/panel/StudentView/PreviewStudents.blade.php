@@ -205,15 +205,25 @@
                           <div class="tab-pane fade" id="task" role="tabpanel" aria-labelledby="task-tab">
 
 
-                            @if(count($notes) != 0)
+                            @if(count($tasks) != 0)
                             <div class="container mt-5 mb-5 fix-container-height-400px">
                                 <h1>Tasks</h1>
-                                <ul class="list-group">
-                                    @foreach($notes as $note)
-                                        <li class="list-group-item">
-                                            <h6>{{ $note->content }}</h6>
-                                            <small class="text-muted">Created by <span style="color:green;"> {{ $note->Student->first_name }} </span> on {{ $note->created_at->format('F d, Y') }}</small>
-                                            <span class="float-right btn btn-sm btn-primary">{{ $note->communicationMedium }}</span>
+                                 <ul>
+                                    @foreach ($tasks as $task)
+                                        <li>
+                                            <form method="POST" action="{{ route('agent.task.complete', ['task' => $task->id]) }}">
+                                                @csrf
+                                                @method('PUT')
+
+                                                <label for="task_{{ $task->id }}">
+                                                    <input type="checkbox" id="task_{{ $task->id }}" name="completed" {{ $task->completed ? 'checked' : '' }} onchange="this.form.submit()">
+                                                    @if ($task->completed)
+                                                        <del>{{ $task->title }}</del>
+                                                    @else
+                                                        {{ $task->title }}
+                                                    @endif
+                                                </label>
+                                            </form>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -221,7 +231,7 @@
 
                             @else
                             <div class="container mt-5 mb-5 fix-container-height-400px">
-                                <img src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?size=626&ext=jpg&ga=GA1.1.27262691.1695136376&semt=ais">
+                                <img class="fix-container-image" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?size=626&ext=jpg&ga=GA1.1.27262691.1695136376&semt=ais">
                             </div>
                             @endif
 
@@ -248,7 +258,7 @@
 
                             @else
                             <div class="container mt-5 mb-5 fix-container-height-400px">
-                                <img src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?size=626&ext=jpg&ga=GA1.1.27262691.1695136376&semt=ais">
+                                <img class="fix-container-image" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?size=626&ext=jpg&ga=GA1.1.27262691.1695136376&semt=ais">
                             </div>
                             @endif
 
@@ -264,23 +274,38 @@
                         <div class="tab-pane fade" id="timeline" role="tabpanel" aria-labelledby="timeline-tab">
                               
 
-                            @if(count($notes) != 0)
+                            @if(count($timeline) != 0)
                             <div class="container mt-5 mb-5 fix-container-height-400px">
                                 <h1>Timeline</h1>
-                                <ul class="list-group">
-                                    @foreach($notes as $note)
-                                        <li class="list-group-item">
-                                            <h6>{{ $note->content }}</h6>
-                                            <small class="text-muted">Created by <span style="color:green;"> {{ $note->Student->first_name }} </span> on {{ $note->created_at->format('F d, Y') }}</small>
-                                            <span class="float-right btn btn-sm btn-primary">{{ $note->communicationMedium }}</span>
-                                        </li>
-                                    @endforeach
-                                </ul>
+
+
+
+                                
+                                
+
+
+
+
+                                <ul class="timeline">
+                                @foreach ($timeline as $entry)
+
+                                <li>
+                                    <a target="_blank" href="#">{{ $entry->action }}</a>
+                                    <a href="#" class="float-right">{{ $entry->created_at->format('M d, Y H:i A') }}</a>
+                                    <p></p>
+                                </li>
+
+
+                                @endforeach
+
+
+
+                            </ul>
                             </div>
 
                             @else
                             <div class="container mt-5 mb-5 fix-container-height-400px">
-                                <img src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?size=626&ext=jpg&ga=GA1.1.27262691.1695136376&semt=ais">
+                                <img class="fix-container-image" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?size=626&ext=jpg&ga=GA1.1.27262691.1695136376&semt=ais">
                             </div>
                             @endif
 

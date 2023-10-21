@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\PersonaDetail;
 use App\Models\Note;
 use App\Models\Message;
+use App\Models\Tasks;
 
 
 
@@ -69,4 +70,44 @@ class Student extends Model
     {
     return $this->hasMany(Message::class);
     }
+
+    public function tasks()
+{
+    return $this->hasMany(Task::class);
+}
+
+
+public function addDefaultTasks()
+{
+    $defaultTasks = [
+        'Collect Personal Information',
+        'Complete Study Preferences',
+        'Capture Any Additional Details',
+        'Search Courses',
+        'Save Courses',
+        'Shortlist Courses',
+        'Complete Application Form',
+        'Collect Documents',
+        'Review Application',
+        'Submit Application to Adventus',
+    ];
+
+    foreach ($defaultTasks as $taskName) {
+        $this->tasks()->create([
+            'title' => $taskName,
+            'completed' => false,
+        ]);
+    }
+
+    $this->update(['default_task' => true]);
+}
+
+
+
+public function Timeline()
+    {
+        return $this->hasMany(Timeline::class);    
+    }
+
+
 }

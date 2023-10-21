@@ -7,9 +7,14 @@ use App\Models\Links;
 use App\Models\News;
 use Illuminate\Http\Request;
 use App\Models\CountryData;
+use Illuminate\Support\Facades\Artisan;
+
 
 class CountryDataController extends Controller
 {
+
+
+
 
     public function index()
     {

@@ -87,6 +87,16 @@ Route::get('PreviewStudents/{id}', [App\Http\Controllers\Agent\StudentController
 Route::post('StudentAddNotes', [App\Http\Controllers\Agent\StudentController::class, 'StudentAddNotes'])->name('agent.StudentAddNotes');
 
 
+Route::put('/tasks/{task}/complete', 'App\Http\Controllers\Agent\StudentController@complete')->name('agent.task.complete');
+
+
+
+// course search options
+
+Route::get('CourseSearch/{id}', [App\Http\Controllers\Agent\StudentController::class,'CourseSearch'])->name('agent.CourseSearch');
+
+
+
 
 
 
