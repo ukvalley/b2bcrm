@@ -188,6 +188,7 @@ class CourceController extends Controller
 
     public function CourseBasicRegistration3 (Request $request,$course_id)
     {
+        //  print_r($request->all()); die();
         // Validation rules for the fields
         $validatedData = $request->validate([
             'admission_requirements' => 'nullable|string|max:65535',
@@ -197,23 +198,35 @@ class CourceController extends Controller
             'institution_overview' => 'nullable|string|max:65535',
             'university_ownership' => 'nullable|string|max:255',
             'institution_type' => 'nullable|string|max:65535',
+            'image' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-
+        
         // Find the student by ID or any other criteria
-        $Course = Course::find($request->input('course_id'));
+        $Course = Course::find($course_id);
 
         // Update the student's academic information
-        $Course->admission_requirements = $request->admission_requirements;
-        $Course->international_students = $request->international_students;
-        $Course->english_requirements = $request->english_requirements;
-        $Course->institution_overview = $request->institution_overview;
-        $Course->course_dates = $request->course_dates;
+        $Course->admission_requirements = $validatedData['admission_requirements'];
+        $Course->international_students = $validatedData['international_students'];
+        $Course->english_requirements = $validatedData['english_requirements'];
+        $Course->institution_overview = $validatedData['institution_overview'];
+        $Course->course_dates = $validatedData['course_dates'];
         
-        $Course->university_ownership = $request->university_ownership;
-        $Course->institution_type = $request->institution_type;
-        
-   
+        $Course->university_ownership = $validatedData['university_ownership'];
+        $Course->institution_type = $validatedData['institution_type'];
+        // $Course->image = $request->image;
         $Course->save();
+
+        if ($request->hasFile('image')) {
+            // Delete the old avatar if it exists
+          
+              
+                $file = $request->file('image');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                $file->move(public_path('images/course'), $fileName); // Store in the root folder
+    
+                $Course->update(['image' => $fileName]);
+        }
+
 
         return redirect()->back()->with('success', 'Course information updated successfully');
     }

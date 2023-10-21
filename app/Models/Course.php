@@ -11,6 +11,7 @@ class Course extends Model
     use HasFactory;
     protected $table = 'courses';
 
+    protected $fillable = ['image'];
     public function institution()
     {
         return $this->belongsTo(Institution::class);
