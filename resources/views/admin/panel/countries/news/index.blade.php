@@ -38,7 +38,8 @@
                         <td>{{ $new->title }}</td>
                         <td>{{ $new->content }}</td> 
                         <td>
-                            <a href="{{ route('country-data.news.show', $new->id) }}" class="btn btn-info">View</a>
+                            {{-- <a href="{{ route('country-data.news.show', $new->id) }}" class="btn btn-info">View</a> --}}
+                            <a href="{{ route('country-data.show', $new->country_id) }}" class="btn btn-info">View</a>
                             <a href="{{ route('country-data.news.edit', $new->id) }}" class="btn btn-primary">Edit</a>
                             <!-- <form action="{{ route('country-data.destroy', $new->id) }}" method="POST" style="display: inline;">
                                 @csrf

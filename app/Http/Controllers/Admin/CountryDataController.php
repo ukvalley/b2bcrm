@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Artisan;
 class CountryDataController extends Controller
 {
 
-<<<<<<< HEAD
-=======
 
      public function migrate_db()
     {
@@ -30,7 +28,6 @@ class CountryDataController extends Controller
 
 
 
->>>>>>> e5869fc2a4841d9dd8d892ce6f0dc5ece1e0443c
     public function index()
     {
         $countries = CountryData::all(); // Fetch all records from the table.
@@ -87,7 +84,7 @@ class CountryDataController extends Controller
    
     public function show($id)
     {
-        $countryData = CountryData::find($id); // Find the record by its ID.
+        $countryData = CountryData::with('links', 'news')->find($id); // Find the record by its ID.
         $news = [null];
         return view('admin.panel.countries.countrydata', compact('countryData', 'news'));
     }

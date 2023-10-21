@@ -1,5 +1,4 @@
-@extends('recruiter.panel.layout')
-
+@extends('admin.panel.layout')
 @section('content') 
 
 
@@ -47,8 +46,8 @@
                             <div class="col-md-4">
                                 <div class="row mb-5">
                                 <h3 class="mb-3">News</h3>
-                                @if(count($news) != 0 || $news != null)
-                                @foreach($news as $news_data)
+                                @if(count($countryData->news) != 0 || $countryData->news != null)
+                                @foreach($countryData->news as $news_data)
                                 <div>
 
                                     <h4 style="style=color: green;">{{$news_data->title}}</h4>
@@ -117,8 +116,8 @@
 
                             <div class="row mb-5">
                                 <h3 class="mb-3">Links</h3>
-                                @if(count($links) != 0)
-                                @foreach($links as $links_data)
+                                @if(count($countryData->links) != 0)
+                                @foreach($countryData->links as $links_data)
                                 <div>
 
                                     <li>  <a style="color: green;" href="{{$links_data->url}}">

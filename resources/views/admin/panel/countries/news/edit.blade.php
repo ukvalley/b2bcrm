@@ -23,7 +23,7 @@
 
     <div class="card-body">
 
-    <form method="POST" action="{{ route('country-data.links.update', ['id' => $news->id]) }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('country-data.news.update', ['id' => $news->id]) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT') <!-- Use the PUT method for updates -->
         <div class="validation-errors">
