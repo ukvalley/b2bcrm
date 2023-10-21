@@ -41,6 +41,10 @@ Route::get('courseView/{course_id}', [App\Http\Controllers\Institution\CourceCon
 Route::get('previewCourse', [App\Http\Controllers\Institution\CourceController::class, 'previewCourse'])->name('institution.previewCourse');
 Route::get('courseView', [App\Http\Controllers\Institution\CourceController::class, 'courseView'])->name('institution.course_view');
 
+Route::get('batchesDetails/{course_id}', [App\Http\Controllers\Institution\CourceController::class, 'batchesDetails'])->name('institution.batchesDetails');
+Route::get('batchesDetail', [App\Http\Controllers\Institution\CourceController::class, 'batchesDetailsView'])->name('institution.batchesDetail');
+
+Route::put('updateStatus/{id}', [App\Http\Controllers\Institution\CourceController::class, 'update'])->name('updateStatus');
 
 
 Route::get('CourseBasicUpdate/{course_id}', [App\Http\Controllers\Institution\CourceController::class, 'CourseBasicUpdate'])->name('institution.CourseBasicUpdate');

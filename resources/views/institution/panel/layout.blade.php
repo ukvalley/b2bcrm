@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en" class="h-100">
 
@@ -26,20 +25,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- bootstrap icons -->
-    
+
 
     <!-- style css for this template -->
 
 
-         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-    
+
     <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet" id="style">
     <link href="{{ asset('theme/vendor/swiperjs-6.6.2/swiper-bundle.min.css') }}" rel="stylesheet" id="style">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
+        integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
 
 
 
@@ -62,7 +62,7 @@
     <!-- loader section ends -->
 
 
-     <!-- Sidebar main menu -->
+    <!-- Sidebar main menu -->
     <div class="sidebar-wrap  sidebar-pushcontent">
         <!-- Add overlay or fullmenu instead overlay -->
         <div class="closemenu text-muted">Close Menu</div>
@@ -89,8 +89,8 @@
                                 </div>
                             </div>
                         </div>
-                        
-                    </div>  
+
+                    </div>
                 </div>
             </div>
 
@@ -107,7 +107,7 @@
                         </li>
 
 
-                       
+
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
@@ -131,7 +131,7 @@
                                     </a></li>
                             </ul>
                         </li>
-  
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('institution.course_basic')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
@@ -141,24 +141,24 @@
                         </li>
 
 
-                         <li class="nav-item">
-                         <a class="nav-link" href="{{route('institution.course')}}" tabindex="-1">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('institution.course')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
                                 <div class="col">Course</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
                         </li>
 
-                       
 
-                        
+
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-box-arrow-right"></i></div>
                                 <div class="col">{{ __('Logout') }}</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
-                            
+
                         </li>
                     </ul>
                 </div>
@@ -168,14 +168,14 @@
     <!-- Sidebar main menu ends -->
 
 
-         @include('institution.panel.header')
+    @include('institution.panel.header')
 
-        @yield('content')
-
-
+    @yield('content')
 
 
-        <!-- Footer -->
+
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <ul class="nav nav-pills nav-justified">
@@ -276,11 +276,11 @@
 
     // Add click event listeners to each nav link
     navLinks.forEach(navLink => {
-        navLink.addEventListener('click', function (event) {
+        navLink.addEventListener('click', function(event) {
             // Check if the clicked nav link has a dropdown-menu
             console.log('hi');
             const dropdownMenu = navLink.querySelector('.dropdown-menu');
-            
+
             if (dropdownMenu) {
                 // Toggle the "show" class for the dropdown-menu
                 dropdownMenu.classList.toggle('show');
@@ -290,26 +290,28 @@
 
     // Close the menu when clicking on the "Close Menu" button
     const closeMenuButton = document.querySelector('.closemenu');
-    closeMenuButton.addEventListener('click', function () {
+    closeMenuButton.addEventListener('click', function() {
         // Find all dropdown menus and hide them
         const dropdownMenus = document.querySelectorAll('.dropdown-menu');
         dropdownMenus.forEach(dropdownMenu => {
             dropdownMenu.classList.remove('show');
         });
     });
-</script>
+    </script>
 
 
 
     <!-- Required jquery and libraries -->
-    
+
     <script src="{{ asset('theme/js/jquery-3.3.1.min.js') }}"></script>
 
     <script src="{{ asset('theme/js/popper.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/bootstrap-5/js/bootstrap.bundle.min.js') }}"></script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
 
     <!-- cookie js -->
     <script src="{{ asset('theme/js/jquery.cookie.js') }}"></script>
