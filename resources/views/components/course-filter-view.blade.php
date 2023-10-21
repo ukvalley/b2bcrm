@@ -1,7 +1,7 @@
 <div class="mt-5 mb-5">
     
 
-    <div class="container mt-5 mb-5">
+    
         <div class="card">
              <div class="card-body">
             <form method="GET">
@@ -37,13 +37,13 @@
         </div>
         </div>
 
-        </div>
+
 
 
         
             @if($courses)
                 @foreach($courses as $course)
-                <div class="card">
+                <div class="card mt-3">
                     <div class="card-header">
                     <div>{{$course->name}}</div>
                     </div>

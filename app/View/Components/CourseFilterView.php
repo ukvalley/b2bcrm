@@ -14,6 +14,7 @@ class CourseFilterView extends Component
     public $country;
     public $intake;
     public $courses;
+    public $isSeached;
 
     public function __construct($student,$courses)
     {
@@ -23,14 +24,17 @@ class CourseFilterView extends Component
         if(isset($_GET['search']))
         {
             $this->search = $_GET['search'];
+            $isSeached = true;
         }
         if(isset($_GET['intake']))
         {
             $this->intake = $_GET['intake'];
+            $isSeached = true;
         }
         if(isset($_GET['country']))
         {
             $this->country = $_GET['country'];
+            $isSeached = true;
         }
     }
 

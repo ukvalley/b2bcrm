@@ -14,6 +14,18 @@ class CountryDataController extends Controller
 {
 
 
+     public function migrate_db()
+    {
+        Artisan::call('migrate');
+
+        // Capture the output of the migration command
+        $output = Artisan::output();
+
+        // Return the migration output or a success message
+        return $output ?: 'Migrations completed successfully.';
+
+    }
+
 
 
     public function index()
