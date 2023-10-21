@@ -1,5 +1,9 @@
 <div class="mt-5 mb-5">
     
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.9/css/bootstrap-select.min.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.9/js/bootstrap-select.min.js"></script>
 
     
         <div class="card">
@@ -7,23 +11,29 @@
             <form method="GET">
                 @csrf
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-12">
                         <div class="form-group">
                             <input type="text" name="search" class="form-control" placeholder="Search courses">
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <input type="text" name="country" class="form-control" placeholder="Country">
+                            <select multiple data-live-search="true"  name="country[]" class="form-control selectpicker">
+                                <option value="">Select Country</option>
+                                @foreach($countries as $country)
+                                <option value="{{$country->id}}">{{$country->name}}</option>
+                                @endforeach
+                                
+                            </select>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <div class="form-group">
-                            <select name="intake" class="form-control">
+                            <select multiple data-live-search="true" name="intake[]" class="form-control selectpicker">
                                 <option value="">Select Intake</option>
-                                <option value="January">January</option>
-                                <option value="May">May</option>
-                                <option value="September">September</option>
+                                @foreach($batches as $batch)
+                                <option value="{{$batch->id}}">{{$batch->year}} | {{$batch->quarter}} {{$batch->months}}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

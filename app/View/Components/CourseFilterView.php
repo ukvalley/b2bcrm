@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use App\Models\Course;
+use App\Models\Batch;
+use App\Models\Country;
 
 
 
@@ -17,6 +19,8 @@ class CourseFilterView extends Component
     public $intake;
     public $courses;
     public $isSeached;
+    public $batches;
+    public $countries;
 
     public function __construct($student,$courses)
     {
@@ -54,6 +58,8 @@ class CourseFilterView extends Component
     public function render()
     {
         $this->search();
+        $this->batches = Batch::get();
+        $this->countries = Country::get();
         return view('components.course-filter-view');
     }
 }
