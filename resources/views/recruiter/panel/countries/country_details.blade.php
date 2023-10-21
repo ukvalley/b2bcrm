@@ -51,7 +51,7 @@
                                 @foreach($news as $news_data)
                                 <div>
 
-                                    <h4 style="style=color: green;">{{$news_data->title}}</h4>
+                                    <h4 style="color: green;">{{$news_data->title}}</h4>
                                     {!! $news_data->content !!}
                                     <hr>
                                 </div>

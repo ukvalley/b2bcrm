@@ -10,6 +10,9 @@ use App\Models\Batch;
 class CourseBatch extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['batch_id', 'course_id', 'status'];
+
     public function course()
     {
         return $this->belongsTo(Course::class);

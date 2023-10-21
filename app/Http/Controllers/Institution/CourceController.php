@@ -120,6 +120,8 @@ class CourceController extends Controller
     // Save the user
     $course->save();
 
+    $course->addDefaultBatches();
+
 
     
    
@@ -170,6 +172,7 @@ class CourceController extends Controller
         $Course->duration_type = $request->duration_type;
 
         $Course->save();
+        
         
 
         return redirect()->back();
