@@ -12,6 +12,21 @@ Route::get('setting', 'App\Http\Controllers\Admin\ProjectController@show')->name
 // Update a specific project record
 Route::put('setting/{id}','App\Http\Controllers\Admin\ProjectController@update')->name('project.update');
 
+
+//NEWS ROUTE
+Route::get('country-data/news', 'App\Http\Controllers\Admin\NewsController@newsindex')->name('country-data.news.index'); // List all Country Data`s News records
+Route::get('country-data/news{id}/edit', 'App\Http\Controllers\Admin\NewsController@newsedit')->name('country-data.news.edit');
+Route::get('country-data/news/create', 'App\Http\Controllers\Admin\NewsController@newscreate')->name('country-data.news.create');
+Route::post('country-data/news', 'App\Http\Controllers\Admin\NewsController@newsstore')->name('country-data.news.store');
+Route::get('country-data/news{id}', 'App\Http\Controllers\Admin\NewsController@show')->name('country-data.news.show');
+
+// LINKS ROUTE
+Route::get('country-data/links', 'App\Http\Controllers\Admin\LinksController@linksindex')->name('country-data.links.index'); // List all Country Data`s Links records
+Route::get('country-data/links/{id}/edit', 'App\Http\Controllers\Admin\LinksController@linksedit')->name('country-data.links.edit');
+Route::get('country-data/links/create', 'App\Http\Controllers\Admin\LinksController@linkscreate')->name('country-data.links.create');
+Route::post('country-data/links', 'App\Http\Controllers\Admin\LinksController@linksstore')->name('country-data.links.store');
+Route::get('country-data/links{id}', 'App\Http\Controllers\Admin\LinksController@linksshow')->name('country-data.links.show');
+
 // List all country_data records
 Route::get('country-data', 'App\Http\Controllers\Admin\CountryDataController@index')->name('country-data.index');
 

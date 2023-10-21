@@ -115,12 +115,33 @@
                         </li>
                         
                         <li class="nav-item">
+                            <a class="nav-link" href="{{route('country-data.index')}}" tabindex="-1">
+                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
+                                <div class="col">Countries Data</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('country-data.news.index')}}" tabindex="-1">
+                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
+                                <div class="col">News</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('country-data.links.index')}}" tabindex="-1">
+                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
+                                <div class="col">Links</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+                        
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-box-arrow-right"></i></div>
                                 <div class="col">{{ __('Logout') }}</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
-                            
                         </li>
                     </ul>
                 </div>

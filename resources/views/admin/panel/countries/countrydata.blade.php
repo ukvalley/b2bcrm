@@ -47,7 +47,7 @@
                             <div class="col-md-4">
                                 <div class="row mb-5">
                                 <h3 class="mb-3">News</h3>
-                                @if(count($news) != 0)
+                                @if(count($news) != 0 || $news != null)
                                 @foreach($news as $news_data)
                                 <div>
 
