@@ -15,17 +15,19 @@ Route::put('setting/{id}','App\Http\Controllers\Admin\ProjectController@update')
 
 //NEWS ROUTE
 Route::get('country-data/news', 'App\Http\Controllers\Admin\NewsController@newsindex')->name('country-data.news.index'); // List all Country Data`s News records
-Route::get('country-data/news{id}/edit', 'App\Http\Controllers\Admin\NewsController@newsedit')->name('country-data.news.edit');
-Route::get('country-data/news/create', 'App\Http\Controllers\Admin\NewsController@newscreate')->name('country-data.news.create');
-Route::post('country-data/news', 'App\Http\Controllers\Admin\NewsController@newsstore')->name('country-data.news.store');
-Route::get('country-data/news{id}', 'App\Http\Controllers\Admin\NewsController@show')->name('country-data.news.show');
+Route::get('country-data/news/{id}/edit', 'App\Http\Controllers\Admin\NewsController@newsedit')->name('country-data.news.edit'); // Display the form to edit a specific Country Data`s News record
+Route::put('country-data/news{id}', 'App\Http\Controllers\Admin\NewsController@newsupdate')->name('country-data.news.update'); // Update a specific Country Data`s News record
+Route::get('country-data/news/create', 'App\Http\Controllers\Admin\NewsController@newscreate')->name('country-data.news.create'); // Display the form to create a new Country Data`s News record
+Route::post('country-data/news', 'App\Http\Controllers\Admin\NewsController@newsstore')->name('country-data.news.store'); // Create a new Country Data`s News record
+Route::get('country-data/news/{id}', 'App\Http\Controllers\Admin\NewsController@show')->name('country-data.news.show'); // Display a specific Country Data`s News record
 
 // LINKS ROUTE
 Route::get('country-data/links', 'App\Http\Controllers\Admin\LinksController@linksindex')->name('country-data.links.index'); // List all Country Data`s Links records
-Route::get('country-data/links/{id}/edit', 'App\Http\Controllers\Admin\LinksController@linksedit')->name('country-data.links.edit');
-Route::get('country-data/links/create', 'App\Http\Controllers\Admin\LinksController@linkscreate')->name('country-data.links.create');
-Route::post('country-data/links', 'App\Http\Controllers\Admin\LinksController@linksstore')->name('country-data.links.store');
-Route::get('country-data/links{id}', 'App\Http\Controllers\Admin\LinksController@linksshow')->name('country-data.links.show');
+Route::get('country-data/links/{id}/edit', 'App\Http\Controllers\Admin\LinksController@linksedit')->name('country-data.links.edit'); // Display the form to edit a specific Country Data`s Links record
+Route::put('country-data/links{id}', 'App\Http\Controllers\Admin\LinksController@linksupdate')->name('country-data.links.update'); // Update a specific Country Data`s Links record
+Route::get('country-data/links/create', 'App\Http\Controllers\Admin\LinksController@linkscreate')->name('country-data.links.create'); // Display the form to create a new Country Data`s Links record
+Route::post('country-data/links', 'App\Http\Controllers\Admin\LinksController@linksstore')->name('country-data.links.store'); // Create a new Country Data`s Links record
+Route::get('country-data/links/{id}', 'App\Http\Controllers\Admin\LinksController@linksshow')->name('country-data.links.show'); // Display a specific Country Data`s Links record
 
 // List all country_data records
 Route::get('country-data', 'App\Http\Controllers\Admin\CountryDataController@index')->name('country-data.index');

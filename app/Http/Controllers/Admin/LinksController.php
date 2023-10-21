@@ -37,4 +37,40 @@ class LinksController extends Controller
         return redirect()->route('country-data.links.index')->with('success', 'Record created successfully.');
     }
 
+    // public function linksshow($id)
+    // {
+    //     $countryData = Links::find($id); // Find the record by its ID.
+    //     return view('admin.panel.countries.links.countrydata', compact('countryData'));
+    // }
+
+    public function linksedit($id)
+    {
+        $countrydata = CountryData::all();
+        $link = Links::find($id); // Find the record by its ID.
+        return view('admin.panel.countries.links.edit', compact('link','countrydata'));
+    }
+
+    public function linksupdate(Request $request, $id)
+    {
+        // Validate user input.
+        $validatedData = $request->validate([
+            'country_id' => 'required',
+            'title' => 'required|string|max:255',
+            'url' => 'required|string|max:255',
+        ]);
+
+        // Update the existing record.
+        $links = Links::find($id);
+        if ($links) {
+            // Update the existing record.
+            $links->update($validatedData);
+            return redirect()->route('country-data.links.index')->with('success', 'Record updated successfully.');
+        } else {
+            return redirect()->route('country-data.links.index')->with('error', 'Record not found.');
+        }
+        
+        // $news->update($validatedData);
+        // return redirect()->route('country-data.links.index')->with('success', 'Record updated successfully.');
+    }
+
 }

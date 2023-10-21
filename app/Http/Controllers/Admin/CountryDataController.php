@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Artisan;
 class CountryDataController extends Controller
 {
 
-
-
-
     public function index()
     {
         $countries = CountryData::all(); // Fetch all records from the table.

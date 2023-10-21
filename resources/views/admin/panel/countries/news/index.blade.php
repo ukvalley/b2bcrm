@@ -25,7 +25,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Country Name</th>
+                    {{-- <th>Country Name</th> --}}
                     <th>Title</th>
                     <th>Content</th>
                     <th>Actions</th>

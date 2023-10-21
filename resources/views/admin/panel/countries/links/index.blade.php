@@ -38,8 +38,8 @@
                         <td>{{ $link->title }}</td>
                         <td>{{ $link->url }}</td> 
                         <td>
-                            <a href="{{ route('country-data.show', $link->id) }}" class="btn btn-info">View</a>
-                            <a href="{{ route('country-data.edit', $link->id) }}" class="btn btn-primary">Edit</a>
+                            <a href="{{ route('country-data.links.show', $link->id) }}" class="btn btn-info">View</a>
+                            <a href="{{ route('country-data.links.edit', $link->id) }}" class="btn btn-primary">Edit</a>
                             <!-- <form action="{{ route('country-data.destroy', $link->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')
