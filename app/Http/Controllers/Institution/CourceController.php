@@ -213,7 +213,7 @@ class CourceController extends Controller
         $Course->english_requirements = $validatedData['english_requirements'];
         $Course->institution_overview = $validatedData['institution_overview'];
         $Course->course_dates = $validatedData['course_dates'];
-        
+
         $Course->university_ownership = $validatedData['university_ownership'];
         $Course->institution_type = $validatedData['institution_type'];
         // $Course->image = $request->image;

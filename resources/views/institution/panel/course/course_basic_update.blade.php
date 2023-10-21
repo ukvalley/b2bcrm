@@ -20,13 +20,13 @@
                         @include('institution.panel.course.nav_pill_course')
 
 
-                        <h4 class="card-title">Step 1: Personal Information</h4>
-                        <p class="card-text">Please provide your personal information.</p>
+                        <h4 class="card-title">Course Perticulars</h4>
+                        <!-- <p class="card-text">Please provide your personal information.</p> -->
                        <form class="mt-3" method="POST" action="{{ route('institution.CourseBasicUpdateRegistration',['course_id' => $course->id]) }}">
     @csrf
 
     <div class="col mb-3">
-        <h6>Basic Information</h6>
+        <!-- <h6>Basic Information</h6> -->
     </div>
 
     <div class="mb-3">
