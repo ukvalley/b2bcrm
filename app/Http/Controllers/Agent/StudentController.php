@@ -15,6 +15,10 @@ use App\Models\Timezone;
 use App\Models\Currency;
 use App\DataTables\StudentsDataTable;
 use App\Models\Note;
+use App\Models\Task;
+use App\Models\Timeline;
+use App\Models\Course;
+
 
 
 
@@ -88,6 +92,10 @@ class StudentController extends Controller
         // Save the student profile
         $student->save();
 
+        $this->logTimelineEntry($student, "Student Enrolled and Collected Personal Information");
+
+        $student->addDefaultTasks();
+
         // Redirect to the next step of the registration process
         return redirect()->route('agent.student_academic', ['student_id' => $student->id]);
     }
@@ -132,6 +140,8 @@ class StudentController extends Controller
         $Student->academic_interests = $request->academic_interests;
 
         $Student->save();
+
+        $this->logTimelineEntry($Student, "Collected Academic Information");
         
 
         return redirect()->back();
@@ -173,6 +183,8 @@ class StudentController extends Controller
 
         $Student->save();
 
+        $this->logTimelineEntry($Student, "Collected Persona Information");
+
         return redirect()->back()->with('success', 'Academic information updated successfully');
     }
 
@@ -212,6 +224,8 @@ class StudentController extends Controller
         // Save the student to the database
         $student->save();
 
+        $this->logTimelineEntry($student, "Updated Study Preferences");
+
         // Redirect back to the previous page or a specific route
         return redirect()->back()->with('success', 'Student data has been successfully saved.');
     }
@@ -248,6 +262,8 @@ class StudentController extends Controller
 
         // Save the student to the database
         $student->save();
+
+        $this->logTimelineEntry($student, "Lead Information Updated");
 
         // Redirect back to the previous page or a specific route
         return redirect()->back()->with('success', 'Student data has been successfully saved.');
@@ -304,6 +320,9 @@ class StudentController extends Controller
     $personaDetail->student_id = $student->id;
     $personaDetail->fill($validatedData);
     $student->personaDetail()->save($personaDetail);
+
+    $this->logTimelineEntry($student, "Personal Details Updated");
+
 
 
     if ($request->hasFile('image_profile')) {
@@ -365,6 +384,9 @@ public function StudentBasicUpdateRegistration(Request $request)
         // Save the student profile
         $student->save();
 
+        $this->logTimelineEntry($student, "Basic Information Updated");
+
+
         return redirect()->back();
 
 }
@@ -384,9 +406,17 @@ public function StudentBasicUpdateRegistration(Request $request)
 public function PreviewStudents($id)
 {
     $Student = Student::find($id);
-    $notes = $Student->Notes;
+
+   // $Student->addDefaultTasks();
+
+    $notes = $Student->Notes()->orderBy('created_at', 'desc')->get();
     $messages = $Student->Messages;
-    return view('recruiter.panel.studentView.PreviewStudents',compact('Student','notes','messages'));
+    $tasks = $Student->Tasks()->orderBy('created_at', 'desc')->get();
+    $timeline = $Student->Timeline()->orderBy('created_at', 'desc')->get();
+
+   // print_r($timeline); die();
+
+    return view('recruiter.panel.studentView.PreviewStudents',compact('Student','notes','messages','tasks','timeline'));
 }
 
 
@@ -411,9 +441,61 @@ public function StudentAddNotes(Request $request)
 
     $Note->save();
 
+    $Student = Student::find($validatedData['student_id']);
+
+    $this->logTimelineEntry($Student, "New Note Added");
+
+
     return redirect()->back();
 
 
+}
+
+// task completed feature
+public function complete(Task $task)
+{
+    $task->update(['completed' => !$task->completed]);
+
+    $student = Student::find($task->student_id);
+
+    $this->logTimelineEntry($student, "Task Stuatus Updated");
+
+    return redirect()->back();
+}
+
+
+// timeline entry
+
+public function logTimelineEntry($student, $action)
+{
+    $timelineEntry = new Timeline([
+        'student_id' => $student->id,
+        'action' => $action,
+    ]);
+
+    $timelineEntry->save();
+}
+
+
+
+
+// course search controller
+
+public function CourseSearch($id)
+{
+        $Student = Student::find($id);
+
+   // $Student->addDefaultTasks();
+
+    $notes = $Student->Notes()->orderBy('created_at', 'desc')->get();
+    $messages = $Student->Messages;
+    $tasks = $Student->Tasks()->orderBy('created_at', 'desc')->get();
+    $timeline = $Student->Timeline()->orderBy('created_at', 'desc')->get();
+    $courses = Course::get();
+
+   // print_r($timeline); die();
+
+    return view('recruiter.panel.courseSearch.CourseSearch',compact('Student','notes','messages','tasks','timeline','courses'));
 }
 
 

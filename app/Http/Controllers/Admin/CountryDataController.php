@@ -5,10 +5,23 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\CountryData;
+use Illuminate\Support\Facades\Artisan;
+
 
 class CountryDataController extends Controller
 {
 
+
+
+    public function migrate_db()
+    {
+        Artisan::call('migrate');
+
+        $output = Artisan::output();
+
+        // Output the result (you can use it as needed)
+        echo $output;
+    }
 
 
 
