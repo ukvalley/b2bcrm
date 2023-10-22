@@ -366,7 +366,6 @@ public function StudentBasicUpdateRegistration(Request $request)
             'nationality' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             'phone_number' => 'required|string|max:15',
-            'email' => 'required|email|unique:users'
         ]);
 
 
@@ -377,7 +376,6 @@ public function StudentBasicUpdateRegistration(Request $request)
         $student->nationality = $validatedData['nationality'];
         $student->address = $validatedData['address'];
         $student->phone_number = $validatedData['phone_number'];
-        $student->email = $validatedData['email'];
         
         // You can add more fields and data saving logic as needed
 

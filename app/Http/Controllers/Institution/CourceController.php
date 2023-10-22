@@ -23,9 +23,8 @@ use App\Models\CountryData;
 use App\Models\Institution;
 use App\Models\News;
 use App\Models\Links;
-
-
-
+use App\Models\Batch;
+use App\Models\CourseBatch;
 
 
 class CourceController extends Controller
@@ -120,6 +119,8 @@ class CourceController extends Controller
     // Save the user
     $course->save();
 
+    $course->addDefaultBatches();
+
 
     
    
@@ -170,6 +171,7 @@ class CourceController extends Controller
         $Course->duration_type = $request->duration_type;
 
         $Course->save();
+
         
 
         return redirect()->back();
@@ -185,7 +187,35 @@ class CourceController extends Controller
         return view('institution.panel.course.course_basic3',compact('course'));
 
     }
+    public function batchesDetails($course_id)
+    {
+        $course = Course::find($course_id);
+        $courseBatch = $course->CourseBatches;
+        return view('institution.panel.course.batchesDetails',compact('course','courseBatch'));
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:Active,Inactive,Batch_full',
+        ]);
 
+        $courseBatch = CourseBatch::find($id);
+
+        if (!$courseBatch) {
+            return redirect()->back()->with('error', 'Item not found.');
+        }
+
+        $courseBatch->status = $request->input('status');
+        $courseBatch->save();
+
+        return redirect()->back()->with('success', 'Status updated successfully.');
+    }
+
+    public function batchesDetailsView()
+    {
+        return view('institution.panel.course.batchesDetails');
+    }
     public function CourseBasicRegistration3 (Request $request,$course_id)
     {
         //  print_r($request->all()); die();
@@ -210,7 +240,7 @@ class CourceController extends Controller
         $Course->english_requirements = $validatedData['english_requirements'];
         $Course->institution_overview = $validatedData['institution_overview'];
         $Course->course_dates = $validatedData['course_dates'];
-        
+
         $Course->university_ownership = $validatedData['university_ownership'];
         $Course->institution_type = $validatedData['institution_type'];
         // $Course->image = $request->image;

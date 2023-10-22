@@ -229,7 +229,7 @@
                     </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('agent.student_basic')}}">
+                    <a class="nav-link" href="{{route('agent.countries')}}">
                         <span>
                             <i class="bi bi-globe-americas"></i>
                             <span class="nav-text">Countries</span>
