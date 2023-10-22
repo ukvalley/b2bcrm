@@ -12,6 +12,18 @@ Route::get('setting', 'App\Http\Controllers\Admin\ProjectController@show')->name
 // Update a specific project record
 Route::put('setting/{id}','App\Http\Controllers\Admin\ProjectController@update')->name('project.update');
 
+//Students data
+Route::get('students','App\Http\Controllers\Admin\AdminController@students')->name('admin.students'); //view students page
+Route::get('getstudents','App\Http\Controllers\Admin\AdminController@getstudents')->name('admin.getStudents'); // get all students data
+
+//Institutions data
+Route::get('institutions','App\Http\Controllers\Admin\AdminController@institutions')->name('admin.institutions'); //view institutions page
+Route::get('getinstitutions','App\Http\Controllers\Admin\AdminController@getinstitutions')->name('admin.getinstitutions'); // get all institutions data
+
+//Agents data
+Route::get('agents','App\Http\Controllers\Admin\AdminController@agents')->name('admin.agents'); //view agents page
+Route::get('getagents','App\Http\Controllers\Admin\AdminController@getagents')->name('admin.getagents'); // get all agents data
+
 
 //NEWS ROUTE
 Route::get('country-data/news', 'App\Http\Controllers\Admin\NewsController@newsindex')->name('country-data.news.index'); // List all Country Data`s News records

@@ -1,4 +1,4 @@
-@extends('recruiter.panel.layout')
+@extends('admin.panel.layout')
 
 @section('content')
 
@@ -18,7 +18,7 @@
 
 
 
-                    <h4 class="card-title">Students</h4>
+                    <h4 class="card-title">Institutions</h4>
                         <p class="card-text"></p>
                         <hr>
 
@@ -29,11 +29,18 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Created At</th>
                                 <th>Action</th>
                                 <!-- Add more headers for additional columns -->
                             </tr>
                         </thead>
+                        {{-- @foreach($students as $item)
+                        <tr>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->first_name }}</td>
+                            <td>{{ $item->email }}</td>
+                            <!-- Add more data columns as needed -->
+                        </tr>
+                        @endforeach --}}
 
                     </table>
 
@@ -48,6 +55,7 @@
 </div>
 </main>
 <!-- Page ends -->
+
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <!-- Include DataTables script -->
@@ -64,11 +72,12 @@ j(document).ready(function () {
     j('#students-table').DataTable({
         processing: true,
         serverSide: true,
-        ajax: '{!! route('agent.getStudents') !!}',
+        ajax: '{!! route('admin.getinstitutions') !!}',
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'first_name', first_name: 'first_name' },
-            { data: 'email', name: 'email' },
+            { data: 'name', name: 'name' },
+            { data: 'email', email: 'email' },
+
             { data: null, 
             render: function(data, type, row) {
             return '<a href="{{url('/')}}/agent/StudentBasicUpdate/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a> <a href="{{url('/')}}/agent/PreviewStudents/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a>';
@@ -80,5 +89,10 @@ j(document).ready(function () {
     });
 });
 </script>
+
+
+
+
+
 
 @endsection

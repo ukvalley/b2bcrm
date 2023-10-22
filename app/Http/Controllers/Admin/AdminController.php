@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Timezone;
 use Illuminate\Support\Facades\Storage;
 use App\Models\CountryData;
+use App\Models\Student;
+use App\Models\Recruiter;
+use App\Models\Institution;
+use DataTables;
 
 
 
@@ -138,6 +142,40 @@ public function updatePassword(Request $request)
         return view('recruiter.panel.countries.country_details',compact('CountryData','news','links'));
 
     }
+
+    public function getstudents(Request $request)
+    {
+        $students = Student::all();
+        return response()->json(['data' => $students]);
+    }
+
+    public function students()
+    {
+        return view('admin.panel.students');
+    }
+
+    public function getinstitutions(Request $request)
+    {
+        $institutions = Institution::all();
+        return response()->json(['data' => $institutions]);
+    }
+
+    public function institutions()
+    {
+        return view('admin.panel.institutions');
+    }
+
+    public function getagents(Request $request)
+    {
+        $agents = Recruiter::all();
+        return response()->json(['data' => $agents]);
+    }
+
+    public function agents()
+    {
+        return view('admin.panel.agents');
+    }
+
 
 
     

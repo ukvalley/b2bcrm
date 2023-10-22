@@ -135,6 +135,30 @@
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.students')}}" tabindex="-1">
+                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-paperclip"></i></div>
+                                <div class="col">Students</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.institutions')}}" tabindex="-1">
+                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-paperclip"></i></div>
+                                <div class="col">Institutions</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('admin.agents')}}" tabindex="-1">
+                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-paperclip"></i></div>
+                                <div class="col">Agents</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
                         
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" tabindex="-1">
