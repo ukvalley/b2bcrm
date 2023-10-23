@@ -70,8 +70,13 @@
 
 j(document).ready(function () {
     j('#students-table').DataTable({
-        processing: true,
-        serverSide: true,
+        "searching": true,
+        "lengthChange": true, 
+        "paging": true, 
+        "ordering": true, 
+        "info": true, 
+        "autoWidth": false, 
+        "processing": true,
         ajax: '{!! route('admin.getagents') !!}',
         columns: [
             { data: 'id', name: 'id' },
