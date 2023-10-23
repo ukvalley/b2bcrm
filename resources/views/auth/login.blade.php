@@ -1,14 +1,31 @@
-@extends('layouts.app')
-
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
+@extends('auth.recruiter.layout') @section('content')
+<!-- Begin page content -->
+<main class="container-fluid">
+  <div class="row">
+    <div class="col-12 text-center mb-auto px-0">
+      <header class="header">
+        <div class="row">
+          <div class="col-auto">
+            <a href="signin.html" target="_self" class="btn btn-light btn-44">
+              <i class="bi bi-arrow-left"></i>
+            </a>
+          </div>
+          <div class="col align-self-center">
+            <h5>{{ $siteName }}</h5>
+          </div>
+          <div class="col-auto">
+            <a class="btn btn-light btn-44 invisible"></a>
+          </div>
+        </div>
+      </header>
+    </div>
+    <div class="col-10 col-md-8 col-lg-5 col-xl-6 mx-auto align-self-center text-center py-4">
+      <div class="card">
+        <div class="card-header">
+          <h1>{{ __('login') }}</h1>
+        </div>
+        <div class="card-body">
+        <form method="POST" action="{{ route('login') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -44,7 +61,7 @@
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
 
-                                    <label class="form-check-label" for="remember">
+                                    <label class="" for="remember">
                                         {{ __('Remember Me') }}
                                     </label>
                                 </div>
@@ -65,9 +82,9 @@
                             </div>
                         </div>
                     </form>
-                </div>
-            </div>
         </div>
+      </div>
     </div>
-</div>
-@endsection
+    <!--  <div class="col-12 text-center mt-auto"><div class="row justify-content-center footer-info"><div class="col-auto"><p class="text-muted">Or you can continue with </p></div><div class="col-auto ps-0"><a href="#" class="p-1"><i class="bi bi-twitter"></i></a><a href="#" class="p-1"><i class="bi bi-google"></i></a><a href="#" class="p-1"><i class="bi bi-facebook"></i></a></div></div></div> -->
+  </div>
+</main> @endsection

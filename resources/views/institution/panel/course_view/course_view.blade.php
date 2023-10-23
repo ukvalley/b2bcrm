@@ -17,7 +17,7 @@
                 <div class="card-body">
                     <div class="col-auto">
                         <figure class="avatar avatar-60 rounded-10">
-                            <img src="{{url('/')}}/public/images/avatar/{{$course->institution->logo OR '1696936589_a-happy-indian-cartoon-a-young-male-wearing-a-suite-322338942.png'}}"
+                            <img src="{{ asset('images/avtar/' . $course->institution->logo) }}"
                                 alt="">
                         </figure>
                     </div>
