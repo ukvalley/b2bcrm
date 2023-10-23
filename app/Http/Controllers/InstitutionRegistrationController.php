@@ -8,13 +8,15 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Institution;
 use App\Models\User; // Import the Recruiter model
 use App\Models\UserType; 
+use App\Models\Country; 
 
 class InstitutionRegistrationController extends Controller
 {
     //
     public function step1()
     {
-        return view('institution.auth.step1');
+        $country = Country::get();
+        return view('institution.auth.step1',compact('country'));
     }
 
     public function step2(Request $request)
