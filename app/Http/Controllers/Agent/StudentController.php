@@ -498,5 +498,12 @@ public function CourseSearch($id)
 
 
 
+public function CourseDetails()
+{
+     
+    return view('recruiter.panel.courseSearch.CourseDetails');
+}
+
+
 
 }
