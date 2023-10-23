@@ -18,7 +18,7 @@
 
 
 
-                    <h4 class="card-title">Agents</h4>
+                    <h4 class="card-title">Institutions</h4>
                         <p class="card-text"></p>
                         <hr>
 
@@ -28,7 +28,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Client ID</th>
+                                <th>Email</th>
                                 <th>Action</th>
                                 <!-- Add more headers for additional columns -->
                             </tr>
@@ -77,15 +77,16 @@ j(document).ready(function () {
         "info": true, 
         "autoWidth": false, 
         "processing": true,
-        ajax: '{!! route('admin.getagents') !!}',
+        ajax: '{!! route('admin.getinstitutions') !!}',
         columns: [
             { data: 'id', name: 'id' },
-            { data: 'company_name', company_name: 'company_name' },
-            { data: 'client_id', client_id: 'client_id' },
+            { data: 'name', name: 'name' },
+            { data: 'email', email: 'email' },
 
             { data: null, 
             render: function(data, type, row) {
-            return '<a href="{{url('/')}}/agent/StudentBasicUpdate/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a> <a href="{{url('/')}}/agent/PreviewStudents/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a>';
+            return '<a href="{{url('/')}}/admin/institutions/institutionView/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a>';
+            // return '<a href="{{url('/')}}/agent/StudentBasicUpdate/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a> <a href="{{url('/')}}/agent/PreviewStudents/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a>';
 
             } },
 

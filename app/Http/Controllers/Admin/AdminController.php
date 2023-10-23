@@ -151,7 +151,13 @@ public function updatePassword(Request $request)
 
     public function students()
     {
-        return view('admin.panel.students');
+        return view('admin.panel.student.index');
+    }
+
+    public function studentById($student_id)
+    {
+        $student = Student::find($student_id);
+        return view('admin.panel.student.view',compact('student'));
     }
 
     public function getinstitutions(Request $request)
@@ -162,7 +168,13 @@ public function updatePassword(Request $request)
 
     public function institutions()
     {
-        return view('admin.panel.institutions');
+        return view('admin.panel.institution.index');
+    }
+
+    public function institutionById($institution_id)
+    {
+        $institution = Institution::find($institution_id);
+        return view('admin.panel.institution.view',compact('institution'));
     }
 
     public function getagents(Request $request)
@@ -173,7 +185,13 @@ public function updatePassword(Request $request)
 
     public function agents()
     {
-        return view('admin.panel.agents');
+        return view('admin.panel.agent.index');
+    }
+
+    public function agentById($agent_id)
+    {
+        $agent = Recruiter::find($agent_id);
+        return view('admin.panel.agent.view',compact('agent'));
     }
 
 
