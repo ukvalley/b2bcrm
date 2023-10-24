@@ -4,282 +4,243 @@
 
     <div class="main-container container">
 
-        <div class="row">
-            <div class="col-12" style="background: white;
-    padding: 6px;
-    border-radius: 8px;">
-                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="overview-tab" data-bs-toggle="tab" data-bs-target="#overview" type="button" role="tab" aria-controls="overview" aria-selected="true">Overview</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="requirment-tab" data-bs-toggle="tab" data-bs-target="#requirment" type="button" role="tab" aria-controls="requirment" aria-selected="false">Admission Requirment</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="dates-tab" data-bs-toggle="tab" data-bs-target="#dates" type="button" role="tab" aria-controls="dates" aria-selected="false">Course Dates</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="scholarship-tab" data-bs-toggle="tab" data-bs-target="#scholarship" type="button" role="tab" aria-controls="scholarship" aria-selected="false">Scholarship</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="about-tab" data-bs-toggle="tab" data-bs-target="#about" type="button" role="tab" aria-controls="about" aria-selected="false">About</button>
-                    </li>
-                </ul>
-
-<style>
-  .course-info{
-    padding:5px;
-
-  }
-</style>
-
-                <div class="tab-content" id="myTabContent">
-                    <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
-                        <br>
-                            <h4>Course Particulars</h4>
-                            <hr>
-                                <div class="course-info">
-                                    <p><strong>Name</strong> <br>
-                                        Diploma in Business Fundamentals Program with Co-op Go to course page
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Course Code
-                                    </strong><br>Diploma in Business Fundamentals Program with Co-op Go to course page
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Currency</strong><br>Diploma in Business Fundamentals Program with Co-op Go to course page
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Tuition Fee
-                                    </strong><br>Diploma in Business Fundamentals Program with Co-op Go to course page
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Delivery</strong><br>Diploma in Business Fundamentals Program with Co-op Go to course page
-                                    </p>
-                                </div>
-                                
-                                <div class="course-info">
-                                    <p><strong>Duration</strong><br>Diploma in Business Fundamentals Program with Co-op Go to course page
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Application Fee
-                                    </strong><br>Diploma in Business Fundamentals Program with Co-op Go to course page
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Adventus Code
-                                    </strong><br>Diploma in Business Fundamentals Program with Co-op Go to course page
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Summary</strong><br>Diploma in Business Fundamentals Program with Co-op Go to course page
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Attendance pattern
-                                    </strong><br>Diploma in Business Fundamentals Program with Co-op Go to course page
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Language of Tuition
-
-                                    </strong><br>Diploma in Business Fundamentals Program with Co-op Go to course page
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Learning objectives / outcomes
-
-
-                                    </strong><br>Skills and knowledge in communications can enhance many marketing roles in management, strategy, PR, advertising and communications. The course has a strong emphasis on developing an understanding of how theory can be applied in practice, preparing recent graduates with an awareness of the challenges of the sector and current practitioners with the specific knowledge for application in their careers.
-
-Careers specific to branding and marketing communication can include:
-Marketing Executive
-Account Executive
-PR executive
-Brand Executive
-Marketing Communications Executive The Career and Employability Services support students in planning for their career.
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Major / Specialisation
-
-
-                                    </strong><br>Marketing Communications and Brand Management
-
-                                    </p>
-                                </div>
-
-                            </div>
-
-                            <div class="tab-pane fade" id="requirment" role="tabpanel" aria-labelledby="requirment-tab">
-
-                            <br>
-                            <h4>Admission Requirements:
-
-                            </h4>
-                            <hr>
-                                <div class="course-info">
-                                    <p><strong>Requirements</strong> <br>
-                                    Grade 12 / GED or mature student status (all transcripts must be “true certified copies” or originals). Applicants must successfully complete the admissions interview and entrance assessments with a minimum score of 20/40 in the English Assessment and a minimum score of 20/40 in the Math Assessment (with a minimum composite score of 42/80).
-
-
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Documents</strong> <br>
-                                    Grade 12 / GED or mature student status (all transcripts must be “true certified copies” or originals). Applicants must successfully complete the admissions interview and entrance assessments with a minimum score of 20/40 in the English Assessment and a minimum score of 20/40 in the Math Assessment (with a minimum composite score of 42/80).
-
-
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>English language Requirment</strong> <br>
-                                    IELTS Academic - 6.5 (minimum 6.0 in each band)
-                               TOEFL Internet-based - 87 (21 in listening and writing, 22 in speaking and 23 in reading)
-                               Pearson PTE Academic - 58
-
-                                    </p>
-                                </div>
-                               
-                            </div>
-                            <div class="tab-pane fade" id="dates" role="tabpanel" aria-labelledby="dates-tab">
-                            <br>
-                            <h4>Course Dates:
-
-                            </h4>
-                            <hr>
-                            <table class="table table-striped">
-  <thead>
-    <tr>
-      <th scope="col">Application Opens</th>
-      <th scope="col">Application Deadline</th>
-      <th scope="col">Term Start</th>
-      <th scope="col">Census Date
-</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th >--</th>
-      <td>--</td>
-      <td>--</td>
-      <td>--</td>
-    </tr>
-   
-  </tbody>
-</table>
-                            </div>
-
-                            <div class="tab-pane fade" id="scholarship" role="tabpanel" aria-labelledby="scholarship-tab"><br>
-                            <h4>Scholarship</h4>
-                            <hr>
-                                <div class="course-info">
-                                    <p><strong>Application Open
-</strong> <br>
-                                    </p>
-
-
-                                    
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Application Close
-
-                                    </strong><br>
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>URL</strong><br><a href="https://forigen.com/dubai-u-a-e-graduate-research-scholarship-2020-2021-all-nations/   ">https://forigen.com/dubai-u-a-e-graduate-research-scholarship-2020-2021-all-nations/ </a>                                </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Value
-                                    </strong><br>The amount depends on the research grant budget. (Applicants will get some other benefits such as living allowance, health insurance, travel insurance )
-
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Eligibility</strong><br>You need to be an active graduate student at UAEU. You need to have a Good Academic Standing GPA 3.0 or 4.0. Have no other financial sponsorship.
-
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Description</strong><br>Research Assistantships in the United Arab Emirates University (UAEU) are granted to national and international Graduate Students to work on research projects under the supervision of faculty members.
-
-                                    </p>
-                                </div>
-                                </div>
-
-                                <div class="tab-pane fade" id="about" role="tabpanel" aria-labelledby="about-tab"><br>
-                            <h4>Accomodation</h4>
-                            <hr>
-                                <div class="course-info">
-                                    <p><strong>Institution overview
-</strong> <br>            Middlesex University Dubai is the first overseas campus of the renowned Middlesex University based in London, UK. The University’s first learning space in Dubai opened at Dubai Knowledge Park (DKP) in 2005 and has over 4,000 students studying from more than 118 nationalities. It is an exciting, diverse and multicultural campus that prides itself on providing a student experience with a difference. As a testament to the growth and success of its thriving international student community, the University opened a second campus location in Dubai International Academic City (DIAC) in September 2021. This is the first time an international university in Dubai is offering a multi-site campus experience across both of the emirate’s international higher educational hubs. DKP and DIAC were set up in 2003 and 2007 respectively for international institutions that promote learning. Middlesex University Dubai students, therefore, have the opportunity to participate in a much wider student community.
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Key selling points
-
-
-                                    </strong><br>Study a quality UK degree in the heart of Dubai <br>
-
-Experience a truly global university
-
-Start your studies in dubai with the option to transfer overseas
-
-Financial support through scholarships & grants
-                                    </p>
-                                </div>
-                              
-                                <div class="course-info">
-                                    <p><strong>Short name
-
-                                    </strong><br>MDX
-
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                <p><strong>Institution type
-                                 </strong><br>University</p>
-                                </div>
-
-                                <div class="course-info">
-                                    <p><strong>University ownership
-</strong><br>Public
-
-                                    </p>
-                                </div>
-                                <div class="course-info">
-                                    <p><strong>Expected turnaround time from lodgement to offer
-</strong><br>Advised: 42 working days
-Advised data is based on information provided by the institution
-
-                                    </p>
-                                </div>
-                                </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <div class="col-auto">
+                        <figure class="avatar avatar-60 rounded-10">
+                            <img src="{{ asset('images/avtar/' . $course->institution->logo) }}"
+                                alt="">
+                        </figure>
                     </div>
+                    <h4 class="card-title">{{$course->name}}</h4>
+                    <p class="card-text">{{$course->institution->name}}</p>
+                    <hr>    
+                    <a href="{{url('/')}}/institution/CourseBasicUpdate/{{$course->id}}"class="btn btn-primary" style="margin-left: 930px;">Edit</a>
                 </div>
             </div>
 
+            <div class="card shadow-sm mt-5">
+                <div class="card-body">
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home"
+                                type="button" role="tab" aria-controls="home" aria-selected="true">Overview</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
+                                type="button" role="tab" aria-controls="profile" aria-selected="false">Admission
+                                Requirements</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact"
+                                type="button" role="tab" aria-controls="contact" aria-selected="false">About
+                                {{$course->institution->name}}</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="country-tab" data-bs-toggle="tab" data-bs-target="#country"
+                                type="button" role="tab" aria-controls="country"
+                                aria-selected="false">{{$course->institution->country}}</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="accommodation -tab" data-bs-toggle="tab"
+                                data-bs-target="#accommodation " type="button" role="tab" aria-controls="accommodation "
+                                aria-selected="false">Accommodation</button>
+                        </li>
+                    </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="mt-3 ml-3">
+                                <h5>Course Particulars</h5>
+
+                                <h6 class="mt-3">Name</h6>
+                                <p>{{$course->name}}</p>
+                                <h6 class="mt-3">Level</h6>
+                                <p>{{$course->level}}</p>
+                                <h6 class="mt-3">Course Code</h6>
+                                <p>{{$course->course_code}}</p>
+                                <h6 class="mt-3">Currency</h6>
+                                <p>{{$course->currency}}</p>
+                                <h6 class="mt-3">Tuition Fee</h6>
+                                <p>{{$course->tuition_fee}}</p>
+                                <h6 class="mt-3">Delivery</h6>
+                                <p>{{$course->name}}</p>
+                                <h6 class="mt-3">Duration</h6>
+                                <p>{{$course->duration}} {{$course->duration_type}}</p>
+                                <h6 class="mt-3">Application Fee</h6>
+                                <p>{{$course->application_fees}} {{$course->fees_type}}</p>
+                                <h6 class="mt-3">Adventus Code</h6>
+                                <p>{{$course->name}}</p>
+                                <h6 class="mt-3">Summary</h6>
+                                <p>{{$course->summary}}</p>
+                                <h6 class="mt-3">Attendance pattern</h6>
+                                <p>{{$course->attendance_pattern}}</p>
+                                <h6 class="mt-3">Language of Tuition</h6>
+                                <p>{{$course->name}}</p>
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                            <div class="mt-3 ml-3">
+                                <h6>Course Requirements:</h6>
+                                <p class="mt-3">Any university, university/college preparation course in Canadian and
+                                    world studies, English, or social sciences and humanities</p>
+                                <p class="mt-5">English Requirements:</p>
+                                <p class="mt-3">IELTS of 6.5 or equivalent</p>
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                            <div class="mt-3 ml-3">
+                                <h6>Institution overview:</h6>
+                                <p class="mt-1">About Our Virtual Campus</p>
+                                <p class="mt-3">{!! $course->institution->overview !!}</p>
+                                <h6 class="mt-3">Institution Type:</h6>
+                                <p class="mt-3">{!! $course->institution->institution_type !!}</p>
+
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="country" role="tabpanel" aria-labelledby="country-tab">
+                            <div class="col-md-12">
+                                <div class="row mb-4">
+                                    <div class="col-12">
+                                        <div class="card shadow-sm">
+                                            <div class="card-body">
+
+                                                <div class="row">
+                                                    <img
+                                                        src="{{ asset('images/country_header_image/' . $countryData->country_header_image) }}">
+                                                </div>
+                                                <div class="row mt-5">
+                                                    <div class="col-md-8">
+
+                                                        {!! $countryData->information_data !!}
+
+                                                    </div>
+                                                    <div class="col-md-4">
+                                                        <div class="row mb-5">
+                                                            <h3 class="mb-3">News</h3>
+                                                            @foreach($news as $news_data)
+                                                            <div>
+
+                                                                <h4 style="style=color: green;">{{$news_data->title}}
+                                                                </h4>
+                                                                <p>{{$news_data->content}}</p>
+                                                                <hr>
+                                                            </div>
+                                                            @endforeach
+                                                        </div>
+
+
+
+                                                        <div class="row mb-5">
+                                                            <h3 class="mb-3">Video</h3>
+
+                                                            <div>
+
+                                                                @if(isset($countryData->youtube_link))
+
+
+                                                                <!-- Button trigger modal -->
+                                                                <button type="button" class="btn btn-primary video-btn"
+                                                                    data-toggle="modal"
+                                                                    data-src="https://player.vimeo.com/video/58385453?badge=0&autoplay=1&loop=1"
+                                                                    data-target="#myModal">
+                                                                    Play Vimeo Video
+                                                                </button>
+
+                                                                <div class="modal fade" id="myModal" tabindex="-1"
+                                                                    role="dialog" aria-labelledby="exampleModalLabel"
+                                                                    aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+
+
+                                                                            <div class="modal-body">
+
+                                                                                <button type="button" class="close"
+                                                                                    data-dismiss="modal"
+                                                                                    aria-label="Close">
+                                                                                    <span
+                                                                                        aria-hidden="true">&times;</span>
+                                                                                </button>
+                                                                                <!-- 16:9 aspect ratio -->
+                                                                                <div
+                                                                                    class="embed-responsive embed-responsive-16by9">
+                                                                                    <iframe
+                                                                                        class="embed-responsive-item"
+                                                                                        src="" id="video"
+                                                                                        allowscriptaccess="always"
+                                                                                        allow="autoplay"></iframe>
+                                                                                </div>
+
+
+                                                                            </div>
+
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
 
 
 
 
 
+                                                                {!! $countryData->youtube_link !!}
+
+                                                                @else
+                                                                <img width="100%"
+                                                                    src="https://app.adventus.io/img/blank-news.svg">
+                                                                @endif
+
+                                                            </div>
+
+                                                        </div>
 
 
+                                                        <div class="row mb-5">
+                                                            <h3 class="mb-3">Links</h3>
+                                                            @if(count($links) != 0)
+                                                            @foreach($links as $links_data)
+                                                            <div>
+
+                                                                <li> <a style="color: green;"
+                                                                        href="{{$links_data->url}}">
+                                                                        <i class="bi bi-box-arrow-up-right"></i>
+                                                                        {{$links_data->title}}
+                                                                    </a> </li>
+
+                                                                <hr>
+                                                            </div>
+                                                            @endforeach
+                                                            @else
+                                                            <img width="100%"
+                                                                src="https://img.freepik.com/premium-vector/no-data-concept-illustration_86047-488.jpg?size=626&ext=jpg&ga=GA1.1.27262691.1695136376&semt=ais">
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
 
 
+                        </div>
+                        <div class="tab-pane fade" id="accommodation" role="tabpanel"
+                            aria-labelledby="accommodation-tab">
+                            <h6 class="mt-3">Campus Locations:</h6>
+                        </div>
 
 
-
-
-
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+</div>
 
 
         @endsection

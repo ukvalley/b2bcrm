@@ -13,6 +13,11 @@ use App\Models\Country;
 use App\Models\PersonaDetail;
 use App\Models\Timezone;
 use App\Models\Currency;
+use App\Models\CountryData;
+
+use App\Models\News;
+
+use App\Models\Institution;
 use App\DataTables\StudentsDataTable;
 use App\Models\Note;
 use App\Models\Task;
@@ -491,7 +496,12 @@ public function CourseSearch($id)
     $timeline = $Student->Timeline()->orderBy('created_at', 'desc')->get();
     $courses = Course::get();
 
+
    // print_r($timeline); die();
+   
+   
+  
+
 
     return view('recruiter.panel.courseSearch.CourseSearch',compact('Student','notes','messages','tasks','timeline','courses'));
 }
@@ -499,9 +509,26 @@ public function CourseSearch($id)
 
 
 public function CourseDetails()
-{
+{$Course = Course::find($id);
+
+
      
     return view('recruiter.panel.courseSearch.CourseDetails');
+}
+
+public function courseById($course_id)
+{
+    
+     $course = Course::findOrFail($course_id);
+
+     $institution = Institution::where('id',$course->institution_id)->first();
+     $c = Country::where('id',$institution->country)->first();
+
+     $countryData = CountryData::where('country_name',$institution->country)->first();
+     $news = News::where('country_id',$c->id)->get();
+     $links = Institution::where('id',$c->id)->get();
+
+    return view('recruiter.panel.courseSearch.CourseDetails',compact('course','countryData','news','links'));
 }
 
 
