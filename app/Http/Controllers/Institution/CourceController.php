@@ -47,7 +47,8 @@ class CourceController extends Controller
 
     public function CourseBasic()
     {
-        return view('institution.panel.course.course_basic_profile');
+        $country = Country::get();
+        return view('institution.panel.course.course_basic_profile',compact('country'));
     }
 
     public function course()
@@ -64,16 +65,19 @@ class CourceController extends Controller
     }
     public function courseById($course_id)
     {
+        $course = Course::find($course_id);
+    
+        $institution = $course->institution;
+        $country = $institution->Countries;
+        $countryData = CountryData::where('country_name','=',$country->name)->first();
+        $news = [];
+        $links = [];
+        if(isset($countrydata))
+        {
+            $news = $countryData->news;
+            $links = $countryData->links;
+        }
         
-         $course = Course::findOrFail($course_id);
-
-         $institution = Institution::where('id',$course->institution_id)->first();
-         $c = Country::where('name',$institution->country)->first();
-
-         $countryData = CountryData::where('country_name',$institution->country)->first();
-         $news = News::where('country_id',$c->id)->get();
-         $links = Institution::where('id',$c->id)->get();
-
         return view('institution.panel.course_view.course_view',compact('course','countryData','news','links'));
     }
 
@@ -105,6 +109,7 @@ class CourceController extends Controller
             'level' => 'required',
             'course_code' => 'required',
             'duration' => 'required|string|max:15',
+            'country'=>'required',
         ]);
 
 // Create a new user or institution profile in your database
@@ -113,6 +118,7 @@ class CourceController extends Controller
     $course->level = $validatedData['level'];
     $course->course_code = $validatedData['course_code'];
     $course->duration = $validatedData['duration'];
+    $course->country = $validatedData['country'];
     // Add other user-specific fields as needed
     $course->institution_id = Auth::user()->institution->id;
 
@@ -120,12 +126,6 @@ class CourceController extends Controller
     $course->save();
 
     $course->addDefaultBatches();
-
-
-    
-   
-     
-        
 
         // Redirect to the next step of the registration process
         return redirect()->route('institution.course_Basic2', ['course_id' => $course->id]);
@@ -240,6 +240,7 @@ class CourceController extends Controller
         $Course->english_requirements = $validatedData['english_requirements'];
         $Course->institution_overview = $validatedData['institution_overview'];
         $Course->course_dates = $validatedData['course_dates'];
+        $Course->country = $validatedData['country'];
 
         $Course->university_ownership = $validatedData['university_ownership'];
         $Course->institution_type = $validatedData['institution_type'];

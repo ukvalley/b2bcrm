@@ -29,7 +29,7 @@ class InstitutionController extends Controller
     public function index()
     {
        // return view('home');
-        $institutions  = Institution::get();
+        $institutions   = Institution::get();
         return view('institution.panel.dashboard',compact('institutions'));
     }
 

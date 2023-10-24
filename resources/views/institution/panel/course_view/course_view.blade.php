@@ -45,11 +45,13 @@
                                 type="button" role="tab" aria-controls="contact" aria-selected="false">About
                                 {{$course->institution->name}}</button>
                         </li>
+                        @if(isset($countryData))
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="country-tab" data-bs-toggle="tab" data-bs-target="#country"
                                 type="button" role="tab" aria-controls="country"
-                                aria-selected="false">{{$course->institution->country}}</button>
+                                aria-selected="false">{{$course->institution->countries->name}}</button>
                         </li>
+                        @endif
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="accommodation -tab" data-bs-toggle="tab"
                                 data-bs-target="#accommodation " type="button" role="tab" aria-controls="accommodation "
@@ -108,6 +110,7 @@
 
                             </div>
                         </div>
+                        @if(isset($countryData))                        
                         <div class="tab-pane fade" id="country" role="tabpanel" aria-labelledby="country-tab">
                             <div class="col-md-12">
                                 <div class="row mb-4">
@@ -116,8 +119,7 @@
                                             <div class="card-body">
 
                                                 <div class="row">
-                                                    <img
-                                                        src="{{ asset('images/country_header_image/' . $countryData->country_header_image) }}">
+                                                    <img src="{{ asset('images/country_header_image/'.$countryData->country_header_image) }}">
                                                 </div>
                                                 <div class="row mt-5">
                                                     <div class="col-md-8">
@@ -236,6 +238,7 @@
 
 
                         </div>
+                        @endif
                         <div class="tab-pane fade" id="accommodation" role="tabpanel"
                             aria-labelledby="accommodation-tab">
                             <h6 class="mt-3">Campus Locations:</h6>

@@ -189,6 +189,6 @@ public function step5(Request $request)
 
     // Redirect to the next step or complete the registration process
     auth()->login($user);
-        return redirect()->route('home');
+        return redirect()->route('institution.home');
 }
 }
