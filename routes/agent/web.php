@@ -102,6 +102,12 @@ Route::get('CourseDetails/{id}', [App\Http\Controllers\Agent\StudentController::
 
 
 
+// student application form
+
+
+
+Route::get('showApplicationForm/{id}', [App\Http\Controllers\Agent\ApplicationFormController::class,'showApplicationForm'])->name('agent.showApplicationForm');
+
 
 
 
