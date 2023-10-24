@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Timezone;
 use Illuminate\Support\Facades\Storage;
 use App\Models\CountryData;
+
+use App\Models\Institution;
 use Illuminate\Support\Facades\Artisan;
 
 
@@ -35,8 +37,11 @@ class AgentController extends Controller
     public function index()
     {
        // return view('home');
+       $institutions = Institution::latest('created_at')->take(6)->get();
 
-        return view('recruiter.panel.dashboard');
+
+
+        return view('recruiter.panel.dashboard', compact('institutions'));
     }
 
     public function EditProfile()
