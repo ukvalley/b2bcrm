@@ -158,7 +158,7 @@ Students Commenced </span>
     </div>
 
     <div class="row">
-        <div class="col-8 card bg-primary">
+        <div class="col-8 card bg-primary custom-padding">
             <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>Priority Task</div>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
@@ -170,7 +170,7 @@ Students Commenced </span>
             </div>
         </div>
 
-        <div class="col-4 card bg-primary">
+        <div class="col-4 card bg-primary custom-padding">
             <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>Messages</div>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
@@ -216,7 +216,13 @@ Students Commenced </span>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
                     <div class="card-body">
-                        <h5 class="card-title">
+                    <ul class="list-group">
+  <li class="list-group-item active" aria-current="true">An active item</li>
+  <li class="list-group-item">A second Tutorials</li>
+  <li class="list-group-item">A third Tutorials</li>
+ 
+  <li class="list-group-item">And a fifth Tutorials</li>
+</ul>
                             
                   </h5>
                        
