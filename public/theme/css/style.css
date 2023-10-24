@@ -14000,5 +14000,19 @@ ul.timeline > li:before {
 }
 
 
+.btn-group.bootstrap-select {
+    height: 40px; /* Set the desired height */
+}
+
+.bootstrap-select>.dropdown-toggle.bs-placeholder, .bootstrap-select>.dropdown-toggle.bs-placeholder:active, .bootstrap-select>.dropdown-toggle.bs-placeholder:focus, .bootstrap-select>.dropdown-toggle.bs-placeholder:hover{
+  height: 50px !important;
+  border:revert;
+}
+
+.form-control{
+  height: 60px;
+}
+
+
  
 

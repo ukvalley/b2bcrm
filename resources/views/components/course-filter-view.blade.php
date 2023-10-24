@@ -29,7 +29,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
-                            <select multiple data-live-search="true" name="intake[]" class="form-control selectpicker">
+                            <select multiple data-live-search="true" name="intake[]" class="selectpicker">
                                 <option value="">Select Intake</option>
                                 @foreach($batches as $batch)
                                 <option value="{{$batch->id}}">{{$batch->year}} | {{$batch->quarter}} {{$batch->months}}</option>
@@ -45,7 +45,7 @@
                 </div>
             </form>
         </div>
-        </div>
+    </div>
 
 
 
@@ -53,21 +53,51 @@
         
             @if($courses)
                 @foreach($courses as $course)
-                <div class="card mt-3">
-                    <div class="card-header">
-                    <div>{{$course->name}}</div>
-                    </div>
+                
 
+
+
+
+                <div class="row mt-3">
+                    <div class="col-12 card bg-info" >
+                    <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>{{$course->name}}</div>
+                    <div class="row  bg-light text-dark">
+                    <div class="col-md-3 bg-light d-flex  align-items-center">
+                        <img  src="https://civs.online/wp-content/uploads/2023/01/CIVS-White-01-1024x285.png" alt="Logo" style="width: 100%; height: 60%; padding:5px">
+                    </div> 
+
+                    <div class="col-md-9">
                     <div class="card-body">
-                    <div>{{$course->level}}</div>
+                        <h5 class="card-title"><i class="bi bi-bank" style="margin-right: 5px;"></i> {{$course->institution->name}}</h5>
+                        <p class="card-text"><i class="bi bi-globe-americas" style="margin-right: 5px;"></i>{{$course->institution->country}}
+                        &nbsp&nbsp<i class="bi bi-clock" style="margin-right: 5px;"></i> {{$course->duration}} {{$course->duration_type}}
+                    </p>
+
+                        <p class="card-text"><i class="bi bi-cash" style="margin-right: 5px;"></i>{{$course->application_fees}} {{$course->fees_type}}</p>
                     </div>
+                    </div>
+                    </div>
+                   
+                    </div>
+                
                 </div>
+
+
+
                 @endforeach
             @endif
+
+
+            
         
 
 
 
+<script>
+    $(document).ready(function() {
+        $('.selectpicker').selectpicker();
+    });
+</script>
 
 
 
