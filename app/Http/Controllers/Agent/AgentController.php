@@ -8,6 +8,10 @@ use App\Models\Timezone;
 use Illuminate\Support\Facades\Storage;
 use App\Models\CountryData;
 use Illuminate\Support\Facades\Artisan;
+use App\Models\News;
+use App\Models\Institution;
+
+
 
 
 
@@ -35,8 +39,8 @@ class AgentController extends Controller
     public function index()
     {
        // return view('home');
-
-        return view('recruiter.panel.dashboard');
+        $institutions = Institution::get();
+        return view('recruiter.panel.dashboard',compact('institutions'));
     }
 
     public function EditProfile()
