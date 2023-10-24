@@ -38,11 +38,13 @@
                                 type="button" role="tab" aria-controls="contact" aria-selected="false">About
                                 {{$course->institution->name}}</button>
                         </li>
+                        @if(isset($countryData))
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="country-tab" data-bs-toggle="tab" data-bs-target="#country"
                                 type="button" role="tab" aria-controls="country"
                                 aria-selected="false">{{$course->institution->Countries->name}}</button>
                         </li>
+                        @endif
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="accommodation -tab" data-bs-toggle="tab"
                                 data-bs-target="#accommodation " type="button" role="tab" aria-controls="accommodation "

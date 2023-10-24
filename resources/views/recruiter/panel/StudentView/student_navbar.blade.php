@@ -80,7 +80,6 @@
                         <a class="dropdown-item" href="{{route('agent.CourseSearch', ['id' => $Student->id])}}">Course Search</a>
                         <a class="dropdown-item" href="#">Shortlist</a>
                         <a class="dropdown-item" href="#">Application form</a>
-                       
                         <a class="dropdown-item" href="#">Documents</a>
                         <a class="dropdown-item" href="#">Review & Submit</a>
                         <a class="dropdown-item" href="#">Visa Information</a>
