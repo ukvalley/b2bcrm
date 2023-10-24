@@ -61,6 +61,7 @@
                                     <p><strong>Delivery</strong><br>Diploma in Business Fundamentals Program with Co-op Go to course page
                                     </p>
                                 </div>
+                                
                                 <div class="course-info">
                                     <p><strong>Duration</strong><br>Diploma in Business Fundamentals Program with Co-op Go to course page
                                     </p>
@@ -239,10 +240,8 @@ Financial support through scholarships & grants
                                     </p>
                                 </div>
                                 <div class="course-info">
-                                    <p><strong>Institution type
-</strong><br>University
-
-                                    </p>
+                                <p><strong>Institution type
+                                 </strong><br>University</p>
                                 </div>
 
                                 <div class="course-info">
