@@ -97,7 +97,7 @@ Route::get('CourseSearch/{id}', [App\Http\Controllers\Agent\StudentController::c
 
 
 
-Route::get('CourseDetails', [App\Http\Controllers\Agent\StudentController::class,'CourseDetails'])->name('agent.CourseDetails');
+Route::get('CourseDetails/{id}', [App\Http\Controllers\Agent\StudentController::class,'CourseDetails'])->name('agent.CourseDetails');
 
 
 

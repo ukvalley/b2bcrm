@@ -41,7 +41,7 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="country-tab" data-bs-toggle="tab" data-bs-target="#country"
                                 type="button" role="tab" aria-controls="country"
-                                aria-selected="false">{{$course->institution->country}}</button>
+                                aria-selected="false">{{$course->institution->Countries->name}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="accommodation -tab" data-bs-toggle="tab"
