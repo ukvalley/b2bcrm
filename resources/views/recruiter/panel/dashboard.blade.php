@@ -158,7 +158,7 @@ Students Commenced </span>
     </div>
 
     <div class="row">
-        <div class="col-8 card bg-primary ">
+        <div class="col-md-8 card bg-primary ">
             <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>Priority Task</div>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12 ">
@@ -170,7 +170,7 @@ Students Commenced </span>
             </div>
         </div>
 
-        <div class="col-4 card bg-primary ">
+        <div class="col-md-4 card bg-primary ">
             <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>Messages</div>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
@@ -191,7 +191,7 @@ Students Commenced </span>
 
 
     <div class="row">
-        <div class="col-4 card bg-primary">
+        <div class="col-md-4 card bg-primary">
             <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>Recently Added Institution</div>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
@@ -211,7 +211,7 @@ Students Commenced </span>
             </div>
         </div>
 
-        <div class="col-4 card bg-primary">
+        <div class="col-md-4 card bg-primary">
             <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>Platform Training and Tutorials</div>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
