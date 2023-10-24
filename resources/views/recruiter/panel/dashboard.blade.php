@@ -158,10 +158,10 @@ Students Commenced </span>
     </div>
 
     <div class="row">
-        <div class="col-8 card bg-primary custom-padding">
+        <div class="col-8 card bg-primary ">
             <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>Priority Task</div>
             <div class="row  bg-light text-dark">
-                <div class="col-md-12">
+                <div class="col-md-12 ">
                     <div class="card-body">
                     <img  src="{{url('/')}}/theme/icons/message-empty-state.png" style="width: 50%;" alt="">
 
@@ -170,7 +170,7 @@ Students Commenced </span>
             </div>
         </div>
 
-        <div class="col-4 card bg-primary custom-padding">
+        <div class="col-4 card bg-primary ">
             <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>Messages</div>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
