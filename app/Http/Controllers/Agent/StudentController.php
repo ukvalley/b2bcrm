@@ -509,7 +509,8 @@ public function CourseSearch($id)
 
 
 public function CourseDetails()
-{$Course = Course::find($id);
+{
+    $Course = Course::find($id);
 
 
      

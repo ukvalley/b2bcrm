@@ -126,6 +126,32 @@ or documents</p>
                 </div>
 
             </div>
+            <div class="col-md-3">
+                <div class="card bg-light mb-3" style="max-width: 18rem;">
+                    <div class="card-header" style="#a9a9a92b"> <img  src="{{url('/')}}/theme/icons/graduated.png" style="width: 20%;" alt="">
+                        <strong>1 </strong> <span style="font-size: 11px;">
+Students Commenced </span>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+
+                                <h5 class="card-title">0</h5>
+                            </div>
+                            
+                            <div class="col-6">
+                            <div class="card-header" style="#a9a9a92b"> <img  src="{{url('/')}}/theme/icons/chitr.png" style="width: 20%;" alt="">
+                                
+                            </div>
+                            <div class="col-6">
+                                <a href="" class="btn btn-default btn-sm" style="font-size:10px;">Add now</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
             
 
                 
@@ -135,7 +161,7 @@ or documents</p>
     </div>
 
     <div class="row">
-        <div class="col-8 card bg-info">
+        <div class="col-8 card bg-primary">
             <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>Priority Task</div>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
@@ -146,7 +172,7 @@ or documents</p>
             </div>
         </div>
 
-        <div class="col-4 card bg-info">
+        <div class="col-4 card bg-primary">
             <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>Messages</div>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
@@ -166,7 +192,7 @@ or documents</p>
 
 
     <div class="row">
-        <div class="col-4 card bg-info">
+        <div class="col-4 card bg-primary">
             <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>Recently Added Institution</div>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
@@ -186,7 +212,7 @@ or documents</p>
             </div>
         </div>
 
-        <div class="col-4 card bg-info">
+        <div class="col-4 card bg-primary">
             <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>Platform Training and Tutorials</div>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
