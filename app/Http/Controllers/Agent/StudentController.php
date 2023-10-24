@@ -515,8 +515,14 @@ public function CourseDetails($id)
     $institution = $course->institution;
     $country = $institution->Countries;
     $countryData = CountryData::where('country_name','=',$country->name)->first();
-    $news = $countryData->news;
-    $links = $countryData->links;
+    $news = [];
+    $links = [];
+    if(isset($countrydata))
+    {
+        $news = $countryData->news;
+        $links = $countryData->links;
+    }
+    
      
     return view('recruiter.panel.courseSearch.CourseDetails',compact('course','countryData','news','links'));
 }
