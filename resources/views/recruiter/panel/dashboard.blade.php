@@ -134,18 +134,15 @@ Students Commenced </span>
                     </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-6">
 
                                 <h5 class="card-title">0</h5>
                             </div>
-                            
+
                             <div class="col-6">
-                            <div class="card-header" style="#a9a9a92b"> <img  src="{{url('/')}}/theme/icons/chitr.png" style="width: 20%;" alt="">
-                                
-                            </div>
-                            <div class="col-6">
-                                <a href="" class="btn btn-default btn-sm" style="font-size:10px;">Add now</a>
-                            </div>
+                            <img  src="{{url('/')}}/theme/icons/chitr.png" style="width: 100%;" alt="">
+                             
+                           
                         </div>
                     </div>
 
@@ -166,7 +163,8 @@ Students Commenced </span>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
                     <div class="card-body">
-                       
+                    <img  src="{{url('/')}}/theme/icons/message-empty-state.png" style="width: 50%;" alt="">
+
                     </div>
                 </div>
             </div>
@@ -177,7 +175,8 @@ Students Commenced </span>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
                     <div class="card-body">
-                        <h5 class="card-title">
+                    <img  src="{{url('/')}}/theme/icons/message-empty-state (1).png " style="width: 100%;padding: 54px;" alt="">
+
                             
                   </h5>
                        
