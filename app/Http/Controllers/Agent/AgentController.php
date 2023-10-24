@@ -11,7 +11,6 @@ use App\Models\CountryData;
 use App\Models\Institution;
 use Illuminate\Support\Facades\Artisan;
 use App\Models\News;
-use App\Models\Institution;
 
 
 
@@ -41,16 +40,13 @@ class AgentController extends Controller
     public function index()
     {
        // return view('home');
-<<<<<<< HEAD
+
        $institutions = Institution::latest('created_at')->take(6)->get();
 
 
 
         return view('recruiter.panel.dashboard', compact('institutions'));
-=======
-        $institutions = Institution::get();
-        return view('recruiter.panel.dashboard',compact('institutions'));
->>>>>>> b47f24ab100020fa22950fc8eae338c66f6934cd
+
     }
 
     public function EditProfile()
