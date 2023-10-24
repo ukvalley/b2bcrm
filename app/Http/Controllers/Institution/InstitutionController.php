@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Timezone;
 use Illuminate\Support\Facades\Storage;
-
+use App\Models\Institution;
 
 
 class InstitutionController extends Controller
@@ -29,8 +29,8 @@ class InstitutionController extends Controller
     public function index()
     {
        // return view('home');
-
-        return view('institution.panel.dashboard');
+        $institutions  = Institution::get();
+        return view('institution.panel.dashboard',compact('institutions'));
     }
 
     public function EditProfile()

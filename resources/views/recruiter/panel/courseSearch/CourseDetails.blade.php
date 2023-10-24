@@ -41,7 +41,7 @@
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="country-tab" data-bs-toggle="tab" data-bs-target="#country"
                                 type="button" role="tab" aria-controls="country"
-                                aria-selected="false">{{$course->institution->country}}</button>
+                                aria-selected="false">{{$course->institution->Countries->name}}</button>
                         </li>
                         <li class="nav-item" role="presentation">
                             <button class="nav-link" id="accommodation -tab" data-bs-toggle="tab"
@@ -91,6 +91,7 @@
 
                             </div>
                         </div>
+
                         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                             <div class="mt-3 ml-3">
                                 <h6>Institution overview:</h6>
@@ -101,6 +102,8 @@
 
                             </div>
                         </div>
+
+                        @if(isset($countryData))
                         <div class="tab-pane fade" id="country" role="tabpanel" aria-labelledby="country-tab">
                             <div class="col-md-12">
                                 <div class="row mb-4">
@@ -229,6 +232,8 @@
 
 
                         </div>
+                        @endif
+
                         <div class="tab-pane fade" id="accommodation" role="tabpanel"
                             aria-labelledby="accommodation-tab">
                             <h6 class="mt-3">Campus Locations:</h6>

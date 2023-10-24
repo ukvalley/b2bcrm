@@ -60,7 +60,9 @@
 
                 <div class="row mt-3">
                     <div class="col-12 card bg-info" >
+                        <a href="{{url('/')}}/agent/CourseDetails/{{$course->id}}">
                     <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>{{$course->name}}</div>
+                    </a>
                     <div class="row  bg-light text-dark">
                     <div class="col-md-3 bg-light d-flex  align-items-center">
                         <img  src="https://civs.online/wp-content/uploads/2023/01/CIVS-White-01-1024x285.png" alt="Logo" style="width: 100%; height: 60%; padding:5px">

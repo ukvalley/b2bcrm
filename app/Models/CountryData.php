@@ -25,4 +25,11 @@ public function links()
 {
     return $this->hasMany(Links::class, 'country_id');
 }
+
+public function institution()
+{
+    return $this->belongsTo(Institution::class);
+}
+
+
 }

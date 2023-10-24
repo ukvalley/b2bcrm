@@ -508,13 +508,23 @@ public function CourseSearch($id)
 
 
 
-public function CourseDetails()
+public function CourseDetails($id)
 {
-    $Course = Course::find($id);
-
-
+    $course = Course::find($id);
+    
+    $institution = $course->institution;
+    $country = $institution->Countries;
+    $countryData = CountryData::where('country_name','=',$country->name)->first();
+    $news = [];
+    $links = [];
+    if(isset($countrydata))
+    {
+        $news = $countryData->news;
+        $links = $countryData->links;
+    }
+    
      
-    return view('recruiter.panel.courseSearch.CourseDetails');
+    return view('recruiter.panel.courseSearch.CourseDetails',compact('course','countryData','news','links'));
 }
 
 public function courseById($course_id)
