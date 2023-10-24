@@ -25,7 +25,7 @@
     <!-- connection -->
 
     <div class="col-md-12">
-        <div class="row">
+        <div class="row" style="overflow-x: auto; white-space: nowrap;">
             <div class="col-md-3">
                 <div class="card bg-light mb-3" style="max-width: 18rem;">
                     <div class="card-header" style="#a9a9a92b"> <img  src="{{url('/')}}/theme/icons/contact-form.png" style="width: 20%;" alt="">
@@ -126,6 +126,9 @@ or documents</p>
                 </div>
 
             </div>
+            
+
+                
 
         </div>
 
@@ -157,6 +160,49 @@ or documents</p>
             </div>
         </div>
     </div>
+    
+
+    <hr>
+
+
+    <div class="row">
+        <div class="col-4 card bg-info">
+            <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>Recently Added Institution</div>
+            <div class="row  bg-light text-dark">
+                <div class="col-md-12">
+                    <div class="card-body">
+                    <ol class="list-group list-group-numbered">
+    @foreach($institutions as $institution)
+    <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+            <div class="fw-bold">{{ $institution->name }}</div>
+            {{ $institution->description }}
+        </div>
+    </li>
+    @endforeach
+</ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-4 card bg-info">
+            <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>Platform Training and Tutorials</div>
+            <div class="row  bg-light text-dark">
+                <div class="col-md-12">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            
+                  </h5>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
 
 
