@@ -17,7 +17,11 @@
         <div class="col align-self-center ps-0">
             <h4 class="text-color-theme"><span class="fw-normal">Hi</span>, {{ Auth::user()->name }}!</h4>
             <p class="text-muted">Welcome back, we're happy to have you here!</p>
+
+            
         </div>
+
+        <div class="col"><a href="{{route('agent.student_basic')}}"><button class="btn btn-primary float-end">Add Student</button></div>
     </div>
 
 
@@ -155,14 +159,16 @@ Students Commenced </span>
     </div>
 
     <div class="row">
-        <div style="margin: 5px;" class="col-md-6 card bg-primary">
-            <div class="card-header"><i class="bi bi-book"></i>Priority Task</div>
+        <div style="margin: 5px;" class="col-md-6 card">
+            <div class="card-header bg-primary text-white"><i class="bi bi-book"></i>Priority Task</div>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12 ">
                     <div class="card-body">
                     <img  src="{{url('/')}}/theme/icons/message-empty-state.png" style="width: 50%;" alt="">
 
                     </div>
+
+
                 </div>
             </div>
         </div>
@@ -198,8 +204,8 @@ Students Commenced </span>
                         @foreach($institutions as $institution)
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
-                                <div class="fw-bold">{{ $institution->name }}</div>
-                                {{ $institution->description }}
+                                <div class="fw-bold">{{ $institution->name}}</div>
+                                {{$institution->city }}, {{$institution->countries->name }}
                             </div>
                         </li>
                         @endforeach
