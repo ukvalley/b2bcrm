@@ -6,82 +6,7 @@
  <!-- Begin page -->
    
          <div class="main-container container">
-            <!-- welcome user -->
-            
-
-
-        <!-- Student Registration Step 1 Form -->
-        <div class="row">
-            <div class="col-12">
-                
-
-
-                
-                    @include('recruiter.panel.studentView.student_navbar')
-       
-
-
-            </div>
-
-
-
-
-                    
-        </div>
-
-
-<style type="text/css">
-    input, textarea[type=text],[type=email],[type=file],[type=tel], select {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: block;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-input[type=submit]:hover {
-  background-color: #449B98;
-  color: #000;
-}
-.tab-content{
-    margin-top: 2rem;
-}
-#save-edit {
-    margin-bottom: 2rem;
-}
-.check{
-    width: 14px !important;
-    display: inline;
-}
-.btn .caret {
-  margin-left: 0;
-  display: none;
-}
-.dropdown-menu{
-    width: 100% !important;
-    padding: 12px 20px !important;
-
-}
-.dropdown-toggle::after {
-  display: none;
-  
-}
-.btn.btn-info {
-background-color: #F1F1F1;
-color: #000;
-border: none;
-}
-p {
-    font-style: italic;
-    color: #aaa;
-}
-
-  </style>
-
-
-
-        <div class="container mt-3">
+            <!-- welcome user -->    <div class="container mt-3">
   <h2>Institutions : Lakehead University, University of Regina. </h2>
  
   <div id="accordion">
@@ -116,9 +41,9 @@ p {
 
      <div class="checkbox">
       <label><b>Gender (on passport)</b><br>
-        <input class="check" type="radio" value="" ><b> Male</b><br>
-        <input class="check" type="radio" value="" ><b> Female</b><br>
-        <input class="check" type="radio" value="" ><b> Unspecified</b>
+        <input class="check" names="gender" type="radio" value="" ><b> Male</b><br>
+        <input class="check" names="gender" type="radio" value="" ><b> Female</b><br>
+        <input class="check"  names="gender" type="radio" value="" ><b> Unspecified</b>
       </label>
     </div><br>
 
@@ -363,8 +288,8 @@ p {
 
     <div class="checkbox">
       <label> <b>Are you currently living in the country you are applying to?</b> <br>
-        <input class="check" type="radio" value="Yes" ><b> Yes</b><br>
-        <input class="check" type="radio" value="No" ><b> No</b><br>
+        <input class="check" type="radio" name="current_country" value="Yes" ><b> Yes</b><br>
+        <input class="check" type="radio" name="current_country" value="No" ><b> No</b><br>
         
       </label>
     </div><br>
@@ -395,21 +320,21 @@ p {
 
     <label for="address"> <b>Please list two emergency contacts below. (Indicate relationship and contact information for both.)</b>
 </label>
-    <textarea type="text" id="address" name="address" placeholder="Monica-monicaaf308@gmail.com- 6285173227299-agent"></textarea>
+    <textarea type="text" id="e_address" name="e_address" placeholder="Monica-monicaaf308@gmail.com- 6285173227299-agent"></textarea>
     <p> Please list details of an emergency contact: Name, Relationship, Full Address, Phone landline & Mobile, Email etc. </p>
 
      <div class="checkbox">
       <label><b>  Language of Correspondence:</b> <br>
-        <input class="check" type="radio" value="" ><br>
-        <input class="check" type="radio" value="" ><br>
+        <input class="check" name="lang_of_c" type="radio" value="" ><br>
+        <input class="check" name="lang_of_c" type="radio" value="" ><br>
         
       </label>
     </div><br>
 
     <div class="checkbox">
       <label> <b> Do you have a disability, impairment or medical condition which may affect your studies? </b><br>
-        <input class="check" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" type="radio" value="no" ><b> No</b><br>
+        <input class="check" name="disablility" type="radio" value="yes" ><b> Yes</b><br>
+        <input class="check" name="disablility" type="radio" value="no" ><b> No</b><br>
         
       </label>
     </div><br>
@@ -439,10 +364,10 @@ p {
     </select>
     <P> Please select </P>
 
-<label for="address"><b> List all extracurricular activities from the time you completed high school until the present.</b>
+<label for="address2"><b> List all extracurricular activities from the time you completed high school until the present.</b>
 
 </label>
-    <textarea type="text" id="address" name="address"></textarea>
+    <textarea type="text" id="address2" name="address2"></textarea>
     <p> For example, volunteering, hobbies, sports, employment, travel, etc. Include any completed while attending a postsecondary educational institution. </p>
 
    <div class="col-lg-12" style="text-align: right;">
@@ -471,8 +396,8 @@ p {
 
  <div class="checkbox">
       <label> <b>Are you applying for recognition of prior learning (RPL) i.e. credit transfer (CT) or credit from previous study?</b> <br>
-        <input class="check" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" type="radio" value="no" ><b> No</b><br>
+        <input class="check" name="credit_transfer" type="radio" value="yes" ><b> Yes</b><br>
+        <input class="check" name="credit_transfer" type="radio" value="no" ><b> No</b><br>
         
       </label>
       <P>If yes, please provide relevant supporting documentation e.g. certified academic transcript, subject outlines, course structure, duration of program, list of textbooks used etc. </P>
@@ -489,8 +414,8 @@ p {
 
      <div class="checkbox">
       <label> <b>Have you previously applied to this university/college/institution? </b><br>
-        <input class="check" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" type="radio" value="no" ><b> No</b><br>
+        <input class="check" type="radio" name="pre_applied" value="yes" ><b> Yes</b><br>
+        <input class="check" type="radio" name="pre_applied" value="no" ><b> No</b><br>
         
       </label>
       
@@ -504,8 +429,8 @@ p {
     <input type="text" id="CEGEP" name="CEGEP" required="">
     <p>By providing your CEGEP Code Permanent, you authorize the OUAC to collect your CEGEP academic record from BCI, and to transfer that academic data to the Ontario university(ies) you have selected on your application. If this question does not apply to you, enter ‘Not Applicable’. </p>
 
-    <label for="title"><b> Total number of years in an English-language school system outside of Canada </b></label>
-    <select id="title" name="title">
+    <label for="english_school"><b> Total number of years in an English-language school system outside of Canada </b></label>
+    <select id="english_school" name="english_school">
      
           <option value="NA">NA</option>
           <option value="1">1</option>
@@ -597,31 +522,31 @@ p {
   <option value="XH">Xhosa</option>
     </select>
 
-<label for="main language"> <b> What date did you commence secondary studies? </b> </label>
-    <input type="text" id="main language" name="main language" required="">
+<label for="s_study_date"> <b> What date did you commence secondary studies? </b> </label>
+    <input type="text" id="s_study_date" name="s_study_date" required="">
     <p> In MM/YYYY format, e.g. 09/2018 </p>
 
-    <label for="main language"> <b>What is the name of the school or institution you studied at?
+    <label for="school_name"> <b>What is the name of the school or institution you studied at?
 </b> </label>
-    <input type="text" id="main language" name="main language" required="">
+    <input type="text" id="school_name" name="school_name" required="">
 
-    <label for="main language"> <b> When did you complete, or do you expect to complete, your secondary studies? 
+    <label for="completed_study"> <b> When did you complete, or do you expect to complete, your secondary studies? 
 </b> </label>
-    <input type="text" id="main language" name="main language" required="">
+    <input type="text" id="completed_study " name=" completed_study" required="">
     <p> In MM/YYYY format, e.g. 09/2018 </p>
 
-    <label for="main language"> <b> What was the title of your secondary course? 
+    <label for="course_title"> <b> What was the title of your secondary course? 
 </b> </label>
-    <input type="text" id="main language" name="main language" required="">
+    <input type="text" id="course_title" name="course_title" required="">
     <p> e.g. Australia, Victoria - (VCE) Victorian Certificate of Education or A-level etc </p>
 
-    <label for="main language"> <b>What results did you get?</b> </label>
-    <input type="text" id="main language" name="main language" required="">
+    <label for="result"> <b>What results did you get?</b> </label>
+    <input type="text" id="result" name="result" required="">
     
     <div class="checkbox">
       <label> <b> Did or will you receive your high school equivalency? </b><br>
-        <input class="check" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" type="radio" value="no" ><b> No</b><br>
+        <input class="check" name="equivalence" type="radio" value="yes" ><b> Yes</b><br>
+        <input class="check" name="equivalence" type="radio" value="no" ><b> No</b><br>
         
       </label>
       
@@ -641,8 +566,8 @@ p {
   <div id="demo2" class="collapse">
 <div class="checkbox">
       <label> <b> Are you currently studying? </b><br>
-        <input class="check" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" type="radio" value="no" ><b> No</b><br>
+        <input class="check" name="currently_studying" type="radio" value="yes" ><b> Yes</b><br>
+        <input class="check" name="currently_studying" type="radio" value="no" ><b> No</b><br>
         
       </label>
       
@@ -658,25 +583,25 @@ p {
   <p> If you have completed any tertiary education then please enter that here. Add as many blocks of information as you need. </p>
   <div id="demo3" class="collapse">
 
-     <label for="main language"> <b> Name of course/award you have previously studied(required) 
+     <label for="previous_study"> <b> Name of course/award you have previously studied(required) 
 </b> </label>
-    <input type="text" id="main language" name="main language" required="">
+    <input type="text" id="previous_study" name="previous_study" required="">
     <p>Provide details of all secondary/tertiary studies undertaken (attach certified/notarised copies of results). Please attach your academic transcripts, completion certificate and backlog letter (if available). You must also include an explanation of the grading system at your home institution (this information is often found on the reverse side of official academic transcripts). English translations are required if the original documents are not in English. </p>
 
-    <label for="main language"> <b> Name, Country and State/Province of Institution of previous studies:(required)  
+    <label for="s_country"> <b> Name, Country and State/Province of Institution of previous studies:(required)  
 </b> </label>
-    <input type="text" id="main language" name="main language" required="">
+    <input type="text" id="s_country" name="s_country" required="">
     <p> Please provide all details for the institution where you previously completed study. Include name, country and location of the institution. </p>
 
-    <label for="main language"> <b> Name, Country and State/Province of Institution of previous studies:(required)  Years enrolled (e.g March 2015 - June 2018):(required)  
+    <label for="s_institution"> <b> Name, Country and State/Province of Institution of previous studies:(required)  Years enrolled (e.g March 2015 - June 2018):(required)  
 </b> </label>
-    <input type="text" id="main language" name="main language" required="">
+    <input type="text" id="s_institution" name="s_institution" required="">
     <p> Please include the month and year started and completed in your response </p>
 
 <div class="checkbox">
       <label> <b> Did you successfully complete this course/qualification? </b><br>
-        <input class="check" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" type="radio" value="no" ><b> No</b><br>
+        <input class="check" name="completed_successfully" type="radio" value="yes" ><b> Yes</b><br>
+        <input class="check" name="completed_successfully" type="radio" value="no" ><b> No</b><br>
         
       </label>
       
@@ -686,16 +611,15 @@ p {
 
   <div class="checkbox">
       <label> <b> Was your previous study full-time or part-time? </b><br>
-        <input class="check" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" type="radio" value="no" ><b> No</b><br>
+        <input class="check" name="study_fultime" type="radio" value="yes" ><b> Yes</b><br>
+        <input class="check" name="study_fultime" type="radio" value="no" ><b> No</b><br>
         
       </label>
       
 
 
   </div>
-  
-    <input type="text" id="main language" name="main language" required="">
+  <!-- <div class="checkbox">
 
     <label for="language"> Course details: </label>
     <select id="language" name="language" required="">
@@ -707,7 +631,8 @@ p {
     </select>
     <p>Select</p>
     
-  </div><br>
+  </div> -->
+  <br>
 
   <label for="qaceducation">Employment </label><br>
 
@@ -717,8 +642,8 @@ p {
   <div id="demo4" class="collapse">
 <div class="checkbox">
       <label> <b> Do you have any relevant employment experience to be considered? </b><br>
-        <input class="check" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" type="radio" value="no" ><b> No</b><br>
+        <input class="check" name="experience" type="radio" value="yes" ><b> Yes</b><br>
+        <input class="check" name="experience" type="radio" value="no" ><b> No</b><br>
         <p> If you would like this university to consider your employment history in support of your application, please attach a certified copy of your Curriculum Vitae (Résumé). </p>
         
       </label>
@@ -729,10 +654,10 @@ p {
 
   <div class="checkbox">
       <label> <b> What best describes your current employment status?  </b><br>
-        <input class="check" type="radio" value=" Full-Time Employee" ><b> Full-Time Employee </b><br>
-        <input class="check" type="radio" value=" Part-Time Employee" ><b> Part-Time Employee </b><br>
-        <input class="check" type="radio" value="  Self-Employed – Not Employing Others" ><b>  Self-Employed – Not Employing Others  </b><br>
-        <input class="check" type="radio" value=" Employer" ><b> Employer </b><br>
+        <input class="check" type="radio" name="employment_status" value=" Full-Time Employee" ><b> Full-Time Employee </b><br>
+        <input class="check" type="radio" name="employment_status" value=" Part-Time Employee" ><b> Part-Time Employee </b><br>
+        <input class="check" type="radio"  name="employment_status" value="Self-Employed – Not Employing Others" ><b>  Self-Employed – Not Employing Others  </b><br>
+        <input class="check" type="radio"  name="employment_status" value=" Employer" ><b> Employer </b><br>
         <p> Please chose one. </p>
         
       </label>
@@ -760,40 +685,40 @@ p {
       </div>
       <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
-          <label for="main language"> <b> What is your first/main language? </b> </label>
-    <input type="text" id="main language" name="main language" required="">
+          <label for="first_language"> <b> What is your first/main language? </b> </label>
+    <input type="text" id="first_language" name="first_language" required="">
     <p> First language could be the main language spoken at home or the language in which you are more proficient. </p>
 
-    <label for="title"><b> Number of languages you are proficient in: </b></label>
-    <select id="title" name="title">
+    <label for="language_known"><b> Number of languages you are proficient in: </b></label>
+    <select id="language_known" name="language_known">
      
           
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
+          <option  name="language_known" value="1">1</option>
+          <option name="language_known" value="2">2</option>
+          <option name="language_known" value="3">3</option>
+          <option name="language_known" value="4">4</option>
     </select>
 
 
-    <label for="Proficiency"> <b> Language and Proficiency: </b> </label>
-    <input type="text" id="Proficiency" name="Proficiency" required="">
+    <label for="proficiency"> <b> Language and Proficiency: </b> </label>
+    <input type="text" id="proficiency" name="proficiency" required="">
     <p> List all the languages you are proficient in and the level to which you are proficient. For example, 1st - Sinhala - first language, speak, read, write, spoken at home. 2nd - English - speak, read, write, spoken at home etc. </p>
 
 
-    <label for="title"><b> How will you demonstrate you meet English language requirements? </b></label>
-    <select id="title" name="title">
+    <label for="language_demo"><b> How will you demonstrate you meet English language requirements? </b></label>
+    <select id="language_demo" name="language_demo">
      
           
           <option value="1">a</option>
-          <option value="2">b</option>
-          <option value="3">c</option>
-          <option value="4">d</option>
+          <option  value="2">b</option>
+          <option  value="3">c</option>
+          <option  value="4">d</option>
     </select>
 
 <div class="checkbox">
       <label> <b> Do you intend to study an English language course at this university/college/institution? </b><br>
-        <input class="check" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" type="radio" value="no" ><b> No</b><br>
+        <input class="check" name="eng_course" type="radio" value="yes" ><b> Yes</b><br>
+        <input class="check"  name="eng_course" type="radio" value="no" ><b> No</b><br>
         
       </label>
       
@@ -818,23 +743,23 @@ p {
       </div>
       <div id="collapseFour" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
-          <label for="address"><b> Referee Contact Details: (We will assume permission to contact referees unless an applicant has stated otherwise.)
+          <label for="r_contact_details"><b> Referee Contact Details: (We will assume permission to contact referees unless an applicant has stated otherwise.)
 </b>
 
 </label>
-    <textarea type="text" id="address" name="address"></textarea>
+    <textarea type="text" id="r_contact_details" name="r_contact_details"></textarea>
     <p> Please include details for two referees, including name, position in organisation, organisation, address, telephone number and email. </p>
 
-<label for="address"><b> Please provide your agent's contact details.
+<label for="agent_contact"><b> Please provide your agent's contact details.
 
 </b>
 
 </label>
-    <textarea type="text" id="address" name="address"></textarea>
+    <textarea type="text" id="agent_contact" name="agent_contact"></textarea>
     <p> Please provide: agent ID, agent name, agent address, agent telephone number and agent email. </p>
 
 
-    <label for="address"><b>  In case we need any additional details on this application, whom should we reach out within your team ? 
+    <label for="contact_details"><b>  In case we need any additional details on this application, whom should we reach out within your team ? 
 
 </b>
 
@@ -843,76 +768,76 @@ p {
     <p> Please provide details of following: </p>
 
 
-    <label for="Proficiency"> <b>Name :(required)</b> </label>
-    <input type="text" id="Proficiency" name="Proficiency" placeholder="Monica" required="">
+    <label for="contact_name"> <b>Name :(required)</b> </label>
+    <input type="text" id="contact_name" name="contact_name" placeholder="Monica" required="">
     
-    <label for="Proficiency"> <b>Contact No :(required)</b> </label>
-    <input type="text" id="Proficiency" name="Proficiency" placeholder="6285173227299" required="">
+    <label for="contact_mobile"> <b>Contact No :(required)</b> </label>
+    <input type="text" id="contact_mobile" name="contact_mobile" placeholder="6285173227299" required="">
 
-    <label for="Proficiency"> <b>Email ID :(required)</b> </label>
-    <input type="email" id="Proficiency" name="Proficiency" placeholder="inquire@civs.online" required="">
+    <label for="contact_email"> <b>Email ID :(required)</b> </label>
+    <input type="email" id="contact_email" name="v" placeholder="inquire@civs.online" required="">
 
     <div class="checkbox">
       <label> <b> Do you have a passport? </b><br>
-        <input class="check" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" type="radio" value="no" ><b> No</b><br>
+        <input class="check" name="passport" type="radio" value="yes" ><b> Yes</b><br>
+        <input class="check" name="passport" type="radio" value="no" ><b> No</b><br>
         
       </label>
       
     </div><br>
 
-    <label for="Proficiency"> <b> Please provide your passport number and expiry date. </b> </label>
-    <input type="text" id="Proficiency" name="Proficiency" placeholder="C8682744" required="">
+    <label for="passport_number"> <b> Please provide your passport number and expiry date. </b> </label>
+    <input type="text" id="passport_number" name="passport_number" placeholder="C8682744" required="">
     <p> You are required to also provide a certified copy of your passport including your signature page. </p>
 
     <div class="checkbox">
       <label> <b> Do you currently hold a visa in any country or to which you are applying?(required) </b><br>
-        <input class="check" type="radio" value="NA" ><b> Not applicable </b><br>
-        <input class="check" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" type="radio" value="no" ><b> No</b><br>
+        <input class="check" name="visa" type="radio" value="NA" ><b> Not applicable </b><br>
+        <input class="check" name="visa" type="radio" value="yes" ><b> Yes</b><br>
+        <input class="check" name="visa" type="radio" value="no" ><b> No</b><br>
         
       </label>
       
     </div><br>
 
-    <label for="Proficiency"> <b> When do you intend to apply for a current visa for the country you are applying to? </b> </label>
-    <input type="text" id="Proficiency" name="Proficiency" placeholder="as soon as possible" required="">
+    <label for="visa_apply_note"> <b> When do you intend to apply for a current visa for the country you are applying to? </b> </label>
+    <input type="text" id="visa_apply_note" name="visa_apply_note" placeholder="as soon as possible" required="">
     <p> Please enter N/A if not applicable. </p>
 
-    <label for="Proficiency"> <b>
+    <label for="married"> <b>
 Are you currently married? Date of Marriage:(required)
 </b> </label>
-    <input type="text" id="Proficiency" name="Proficiency" placeholder="NO" required="">
+    <input type="text" id="married" name="married" placeholder="NO/Yes" required="">
 
-    <label for="Proficiency"> <b>
+    <label for="citizenship"> <b>
  In which countries do you have citizenship? 
 </b> </label>
-    <input type="text" id="Proficiency" name="Proficiency" placeholder="Indonesia" required="">
+    <input type="text" id="citizenship" name="citizenship" placeholder="Indonesia" required="">
     <p> Select all countries that apply. </p>
 
-    <label for="Proficiency"> <b>Country this application is submitted from</b> </label>
-    <input type="text" id="Proficiency" name="Proficiency" placeholder="Indonesia" required="">
+    <label for="app_submitted_from"> <b>Country this application is submitted from</b> </label>
+    <input type="text" id="app_submitted_from" name="app_submitted_from" placeholder="Indonesia" required="">
     
-    <label for="language">Status in Canada:</label>
-    <select id="language" name="language" required="">
-       <option value="AF">Study permit (student visa)</option>
+    <label for="status_in_canada">Status in Canada:</label>
+    <select id="status_in_canada" name="status_in_canada" required="">
+       <option value="SP-student_visa">Study permit (student visa)</option>
   <option value="SQ">x</option>
   <option value="AR">y</option>
 </select>
 
-<label for="Proficiency"> <b> Have you applied for or received sponsorship from your home government or any other foreign agency? </b> </label>
-    <input type="text" id="Proficiency" name="Proficiency" placeholder="NO" required="">
+<label for="sponcership_gov"> <b> Have you applied for or received sponsorship from your home government or any other foreign agency? </b> </label>
+    <input type="text" id="sponcership_gov" name="sponcership_gov" placeholder="NO/Yes" required="">
     <p> If yes, please provide sponsor(s) name, contact details and the type of sponsorship. </p>
 
-    <label for="Proficiency"> <b> Will you be receiving a scholarship? </b> </label>
-    <input type="text" id="Proficiency" name="Proficiency" placeholder="NO" required="">
+    <label for="receive_scholarship"> <b> Will you be receiving a scholarship? </b> </label>
+    <input type="text" id="receive_scholarship" name="receive_scholarship" placeholder="NO/Yes" required="">
     <p> If yes, please provide details e.g. name of scholarship, how you obtained the scholarship, what the scholarship covers etc. </p>
 
     <div class="checkbox">
       <label> <b> I agree to the Medical Coverage Agreement. </b><br>
         
-        <input class="check" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" type="radio" value="no" ><b> No</b><br>
+        <input class="check" name="medical_agreement" type="radio" value="yes" ><b> Yes</b><br>
+        <input class="check" name="medical_agreement" type="radio" value="no" ><b> No</b><br>
         <p> Please check the University web page for Medical Insurance Coverage expectations. </p>
         
       </label>
@@ -940,7 +865,7 @@ Are you currently married? Date of Marriage:(required)
         <div class="card-body">
             <label><b> Notes for your course selection details for administration
 </b></label>
-          <textarea type="text" id="address" name="address"></textarea>
+          <textarea type="text" id="admission_note" name="admission_note"></textarea>
     <p> This field is to be used by counsellors to record any additional course selection information that is important for Administration to know. For example, cost changes for majors, Campus Location etc. </p><br>
     <div class="col-lg-12" style="text-align: right;">
     
@@ -1042,14 +967,7 @@ Are you currently married? Date of Marriage:(required)
 
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     </form>
-
-
-
-            </div>
             
-        </div>
-    </div>
-</div>
 
 
         
