@@ -108,6 +108,8 @@ Route::get('CourseDetails/{id}', [App\Http\Controllers\Agent\StudentController::
 
 Route::get('showApplicationForm/{id}', [App\Http\Controllers\Agent\ApplicationFormController::class,'showApplicationForm'])->name('agent.showApplicationForm');
 
+Route::post('personalApplicationForm', [App\Http\Controllers\Agent\ApplicationFormController::class, 'personalApplicationForm'])->name('agent.personalApplicationForm');
+
 
 
 

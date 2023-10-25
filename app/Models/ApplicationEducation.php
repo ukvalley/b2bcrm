@@ -61,6 +61,7 @@ class ApplicationEducation extends Model
         'notesContent',
         'student_id',
         'recruiter_id',
+        'personal_id',
         'communicationMedium',
     ];
 

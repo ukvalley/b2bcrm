@@ -18,9 +18,19 @@
       </div>
       <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
-          <form action="">
-    <label for="title"><b>What is your title?(required)</b>  </label>
-    <select id="title" name="title">
+        <form class="mt-3" method="POST" action="{{ route('agent.personalApplicationForm') }}">
+    @csrf
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+    <label for="title"v class="form-label"><b>What is your title?(required)</b>  </label>
+    <select class="form-control" id="title" class="form-control" name="title">
       <option value="Mr">Mr</option>
           <option value="Mrs">Mrs</option>
           <option value="Miss">Miss</option>
@@ -28,27 +38,59 @@
           <option value="Dr">Dr</option>
           <option value="MX">MX</option>
     </select>
+    @error('title')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+    
+
+
 
     <label for="fname"><b>Given Name(s):</b></label>
-    <input type="text" id="fname" name="fname" placeholder="Alfonsus Adi" required="">
+    <input class="form-control"type="text" id="fname" name="fname" placeholder="Alfonsus Adi" required="">
+    @error('fname')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
     <label for="pname"><b>Please enter your full name as per passport (first name , family name)(required)</b></label>
-    <input type="text" id="pname" name="pname" placeholder="Putra" required="">
+    <input class="form-control"type="text" id="pname" name="pname" placeholder="Putra" required="">
+    @error('pname')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="dob"><b>Date of Birth:(required)</b></label>
-    <input type="text" id="dob" name="dob" placeholder="1996/08/11" required="">
-    <p>Please enter date of birth in the format YYYY/MM/DD e.g. 2001/04/15 </p>
+    <input class="form-control"type="date" id="dob" name="dob" placeholder="" required="">
+    <p>Please enter date of birth  </p>
+    @error('dob')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
      <div class="checkbox">
-      <label><b>Gender (on passport)</b><br>
-        <input class="check" names="gender" type="radio" value="" ><b> Male</b><br>
-        <input class="check" names="gender" type="radio" value="" ><b> Female</b><br>
-        <input class="check"  names="gender" type="radio" value="" ><b> Unspecified</b>
-      </label>
+      <label><b>Gender (on passport)</b></label><br>  
+        <input class="check"   id="gender"  name="gender" type="radio" value="male" ><b> Male</b><br>
+        <input class="check"   id="gender"  name="gender" type="radio" value="female" ><b> Female</b><br>
+        <input class="check"   id="gender"  name="gender" type="radio" value="unspecific" ><b> Unspecified</b>
+    
+      @error('gender')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div><br>
 
     <label for="nationality"><b>Nationality*</b></label>
-    <select id="nationality" name="nationality" required="">
+    <select class="form-control" id="nationality" name="nationality" required="">
        <option data-countryCode="ID" value="62">Indonesia (+62)</option>
     <option data-countryCode="DZ" value="213">Algeria (+213)</option>
     <option data-countryCode="AD" value="376">Andorra (+376)</option>
@@ -265,82 +307,187 @@
     <option data-countryCode="ZM" value="260">Zambia (+260)</option>
     <option data-countryCode="ZW" value="263">Zimbabwe (+263)</option>
     </select>
+    @error('nationality')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
     
     <label for="ethnicity"><b>Ethnicity:</b></label>
-    <input type="text" id="ethnicity" name="ethnicity" required="">
+    <input class="form-control"type="text" id="ethnicity" name="ethnicity" required="">
+    @error('ethnicity')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
 <label for="born"><b>Which city and country were you born in? (city, country)</b></label>
-    <input type="text" id="born" name="born" placeholder="Jakarta, Indonesia" required="">
+    <input class="form-control"type="text" id="born" name="born" placeholder="Jakarta, Indonesia" required="">
+    @error('born')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
    
 
     <label for="address"><b>Current Postal Address (street, city state, postcode, country)(required)</b></label>
-    <textarea type="text" id="address" name="address" placeholder="Jl. Taman Nyiur 12, blok R/12A, Sunter Agung, Tj. Priok, North Jakarta 14350"></textarea>
+   <textarea class="form-control" type="text" id="address" name="address" placeholder="Jl. Taman Nyiur 12, blok R/12A, Sunter Agung, Tj. Priok, North Jakarta 14350"></textarea>
+   @error('address')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
     <label for="city"><b>Which city do you live in?</b></label>
-    <input type="text" id="city" name="city" placeholder="North Jakarta" required="">
+    <input class="form-control"type="text" id="city" name="city" placeholder="North Jakarta" required="">
+    @error('city')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="province"><b>What State/Province/Territory do you live in?</b></label>
-    <input type="text" id="province" name="province" placeholder="DKI Jakarta" required="">
+    <input class="form-control"type="text" id="province" name="province" placeholder="DKI Jakarta" required="">
+    @error('province')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="postcode"><b>What is your postcode (zip code)?</b></label>
-    <input type="text" id="postcode" name="postcode" placeholder="DKI Jakarta" required="">
+    <input class="form-control"type="text" id="postcode" name="postcode" placeholder="DKI Jakarta" required="">
+    @error('postcode')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
 
     <div class="checkbox">
       <label> <b>Are you currently living in the country you are applying to?</b> <br>
-        <input class="check" type="radio" name="current_country" value="Yes" ><b> Yes</b><br>
-        <input class="check" type="radio" name="current_country" value="No" ><b> No</b><br>
+        <input  class="check" type="radio" id="current_country" name="current_country" value="Yes" ><b> Yes</b><br>
+        <input  class="check" type="radio" id="current_country" name="current_country" value="No" ><b> No</b><br>
         
       </label>
+      @error('current_country')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div><br>
 
     <label for="email"><b>What is your email address?(required)</b></label>
-    <input type="email" id="email" name="email" placeholder="alfonsusadiputra@gmail.com" required="">
+    <input class="form-control"type="email" id="email" name="email" placeholder="alfonsusadiputra@gmail.com" required="">
     <P> What is your primary email address? </P>
+    @error('email')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="phone"><b> What is your home phone number? </b></label>
-    <input type="text" id="phone" name="phone"  required="">
+    <input class="form-control"type="text" id="phone" name="phone"  required="">
     <p> Please include the country code e.g. +91 999 999 9999 </p>
+    @error('phone')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="cell"><b> What is your mobile (cell) phone number? </b></label>
-    <input type="text" id="cell" name="cell" placeholder="+62 858 8602 9524"  required="">
+    <input class="form-control"type="text" id="cell" name="cell" placeholder="+62 858 8602 9524"  required="">
     <p> Please include the country code e.g. +91 999 999 9999 </p>
+    @error('cell')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="number"> <b> What is your work phone number?</b> </label>
-    <input type="text" id="number" name="number"  required="">
+    <input class="form-control"type="text" id="number" name="number"  required="">
     <p> Please include the country code e.g. +91 999 999 9999 </p>
+    @error('number')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="semail"><b> What is your secondary email address?</b> </label>
-    <input type="email" id="semail" name="semail"  required="">
+    <input class="form-control"type="email" id="semail" name="semail"  required="">
     <P> If you have a secondary email address please provide details. If not, please enter NA. </P>
+    @error('semail')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
 
     <label for="wid"><b> WhatsApp ID: </b></label>
-    <input type="text" id="wid" name="wid" placeholder="+62 858 8602 9524" required="">
+    <input class="form-control"type="text" id="wid" name="wid" placeholder="+62 858 8602 9524" required="">
     <p>  If you have one. </p>
+      @error('wid')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="address"> <b>Please list two emergency contacts below. (Indicate relationship and contact information for both.)</b>
 </label>
-    <textarea type="text" id="e_address" name="e_address" placeholder="Monica-monicaaf308@gmail.com- 6285173227299-agent"></textarea>
+   <textarea class="form-control" type="text" id="e_address" name="e_address" placeholder="Monica-monicaaf308@gmail.com- 6285173227299-agent"></textarea>
     <p> Please list details of an emergency contact: Name, Relationship, Full Address, Phone landline & Mobile, Email etc. </p>
 
      <div class="checkbox">
       <label><b>  Language of Correspondence:</b> <br>
-        <input class="check" name="lang_of_c" type="radio" value="" ><br>
-        <input class="check" name="lang_of_c" type="radio" value="" ><br>
+        <input class="check" id="lang_of_c"  name="lang_of_c" type="radio" value="a" ><b> A</b><br>
+        <input class="check" id="lang_of_c" name="lang_of_c" type="radio" value="b" ><b> B</b><br>
         
       </label>
+      @error('lang_of_c')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div><br>
+
+
+
 
     <div class="checkbox">
       <label> <b> Do you have a disability, impairment or medical condition which may affect your studies? </b><br>
-        <input class="check" name="disablility" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" name="disablility" type="radio" value="no" ><b> No</b><br>
+        <input class="check" id="disablility"  name="disablility" type="radio" value="yes" ><b> Yes</b><br>
+        <input class="check" id="disablility" name="disablility" type="radio" value="no" ><b> No</b><br>
         
       </label>
+      @error('disablility')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div><br>
 
     <label for="title1"><b> Do you identify yourself as an Aboriginal person that is, First Nations, Metis, Inuit? </b></label>
-    <select id="title1" name="title1">
+    <select class="form-control" id="title1" name="title1">
       <option value="No">No</option>
           <option value="First Nations"> First Nations</option>
           <option value="Metis"> Metis</option>
@@ -348,9 +495,14 @@
           <option value="No"> No</option>
           
     </select>
+    @error('title1')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
 <label for="title2"> <b>What is the highest level of education completed by your parent 1 or guardian 1? </b></label>
-    <select id="title2" name="title2">
+    <select class="form-control" id="title2" name="title2">
       <option value="Don't know">Don't know</option>
           <option value="Postgraduate Qualification">Postgraduate Qualification</option>
           <option value="Bachelor Degree">Bachelor Degree</option>
@@ -363,21 +515,39 @@
           
     </select>
     <P> Please select </P>
+    @error('title2')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
+
 
 <label for="address2"><b> List all extracurricular activities from the time you completed high school until the present.</b>
 
 </label>
-    <textarea type="text" id="address2" name="address2"></textarea>
+   <textarea class="form-control" type="text" id="address2" name="address2"></textarea>
     <p> For example, volunteering, hobbies, sports, employment, travel, etc. Include any completed while attending a postsecondary educational institution. </p>
+ @error('address2')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
 
    <div class="col-lg-12" style="text-align: right;">
     
     
-        <button type="button" class="btn btn-success" id="save-edit"><i class="fa-solid fa-floppy-disk"></i> Save and Continue</button>
+        <button type="submit" class="btn btn-success" id="save-edit"><i class="fa-solid fa-floppy-disk"></i> Save and Continue</button>
     
   
   </div>
 </form>
+
+
+
+
         </div>
       </div>
     </div>
@@ -391,7 +561,7 @@
         <div class="card-body">
 
            <label for="university"><b> Are you a current or former student of this university/college/institution? </b></label>
-    <input type="text" id="university" name="university" placeholder="No" required="">
+    <input class="form-control"type="text" id="university" name="university" placeholder="No" required="">
     <p> If yes, please provide past/present student number. </p>
 
  <div class="checkbox">
@@ -404,12 +574,12 @@
     </div><br>
 
     <label for="puniversity"><b>Are you a past or present student of any other university?(required)</b></label>
-    <input type="text" id="puniversity" name="puniversity" placeholder="Yes. Bunda Mulia Unniversity, Indonesia" required="">
+    <input class="form-control"type="text" id="puniversity" name="puniversity" placeholder="Yes. Bunda Mulia Unniversity, Indonesia" required="">
     <p> If yes, provide the university name and country. </p>
 
 
     <label for="gap"> <b>Are there any gaps in your education or employment history? </b></label>
-    <input type="text" id="gap" name="gap" required="">
+    <input class="form-control"type="text" id="gap" name="gap" required="">
     <p> If yes, please provide details. </p>
 
      <div class="checkbox">
@@ -422,15 +592,15 @@
     </div><br>
 
     <label for="pen"><b> Do you have a Personal Education Number (PEN)?</b> </label>
-    <input type="text" id="pen" name="pen" required="">
+    <input class="form-control"type="text" id="pen" name="pen" required="">
     <p> If yes, please enter your number. </p>
 
     <label for="CEGEP"> <b>Quebec CEGEP Code Permanent:</b> </label>
-    <input type="text" id="CEGEP" name="CEGEP" required="">
+    <input class="form-control"type="text" id="CEGEP" name="CEGEP" required="">
     <p>By providing your CEGEP Code Permanent, you authorize the OUAC to collect your CEGEP academic record from BCI, and to transfer that academic data to the Ontario university(ies) you have selected on your application. If this question does not apply to you, enter ‘Not Applicable’. </p>
 
     <label for="english_school"><b> Total number of years in an English-language school system outside of Canada </b></label>
-    <select id="english_school" name="english_school">
+    <select class="form-control" id="english_school" name="english_school">
      
           <option value="NA">NA</option>
           <option value="1">1</option>
@@ -447,7 +617,7 @@
   <p>If you have started, or completed secondary education then add the details here. if you've completed secondary multiple times you can add a second secondary section right after the first one. </p>
   <div id="demo1" class="collapse">
     
-    <select id="language" name="language" required="">
+    <select class="form-control" id="language" name="language" required="">
        <option value="AF">Afrikaans</option>
   <option value="SQ">Albanian</option>
   <option value="AR">Arabic</option>
@@ -523,25 +693,25 @@
     </select>
 
 <label for="s_study_date"> <b> What date did you commence secondary studies? </b> </label>
-    <input type="text" id="s_study_date" name="s_study_date" required="">
+    <input class="form-control"type="text" id="s_study_date" name="s_study_date" required="">
     <p> In MM/YYYY format, e.g. 09/2018 </p>
 
     <label for="school_name"> <b>What is the name of the school or institution you studied at?
 </b> </label>
-    <input type="text" id="school_name" name="school_name" required="">
+    <input class="form-control"type="text" id="school_name" name="school_name" required="">
 
     <label for="completed_study"> <b> When did you complete, or do you expect to complete, your secondary studies? 
 </b> </label>
-    <input type="text" id="completed_study " name=" completed_study" required="">
+    <input class="form-control"type="text" id="completed_study " name=" completed_study" required="">
     <p> In MM/YYYY format, e.g. 09/2018 </p>
 
     <label for="course_title"> <b> What was the title of your secondary course? 
 </b> </label>
-    <input type="text" id="course_title" name="course_title" required="">
+    <input class="form-control"type="text" id="course_title" name="course_title" required="">
     <p> e.g. Australia, Victoria - (VCE) Victorian Certificate of Education or A-level etc </p>
 
     <label for="result"> <b>What results did you get?</b> </label>
-    <input type="text" id="result" name="result" required="">
+    <input class="form-control"type="text" id="result" name="result" required="">
     
     <div class="checkbox">
       <label> <b> Did or will you receive your high school equivalency? </b><br>
@@ -585,17 +755,17 @@
 
      <label for="previous_study"> <b> Name of course/award you have previously studied(required) 
 </b> </label>
-    <input type="text" id="previous_study" name="previous_study" required="">
+    <input class="form-control"type="text" id="previous_study" name="previous_study" required="">
     <p>Provide details of all secondary/tertiary studies undertaken (attach certified/notarised copies of results). Please attach your academic transcripts, completion certificate and backlog letter (if available). You must also include an explanation of the grading system at your home institution (this information is often found on the reverse side of official academic transcripts). English translations are required if the original documents are not in English. </p>
 
     <label for="s_country"> <b> Name, Country and State/Province of Institution of previous studies:(required)  
 </b> </label>
-    <input type="text" id="s_country" name="s_country" required="">
+    <input class="form-control"type="text" id="s_country" name="s_country" required="">
     <p> Please provide all details for the institution where you previously completed study. Include name, country and location of the institution. </p>
 
     <label for="s_institution"> <b> Name, Country and State/Province of Institution of previous studies:(required)  Years enrolled (e.g March 2015 - June 2018):(required)  
 </b> </label>
-    <input type="text" id="s_institution" name="s_institution" required="">
+    <input class="form-control"type="text" id="s_institution" name="s_institution" required="">
     <p> Please include the month and year started and completed in your response </p>
 
 <div class="checkbox">
@@ -622,7 +792,7 @@
   <!-- <div class="checkbox">
 
     <label for="language"> Course details: </label>
-    <select id="language" name="language" required="">
+    <select class="form-control" id="language" name="language" required="">
        <option value="AF">x</option>
   <option value="SQ">y</option>
   <option value="AR">z</option>
@@ -686,11 +856,11 @@
       <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
           <label for="first_language"> <b> What is your first/main language? </b> </label>
-    <input type="text" id="first_language" name="first_language" required="">
+    <input class="form-control"type="text" id="first_language" name="first_language" required="">
     <p> First language could be the main language spoken at home or the language in which you are more proficient. </p>
 
     <label for="language_known"><b> Number of languages you are proficient in: </b></label>
-    <select id="language_known" name="language_known">
+    <select class="form-control" id="language_known" name="language_known">
      
           
           <option  name="language_known" value="1">1</option>
@@ -701,12 +871,12 @@
 
 
     <label for="proficiency"> <b> Language and Proficiency: </b> </label>
-    <input type="text" id="proficiency" name="proficiency" required="">
+    <input class="form-control"type="text" id="proficiency" name="proficiency" required="">
     <p> List all the languages you are proficient in and the level to which you are proficient. For example, 1st - Sinhala - first language, speak, read, write, spoken at home. 2nd - English - speak, read, write, spoken at home etc. </p>
 
 
     <label for="language_demo"><b> How will you demonstrate you meet English language requirements? </b></label>
-    <select id="language_demo" name="language_demo">
+    <select class="form-control" id="language_demo" name="language_demo">
      
           
           <option value="1">a</option>
@@ -717,8 +887,8 @@
 
 <div class="checkbox">
       <label> <b> Do you intend to study an English language course at this university/college/institution? </b><br>
-        <input class="check" name="eng_course" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check"  name="eng_course" type="radio" value="no" ><b> No</b><br>
+        <input  name="eng_course" type="radio" value="yes" ><b> Yes</b><br>
+        <input   name="eng_course" type="radio" value="no" ><b> No</b><br>
         
       </label>
       
@@ -747,7 +917,7 @@
 </b>
 
 </label>
-    <textarea type="text" id="r_contact_details" name="r_contact_details"></textarea>
+   <textarea class="form-control" type="text" id="r_contact_details" name="r_contact_details"></textarea>
     <p> Please include details for two referees, including name, position in organisation, organisation, address, telephone number and email. </p>
 
 <label for="agent_contact"><b> Please provide your agent's contact details.
@@ -755,7 +925,7 @@
 </b>
 
 </label>
-    <textarea type="text" id="agent_contact" name="agent_contact"></textarea>
+   <textarea class="form-control" type="text" id="agent_contact" name="agent_contact"></textarea>
     <p> Please provide: agent ID, agent name, agent address, agent telephone number and agent email. </p>
 
 
@@ -769,75 +939,75 @@
 
 
     <label for="contact_name"> <b>Name :(required)</b> </label>
-    <input type="text" id="contact_name" name="contact_name" placeholder="Monica" required="">
+    <input class="form-control"type="text" id="contact_name" name="contact_name" placeholder="Monica" required="">
     
     <label for="contact_mobile"> <b>Contact No :(required)</b> </label>
-    <input type="text" id="contact_mobile" name="contact_mobile" placeholder="6285173227299" required="">
+    <input class="form-control"type="text" id="contact_mobile" name="contact_mobile" placeholder="6285173227299" required="">
 
     <label for="contact_email"> <b>Email ID :(required)</b> </label>
-    <input type="email" id="contact_email" name="v" placeholder="inquire@civs.online" required="">
+    <input class="form-control"type="email" id="contact_email" name="v" placeholder="inquire@civs.online" required="">
 
     <div class="checkbox">
       <label> <b> Do you have a passport? </b><br>
-        <input class="check" name="passport" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" name="passport" type="radio" value="no" ><b> No</b><br>
+        <input  name="passport" type="radio" value="yes" ><b> Yes</b><br>
+        <input  name="passport" type="radio" value="no" ><b> No</b><br>
         
       </label>
       
     </div><br>
 
     <label for="passport_number"> <b> Please provide your passport number and expiry date. </b> </label>
-    <input type="text" id="passport_number" name="passport_number" placeholder="C8682744" required="">
+    <input class="form-control"type="text" id="passport_number" name="passport_number" placeholder="C8682744" required="">
     <p> You are required to also provide a certified copy of your passport including your signature page. </p>
 
     <div class="checkbox">
       <label> <b> Do you currently hold a visa in any country or to which you are applying?(required) </b><br>
-        <input class="check" name="visa" type="radio" value="NA" ><b> Not applicable </b><br>
-        <input class="check" name="visa" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" name="visa" type="radio" value="no" ><b> No</b><br>
+        <input  name="visa" type="radio" value="NA" ><b> Not applicable </b><br>
+        <input  name="visa" type="radio" value="yes" ><b> Yes</b><br>
+        <input  name="visa" type="radio" value="no" ><b> No</b><br>
         
       </label>
       
     </div><br>
 
     <label for="visa_apply_note"> <b> When do you intend to apply for a current visa for the country you are applying to? </b> </label>
-    <input type="text" id="visa_apply_note" name="visa_apply_note" placeholder="as soon as possible" required="">
+    <input class="form-control"type="text" id="visa_apply_note" name="visa_apply_note" placeholder="as soon as possible" required="">
     <p> Please enter N/A if not applicable. </p>
 
     <label for="married"> <b>
 Are you currently married? Date of Marriage:(required)
 </b> </label>
-    <input type="text" id="married" name="married" placeholder="NO/Yes" required="">
+    <input class="form-control"type="text" id="married" name="married" placeholder="NO/Yes" required="">
 
     <label for="citizenship"> <b>
  In which countries do you have citizenship? 
 </b> </label>
-    <input type="text" id="citizenship" name="citizenship" placeholder="Indonesia" required="">
+    <input class="form-control"type="text" id="citizenship" name="citizenship" placeholder="Indonesia" required="">
     <p> Select all countries that apply. </p>
 
     <label for="app_submitted_from"> <b>Country this application is submitted from</b> </label>
-    <input type="text" id="app_submitted_from" name="app_submitted_from" placeholder="Indonesia" required="">
+    <input class="form-control"type="text" id="app_submitted_from" name="app_submitted_from" placeholder="Indonesia" required="">
     
     <label for="status_in_canada">Status in Canada:</label>
-    <select id="status_in_canada" name="status_in_canada" required="">
+    <select class="form-control" id="status_in_canada" name="status_in_canada" required="">
        <option value="SP-student_visa">Study permit (student visa)</option>
   <option value="SQ">x</option>
   <option value="AR">y</option>
 </select>
 
 <label for="sponcership_gov"> <b> Have you applied for or received sponsorship from your home government or any other foreign agency? </b> </label>
-    <input type="text" id="sponcership_gov" name="sponcership_gov" placeholder="NO/Yes" required="">
+    <input class="form-control"type="text" id="sponcership_gov" name="sponcership_gov" placeholder="NO/Yes" required="">
     <p> If yes, please provide sponsor(s) name, contact details and the type of sponsorship. </p>
 
     <label for="receive_scholarship"> <b> Will you be receiving a scholarship? </b> </label>
-    <input type="text" id="receive_scholarship" name="receive_scholarship" placeholder="NO/Yes" required="">
+    <input class="form-control"type="text" id="receive_scholarship" name="receive_scholarship" placeholder="NO/Yes" required="">
     <p> If yes, please provide details e.g. name of scholarship, how you obtained the scholarship, what the scholarship covers etc. </p>
 
     <div class="checkbox">
       <label> <b> I agree to the Medical Coverage Agreement. </b><br>
         
-        <input class="check" name="medical_agreement" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" name="medical_agreement" type="radio" value="no" ><b> No</b><br>
+        <input  name="medical_agreement" type="radio" value="yes" ><b> Yes</b><br>
+        <input  name="medical_agreement" type="radio" value="no" ><b> No</b><br>
         <p> Please check the University web page for Medical Insurance Coverage expectations. </p>
         
       </label>
@@ -865,7 +1035,7 @@ Are you currently married? Date of Marriage:(required)
         <div class="card-body">
             <label><b> Notes for your course selection details for administration
 </b></label>
-          <textarea type="text" id="admission_note" name="admission_note"></textarea>
+         <textarea class="form-control" type="text" id="admission_note" name="admission_note"></textarea>
     <p> This field is to be used by counsellors to record any additional course selection information that is important for Administration to know. For example, cost changes for majors, Campus Location etc. </p><br>
     <div class="col-lg-12" style="text-align: right;">
     
@@ -931,34 +1101,34 @@ Are you currently married? Date of Marriage:(required)
 
         <div class="form-group">
             
-            <input type="hidden" value="{{$Student->id}}" class="form-control" id="student_id" name="student_id"/>
-            <input type="hidden" value="{{Auth::User()->id}}" class="form-control" id="recruiter_id" name="recruiter_id"/>
+            <input class="form-control"type="hidden" value="{{$Student->id}}" class="form-control" id="student_id" name="student_id"/>
+            <input class="form-control"type="hidden" value="{{Auth::User()->id}}" class="form-control" id="recruiter_id" name="recruiter_id"/>
         </div>
 
         <div class="form-group">
             <label for="communicationMedium">Select Communication Medium</label><br>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="communicationMedium" id="whatsapp" value="whatsapp">
+                <input class="form-control"class="form-check-input" type="radio" name="communicationMedium" id="whatsapp" value="whatsapp">
                 <label class="form-check-label" for="whatsapp">Whatsapp</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="communicationMedium" id="messages" value="messages">
+                <input class="form-control"class="form-check-input" type="radio" name="communicationMedium" id="messages" value="messages">
                 <label class="form-check-label" for="messages">Messages</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="communicationMedium" id="email" value="email">
+                <input class="form-control"class="form-check-input" type="radio" name="communicationMedium" id="email" value="email">
                 <label class="form-check-label" for="email">Email</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="communicationMedium" id="faceToFace" value="faceToFace">
+                <input class="form-control"class="form-check-input" type="radio" name="communicationMedium" id="faceToFace" value="faceToFace">
                 <label class="form-check-label" for="faceToFace">Face to Face</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="communicationMedium" id="videoCall" value="videoCall">
+                <input class="form-control"class="form-check-input" type="radio" name="communicationMedium" id="videoCall" value="videoCall">
                 <label class="form-check-label" for="videoCall">Video Call</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="communicationMedium" id="other" value="other">
+                <input class="form-control"class="form-check-input" type="radio" name="communicationMedium" id="other" value="other">
                 <label class="form-check-label" for="other">Other</label>
             </div>
         </div>
