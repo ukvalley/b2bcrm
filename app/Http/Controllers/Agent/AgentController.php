@@ -11,6 +11,7 @@ use App\Models\CountryData;
 use App\Models\Institution;
 use Illuminate\Support\Facades\Artisan;
 use App\Models\News;
+use App\Models\Student;
 
 
 
@@ -42,10 +43,46 @@ class AgentController extends Controller
        // return view('home');
 
        $institutions = Institution::latest('created_at')->take(6)->get();
+       $news = News::latest('created_at')->take(6)->get();
+       $youtube = CountryData::where('youtube_link','<>',null)->latest('created_at')->take(6)->get();
+
+       $application_submitted = Student::where('application_submitted','=','completed')->count();
+
+       $lodge_institution = Student::where('lodge_institution','<>','completed')->count();
+
+       $offer_received = Student::where('offer_received','=','completed')->count();
+
+       $visa_granted = Student::where('visa_granted','=','completed')->count();
+
+        $student_commenced = Student::where('student_commenced','=','completed')->count();
+
+
+       $application_not_submitted = Student::where('application_submitted','=','pending')->count();
+
+       $lodge_not_institution = Student::where('lodge_institution','<>','pending')->count();
+
+       $offer_not_recieved = Student::where('offer_received','=','pending')->count();
+
+       $visa_not_granted = Student::where('visa_granted','=','pending')->count();
+
+
+       $student_not_commenced = Student::where('student_commenced','=','pending')->count();
+
+       $insights['application_submitted'] = $application_submitted;
+       $insights['lodge_institution'] = $lodge_institution;
+       $insights['offer_received'] = $offer_received;
+       $insights['visa_granted'] = $visa_granted;
+       $insights['student_commenced'] = $student_commenced;
+
+       $insights['application_not_submitted'] = $application_not_submitted;
+       $insights['lodge_not_institution'] = $lodge_not_institution;
+       $insights['offer_not_received'] = $offer_not_recieved;
+       $insights['visa_not_granted'] = $visa_not_granted;
+       $insights['student_not_commenced'] = $student_not_commenced;
 
 
 
-        return view('recruiter.panel.dashboard', compact('institutions'));
+        return view('recruiter.panel.dashboard', compact('institutions','insights'));
 
     }
 

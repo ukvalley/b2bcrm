@@ -47,6 +47,8 @@ class Student extends Model
     'signup_country',
     'signup_city',
     'signup_state_province',
+    'status',
+    'current_status',
     ];
 
 
