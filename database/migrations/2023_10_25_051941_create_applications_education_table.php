@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('applications_education', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('personal_id');
+            $table->foreign('personal_id')->references('id')->on('applications_personal');
             $table->string('title1');
             $table->string('title2');
             $table->text('address2')->nullable();
@@ -72,6 +74,14 @@ return new class extends Migration
 
     public function down()
     {
+        
         Schema::dropIfExists('applications_education');
+        Schema::table('applications_education', function (Blueprint $table) {
+            $table->dropForeign(['personal_id']);
+            $table->dropColumn('personal_id');
+        });
+        
+        
     }
+    
 };

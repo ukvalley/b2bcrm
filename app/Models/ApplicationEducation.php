@@ -63,4 +63,9 @@ class ApplicationEducation extends Model
         'recruiter_id',
         'communicationMedium',
     ];
+
+    public function personal()
+    {
+        return $this->belongsTo(ApplicationPersonal::class, 'personal_id');
+    }
 }

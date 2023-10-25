@@ -32,4 +32,9 @@ class ApplicationPersonal extends Model
         'lang_of_c',
         'disability',
     ];
+
+    public function personal()
+    {
+        return $this->belongsTo(ApplicationPersonal::class);
+    }
 }
