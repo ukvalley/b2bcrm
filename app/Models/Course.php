@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\institution;
+use App\Models\Institution;
 use App\Models\Batch;
 use App\Models\CourseBatch;
 
