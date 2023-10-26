@@ -579,10 +579,10 @@ public function addCourse(Request $request)
 public function ShortListView($id)
 {
      $Student = Student::find($id);
-     $courses = Course::get();
+     $Shortlist = Shortlist::where('student_id',$Student->id)->first();
 
 
-    return view('recruiter.panel.courseSearch.ShortList',compact('Student','courses'));
+    return view('recruiter.panel.courseSearch.ShortList',compact('Student','Shortlist'));
 }
 
 
