@@ -7,6 +7,9 @@ use App\Http\Controllers\RecruiterRegistrationController;
 Route::get('home', [App\Http\Controllers\Institution\InstitutionController::class, 'index'])->name('institution.home');
 
 // profile routes
+Route::get('processJson', [App\Http\Controllers\Institution\CourceController::class, 'processJson1'])->name('institution.processJson');
+
+Route::post('processJson', [App\Http\Controllers\Institution\CourceController::class, 'processJson'])->name('institution.processJson');
 
 Route::get('EditProfile', [App\Http\Controllers\Institution\InstitutionController::class, 'EditProfile'])->name('institution.edit');
 Route::put('UpdateProfile', [App\Http\Controllers\Institution\InstitutionController::class, 'UpdateProfile'])->name('institution.UpdateProfile');
