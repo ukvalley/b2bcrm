@@ -23,7 +23,7 @@ use App\Models\Note;
 use App\Models\Task;
 use App\Models\Timeline;
 use App\Models\Course;
-use App\Models\Shortlist
+use App\Models\Shortlist;
 
 
 
@@ -571,6 +571,18 @@ public function addCourse(Request $request)
     return redirect()->back()->with('success', 'Course added to your shortlist.');
 }
 
+
+
+//Shortlist
+
+public function ShortListView($id)
+{
+     $Student = Student::find($id);
+     $courses = Course::get();
+
+
+    return view('recruiter.panel.courseSearch.ShortList',compact('Student','courses'));
+}
 
 
 }
