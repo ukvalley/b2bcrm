@@ -143,8 +143,6 @@ class CourceController extends Controller
     public function CourceBasicResistration2(Request $request,$course_id)
     {
 
-        
-
         $validatedData = $request->validate([
         'code' => 'nullable|string|max:255',
         'currency' => 'nullable|string|max:255',
@@ -154,7 +152,8 @@ class CourceController extends Controller
         'course_code' => 'nullable|string|max:65535',
         'duration' => 'nullable|string|max:65535',
         'duration_type' => 'nullable|string|max:65535',
-
+        'summary' => 'nullable|string|max:65535',
+        'attendance_pattern' => 'nullable|string|max:65535',
         ]);
 
         
@@ -169,6 +168,8 @@ class CourceController extends Controller
         $Course->course_code = $request->course_code;
         $Course->duration = $request->duration;
         $Course->duration_type = $request->duration_type;
+        $Course->summary = $request->summary;
+        $Course->attendance_pattern = $request->attendance_pattern;
 
         $Course->save();
 
