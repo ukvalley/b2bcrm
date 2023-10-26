@@ -23,6 +23,7 @@ use App\Models\Note;
 use App\Models\Task;
 use App\Models\Timeline;
 use App\Models\Course;
+use App\Models\Shortlist
 
 
 
@@ -540,6 +541,34 @@ public function courseById($course_id)
      $links = Institution::where('id',$c->id)->get();
 
     return view('recruiter.panel.courseSearch.CourseDetails',compact('course','countryData','news','links'));
+}
+
+
+
+// add course to favourite
+
+public function addCourse(Request $request)
+{
+    // Validate the request if necessary
+
+    $studentId = $request->input('student_id'); 
+
+    // Assuming you have a logged-in student
+
+    $courseId = $request->input('course_id');
+
+    // Check if the course is already in the shortlist for this student
+    if (Shortlist::where('student_id', $studentId)->where('course_id', $courseId)->exists()) {
+        return redirect()->back()->with('error', 'Course is already in your shortlist.');
+    }
+
+    // Create a new Shortlist record
+    Shortlist::create([
+        'student_id' => $studentId,
+        'course_id' => $courseId,
+    ]);
+
+    return redirect()->back()->with('success', 'Course added to your shortlist.');
 }
 
 
