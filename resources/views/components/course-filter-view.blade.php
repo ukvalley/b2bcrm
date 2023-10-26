@@ -97,7 +97,7 @@
 
                     <div class="row  bg-light text-dark">
                     <div class="col-md-3 bg-light d-flex  align-items-center">
-                        <img  src="{{asset('image/course/'. $course->institution->logo)}}" alt="Logo" style="width: 100%; height: 60%; padding:5px">
+                        <img  src="{{asset('images/course/'. $course->image)}}" alt="Logo" style="width: 100%; height: 60%; padding:5px">
                     </div> 
 
                     <div class="col-md-9">
