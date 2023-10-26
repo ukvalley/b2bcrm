@@ -37,7 +37,7 @@ class ApplicationFormController extends Controller
         return view('recruiter.panel.application.application',compact('Student'));
     }
 
-    
+    //basic application form
     public function personalApplicationForm(Request $request)
     
     {  
@@ -116,13 +116,14 @@ class ApplicationFormController extends Controller
 
 
 
-    public function educationApplicationForm(Request $request,$personal_id)
+    //education
+
+    
+    public function educationUpdate(Request $request,$personal_id)
     
     {  
-
-        // Validate the form data
         $validatedData = $request->validate([
-                        'title1' => 'required|string|max:255',
+            'title1' => 'required|string|max:255',
             'title2' => 'required|string|max:255',
             'address2' => 'required|string|max:255',
             'university' => 'required|string|max:255',
@@ -147,45 +148,13 @@ class ApplicationFormController extends Controller
             's_institution' => 'required|string|max:255',
             'completed_successfully' => 'required|string|max:255',
             'study_fultime' => 'required|string|max:255',
-            'experience' => 'required|string|max:255',
-            'employment_status' => 'required|string|max:255',
-            'first_language' => 'required|string|max:255',
-            'language_known' => 'required|string|max:255',
-            'proficiency' => 'required|string|max:255',
-            'language_demo' => 'required|string|max:255',
-            'eng_course' => 'required|string|max:255',
-            'r_contact_details' => 'required|string|max:255',
-            'agent_contact' => 'required|string|max:255',
-            'contact_name' => 'required|string|max:255',
-            'contact_mobile' => 'required|string|max:255',
-            'contact_email' => 'required|string|max:255',
-            'passport' => 'required|string|max:255',
-            'passport_number' => 'required|string|max:255',
-            'visa' => 'required|string|max:255',
-            'visa_apply_note' => 'required|string|max:255',
-            'married' => 'required|string|max:255',
-            'citizenship' => 'required|string|max:255',
-            'app_submitted_from' => 'required|string|max:255',
-            'status_in_canada' => 'required|string|max:255',
-            'sponcership_gov' => 'required|string|max:255',
-            'receive_scholarship' => 'required|string|max:255',
-            'medical_agreement' => 'required|string|max:255',
-            'admission_note' => 'required|string|max:255',
-            'notesContent' => 'required|string|max:255',
-            'student_id' => 'required|string|max:255',
-            'recruiter_id' => 'required|string|max:255',
-            'communicationMedium,' => 'required|string|max:255',
-           
-        ]);
-      
+         
+ 
+       ]);
+       
+       $education = ApplicationEducation::find($personal_id);
 
-print_r($validatedData ); die();
-
-        // Create a new user or institution profile in your database
-   
-    $education = new ApplicationEducation();
-            
-        $education->title1 =  $validatedData['title1'];
+       $education->title1 =  $validatedData['title1'];
         $education->title2 =  $validatedData['title2'];
         $education->address2 =  $validatedData['address2'];
         $education->university =  $validatedData['university'];
@@ -210,38 +179,111 @@ print_r($validatedData ); die();
         $education->s_institution =  $validatedData['s_institution'];
         $education->completed_successfully =  $validatedData['completed_successfully'];
         $education->study_fultime =  $validatedData['study_fultime'];
-        $education->experience =  $validatedData['experience'];
-        $education->employment_status =  $validatedData['employment_status'];
-        $education->first_language =  $validatedData['first_language'];
-        $education->language_known =  $validatedData['language_known'];
-        $education->proficiency =  $validatedData['proficiency'];
-        $education->language_demo =  $validatedData['language_demo'];
-        $education->eng_course =  $validatedData['eng_course'];
-        $education->r_contact_details =  $validatedData['r_contact_details'];
-        $education->agent_contact =  $validatedData['agent_contact'];
-        $education->contact_name =  $validatedData['contact_name'];
-        $education->contact_mobile =  $validatedData['contact_mobile'];
-        $education->contact_email =  $validatedData['contact_email'];
-        $education->passport =  $validatedData['passport'];
-        $education->passport_number =  $validatedData['passport_number'];
-        $education->visa =  $validatedData['visa'];
-        $education->visa_apply_note =  $validatedData['visa_apply_note'];
-        $education->married =  $validatedData['married'];
-        $education->citizenship =  $validatedData['citizenship'];
-        $education->app_submitted_from =  $validatedData['app_submitted_from'];
-        $education->status_in_canada =  $validatedData['status_in_canada'];
-        $education->sponcership_gov =  $validatedData['sponcership_gov'];
-        $education->receive_scholarship =  $validatedData['receive_scholarship'];
-        $education->medical_agreement =  $validatedData['medical_agreement'];
-        $education->admission_note =  $validatedData['admission_note'];
-        $education->notesContent =  $validatedData['notesContent'];
-        $education->student_id =  $validatedData['student_id'];
-        $education->recruiter_id =  $validatedData['recruiter_id'];
 
-    $education->save();
-        // Redirect to the next step of the registration process
+
+       $education->update();
         return redirect()->back();
     }
+
+//language
+    public function languageUpdate(Request $request,$personal_id)
+    
+    {  
+        $validatedData = $request->validate([
+            'experience' => 'required|string|max:255',
+            'employment_status' => 'required|string|max:255',
+            'first_language' => 'required|string|max:255',
+            'language_known' => 'required|string|max:255',
+            'proficiency' => 'required|string|max:255',
+            'language_demo' => 'required|string|max:255',
+            'eng_course' => 'required|string|max:255',
+         
+ 
+       ]);
+       
+       $education = ApplicationEducation::find($personal_id);
+
+       $education->experience =  $validatedData['experience'];
+       $education->employment_status =  $validatedData['employment_status'];
+       $education->first_language =  $validatedData['first_language'];
+       $education->language_known =  $validatedData['language_known'];
+       $education->proficiency =  $validatedData['proficiency'];
+       $education->language_demo =  $validatedData['language_demo'];
+       $education->eng_course =  $validatedData['eng_course'];
+
+
+       $education->update();
+        return redirect()->back();
+    }
+
+//administration
+    public function adminstrationUpdate(Request $request,$personal_id)
+    
+    {  
+        $validatedData = $request->validate([
+            'r_contact_details' => 'required|string|max:255',
+            'agent_contact' => 'required|string|max:255',
+            'contact_name' => 'required|string|max:255',
+            'contact_mobile' => 'required|string|max:255',
+            'contact_email' => 'required|string|max:255',
+            'passport' => 'required|string|max:255',
+            'passport_number' => 'required|string|max:255',
+            'visa' => 'required|string|max:255',
+            'visa_apply_note' => 'required|string|max:255',
+            'married' => 'required|string|max:255',
+            'citizenship' => 'required|string|max:255',
+            'app_submitted_from' => 'required|string|max:255',
+            'status_in_canada' => 'required|string|max:255',
+            'sponcership_gov' => 'required|string|max:255',
+            'receive_scholarship' => 'required|string|max:255',
+            'medical_agreement' => 'required|string|max:255',
+         
+ 
+       ]);
+       
+       $education = ApplicationEducation::find($personal_id);
+       $education->r_contact_details =  $validatedData['r_contact_details'];
+       $education->agent_contact =  $validatedData['agent_contact'];
+       $education->contact_name =  $validatedData['contact_name'];
+       $education->contact_mobile =  $validatedData['contact_mobile'];
+       $education->contact_email =  $validatedData['contact_email'];
+       $education->passport =  $validatedData['passport'];
+       $education->passport_number =  $validatedData['passport_number'];
+       $education->visa =  $validatedData['visa'];
+       $education->visa_apply_note =  $validatedData['visa_apply_note'];
+       $education->married =  $validatedData['married'];
+       $education->citizenship =  $validatedData['citizenship'];
+       $education->app_submitted_from =  $validatedData['app_submitted_from'];
+       $education->status_in_canada =  $validatedData['status_in_canada'];
+       $education->sponcership_gov =  $validatedData['sponcership_gov'];
+       $education->receive_scholarship =  $validatedData['receive_scholarship'];
+       $education->medical_agreement =  $validatedData['medical_agreement'];
+
+
+       $education->update();
+        return redirect()->back();
+    }
+
+
+    //preference
+    public function preferenceUpdate(Request $request,$personal_id)
+    
+    {  
+        $validatedData = $request->validate([
+            'admission_note' => 'required|string|max:255',
+
+       ]);
+       
+       $education = ApplicationEducation::find($personal_id);
+       $education->admission_note =  $validatedData['admission_note'];
+
+
+       $education->update();
+        return redirect()->back();
+    }
+
+
+
 
 
 

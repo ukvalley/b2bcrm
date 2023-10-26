@@ -474,17 +474,18 @@
 
 
     <div class="checkbox">
-      <label> <b> Do you have a disability, impairment or medical condition which may affect your studies? </b><br>
+      <label> <b> Do you have a disability, impairment or medical condition which may affect your studies? </b><br></label>
         <input class="check" id="disablility"  name="disablility" type="radio" value="yes" ><b> Yes</b><br>
         <input class="check" id="disablility" name="disablility" type="radio" value="no" ><b> No</b><br>
         
       </label>
+    
+    </div><br>
       @error('disablility')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
-    </div><br>
 
     <label for="title1"><b> Do you identify yourself as an Aboriginal person that is, First Nations, Metis, Inuit? </b></label>
     <select class="form-control" id="title1" name="title1">
@@ -557,47 +558,90 @@
         Education
       </a>
       </div>
+      <form class="mt-3" method="POST" action="{{ route('agent.educationUpdate,['personal' => $personal_id->id]) }}') }}">
+    @csrf
       <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
 
            <label for="university"><b> Are you a current or former student of this university/college/institution? </b></label>
     <input class="form-control"type="text" id="university" name="university" placeholder="No" required="">
     <p> If yes, please provide past/present student number. </p>
+     @error('university')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
  <div class="checkbox">
       <label> <b>Are you applying for recognition of prior learning (RPL) i.e. credit transfer (CT) or credit from previous study?</b> <br>
         <input class="check" name="credit_transfer" type="radio" value="yes" ><b> Yes</b><br>
         <input class="check" name="credit_transfer" type="radio" value="no" ><b> No</b><br>
         
-      </label>
+      
       <P>If yes, please provide relevant supporting documentation e.g. certified academic transcript, subject outlines, course structure, duration of program, list of textbooks used etc. </P>
     </div><br>
+     @error('credit_transfer')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
     <label for="puniversity"><b>Are you a past or present student of any other university?(required)</b></label>
     <input class="form-control"type="text" id="puniversity" name="puniversity" placeholder="Yes. Bunda Mulia Unniversity, Indonesia" required="">
     <p> If yes, provide the university name and country. </p>
-
+        @error('puniversity')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
     <label for="gap"> <b>Are there any gaps in your education or employment history? </b></label>
     <input class="form-control"type="text" id="gap" name="gap" required="">
     <p> If yes, please provide details. </p>
+      @error('gap')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
      <div class="checkbox">
-      <label> <b>Have you previously applied to this university/college/institution? </b><br>
+      <label> <b>Have you previously applied to this university/college/institution? </b><br></label>
         <input class="check" type="radio" name="pre_applied" value="yes" ><b> Yes</b><br>
         <input class="check" type="radio" name="pre_applied" value="no" ><b> No</b><br>
         
-      </label>
+      
       
     </div><br>
+      @error('pre_applied')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="pen"><b> Do you have a Personal Education Number (PEN)?</b> </label>
     <input class="form-control"type="text" id="pen" name="pen" required="">
     <p> If yes, please enter your number. </p>
+      @error('pen')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="CEGEP"> <b>Quebec CEGEP Code Permanent:</b> </label>
     <input class="form-control"type="text" id="CEGEP" name="CEGEP" required="">
     <p>By providing your CEGEP Code Permanent, you authorize the OUAC to collect your CEGEP academic record from BCI, and to transfer that academic data to the Ontario university(ies) you have selected on your application. If this question does not apply to you, enter ‘Not Applicable’. </p>
+         @error('CEGEP')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
 
     <label for="english_school"><b> Total number of years in an English-language school system outside of Canada </b></label>
     <select class="form-control" id="english_school" name="english_school">
@@ -609,6 +653,13 @@
           <option value="4">4</option>
     </select>
     <P> If this question does not apply to you, choose ‘Not Applicable’. </P>
+      @error('english_school')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="seceducation">Secondary Education </label><br>
 
@@ -691,42 +742,86 @@
   <option value="CY">Welsh</option>
   <option value="XH">Xhosa</option>
     </select>
+      @error('language')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
 <label for="s_study_date"> <b> What date did you commence secondary studies? </b> </label>
     <input class="form-control"type="text" id="s_study_date" name="s_study_date" required="">
     <p> In MM/YYYY format, e.g. 09/2018 </p>
+      @error('s_study_date')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="school_name"> <b>What is the name of the school or institution you studied at?
 </b> </label>
     <input class="form-control"type="text" id="school_name" name="school_name" required="">
+      @error('school_name')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="completed_study"> <b> When did you complete, or do you expect to complete, your secondary studies? 
 </b> </label>
     <input class="form-control"type="text" id="completed_study " name=" completed_study" required="">
     <p> In MM/YYYY format, e.g. 09/2018 </p>
+      @error('completed_study')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="course_title"> <b> What was the title of your secondary course? 
 </b> </label>
     <input class="form-control"type="text" id="course_title" name="course_title" required="">
     <p> e.g. Australia, Victoria - (VCE) Victorian Certificate of Education or A-level etc </p>
+      @error('course_title')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="result"> <b>What results did you get?</b> </label>
     <input class="form-control"type="text" id="result" name="result" required="">
+      @error('result')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
     
     <div class="checkbox">
-      <label> <b> Did or will you receive your high school equivalency? </b><br>
+      <label> <b> Did or will you receive your high school equivalency? </b><br></label>
         <input class="check" name="equivalence" type="radio" value="yes" ><b> Yes</b><br>
         <input class="check" name="equivalence" type="radio" value="no" ><b> No</b><br>
-        
-      </label>
-      
-
-
+         @error('equivalence')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
   </div>
   
 
 
     </div><br>
+
+
 
     <label for="qaceducation"> Qualifications Currently Studying </label><br>
 
@@ -740,10 +835,12 @@
         <input class="check" name="currently_studying" type="radio" value="no" ><b> No</b><br>
         
       </label>
-      
-
-
   </div>
+   @error('currently_studying')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
   </div><br>
 
 <label for="qaceducation"> Qualifications Completed </label><br>
@@ -757,27 +854,50 @@
 </b> </label>
     <input class="form-control"type="text" id="previous_study" name="previous_study" required="">
     <p>Provide details of all secondary/tertiary studies undertaken (attach certified/notarised copies of results). Please attach your academic transcripts, completion certificate and backlog letter (if available). You must also include an explanation of the grading system at your home institution (this information is often found on the reverse side of official academic transcripts). English translations are required if the original documents are not in English. </p>
+      @error('previous_study')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
 
     <label for="s_country"> <b> Name, Country and State/Province of Institution of previous studies:(required)  
 </b> </label>
     <input class="form-control"type="text" id="s_country" name="s_country" required="">
     <p> Please provide all details for the institution where you previously completed study. Include name, country and location of the institution. </p>
+    @error('s_country')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
 
     <label for="s_institution"> <b> Name, Country and State/Province of Institution of previous studies:(required)  Years enrolled (e.g March 2015 - June 2018):(required)  
 </b> </label>
     <input class="form-control"type="text" id="s_institution" name="s_institution" required="">
     <p> Please include the month and year started and completed in your response </p>
+      @error('s_institution')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
 
 <div class="checkbox">
-      <label> <b> Did you successfully complete this course/qualification? </b><br>
+      <label> <b> Did you successfully complete this course/qualification? </b></label><br>
         <input class="check" name="completed_successfully" type="radio" value="yes" ><b> Yes</b><br>
         <input class="check" name="completed_successfully" type="radio" value="no" ><b> No</b><br>
         
-      </label>
       
-
+      
+       @error('completed_successfully')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
   </div><br>
+
 
   <div class="checkbox">
       <label> <b> Was your previous study full-time or part-time? </b><br>
@@ -785,6 +905,11 @@
         <input class="check" name="study_fultime" type="radio" value="no" ><b> No</b><br>
         
       </label>
+       @error('study_fultime')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
       
 
 
@@ -811,13 +936,17 @@
   <p> Please enter any employment experience you may have </p>
   <div id="demo4" class="collapse">
 <div class="checkbox">
-      <label> <b> Do you have any relevant employment experience to be considered? </b><br>
+      <label> <b> Do you have any relevant employment experience to be considered? </b></label><br>
         <input class="check" name="experience" type="radio" value="yes" ><b> Yes</b><br>
         <input class="check" name="experience" type="radio" value="no" ><b> No</b><br>
         <p> If you would like this university to consider your employment history in support of your application, please attach a certified copy of your Curriculum Vitae (Résumé). </p>
         
-      </label>
       
+       @error('experience')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
 
   </div>
@@ -831,8 +960,12 @@
         <p> Please chose one. </p>
         
       </label>
-      
-
+       @error('employment_status')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+       
 
   </div>
   </div><br>
@@ -840,10 +973,12 @@
 <div class="col-lg-12" style="text-align: right;">
     
     
-        <button type="button" class="btn btn-success" id="save-edit"><i class="fa-solid fa-floppy-disk"></i> Save and Continue</button>
+        <button type="submit" class="btn btn-success" id="save-edit"><i class="fa-solid fa-floppy-disk"></i> Save and Continue</button>
     
   
   </div>
+  </form>
+
         </div>
       </div>
     </div>
@@ -853,11 +988,18 @@
           Language
         </a>
       </div>
+      <form class="mt-3" method="POST" action="{{ route('agent.languageUpdate') }}">
+    @csrf
       <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
           <label for="first_language"> <b> What is your first/main language? </b> </label>
     <input class="form-control"type="text" id="first_language" name="first_language" required="">
     <p> First language could be the main language spoken at home or the language in which you are more proficient. </p>
+      @error('first_language')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
     <label for="language_known"><b> Number of languages you are proficient in: </b></label>
     <select class="form-control" id="language_known" name="language_known">
@@ -868,11 +1010,21 @@
           <option name="language_known" value="3">3</option>
           <option name="language_known" value="4">4</option>
     </select>
+     @error('language_known')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
 
     <label for="proficiency"> <b> Language and Proficiency: </b> </label>
     <input class="form-control"type="text" id="proficiency" name="proficiency" required="">
     <p> List all the languages you are proficient in and the level to which you are proficient. For example, 1st - Sinhala - first language, speak, read, write, spoken at home. 2nd - English - speak, read, write, spoken at home etc. </p>
+      @error('proficiency')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
 
     <label for="language_demo"><b> How will you demonstrate you meet English language requirements? </b></label>
@@ -884,6 +1036,12 @@
           <option  value="3">c</option>
           <option  value="4">d</option>
     </select>
+     @error('language_demo')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
 
 <div class="checkbox">
       <label> <b> Do you intend to study an English language course at this university/college/institution? </b><br>
@@ -893,14 +1051,21 @@
       </label>
       
     </div><br>
+     @error('eng_course')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
 <div class="col-lg-12" style="text-align: right;">
     
     
-        <button type="button" class="btn btn-success" id="save-edit"><i class="fa-solid fa-floppy-disk"></i> Save and Continue</button>
+        <button type="submit" class="btn btn-success" id="save-edit"><i class="fa-solid fa-floppy-disk"></i> Save and Continue</button>
     
   
   </div>
+  </form>
+
         </div>
       </div>
     </div>
@@ -911,6 +1076,8 @@
           Administration
         </a>
       </div>
+      <form class="mt-3" method="POST" action="{{ route('agent.administrationUpdate') }}">
+    @csrf
       <div id="collapseFour" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
           <label for="r_contact_details"><b> Referee Contact Details: (We will assume permission to contact referees unless an applicant has stated otherwise.)
@@ -919,6 +1086,12 @@
 </label>
    <textarea class="form-control" type="text" id="r_contact_details" name="r_contact_details"></textarea>
     <p> Please include details for two referees, including name, position in organisation, organisation, address, telephone number and email. </p>
+      @error('r_contact_details')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
 
 <label for="agent_contact"><b> Please provide your agent's contact details.
 
@@ -927,6 +1100,13 @@
 </label>
    <textarea class="form-control" type="text" id="agent_contact" name="agent_contact"></textarea>
     <p> Please provide: agent ID, agent name, agent address, agent telephone number and agent email. </p>
+     @error('agent_contact')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
 
     <label for="contact_details"><b>  In case we need any additional details on this application, whom should we reach out within your team ? 
@@ -940,68 +1120,137 @@
 
     <label for="contact_name"> <b>Name :(required)</b> </label>
     <input class="form-control"type="text" id="contact_name" name="contact_name" placeholder="Monica" required="">
-    
+      @error('contact_name')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
     <label for="contact_mobile"> <b>Contact No :(required)</b> </label>
     <input class="form-control"type="text" id="contact_mobile" name="contact_mobile" placeholder="6285173227299" required="">
+ @error('contact_mobile')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
     <label for="contact_email"> <b>Email ID :(required)</b> </label>
     <input class="form-control"type="email" id="contact_email" name="v" placeholder="inquire@civs.online" required="">
+       @error('contact_email')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
     <div class="checkbox">
-      <label> <b> Do you have a passport? </b><br>
+      <label> <b> Do you have a passport? </b>  </label><br>
         <input  name="passport" type="radio" value="yes" ><b> Yes</b><br>
         <input  name="passport" type="radio" value="no" ><b> No</b><br>
         
-      </label>
-      
+    
+       @error('passport')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div><br>
 
     <label for="passport_number"> <b> Please provide your passport number and expiry date. </b> </label>
     <input class="form-control"type="text" id="passport_number" name="passport_number" placeholder="C8682744" required="">
     <p> You are required to also provide a certified copy of your passport including your signature page. </p>
+       @error('passport_number')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror 
 
     <div class="checkbox">
-      <label> <b> Do you currently hold a visa in any country or to which you are applying?(required) </b><br>
+      <label> <b> Do you currently hold a visa in any country or to which you are applying?(required) </b></label><br>
         <input  name="visa" type="radio" value="NA" ><b> Not applicable </b><br>
         <input  name="visa" type="radio" value="yes" ><b> Yes</b><br>
         <input  name="visa" type="radio" value="no" ><b> No</b><br>
         
-      </label>
       
+        @error('visa')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     </div><br>
 
     <label for="visa_apply_note"> <b> When do you intend to apply for a current visa for the country you are applying to? </b> </label>
     <input class="form-control"type="text" id="visa_apply_note" name="visa_apply_note" placeholder="as soon as possible" required="">
     <p> Please enter N/A if not applicable. </p>
+    @error('visa_apply_note')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
+
 
     <label for="married"> <b>
 Are you currently married? Date of Marriage:(required)
 </b> </label>
     <input class="form-control"type="text" id="married" name="married" placeholder="NO/Yes" required="">
+     @error('married')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
 
     <label for="citizenship"> <b>
  In which countries do you have citizenship? 
 </b> </label>
     <input class="form-control"type="text" id="citizenship" name="citizenship" placeholder="Indonesia" required="">
     <p> Select all countries that apply. </p>
+    @error('citizenship')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
     <label for="app_submitted_from"> <b>Country this application is submitted from</b> </label>
     <input class="form-control"type="text" id="app_submitted_from" name="app_submitted_from" placeholder="Indonesia" required="">
-    
+     @error('app_submitted_from')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+        
+        
     <label for="status_in_canada">Status in Canada:</label>
     <select class="form-control" id="status_in_canada" name="status_in_canada" required="">
        <option value="SP-student_visa">Study permit (student visa)</option>
   <option value="SQ">x</option>
   <option value="AR">y</option>
 </select>
+@error('status_in_canada')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
 
 <label for="sponcership_gov"> <b> Have you applied for or received sponsorship from your home government or any other foreign agency? </b> </label>
     <input class="form-control"type="text" id="sponcership_gov" name="sponcership_gov" placeholder="NO/Yes" required="">
     <p> If yes, please provide sponsor(s) name, contact details and the type of sponsorship. </p>
+    @error('sponcership_gov')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
     <label for="receive_scholarship"> <b> Will you be receiving a scholarship? </b> </label>
     <input class="form-control"type="text" id="receive_scholarship" name="receive_scholarship" placeholder="NO/Yes" required="">
     <p> If yes, please provide details e.g. name of scholarship, how you obtained the scholarship, what the scholarship covers etc. </p>
+    @error('receive_scholarship')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
+
 
     <div class="checkbox">
       <label> <b> I agree to the Medical Coverage Agreement. </b><br>
@@ -1011,15 +1260,22 @@ Are you currently married? Date of Marriage:(required)
         <p> Please check the University web page for Medical Insurance Coverage expectations. </p>
         
       </label>
+      @error('medical_agreement')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
       
     </div><br>
     <div class="col-lg-12" style="text-align: right;">
     
     
-        <button type="button" class="btn btn-success" id="save-edit"><i class="fa-solid fa-floppy-disk"></i> Save and Continue</button>
+        <button type="submit" class="btn btn-success" id="save-edit"><i class="fa-solid fa-floppy-disk"></i> Save and Continue</button>
     
   
   </div>
+  </form>
+
 
         </div>
       </div>
@@ -1031,6 +1287,8 @@ Are you currently married? Date of Marriage:(required)
           Course Prefrences
         </a>
       </div>
+      <form class="mt-3" method="POST" action="{{ route('agent.preferenceUpdate') }}">
+    @csrf
       <div id="collapseFive" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
             <label><b> Notes for your course selection details for administration
@@ -1038,9 +1296,14 @@ Are you currently married? Date of Marriage:(required)
          <textarea class="form-control" type="text" id="admission_note" name="admission_note"></textarea>
     <p> This field is to be used by counsellors to record any additional course selection information that is important for Administration to know. For example, cost changes for majors, Campus Location etc. </p><br>
     <div class="col-lg-12" style="text-align: right;">
+    @error('admission_note')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
     
     
-        <button type="button" class="btn btn-success" id="save-edit"><i class="fa-solid fa-floppy-disk"></i> Save and Continue</button>
+        <button type="butsubmitton" class="btn btn-success" id="save-edit"><i class="fa-solid fa-floppy-disk"></i> Save and Continue</button>
     
   
   </div>
