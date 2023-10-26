@@ -35,13 +35,6 @@
                             </ul>
                         </div>
                         @endif
-
-
-                        <!-- 
-    <div class="col mb-3">
-        <h6>Basic Information</h6>
-    </div> -->
-
                         <div class="mb-3">
                             <label for="code" class="form-label">CIVS Code</label>
                             <input type="text" class="form-control @error('code') is-invalid @enderror"
@@ -68,6 +61,28 @@
                                 value="{{$course->application_fees}}" id="application_fees" name="application_fees"
                                 required>
                             @error('application_fees')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="summary" class="form-label">Summary</label>
+                            <input type="text" class="form-control @error('summary') is-invalid @enderror"
+                                value="{{$course->summary}}" id="summary" name="summary"
+                                required>
+                            @error('summary')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label for="attendance_pattern" class="form-label">Attendance Pattern</label>
+                            <input type="text" class="form-control @error('attendance_pattern') is-invalid @enderror"
+                                value="{{$course->attendance_pattern}}" id="attendance_pattern" name="attendance_pattern"
+                                required>
+                            @error('attendance_pattern')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

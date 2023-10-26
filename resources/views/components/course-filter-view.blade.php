@@ -62,7 +62,24 @@
                     <div class="col-12 card bg-info" >
                         <a href="{{url('/')}}/agent/CourseDetails/{{$course->id}}">
                     <div class="card-header"><i class="bi bi-book" style="margin-right: 5px;"></i>{{$course->name}}</div>
+
+                    
                     </a>
+
+
+                    <div class="float-end">
+                       <form method="POST" action="{{ route('agent.shortlist.add') }}">
+                        @csrf
+                        <input type="hidden" name="student_id" value="{{ $student->id }}">
+                        <input type="hidden" name="course_id" value="{{ $course->id }}">
+
+                       <button type="submit">  <i  class="bi bi-favourite"></i>Shortlist </button>
+
+                     </form>
+
+                    </div>
+
+                    
                     <div class="row  bg-light text-dark">
                     <div class="col-md-3 bg-light d-flex  align-items-center">
                         <img  src="https://civs.online/wp-content/uploads/2023/01/CIVS-White-01-1024x285.png" alt="Logo" style="width: 100%; height: 60%; padding:5px">

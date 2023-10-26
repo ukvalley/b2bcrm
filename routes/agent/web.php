@@ -111,6 +111,10 @@ Route::get('showApplicationForm/{id}', [App\Http\Controllers\Agent\ApplicationFo
 Route::post('personalApplicationForm', [App\Http\Controllers\Agent\ApplicationFormController::class, 'personalApplicationForm'])->name('agent.personalApplicationForm');
 
 
+// Handle adding courses to the shortlist
+Route::post('/shortlist/add', 'App\Http\Controllers\Agent\StudentController@addCourse')->name('agent.shortlist.add');
+
+
 
 
 
