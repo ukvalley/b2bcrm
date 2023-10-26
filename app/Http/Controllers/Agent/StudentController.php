@@ -23,7 +23,7 @@ use App\Models\Note;
 use App\Models\Task;
 use App\Models\Timeline;
 use App\Models\Course;
-use App\Models\Shortlist
+use App\Models\Shortlist;
 
 
 
@@ -559,7 +559,8 @@ public function addCourse(Request $request)
 
     // Check if the course is already in the shortlist for this student
     if (Shortlist::where('student_id', $studentId)->where('course_id', $courseId)->exists()) {
-        return redirect()->back()->with('error', 'Course is already in your shortlist.');
+        Shortlist::where('course_id','=',$courseId)->where('student_id','=',$studentId)->delete();
+        return redirect()->back()->with('success', 'Removed From Shortlist.');
     }
 
     // Create a new Shortlist record

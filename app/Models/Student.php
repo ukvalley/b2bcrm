@@ -112,4 +112,10 @@ public function Timeline()
     }
 
 
+    public function shortlistedCourses()
+    {
+        return $this->belongsToMany(Course::class, 'shortlists', 'student_id', 'course_id');
+    }
+
+
 }
