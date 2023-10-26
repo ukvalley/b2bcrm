@@ -89,10 +89,10 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="tuition_fees" class="form-label">Tution Fees</label>
-                            <input type="text" class="form-control @error('tuition_fees') is-invalid @enderror"
-                                value="{{$course->tuition_fee}}" id="tuition_fees" name="tuition_fees" required>
-                            @error('tuition_fees')
+                            <label for="tuition_fee" class="form-label">Tution Fees</label>
+                            <input type="text" class="form-control @error('tuition_fee') is-invalid @enderror"
+                                value="{{$course->tuition_fee}}" id="tuition_fee" name="tuition_fee" required>
+                            @error('tuition_fee')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

@@ -47,9 +47,25 @@ class CourseFilterView extends Component
     public function search()
 {
     // Retrieve and handle the search criteria (this is just a simplified example)
-    $courses = Course::query()
-        ->where('name', 'like', "%{$this->search}%")
-        ->get();
+    $courses = Course::query();
+
+if (isset($this->search)) {
+    $courses->where('name', 'like', "%{$this->search}%");
+}
+
+if (isset($this->country)) {
+    $courses->whereIn('country', $this->country);
+}
+
+if (isset($this->intake)) {
+    $courses->whereHas('CourseBatches', function ($query1) {
+        $query1->where('status', 'active')
+            ->whereIn('id', $this->intake);
+    });
+}
+
+$courses = $courses->get();
+
 
     // Pass the search results to a view or emit an event
         $this->courses = $courses;
