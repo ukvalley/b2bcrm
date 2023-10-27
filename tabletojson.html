@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>HTML Table to JSON Converter</title>
+</head>
+<body>
+    <h1>HTML Table to JSON Converter</h1>
+
+    <label for="htmlTable">Paste HTML Table:</label>
+    <textarea id="htmlTable" rows="10" cols="60"></textarea>
+
+    <br>
+
+    <button onclick="convertTableToJSON()">Convert HTML Table to JSON</button>
+
+    <br>
+
+    <label for="outputJSON">JSON Output:</label>
+    <textarea id="outputJSON" rows="10" cols="60" readonly></textarea>
+
+    <script>
+        function extractHrefs(cellValue) {
+            var anchorTags = cellValue.match(/<a[^>]*href="([^"]*)"[^>]*>([^<]+)<\/a>/g) || [];
+            var result = [];
+            anchorTags.forEach(function(tag) {
+                var href = tag.match(/href="([^"]*)"/);
+                if (href && href[1]) {
+                    result.push(href[1]);
+                }
+            });
+            return result;
+        }
+
+        function convertTableToJSON() {
+            var htmlTable = document.getElementById('htmlTable').value;
+            var parser = new DOMParser();
+            var doc = parser.parseFromString(htmlTable, 'text/html');
+            var table = doc.querySelector('table');
+            var headerRow = table.querySelector('thead tr');
+            var tableData = [];
+
+            for (var row of table.querySelectorAll('tbody tr')) {
+                var rowData = {};
+
+                for (var i = 0; i < headerRow.cells.length; i++) {
+                    var propertyName = headerRow.cells[i].textContent;
+                    var cell = row.cells[i];
+                    var cellValue = cell.innerHTML;
+
+                    // Handle specific formatting requirements
+                    cellValue = cellValue.replace(/<br>/g, '\n').replace(/<\/?[^>]+(>|$)/g, '');
+
+                    var hrefs = extractHrefs(cellValue);
+                    if (hrefs.length > 0) {
+                        rowData[propertyName] = hrefs;
+                    } else if (cellValue === "NULL") {
+                        rowData[propertyName] = null;
+                    } else {
+                        rowData[propertyName] = cellValue;
+                    }
+                }
+
+                tableData.push(rowData);
+            }
+
+            var jsonOutput = JSON.stringify(tableData, null, 2);
+            document.getElementById('outputJSON').value = jsonOutput;
+        }
+    </script>
+</body>
+</html>

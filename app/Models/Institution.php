@@ -10,6 +10,14 @@ class Institution extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+    'name',
+    'user_id',
+    'email',
+    'phone_number',
+    'password'
+    ];
+
     public function user()
 {
     return $this->belongsTo(User::class);

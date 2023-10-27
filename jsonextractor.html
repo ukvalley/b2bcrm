@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JSON Data Extraction</title>
+</head>
+<body>
+    <h1>JSON Data Extraction</h1>
+
+    <label for="jsonData">Paste JSON Data:</label>
+    <textarea id="jsonData" rows="10" cols="60"></textarea>
+
+    <br>
+
+    <button onclick="extractDataArray()">Extract Data Array</button>
+
+    <br>
+
+    <label for="outputData">Extracted Data Array:</label>
+    <textarea id="outputData" rows="10" cols="60" readonly></textarea>
+
+    <script>
+        function extractDataArray() {
+            var jsonData = document.getElementById('jsonData').value;
+            var parsedData;
+
+            try {
+                parsedData = JSON.parse(jsonData);
+            } catch (error) {
+                document.getElementById('outputData').value = "Invalid JSON input.";
+                return;
+            }
+
+            if (parsedData && parsedData.data && parsedData.data.results && parsedData.data.results.data) {
+                var dataArray = parsedData.data.results.data;
+                var jsonOutput = JSON.stringify(dataArray, null, 2);
+                document.getElementById('outputData').value = jsonOutput;
+            } else {
+                document.getElementById('outputData').value = "Data array not found in the JSON input.";
+            }
+        }
+    </script>
+</body>
+</html>

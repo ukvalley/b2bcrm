@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\View;
 
 use Illuminate\Support\ServiceProvider;
 use App\Models\ProjectSetting;
+use Illuminate\Pagination\Paginator;
+
 
 
 
@@ -30,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         $view->with('siteName', $projectSettings->site_name);
         $view->with('siteLogo', $projectSettings->site_logo);
         $view->with('siteFavicon', $projectSettings->site_favicon);
+        Paginator::useBootstrap();
     });
     }
 }

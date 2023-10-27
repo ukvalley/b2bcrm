@@ -64,7 +64,7 @@ if (isset($this->intake)) {
     });
 }
 
-$courses = $courses->get();
+$courses = $courses->paginate(10);
 
 
     // Pass the search results to a view or emit an event

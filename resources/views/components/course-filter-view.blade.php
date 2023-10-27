@@ -119,7 +119,16 @@
 
 
                 @endforeach
+                <div class="row mt-3 text-center">
+               {{$courses->links()}} 
+               </div>
             @endif
+
+
+
+
+
+            
 
 
             
