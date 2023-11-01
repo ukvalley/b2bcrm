@@ -578,18 +578,16 @@ public function addCourse(Request $request)
 
 public function ShortListView($id)
 {
-     $Student = Student::find($id);
-     $Shortlist = Shortlist::where('student_id',$Student->id)->first();
+        $Student = Student::find($id);
+       $Shortlist = Shortlist::join('courses', 'shortlists.course_id', '=', 'courses.id')
+                            ->join('institutions', 'courses.institution_id', '=', 'institutions.id')
+                            ->join('countries', 'institutions.country', '=', 'countries.id')
+                            ->select('courses.name as course_name','institutions.name as institution_name','countries.name as country_name')
+                            ->where('shortlists.student_id',$Student->id)
+                            ->get();
+    
      
-     $courseIds = $Shortlist->pluck('course_id')->toArray();
-     $courses = Course::whereIn('id', $courseIds)->get();
-
-
-    //  print_r(json_encode($courses));die();
-
-
-     
-    return view('recruiter.panel.courseSearch.ShortList',compact('Student','Shortlist','courses'));
+    return view('recruiter.panel.courseSearch.ShortList',compact('Student','Shortlist'));
 }
 
 

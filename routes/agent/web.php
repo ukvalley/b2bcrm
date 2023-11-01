@@ -100,6 +100,7 @@ Route::get('CourseSearch/{id}', [App\Http\Controllers\Agent\StudentController::c
 Route::get('CourseDetails/{id}', [App\Http\Controllers\Agent\StudentController::class,'CourseDetails'])->name('agent.CourseDetails');
 
 
+
 //ShortList
 
 Route::get('ShortListView/{id}', [App\Http\Controllers\Agent\StudentController::class, 'ShortListView'])->name('agent.ShortListView');
