@@ -580,9 +580,16 @@ public function ShortListView($id)
 {
      $Student = Student::find($id);
      $Shortlist = Shortlist::where('student_id',$Student->id)->first();
+     
+     $courseIds = $Shortlist->pluck('course_id')->toArray();
+     $courses = Course::whereIn('id', $courseIds)->get();
 
 
-    return view('recruiter.panel.courseSearch.ShortList',compact('Student','Shortlist'));
+    //  print_r(json_encode($courses));die();
+
+
+     
+    return view('recruiter.panel.courseSearch.ShortList',compact('Student','Shortlist','courses'));
 }
 
 

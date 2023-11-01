@@ -84,59 +84,52 @@
 
  
 
+           
 
+                    
                     <div class="card">
-  <h5 class="card-header">ShortLists</h5>
-  <div class="card-body">
-    <p>Click the shortlist button on any course in your "Saved Courses" to add it to your Shortlist, then rank them in order of preference using the arrows.</p>
-  </div>
-
-  <div class="card">
-   <div class="col-md-12">
-    <div class="row">
-
-    <div class="col-md-3 d-flex justify-content-center align-items-center">
-    <img src="{{url('/')}}/theme/icons/message-empty-state.png" style="width: 50%;" alt="">
-</div>
-    <div class="col-md-6">
-        <h4>Master of Business Administration (Levene MBA)</h3><br>
-        <h5>University of Regina</h5>
-        <h5>Canada</h5>
-        
+    <h5 class="card-header">ShortLists</h5>
+    <div class="card-body">
+        <p>Click the shortlist button on any course in your "Saved Courses" to add it to your Shortlist, then rank them in order of preference using the arrows.</p>
     </div>
-    <div class="col-md-3">
-        <br>
-        <button type="button" class="btn btn-outline-primary btn-sm">Shortlist</button>
-        
+
+    @foreach ($courses as $course)
+        <div class="card">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-3 d-flex justify-content-center align-items-center">
+                        <img src="{{ url('/') }}/theme/icons/message-empty-state.png" style="width: 50%;" alt="">
+                    </div>
+                    <div class="col-md-6">
+                        <h4>{{ $course->name }}</h4>
+                        <h5>{{ $course->university }}</h5>
+                        <h5>{{ $course->country }}</h5>
+                    </div>
+                    <div class="col-md-3">
+                        <br>
+                        <button type="button" class="btn btn-outline-primary btn-sm">Shortlist</button>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5>Tuition Fee</h5> {{ $course->tuition_fee }}
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Mode</h5> {{ $course->mode }}
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Duration</h5> {{ $course->duration }}/{{ $course->duration_type }}
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Preferred Intake</h5> {{ $course->preferred_intake }}
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-    <hr>
-
-    <div class="row">
-
-    <div class="col-md-3">
-      <h5>Tuition Fee </h5>CAD 14,000 per term
-      </div>
-    <div class="col-md-3">
-       
-        <h5>Mode </h5>On Campus
-    </div>
-    <div class="col-md-3">
-        <h5>Duration </h5>16 months
-        </div>
-        <div class="col-md-3">
-          <h5>Preferred Intake</h5>
-September 2024
-        </div>
-    </div>
-    
-   </div>
- 
+    @endforeach
 </div>
-</div>
-      
 
-</div>
 
 <!-- shortlist card -->
 
