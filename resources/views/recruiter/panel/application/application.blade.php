@@ -16,6 +16,9 @@
           Personal Details
         </a>
       </div>
+
+
+      
       <div id="collapseOne" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
         <form class="mt-3" method="POST" action="{{ route('agent.personalApplicationForm') }}">
@@ -29,8 +32,10 @@
         </ul>
     </div>
 @endif
+
+<input type="hidden" name="student_id" value="{{$Student->id}}">
     <label for="title"v class="form-label"><b>What is your title?(required)</b>  </label>
-    <select class="form-control" id="title" class="form-control" name="title">
+    <select class="form-control" id="title"  class="form-control" name="title">
       <option value="Mr">Mr</option>
           <option value="Mrs">Mrs</option>
           <option value="Miss">Miss</option>
@@ -48,7 +53,7 @@
 
 
     <label for="fname"><b>Given Name(s):</b></label>
-    <input class="form-control"type="text" id="fname" name="fname" placeholder="Alfonsus Adi" required="">
+    <input class="form-control" type="text" id="fname" value="{{ old('fname', $App_data->fname ?? '') }}" name="fname" placeholder="Alfonsus Adi" required="">
     @error('fname')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -558,7 +563,7 @@
         Education
       </a>
       </div>
-      <form class="mt-3" method="POST" action="{{ route('agent.educationUpdate,['personal' => $personal_id->id]) }}') }}">
+      <form class="mt-3" method="POST" action="#">
     @csrf
       <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
@@ -988,7 +993,7 @@
           Language
         </a>
       </div>
-      <form class="mt-3" method="POST" action="{{ route('agent.languageUpdate') }}">
+      <form class="mt-3" method="POST" action="#">
     @csrf
       <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
@@ -1076,7 +1081,7 @@
           Administration
         </a>
       </div>
-      <form class="mt-3" method="POST" action="{{ route('agent.administrationUpdate') }}">
+      <form class="mt-3" method="POST" action="#">
     @csrf
       <div id="collapseFour" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
@@ -1287,7 +1292,7 @@ Are you currently married? Date of Marriage:(required)
           Course Prefrences
         </a>
       </div>
-      <form class="mt-3" method="POST" action="{{ route('agent.preferenceUpdate') }}">
+      <form class="mt-3" method="POST" action="#">
     @csrf
       <div id="collapseFive" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
@@ -1354,7 +1359,7 @@ Are you currently married? Date of Marriage:(required)
             </div>
             <div class="modal-body">
                 
-                <form action="{{route('agent.StudentAddNotes')}}" method="POST" id="addNotesForm">
+                <form action="#" method="POST" id="addNotesForm">
 
                     @csrf
         <div class="form-group">

@@ -34,7 +34,12 @@ class ApplicationFormController extends Controller
     public function showApplicationForm($id)
     {
         $Student = Student::find($id);
-        return view('recruiter.panel.application.application',compact('Student'));
+
+        $App_data=ApplicationPersonal::where('student_id','=', $Student->id)
+                                        ->first();
+
+        
+        return view('recruiter.panel.application.application',compact('Student','App_data'));
     }
 
     //basic application form
@@ -66,6 +71,15 @@ class ApplicationFormController extends Controller
             'e_address' => 'required',
             'lang_of_c' => 'required',
             'disablility' => 'required',
+            'student_id' => 'required',
+   
+           
+        ]);
+
+        $validatedData2 = $request->validate([
+            'title1' => 'required',
+            'title2' => 'required',
+            'address2' => 'required',
            
         ]);
       
@@ -96,21 +110,111 @@ class ApplicationFormController extends Controller
     $personal->e_address =  $validatedData['e_address'];
     $personal->lang_of_c =  $validatedData['lang_of_c'];
     $personal->disability =  $validatedData['disablility'];
+
+    $personal->student_id =  $validatedData['student_id'];
+
     // Add other user-specific fields as needed
 
     // Save the user
     $personal->save();
 
-    // $education = new ApplicationEducation();
-    // $education->personal_id =  $personal->id;
-    // $education->title1 =  $validatedData['title1'];
-    // $education->title2 =  $validatedData['title2'];
-    // $education->address2 =  $validatedData['address2'];
+    $education = new ApplicationEducation();
+    $education->personal_id =  $personal->id;
+    $education->title1 =  $validatedData2['title1'];
+    $education->title2 =  $validatedData2['title2'];
+    $education->address2 =  $validatedData2['address2'];
 
-    // $education->save();
+    $education->save();
         // Redirect to the next step of the registration process
         return redirect()->back();
     }
+
+
+
+    public function personalApplicationFormUpdate(Request $request,)
+    
+    {  
+
+        // Validate the form data
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'fname' => 'required',
+            'pname' => 'required',
+            'dob' => 'required',
+            'gender' => 'required',
+            'nationality' => 'required',
+            'ethnicity' => 'required',
+            'born' => 'required',
+            'address' => 'required',
+            'city' => 'required',
+            'province' => 'required',
+            'postcode' => 'required',
+            'current_country' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'cell' => 'required',
+            'number' => 'required',
+            'semail' => 'required',
+            'wid' => 'required',
+            'e_address' => 'required',
+            'lang_of_c' => 'required',
+            'disablility' => 'required',
+   
+           
+        ]);
+
+        $validatedData2 = $request->validate([
+            'title1' => 'required',
+            'title2' => 'required',
+            'address2' => 'required',
+           
+        ]);
+      
+
+// print_r($validatedData ); die();
+
+        // Create a new user or institution profile in your database
+    $personal = new ApplicationPersonal();
+    $personal->title =  $validatedData['title'];
+    $personal->fname =  $validatedData['fname'];
+    $personal->pname =  $validatedData['pname'];
+    $personal->dob =  $validatedData['dob'];
+    $personal->gender =  $validatedData['gender'];
+    $personal->nationality =  $validatedData['nationality'];
+    $personal->ethnicity =  $validatedData['ethnicity'];
+    $personal->born =  $validatedData['born'];
+    $personal->address =  $validatedData['address'];
+    $personal->city =  $validatedData['city'];
+    $personal->province =  $validatedData['province'];
+    $personal->postcode =  $validatedData['postcode'];
+    $personal->current_country =  $validatedData['current_country'];
+    $personal->email =  $validatedData['email'];
+    $personal->phone =  $validatedData['phone'];
+    $personal->cell =  $validatedData['cell'];
+    $personal->number =  $validatedData['number'];
+    $personal->semail =  $validatedData['semail'];
+    $personal->wid =  $validatedData['wid'];
+    $personal->e_address =  $validatedData['e_address'];
+    $personal->lang_of_c =  $validatedData['lang_of_c'];
+    $personal->disability =  $validatedData['disablility'];
+   
+    // Add other user-specific fields as needed
+
+    // Save the user
+    $personal->save();
+
+    $education = new ApplicationEducation();
+    $education->personal_id =  $personal->id;
+    $education->title1 =  $validatedData2['title1'];
+    $education->title2 =  $validatedData2['title2'];
+    $education->address2 =  $validatedData2['address2'];
+
+    $education->save();
+        // Redirect to the next step of the registration process
+        return redirect()->back();
+    }
+
+
 
 
 

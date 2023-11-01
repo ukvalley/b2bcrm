@@ -93,7 +93,7 @@
         <p>Click the shortlist button on any course in your "Saved Courses" to add it to your Shortlist, then rank them in order of preference using the arrows.</p>
     </div>
 
-    @foreach ($courses as $course)
+    @foreach ($Shortlist as $course)
         <div class="card">
             <div class="col-md-12">
                 <div class="row">
@@ -101,9 +101,10 @@
                         <img src="{{ url('/') }}/theme/icons/message-empty-state.png" style="width: 50%;" alt="">
                     </div>
                     <div class="col-md-6">
-                        <h4>{{ $course->name }}</h4>
-                        <h5>{{ $course->university }}</h5>
-                        <h5>{{ $course->country }}</h5>
+                        <h4>{{ $course->course_name }}</h4>
+                        <h5>{{ $course->institution_name }}</h5>
+                        
+                        <h5>{{ $course->country_name  }}</h5>
                     </div>
                     <div class="col-md-3">
                         <br>
