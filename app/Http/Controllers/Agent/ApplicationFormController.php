@@ -287,4 +287,11 @@ class ApplicationFormController extends Controller
 
 
 
+    public function DocumentsUpload($id)
+    {
+        $Student = Student::find($id);
+        return view('recruiter.panel.application.Documents',compact('Student'));
+    }
+
+
 }
