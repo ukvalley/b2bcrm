@@ -15,7 +15,7 @@
         <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
           Personal Details
         </a>
-      </div>
+      </div> 
 
 
       
@@ -37,11 +37,12 @@
     <label for="title"v class="form-label"><b>What is your title?(required)</b>  </label>
     <select class="form-control" id="title"  class="form-control" name="title">
       <option value="Mr">Mr</option>
-          <option value="Mrs">Mrs</option>
-          <option value="Miss">Miss</option>
-          <option value="Ms">Ms</option>
-          <option value="Dr">Dr</option>
-          <option value="MX">MX</option>
+          <option value="Mrs"{{ old('Mrs', $App_data->title) =='Mrs' ? 'selected' : '' }}>Mrs</option>
+          <option value="Miss"{{ old('Miss', $App_data->title) =='Miss' ? 'selected' : '' }}>Miss</option>
+          <option value="Ms"{{ old('Ms', $App_data->title) =='Ms' ? 'selected' : '' }}>Ms</option>
+          <option value="Dr"{{ old('Dr', $App_data->title) =='Dr' ? 'selected' : '' }}>Dr</option>
+          <option value="MX"{{ old('MX', $App_data->title) =='MX' ? 'selected' : '' }}>MX</option>
+
     </select>
     @error('title')
             <span class="invalid-feedback" role="alert">
@@ -61,7 +62,7 @@
         @enderror
 
     <label for="pname"><b>Please enter your full name as per passport (first name , family name)(required)</b></label>
-    <input class="form-control"type="text" id="pname" name="pname" placeholder="Putra" required="">
+    <input class="form-control"type="text" id="pname" value="{{ old('pname', $App_data->pname ?? '') }}" name="pname" placeholder="Putra" required="">
     @error('pname')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -71,7 +72,7 @@
 
 
     <label for="dob"><b>Date of Birth:(required)</b></label>
-    <input class="form-control"type="date" id="dob" name="dob" placeholder="" required="">
+    <input class="form-control"type="date" id="dob"value="{{ old('dob', $App_data->dob ?? '') }}" name="dob" placeholder="" required="">
     <p>Please enter date of birth  </p>
     @error('dob')
             <span class="invalid-feedback" role="alert">
@@ -81,18 +82,24 @@
 
 
 
-     <div class="checkbox">
-      <label><b>Gender (on passport)</b></label><br>  
-        <input class="check"   id="gender"  name="gender" type="radio" value="male" ><b> Male</b><br>
-        <input class="check"   id="gender"  name="gender" type="radio" value="female" ><b> Female</b><br>
-        <input class="check"   id="gender"  name="gender" type="radio" value="unspecific" ><b> Unspecified</b>
-    
-      @error('gender')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div><br>
+        <div class="checkbox">
+  <label><b>Gender (on passport)</b></label><br>
+  <input class="check" id="gender_male" name="gender" type="radio" value="male" {{ old('gender', $App_data->gender) == 'male' ? 'checked' : '' }}>
+  <b>Male</b><br>
+  <input class="check" id="gender_female" name="gender" type="radio" value="female" {{ old('gender', $App_data->gender) == 'female' ? 'checked' : '' }}>
+  <b>Female</b><br>
+  <input class="check" id="gender_unspecified" name="gender" type="radio" value="unspecified" {{ old('gender', $App_data->gender) == 'unspecified' ? 'checked' : '' }}>
+  <b>Unspecified</b><br>
+  <input class="check" id="gender_mrs" name="gender" type="radio" value="mrs" {{ old('gender', $App_data->gender) == 'mrs' ? 'checked' : '' }}>
+  <b>Mrs</b><br>
+</div>
+@error('gender')
+<span class="invalid-feedback" role="alert">
+  <strong>{{ $message }}</strong>
+</span>
+@enderror
+<br>
+
 
     <label for="nationality"><b>Nationality*</b></label>
     <select class="form-control" id="nationality" name="nationality" required="">
@@ -313,7 +320,7 @@
     <option data-countryCode="ZW" value="263">Zimbabwe (+263)</option>
     </select>
     @error('nationality')
-            <span class="invalid-feedback" role="alert">
+            <span class="invalid-feedback"  role="alert">
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
@@ -321,7 +328,7 @@
 
     
     <label for="ethnicity"><b>Ethnicity:</b></label>
-    <input class="form-control"type="text" id="ethnicity" name="ethnicity" required="">
+    <input class="form-control"type="text"  value="{{ old('ethnicity', $App_data->ethnicity ?? '') }}" id="ethnicity" name="ethnicity" required="">
     @error('ethnicity')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -331,7 +338,7 @@
 
 
 <label for="born"><b>Which city and country were you born in? (city, country)</b></label>
-    <input class="form-control"type="text" id="born" name="born" placeholder="Jakarta, Indonesia" required="">
+    <input class="form-control"type="text" id="born" value="{{ old('born', $App_data->born ?? '') }}" name="born" placeholder="Jakarta, Indonesia" required="">
     @error('born')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -343,7 +350,7 @@
    
 
     <label for="address"><b>Current Postal Address (street, city state, postcode, country)(required)</b></label>
-   <textarea class="form-control" type="text" id="address" name="address" placeholder="Jl. Taman Nyiur 12, blok R/12A, Sunter Agung, Tj. Priok, North Jakarta 14350"></textarea>
+   <textarea class="form-control" type="text" id="address" value="{{ old('address', $App_data->address ?? '') }}" name="address" placeholder="Jl. Taman Nyiur 12, blok R/12A, Sunter Agung, Tj. Priok, North Jakarta 14350"></textarea>
    @error('address')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -351,7 +358,7 @@
         @enderror
 
     <label for="city"><b>Which city do you live in?</b></label>
-    <input class="form-control"type="text" id="city" name="city" placeholder="North Jakarta" required="">
+    <input class="form-control"type="text" value="{{ old('city', $App_data->city ?? '') }}" id="city" name="city" placeholder="North Jakarta" required="">
     @error('city')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -361,7 +368,7 @@
 
 
     <label for="province"><b>What State/Province/Territory do you live in?</b></label>
-    <input class="form-control"type="text" id="province" name="province" placeholder="DKI Jakarta" required="">
+    <input class="form-control"type="text"  value="{{ old('province', $App_data->province ?? '') }}" id="province" name="province" placeholder="DKI Jakarta" required="">
     @error('province')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -371,7 +378,7 @@
 
 
     <label for="postcode"><b>What is your postcode (zip code)?</b></label>
-    <input class="form-control"type="text" id="postcode" name="postcode" placeholder="DKI Jakarta" required="">
+    <input class="form-control"type="text" value="{{ old('postcode', $App_data->postcode ?? '') }}" id="postcode" name="postcode" placeholder="DKI Jakarta" required="">
     @error('postcode')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -379,21 +386,24 @@
         @enderror
 
 
-    <div class="checkbox">
-      <label> <b>Are you currently living in the country you are applying to?</b> <br>
-        <input  class="check" type="radio" id="current_country" name="current_country" value="Yes" ><b> Yes</b><br>
-        <input  class="check" type="radio" id="current_country" name="current_country" value="No" ><b> No</b><br>
-        
-      </label>
-      @error('current_country')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div><br>
+        <div class="checkbox">
+  <label>
+    <b>Are you currently living in the country you are applying to?</b><br>
+    <input class="check" type="radio" id="current_country_yes" name="current_country" value="Yes" {{ old('current_country', $App_data->current_country) == 'Yes' ? 'checked' : '' }}>
+    <b>Yes</b><br>
+    <input class="check" type="radio" id="current_country_no" name="current_country" value="No" {{ old('current_country', $App_data->current_country) == 'No' ? 'checked' : '' }}>
+    <b>No</b><br>
+  </label>
+  @error('current_country')
+  <span class="invalid-feedback" role="alert">
+    <strong>{{ $message }}</strong>
+  </span>
+  @enderror
+</div>
+<br>
 
     <label for="email"><b>What is your email address?(required)</b></label>
-    <input class="form-control"type="email" id="email" name="email" placeholder="alfonsusadiputra@gmail.com" required="">
+    <input class="form-control"type="email"  value="{{ old('email', $App_data->email ?? '') }}" id="email" name="email" placeholder="alfonsusadiputra@gmail.com" required="">
     <P> What is your primary email address? </P>
     @error('email')
             <span class="invalid-feedback" role="alert">
@@ -404,7 +414,7 @@
 
 
     <label for="phone"><b> What is your home phone number? </b></label>
-    <input class="form-control"type="text" id="phone" name="phone"  required="">
+    <input class="form-control"type="text" value="{{ old('phone', $App_data->phone ?? '') }}" id="phone" name="phone"  required="">
     <p> Please include the country code e.g. +91 999 999 9999 </p>
     @error('phone')
             <span class="invalid-feedback" role="alert">
@@ -415,7 +425,7 @@
 
 
     <label for="cell"><b> What is your mobile (cell) phone number? </b></label>
-    <input class="form-control"type="text" id="cell" name="cell" placeholder="+62 858 8602 9524"  required="">
+    <input class="form-control"type="text" id="cell" value="{{ old('cell', $App_data->cell ?? '') }}" name="cell" placeholder="+62 858 8602 9524"  required="">
     <p> Please include the country code e.g. +91 999 999 9999 </p>
     @error('cell')
             <span class="invalid-feedback" role="alert">
@@ -426,7 +436,7 @@
 
 
     <label for="number"> <b> What is your work phone number?</b> </label>
-    <input class="form-control"type="text" id="number" name="number"  required="">
+    <input class="form-control"type="text" value="{{ old('number', $App_data->number ?? '') }}" id="number" name="number"  required="">
     <p> Please include the country code e.g. +91 999 999 9999 </p>
     @error('number')
             <span class="invalid-feedback" role="alert">
@@ -437,7 +447,7 @@
 
 
     <label for="semail"><b> What is your secondary email address?</b> </label>
-    <input class="form-control"type="email" id="semail" name="semail"  required="">
+    <input class="form-control"type="email"  value="{{ old('semail', $App_data->semail ?? '') }}" id="semail" name="semail"  required="">
     <P> If you have a secondary email address please provide details. If not, please enter NA. </P>
     @error('semail')
             <span class="invalid-feedback" role="alert">
@@ -447,7 +457,7 @@
 
 
     <label for="wid"><b> WhatsApp ID: </b></label>
-    <input class="form-control"type="text" id="wid" name="wid" placeholder="+62 858 8602 9524" required="">
+    <input class="form-control"type="text" id="wid" value="{{ old('wid', $App_data->fname ?? '') }}" name="wid" placeholder="+62 858 8602 9524" required="">
     <p>  If you have one. </p>
       @error('wid')
             <span class="invalid-feedback" role="alert">
@@ -459,73 +469,74 @@
 
     <label for="address"> <b>Please list two emergency contacts below. (Indicate relationship and contact information for both.)</b>
 </label>
-   <textarea class="form-control" type="text" id="e_address" name="e_address" placeholder="Monica-monicaaf308@gmail.com- 6285173227299-agent"></textarea>
+   <textarea class="form-control" type="text" value="{{ old('e_address', $App_data->e_address ?? '') }}" id="e_address" name="e_address" placeholder="Monica-monicaaf308@gmail.com- 6285173227299-agent"></textarea>
     <p> Please list details of an emergency contact: Name, Relationship, Full Address, Phone landline & Mobile, Email etc. </p>
 
-     <div class="checkbox">
-      <label><b>  Language of Correspondence:</b> <br>
-        <input class="check" id="lang_of_c"  name="lang_of_c" type="radio" value="a" ><b> A</b><br>
-        <input class="check" id="lang_of_c" name="lang_of_c" type="radio" value="b" ><b> B</b><br>
-        
-      </label>
-      @error('lang_of_c')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
-    </div><br>
+   <div class="checkbox">
+  <label><b>Language of Correspondence:</b><br>
+    <input class="check" id="lang_of_c_a" name="lang_of_c" type="radio" value="a" {{ old('lang_of_c', $App_data->lang_of_c) == 'a' ? 'checked' : '' }}>
+    <b>A</b><br>
+    <input class="check" id="lang_of_c_b" name="lang_of_c" type="radio" value="b" {{ old('lang_of_c', $App_data->lang_of_c) == 'b' ? 'checked' : '' }}>
+    <b>B</b><br>
+    <input class="check" id="lang_of_c_mrs" name="lang_of_c" type="radio" value="mrs" {{ old('lang_of_c', $App_data->lang_of_c) == 'mrs' ? 'checked' : '' }}>
+    <b>Mrs</b><br>
+  </label>
+  @error('lang_of_c')
+  <span class="invalid-feedback" role="alert">
+    <strong>{{ $message }}</strong>
+  </span>
+  @enderror
+</div>
 
 
 
 
-    <div class="checkbox">
-      <label> <b> Do you have a disability, impairment or medical condition which may affect your studies? </b><br></label>
-        <input class="check" id="disablility"  name="disablility" type="radio" value="yes" ><b> Yes</b><br>
-        <input class="check" id="disablility" name="disablility" type="radio" value="no" ><b> No</b><br>
-        
-      </label>
-    
-    </div><br>
-      @error('disablility')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
-        @enderror
 
-    <label for="title1"><b> Do you identify yourself as an Aboriginal person that is, First Nations, Metis, Inuit? </b></label>
-    <select class="form-control" id="title1" name="title1">
-      <option value="No">No</option>
-          <option value="First Nations"> First Nations</option>
-          <option value="Metis"> Metis</option>
-          <option value="Inuit">Inuit</option>
-          <option value="No"> No</option>
-          
-    </select>
-    @error('title1')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
+<div class="checkbox">
+  <label><b>Do you have a disability, impairment, or medical condition which may affect your studies?</b><br>
+    <input class="check" id="disability_yes" name="disability" type="radio" value="yes" {{ old('disability', $App_data->disability) == 'yes' ? 'checked' : '' }}>
+    <b>Yes</b><br>
+    <input class="check" id="disability_no" name="disability" type="radio" value="no" {{ old('disability', $App_data->disability) == 'no' ? 'checked' : '' }}>
+    <b>No</b><br>
+  </label>
+  @error('disability')
+  <span class="invalid-feedback" role="alert">
+    <strong>{{ $message }}</strong>
+  </span>
+</div>
+
         @enderror
 
-<label for="title2"> <b>What is the highest level of education completed by your parent 1 or guardian 1? </b></label>
-    <select class="form-control" id="title2" name="title2">
-      <option value="Don't know">Don't know</option>
-          <option value="Postgraduate Qualification">Postgraduate Qualification</option>
-          <option value="Bachelor Degree">Bachelor Degree</option>
-          <option value="Post School Qualification">Post School Qualification</option>
-          <option value="Completed year 12 or equivalent">Completed year 12 or equivalent</option>
-          <option value="Completed year 11 or equivalent">Completed year 11 or equivalent</option>
-          <option value="Completed year 10 or equivalent">Completed year 10 or equivalent</option>
-           <option value="Did not Complete year 10">Did not Complete year 10</option>
-          <option value="Not applicable">Not applicable</option>
-          
-    </select>
-    <P> Please select </P>
-    @error('title2')
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-            </span>
+        <label for="title1"><b>Do you identify yourself as an Aboriginal person that is, First Nations, Metis, Inuit?</b></label>
+<select class="form-control" id="title1" name="title1">
+  <option value="No" {{ old('title1', $App_data->title1) == 'No' ? 'selected' : '' }}>No</option>
+  <option value="First Nations" {{ old('title1', $App_data->title1) == 'First Nations' ? 'selected' : '' }}>First Nations</option>
+  <option value="Metis" {{ old('title1', $App_data->title1) == 'Metis' ? 'selected' : '' }}>Metis</option>
+  <option value="Inuit" {{ old('title1', $App_data->title1) == 'Inuit' ? 'selected' : '' }}>Inuit</option>
+</select>
+@error('title1')
+<span class="invalid-feedback" role="alert">
+  <strong>{{ $message }}</strong>
+</span>
         @enderror
+        <label for="title2"><b>What is the highest level of education completed by your parent 1 or guardian 1?</b></label>
+<select class="form-control" id="title2" name="title2">
+  <option value="Don't know" {{ old('title2', $App_data->title2) == "Don't know" ? 'selected' : '' }}>Don't know</option>
+  <option value="Postgraduate Qualification" {{ old('title2', $App_data->title2) == 'Postgraduate Qualification' ? 'selected' : '' }}>Postgraduate Qualification</option>
+  <option value="Bachelor Degree" {{ old('title2', $App_data->title2) == 'Bachelor Degree' ? 'selected' : '' }}>Bachelor Degree</option>
+  <option value="Post School Qualification" {{ old('title2', $App_data->title2) == 'Post School Qualification' ? 'selected' : '' }}>Post School Qualification</option>
+  <option value="Completed year 12 or equivalent" {{ old('title2', $App_data->title2) == 'Completed year 12 or equivalent' ? 'selected' : '' }}>Completed year 12 or equivalent</option>
+  <option value="Completed year 11 or equivalent" {{ old('title2', $App_data->title2) == 'Completed year 11 or equivalent' ? 'selected' : '' }}>Completed year 11 or equivalent</option>
+  <option value="Completed year 10 or equivalent" {{ old('title2', $App_data->title2) == 'Completed year 10 or equivalent' ? 'selected' : '' }}>Completed year 10 or equivalent</option>
+  <option value="Did not Complete year 10" {{ old('title2', $App_data->title2) == 'Did not Complete year 10' ? 'selected' : '' }}>Did not Complete year 10</option>
+  <option value="Not applicable" {{ old('title2', $App_data->title2) == 'Not applicable' ? 'selected' : '' }}>Not applicable</option>
+</select>
+<p>Please select</p>
+@error('title2')
+<span class="invalid-feedback" role="alert">
+  <strong>{{ $message }}</strong>
+</span>       
+ @enderror
 
 
 
@@ -533,7 +544,7 @@
 <label for="address2"><b> List all extracurricular activities from the time you completed high school until the present.</b>
 
 </label>
-   <textarea class="form-control" type="text" id="address2" name="address2"></textarea>
+   <textarea class="form-control" type="text" id="address2" value="{{ old('address2', $App_data->address2 ?? '') }}" name="address2"></textarea>
     <p> For example, volunteering, hobbies, sports, employment, travel, etc. Include any completed while attending a postsecondary educational institution. </p>
  @error('address2')
             <span class="invalid-feedback" role="alert">

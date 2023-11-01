@@ -80,6 +80,7 @@
                 
                
 
+
                
 
  
@@ -95,6 +96,7 @@
 
     @foreach ($Shortlist as $course)
         <div class="card">
+        <a href="{{ route('agent.showApplicationForm', ['id' => $Student->id]) }}" style=" text-decoration: none;color: black; " >
             <div class="col-md-12">
                 <div class="row">
                     <div class="col-md-3 d-flex justify-content-center align-items-center">
@@ -127,6 +129,7 @@
                     </div>
                 </div>
             </div>
+            </a>
         </div>
     @endforeach
 </div>
