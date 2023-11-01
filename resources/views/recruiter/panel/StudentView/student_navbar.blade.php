@@ -78,9 +78,9 @@
                       </button>
                       <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{route('agent.CourseSearch', ['id' => $Student->id])}}">Course Search</a>
-                        <a class="dropdown-item" href="#">Shortlist</a>
+                        <a class="dropdown-item" href="{{route('agent.ShortListView', ['id' => $Student->id])}}">Shortlist</a>
                         <a class="dropdown-item" href="{{route('agent.showApplicationForm', ['id' => $Student->id])}}">Application form</a>
-                        <a class="dropdown-item" href="#">Documents</a>
+                        <a class="dropdown-item" href="{{route('agent.DocumentsUpload', ['id' => $Student->id])}}">Documents</a>
                         <a class="dropdown-item" href="#">Review & Submit</a>
                         <a class="dropdown-item" href="#">Visa Information</a>
                       </div>
