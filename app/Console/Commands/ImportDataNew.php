@@ -42,15 +42,20 @@ class ImportDataNew extends Command
             
 
             foreach ($dataArray as $validatedData) {
-                DB::beginTransaction(); // Start a database transaction
-                // Your existing code for processing and inserting records
 
-                $already = Course::where('attendance_pattern','=',$validatedData['_source']['course_id'])->count();
+
+              $already = Course::where('attendance_pattern','=',$validatedData['_source']['course_id'])->count();
 
                 if($already > 0)
                 {
                     continue;
                 }
+
+              
+                DB::beginTransaction(); // Start a database transaction
+                // Your existing code for processing and inserting records
+
+                
 
 
                 $institution = Institution::firstOrNew(['name' => $validatedData['_source']['institution_name']]);
