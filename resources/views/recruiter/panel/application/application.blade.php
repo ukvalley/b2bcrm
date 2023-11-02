@@ -350,7 +350,7 @@
    
 
     <label for="address"><b>Current Postal Address (street, city state, postcode, country)(required)</b></label>
-   <textarea class="form-control" type="text" id="address" value="{{ old('address', $App_data->address ?? '') }}" name="address" placeholder="Jl. Taman Nyiur 12, blok R/12A, Sunter Agung, Tj. Priok, North Jakarta 14350"></textarea>
+   <textarea class="form-control" type="text" id="address"  name="address" placeholder="Jl. Taman Nyiur 12, blok R/12A, Sunter Agung, Tj. Priok, North Jakarta 14350">{{ old('address', $App_data->address ?? '') }}</textarea>
    @error('address')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -469,7 +469,7 @@
 
     <label for="address"> <b>Please list two emergency contacts below. (Indicate relationship and contact information for both.)</b>
 </label>
-   <textarea class="form-control" type="text" value="{{ old('e_address', $App_data->e_address ?? '') }}" id="e_address" name="e_address" placeholder="Monica-monicaaf308@gmail.com- 6285173227299-agent"></textarea>
+   <textarea class="form-control" type="text"  id="e_address" name="e_address" placeholder="Monica-monicaaf308@gmail.com- 6285173227299-agent">{{ old('e_address', $App_data->e_address ?? '') }}</textarea>
     <p> Please list details of an emergency contact: Name, Relationship, Full Address, Phone landline & Mobile, Email etc. </p>
 
    <div class="checkbox">
@@ -544,7 +544,7 @@
 <label for="address2"><b> List all extracurricular activities from the time you completed high school until the present.</b>
 
 </label>
-   <textarea class="form-control" type="text" id="address2" value="{{ old('address2', $App_data->address2 ?? '') }}" name="address2"></textarea>
+   <textarea class="form-control" type="text" id="address2"  name="address2">{{ old('address2', $App_data->address2 ?? '') }}</textarea>
     <p> For example, volunteering, hobbies, sports, employment, travel, etc. Include any completed while attending a postsecondary educational institution. </p>
  @error('address2')
             <span class="invalid-feedback" role="alert">

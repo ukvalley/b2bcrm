@@ -35,8 +35,16 @@ class ApplicationFormController extends Controller
     {
         $Student = Student::find($id);
 
-        $App_data=ApplicationPersonal::where('student_id','=', $Student->id)
-                                        ->first();
+        if ($Student) {
+    $App_data = ApplicationPersonal::where('student_id', $Student->id)->firstOrNew();
+    // You can set any additional properties for the new record here if needed.
+    $App_data->student_id = $Student->id; // For example
+
+    // Save the record
+    $App_data->save();
+} else {
+    // Handle the case where the Student with the given ID doesn't exist
+}
 
         
         return view('recruiter.panel.application.application',compact('Student','App_data'));
@@ -68,26 +76,18 @@ class ApplicationFormController extends Controller
             'number' => 'required',
             'semail' => 'required',
             'wid' => 'required',
-            'e_address' => 'required',
             'lang_of_c' => 'required',
-            'disablility' => 'required',
-            'student_id' => 'required',
    
            
         ]);
 
-        $validatedData2 = $request->validate([
-            'title1' => 'required',
-            'title2' => 'required',
-            'address2' => 'required',
-           
-        ]);
+        
       
 
 // print_r($validatedData ); die();
 
         // Create a new user or institution profile in your database
-    $personal = new ApplicationPersonal();
+    $personal = ApplicationPersonal::where('student_id','=',$request->input('student_id'))->first();
     $personal->title =  $validatedData['title'];
     $personal->fname =  $validatedData['fname'];
     $personal->pname =  $validatedData['pname'];
@@ -107,25 +107,15 @@ class ApplicationFormController extends Controller
     $personal->number =  $validatedData['number'];
     $personal->semail =  $validatedData['semail'];
     $personal->wid =  $validatedData['wid'];
-    $personal->e_address =  $validatedData['e_address'];
     $personal->lang_of_c =  $validatedData['lang_of_c'];
-    $personal->disability =  $validatedData['disablility'];
 
-    $personal->student_id =  $validatedData['student_id'];
 
     // Add other user-specific fields as needed
 
     // Save the user
     $personal->save();
 
-    $education = new ApplicationEducation();
-    $education->personal_id =  $personal->id;
-    $education->title1 =  $validatedData2['title1'];
-    $education->title2 =  $validatedData2['title2'];
-    $education->address2 =  $validatedData2['address2'];
-
-    $education->save();
-        // Redirect to the next step of the registration process
+   
         return redirect()->back();
     }
 
@@ -194,7 +184,6 @@ class ApplicationFormController extends Controller
     $personal->number =  $validatedData['number'];
     $personal->semail =  $validatedData['semail'];
     $personal->wid =  $validatedData['wid'];
-    $personal->e_address =  $validatedData['e_address'];
     $personal->lang_of_c =  $validatedData['lang_of_c'];
     $personal->disability =  $validatedData['disablility'];
    
