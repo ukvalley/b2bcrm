@@ -205,7 +205,9 @@ Students Commenced </span>
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="ms-2 me-auto">
                                 <div class="fw-bold">{{ $institution->name}}</div>
-                                {{$institution->city }}, {{$institution->countries->name }}
+                                 @foreach (json_decode($institution->city) as $city)
+    {{$city}}
+@endforeach,<b>{{$institution->countries->name }}</b>
                             </div>
                         </li>
                         @endforeach
