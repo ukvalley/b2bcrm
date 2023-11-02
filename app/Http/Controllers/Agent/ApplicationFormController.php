@@ -81,7 +81,6 @@ class ApplicationFormController extends Controller
            
         ]);
 
-        
       
 
 // print_r($validatedData ); die();
@@ -215,37 +214,42 @@ class ApplicationFormController extends Controller
     public function educationUpdate(Request $request)
     
     {   $id=$request->input('student_id');
-
+       
         $validatedData = $request->validate([
-            'title1' => 'required|string|max:255',
-            'title2' => 'required|string|max:255',
-            'address2' => 'required|string|max:255',
-            'university' => 'required|string|max:255',
-            'credit_transfer' => 'required|string|max:255',
-            'puniversity'=> 'required|string|max:255',
-            'gap'=> 'required|string|max:255',
-            'pre_applied'=> 'required|string|max:255',
-            'pen'=> 'required|string|max:255',
-            'CEGEP'=> 'required|string|max:255',
-            'english_school'=> 'required|string|max:255',
-            'language'=> 'required|string|max:255',
-            'main_language'=> 'required|string|max:255',
-            's_study_date'=> 'required|string|max:255',
-            'school_name'=> 'required|string|max:255',
-            'completed_study'=> 'required|string|max:255',
-            'course_title'=> 'required|string|max:255',
-            'result'=> 'required|string|max:255',
-            'equivalence'=> 'required|string|max:255',
-            'currently_studying'=> 'required|string|max:255',
-            'previous_study'=> 'required|string|max:255',
-            's_country' => 'required|string|max:255',
-            's_institution' => 'required|string|max:255',
-            'completed_successfully' => 'required|string|max:255',
-            'study_fultime' => 'required|string|max:255',
+           
+           
+            'title1' => 'required',
+            'title2' => 'required',
+            'address2' => 'required',
+            'university' => 'required',
+            'credit_transfer' => 'required',
+            'puniversity'=> 'required',
+            'gap'=> 'required',
+            'pre_applied'=> 'required',
+            'pen'=> 'required',
+            'CEGEP'=> 'required',
+            'english_school'=> 'required',
+            'language'=> 'required',
+            'main_language'=> 'required',
+            's_study_date'=> 'required',
+            'school_name'=> 'required',
+            'completed_study'=> 'required',
+            'course_title'=> 'required',
+            'result'=> 'required',
+            'equivalence'=> 'required',
+            'currently_studying'=> 'required',
+            'previous_study'=> 'required',
+            's_country' => 'required',
+            's_institution' => 'required',
+            'completed_successfully' => 'required',
+            'study_fultime' => 'required',
+            'experience' => 'required',
+            'employment_status' => 'required',
          
  
        ]);
        
+    //    print_r($validatedData);die();
 
        $Student = Student::find($id);
 
@@ -281,9 +285,14 @@ class ApplicationFormController extends Controller
         $App_data->s_institution =  $validatedData['s_institution'];
         $App_data->completed_successfully =  $validatedData['completed_successfully'];
         $App_data->study_fultime =  $validatedData['study_fultime'];
+        $App_data->personal_id =  $request->input('personalId');
+        
+       $App_data->experience =  $validatedData['experience'];
+       $App_data->employment_status =  $validatedData['employment_status'];
 
 
-            $App_data->update();
+
+            $App_data->save();
         } else {
                   // Handle the case where the Student with the given ID doesn't exist
         }
@@ -300,17 +309,18 @@ class ApplicationFormController extends Controller
          $id=$request->input('student_id');
 
         $validatedData = $request->validate([
-            'experience' => 'required|string|max:255',
-            'employment_status' => 'required|string|max:255',
-            'first_language' => 'required|string|max:255',
-            'language_known' => 'required|string|max:255',
-            'proficiency' => 'required|string|max:255',
-            'language_demo' => 'required|string|max:255',
-            'eng_course' => 'required|string|max:255',
+            
+            'first_language' => 'required',
+            'language_known' => 'required',
+            'proficiency' => 'required',
+            'language_demo' => 'required',
+            'eng_course' => 'required',
          
  
        ]);
        
+
+    //    print_r($validatedData);die();
        
        $Student = Student::find($id);
 
@@ -320,8 +330,6 @@ class ApplicationFormController extends Controller
     $App_data->student_id = $Student->id; // For example
 
 
-       $App_data->experience =  $validatedData['experience'];
-       $App_data->employment_status =  $validatedData['employment_status'];
        $App_data->first_language =  $validatedData['first_language'];
        $App_data->language_known =  $validatedData['language_known'];
        $App_data->proficiency =  $validatedData['proficiency'];
@@ -346,22 +354,22 @@ class ApplicationFormController extends Controller
 
 
         $validatedData = $request->validate([
-            'r_contact_details' => 'required|string|max:255',
-            'agent_contact' => 'required|string|max:255',
-            'contact_name' => 'required|string|max:255',
-            'contact_mobile' => 'required|string|max:255',
-            'contact_email' => 'required|string|max:255',
-            'passport' => 'required|string|max:255',
-            'passport_number' => 'required|string|max:255',
-            'visa' => 'required|string|max:255',
-            'visa_apply_note' => 'required|string|max:255',
-            'married' => 'required|string|max:255',
-            'citizenship' => 'required|string|max:255',
-            'app_submitted_from' => 'required|string|max:255',
-            'status_in_canada' => 'required|string|max:255',
-            'sponcership_gov' => 'required|string|max:255',
-            'receive_scholarship' => 'required|string|max:255',
-            'medical_agreement' => 'required|string|max:255',
+            'r_contact_details' => 'required',
+            'agent_contact' => 'required',
+            'contact_name' => 'required',
+            'contact_mobile' => 'required',
+            'contact_email' => 'required',
+            'passport' => 'required',
+            'passport_number' => 'required',
+            'visa' => 'required',
+            'visa_apply_note' => 'required',
+            'married' => 'required',
+            'citizenship' => 'required',
+            'app_submitted_from' => 'required',
+            'status_in_canada' => 'required',
+            'sponcership_gov' => 'required',
+            'receive_scholarship' => 'required',
+            'medical_agreement' => 'required',
          
  
        ]);
@@ -405,7 +413,7 @@ class ApplicationFormController extends Controller
 
 
         $validatedData = $request->validate([
-            'admission_note' => 'required|string|max:255',
+            'admission_note' => 'required',
 
        ]);
        

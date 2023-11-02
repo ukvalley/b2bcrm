@@ -15,7 +15,10 @@
         <a class="btn" data-bs-toggle="collapse" href="#collapseOne">
           Personal Details
         </a>
-      </div> 
+      </div>
+       
+             
+
 
 
       
@@ -536,10 +539,12 @@
       <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
 
       <input type="hidden" name="student_id" value="{{$Student->id}}">
+      <input type="hidden" name="personalId" value="{{$App_data->id}}">
 
 
 
-      <label for="title1"><b>Do you identify yourself as an Aboriginal person that is, First Nations, Metis, Inuit?</b></label>
+
+ <label for="title1"><b>Do you identify yourself as an Aboriginal person that is, First Nations, Metis, Inuit?</b></label>
 <select class="form-control" id="title1" name="title1">
   <option value="No" {{ old('title1', $App_data->title1) == 'No' ? 'selected' : '' }}>No</option>
   <option value="First Nations" {{ old('title1', $App_data->title1) == 'First Nations' ? 'selected' : '' }}>First Nations</option>
@@ -683,7 +688,6 @@
 
 
 
-    <label for="seceducation">Secondary Education </label><br>
 
   
   <a href="#demo1" class="btn btn-info" data-toggle="collapse">Add Secondary Education</a>
@@ -771,9 +775,16 @@
         @enderror
 
 
+        <label for="main_language"> <b>Main Language</b> </label>
+    <input class="form-control"type="text" id="main_language" name="main_language" required="">
+      @error('main_language')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
 
 <label for="s_study_date"> <b> What date did you commence secondary studies? </b> </label>
-    <input class="form-control"type="text" id="s_study_date" name="s_study_date" required="">
+    <input class="form-control"type="date" id="s_study_date" name="s_study_date" required="">
     <p> In MM/YYYY format, e.g. 09/2018 </p>
       @error('s_study_date')
             <span class="invalid-feedback" role="alert">
@@ -936,20 +947,7 @@
 
 
   </div>
-  <!-- <div class="checkbox">
 
-    <label for="language"> Course details: </label>
-    <select class="form-control" id="language" name="language" required="">
-       <option value="AF">x</option>
-  <option value="SQ">y</option>
-  <option value="AR">z</option>
-  <option value="HY">w</option>
-  
-    </select>
-    <p>Select</p>
-    
-  </div> -->
-  <br>
 
   <label for="qaceducation">Employment </label><br>
 
