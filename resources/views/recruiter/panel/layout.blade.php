@@ -155,6 +155,53 @@
                             </a>
                         </li>
 
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-expanded="false">
+                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-person"></i></div>
+                                <div class="col">Application Stages</div>
+                                <div class="arrow"><i class="bi bi-plus plus"></i> <i class="bi bi-dash minus"></i>
+                                </div>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
+                                        <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar2"></i></div>
+                                        <div class="col">Submitted To Adventus</div>
+                                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                                    </a></li>
+                                <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
+                                        <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar-check"></i>
+                                        </div>
+                                        <div class="col">Lodged With Institutions</div>
+                                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                                    </a></li>
+                                    <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
+                                        <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar-check"></i>
+                                        </div>
+                                        <div class="col">Offers Received</div>
+                                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                                    </a></li>
+                                    <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
+                                        <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar-check"></i>
+                                        </div>
+                                        <div class="col">Visas Granted</div>
+                                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                                    </a></li>
+                                    <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
+                                        <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar-check"></i>
+                                        </div>
+                                        <div class="col">Students Commenced</div>
+                                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                                    </a></li>
+                                    <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
+                                        <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar-check"></i>
+                                        </div>
+                                        <div class="col">Students Deferred</div>
+                                        <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                                    </a></li>
+                            </ul>
+                        </li>
+
                         
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" tabindex="-1">
