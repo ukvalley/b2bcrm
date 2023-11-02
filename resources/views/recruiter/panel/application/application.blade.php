@@ -82,7 +82,7 @@
 
 
 
-        <div class="checkbox">
+<div class="checkbox">
   <label><b>Gender (on passport)</b></label><br>
   <input class="check" id="gender_male" name="gender" type="radio" value="male" {{ old('gender', $App_data->gender) == 'male' ? 'checked' : '' }}>
   <b>Male</b><br>
@@ -507,7 +507,39 @@
 
         @enderror
 
-        <label for="title1"><b>Do you identify yourself as an Aboriginal person that is, First Nations, Metis, Inuit?</b></label>
+   
+
+
+   <div class="col-lg-12" style="text-align: right;">
+    
+    
+        <button type="submit" class="btn btn-success" id="save-edit"><i class="fa-solid fa-floppy-disk"></i> Save and Continue</button>
+    
+  
+  </div>
+</form>
+
+
+
+
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
+        Education
+      </a>
+      </div>
+      <form class="mt-3" method="POST" action="{{ route('agent.educationUpdate') }}">
+    @csrf
+      <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
+
+      <input type="hidden" name="student_id" value="{{$Student->id}}">
+
+
+
+      <label for="title1"><b>Do you identify yourself as an Aboriginal person that is, First Nations, Metis, Inuit?</b></label>
 <select class="form-control" id="title1" name="title1">
   <option value="No" {{ old('title1', $App_data->title1) == 'No' ? 'selected' : '' }}>No</option>
   <option value="First Nations" {{ old('title1', $App_data->title1) == 'First Nations' ? 'selected' : '' }}>First Nations</option>
@@ -551,32 +583,6 @@
                 <strong>{{ $message }}</strong>
             </span>
         @enderror
-
-
-   <div class="col-lg-12" style="text-align: right;">
-    
-    
-        <button type="submit" class="btn btn-success" id="save-edit"><i class="fa-solid fa-floppy-disk"></i> Save and Continue</button>
-    
-  
-  </div>
-</form>
-
-
-
-
-        </div>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <a class="collapsed btn" data-bs-toggle="collapse" href="#collapseTwo">
-        Education
-      </a>
-      </div>
-      <form class="mt-3" method="POST" action="#">
-    @csrf
-      <div id="collapseTwo" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
 
            <label for="university"><b> Are you a current or former student of this university/college/institution? </b></label>

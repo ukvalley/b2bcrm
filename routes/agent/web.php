@@ -122,7 +122,7 @@ Route::post('/shortlist/add', 'App\Http\Controllers\Agent\StudentController@addC
 
 
 
-Route::post('educationUpdate/{personal}', [App\Http\Controllers\Agent\ApplicationFormController::class, 'educationUpdate'])->name('agent.educationUpdate');
+Route::post('educationUpdate', [App\Http\Controllers\Agent\ApplicationFormController::class, 'educationUpdate'])->name('agent.educationUpdate');
 Route::post('languageUpdate/{personal}', [App\Http\Controllers\Agent\ApplicationFormController::class, 'languageUpdate'])->name('agent.languageUpdate');
 Route::post('adminstrationUpdate/{personal}', [App\Http\Controllers\Agent\ApplicationFormController::class, 'adminstrationUpdate'])->name('agent.adminstrationUpdate');
 Route::post('preferenceUpdate/{personal}', [App\Http\Controllers\Agent\ApplicationFormController::class, 'preferenceUpdate'])->name('agent.preferenceUpdate');
