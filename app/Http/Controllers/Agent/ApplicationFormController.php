@@ -283,7 +283,7 @@ class ApplicationFormController extends Controller
         $App_data->study_fultime =  $validatedData['study_fultime'];
 
 
-            $App_data->save();
+            $App_data->update();
         } else {
                   // Handle the case where the Student with the given ID doesn't exist
         }
@@ -294,9 +294,11 @@ class ApplicationFormController extends Controller
     
 
 //language
-    public function languageUpdate(Request $request,$personal_id)
+    public function languageUpdate(Request $request)
     
-    {  
+    {   
+         $id=$request->input('student_id');
+
         $validatedData = $request->validate([
             'experience' => 'required|string|max:255',
             'employment_status' => 'required|string|max:255',
@@ -309,25 +311,40 @@ class ApplicationFormController extends Controller
  
        ]);
        
-       $education = ApplicationEducation::find($personal_id);
+       
+       $Student = Student::find($id);
 
-       $education->experience =  $validatedData['experience'];
-       $education->employment_status =  $validatedData['employment_status'];
-       $education->first_language =  $validatedData['first_language'];
-       $education->language_known =  $validatedData['language_known'];
-       $education->proficiency =  $validatedData['proficiency'];
-       $education->language_demo =  $validatedData['language_demo'];
-       $education->eng_course =  $validatedData['eng_course'];
+        if ($Student) {
+    $App_data = ApplicationEducation::where('student_id', $Student->id)->firstOrNew();
+    // You can set any additional properties for the new record here if needed.
+    $App_data->student_id = $Student->id; // For example
 
 
-       $education->update();
-        return redirect()->back();
+       $App_data->experience =  $validatedData['experience'];
+       $App_data->employment_status =  $validatedData['employment_status'];
+       $App_data->first_language =  $validatedData['first_language'];
+       $App_data->language_known =  $validatedData['language_known'];
+       $App_data->proficiency =  $validatedData['proficiency'];
+       $App_data->language_demo =  $validatedData['language_demo'];
+       $App_data->eng_course =  $validatedData['eng_course'];
+
+
+      
+       $App_data->update();
+    } else {
+              // Handle the case where the Student with the given ID doesn't exist
     }
+    return redirect()->back();
+}
 
 //administration
-    public function adminstrationUpdate(Request $request,$personal_id)
+    public function adminstrationUpdate(Request $request)
     
-    {  
+    {        
+       $id=$request->input('student_id');
+
+
+
         $validatedData = $request->validate([
             'r_contact_details' => 'required|string|max:255',
             'agent_contact' => 'required|string|max:255',
@@ -349,7 +366,13 @@ class ApplicationFormController extends Controller
  
        ]);
        
-       $education = ApplicationEducation::find($personal_id);
+       $Student = Student::find($id);
+
+        if ($Student) {
+    $App_data = ApplicationEducation::where('student_id', $Student->id)->firstOrNew();
+    // You can set any additional properties for the new record here if needed.
+    $App_data->student_id = $Student->id; // For example
+
        $education->r_contact_details =  $validatedData['r_contact_details'];
        $education->agent_contact =  $validatedData['agent_contact'];
        $education->contact_name =  $validatedData['contact_name'];
@@ -368,27 +391,40 @@ class ApplicationFormController extends Controller
        $education->medical_agreement =  $validatedData['medical_agreement'];
 
 
-       $education->update();
-        return redirect()->back();
+       $App_data->update();
+    } else {
+              // Handle the case where the Student with the given ID doesn't exist
     }
-
+    return redirect()->back();
+}
 
     //preference
-    public function preferenceUpdate(Request $request,$personal_id)
+    public function preferenceUpdate(Request $request,)
     
-    {  
+    {         $id=$request->input('student_id');
+
+
         $validatedData = $request->validate([
             'admission_note' => 'required|string|max:255',
 
        ]);
        
-       $education = ApplicationEducation::find($personal_id);
+       $Student = Student::find($id);
+
+        if ($Student) {
+    $App_data = ApplicationEducation::where('student_id', $Student->id)->firstOrNew();
+    // You can set any additional properties for the new record here if needed.
+    $App_data->student_id = $Student->id; // For example
+
        $education->admission_note =  $validatedData['admission_note'];
 
 
-       $education->update();
-        return redirect()->back();
+       $App_data->update();
+    } else {
+              // Handle the case where the Student with the given ID doesn't exist
     }
+    return redirect()->back();
+}
 
 
 

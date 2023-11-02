@@ -1010,8 +1010,11 @@
           Language
         </a>
       </div>
-      <form class="mt-3" method="POST" action="#">
+      <form class="mt-3" method="POST" action="{{ route('agent.languageUpdate') }}">
     @csrf
+
+    <input type="hidden" name="student_id" value="{{$Student->id}}">
+
       <div id="collapseThree" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
           <label for="first_language"> <b> What is your first/main language? </b> </label>
@@ -1098,8 +1101,11 @@
           Administration
         </a>
       </div>
-      <form class="mt-3" method="POST" action="#">
+      <form class="mt-3" method="POST" action="{{ route('agent.adminstrationUpdate') }}">
     @csrf
+
+    <input type="hidden" name="student_id" value="{{$Student->id}}">
+
       <div id="collapseFour" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
           <label for="r_contact_details"><b> Referee Contact Details: (We will assume permission to contact referees unless an applicant has stated otherwise.)
@@ -1309,8 +1315,11 @@ Are you currently married? Date of Marriage:(required)
           Course Prefrences
         </a>
       </div>
-      <form class="mt-3" method="POST" action="#">
+      <form class="mt-3" method="POST" action="{{ route('agent.preferenceUpdate') }}">
     @csrf
+
+    <input type="hidden" name="student_id" value="{{$Student->id}}">
+
       <div id="collapseFive" class="collapse" data-bs-parent="#accordion">
         <div class="card-body">
             <label><b> Notes for your course selection details for administration
