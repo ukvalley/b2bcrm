@@ -14,7 +14,7 @@ use App\Models\PersonaDetail;
 use App\Models\Timezone;
 use App\Models\Currency;
 use App\Models\CountryData;
-
+use App\Models\Documents;
 use App\Models\News;
 
 use App\Models\Institution;
@@ -445,8 +445,13 @@ class ApplicationFormController extends Controller
     public function DocumentsUpload($id)
     {
         $Student = Student::find($id);
-        return view('recruiter.panel.application.Documents',compact('Student'));
+        $documentTypes = Documents::get();
+        return view('recruiter.panel.application.Documents',compact('Student','documentTypes'));
     }
+
+
+    
+
 
 
 }

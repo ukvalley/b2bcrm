@@ -97,7 +97,21 @@
 
                         </tr>
                     </tbody>
+
+                   
+
                 </table>
+                <div class="form-group">
+                        <label for="documentType">Select Document Type</label>
+                        <select id="documentType" class="form-control">
+                            @foreach($documentTypes as $documentType)
+                                <option value="{{ $documentType->id }}">{{ $documentType->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button id="addDocument" class="btn btn-primary">Add Document</button>
+
+
             </div>
                 
             </div>
@@ -432,3 +446,51 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+
+
+  <script>
+document.getElementById('addDocument').addEventListener('click', function() {
+    var documentType = document.getElementById('documentType').value;
+
+    if (documentType) {
+        var table = document.getElementById('req_doc').getElementsByTagName('tbody')[0];
+        var newRow = table.insertRow(table.rows.length);
+
+        // Add a single cell to the new row and populate it with the selected document type
+        var documentTypeCell = newRow.insertCell(0);
+        documentTypeCell.innerHTML = documentType;
+    }
+});
+
+  </script>
+  <!-- <script>
+    document.getElementById('addDocument').addEventListener('click', function() {
+    var documentType = document.getElementById('documentType').value;
+
+    if (documentType) {
+        var table = document.getElementById('req_doc').getElementsByTagName('tbody')[0];
+        var newRow = table.insertRow(table.rows.length);
+
+        // Add cells to the new row
+        var documentTypeCell = newRow.insertCell(0);
+        var documentInfoCell = newRow.insertCell(1);
+        var fileNameCell = newRow.insertCell(2);
+        var institutionCell = newRow.insertCell(3);
+        var statusCell = newRow.insertCell(4);
+        var uploadCell = newRow.insertCell(5);
+        var noteCell = newRow.insertCell(6);
+        var actionCell = newRow.insertCell(7);
+
+        // Populate the cells with the selected document type
+        documentTypeCell.innerHTML = documentType;
+        documentInfoCell.innerHTML = ''; // You can populate this based on the selected document type
+        fileNameCell.innerHTML = ''; // You can populate this based on the selected document type
+        institutionCell.innerHTML = ''; // You can populate this based on the selected document type
+        statusCell.innerHTML = ''; // You can set an initial status or leave it empty
+        uploadCell.innerHTML = ''; // You can add the upload button here
+        noteCell.innerHTML = ''; // You can populate this as needed
+        actionCell.innerHTML = ''; // You can add the action dropdown here
+    }
+});
+
+  </script> -->
