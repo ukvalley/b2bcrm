@@ -57,6 +57,12 @@ class Student extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function ApplicationEducation()
+    {
+        return $this->hasOne(ApplicationEducation::class);
+    }
+
+
     public function personaDetail()
     {
     return $this->hasOne(PersonaDetail::class);

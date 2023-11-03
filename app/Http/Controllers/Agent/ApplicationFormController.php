@@ -40,15 +40,18 @@ class ApplicationFormController extends Controller
     $App_data = ApplicationPersonal::where('student_id', $Student->id)->firstOrNew();
     // You can set any additional properties for the new record here if needed.
     $App_data->student_id = $Student->id; // For example
-
+            
             // Save the record
             $App_data->save();
+
+            $Education_data = $Student->ApplicationEducation; // Assuming a relationship is set up
+
         } else {
                   // Handle the case where the Student with the given ID doesn't exist
         }
 
         
-        return view('recruiter.panel.application.application',compact('Student','App_data'));
+        return view('recruiter.panel.application.application',compact('Student','App_data','Education_data'));
     }
      
     //basic application form
@@ -373,7 +376,7 @@ class ApplicationFormController extends Controller
          
  
        ]);
-       
+    //    print_r($validatedData );die;
        $Student = Student::find($id);
 
         if ($Student) {
@@ -381,22 +384,22 @@ class ApplicationFormController extends Controller
     // You can set any additional properties for the new record here if needed.
     $App_data->student_id = $Student->id; // For example
 
-       $education->r_contact_details =  $validatedData['r_contact_details'];
-       $education->agent_contact =  $validatedData['agent_contact'];
-       $education->contact_name =  $validatedData['contact_name'];
-       $education->contact_mobile =  $validatedData['contact_mobile'];
-       $education->contact_email =  $validatedData['contact_email'];
-       $education->passport =  $validatedData['passport'];
-       $education->passport_number =  $validatedData['passport_number'];
-       $education->visa =  $validatedData['visa'];
-       $education->visa_apply_note =  $validatedData['visa_apply_note'];
-       $education->married =  $validatedData['married'];
-       $education->citizenship =  $validatedData['citizenship'];
-       $education->app_submitted_from =  $validatedData['app_submitted_from'];
-       $education->status_in_canada =  $validatedData['status_in_canada'];
-       $education->sponcership_gov =  $validatedData['sponcership_gov'];
-       $education->receive_scholarship =  $validatedData['receive_scholarship'];
-       $education->medical_agreement =  $validatedData['medical_agreement'];
+       $App_data->r_contact_details =  $validatedData['r_contact_details'];
+       $App_data->agent_contact =  $validatedData['agent_contact'];
+       $App_data->contact_name =  $validatedData['contact_name'];
+       $App_data->contact_mobile =  $validatedData['contact_mobile'];
+       $App_data->contact_email =  $validatedData['contact_email'];
+       $App_data->passport =  $validatedData['passport'];
+       $App_data->passport_number =  $validatedData['passport_number'];
+       $App_data->visa =  $validatedData['visa'];
+       $App_data->visa_apply_note =  $validatedData['visa_apply_note'];
+       $App_data->married =  $validatedData['married'];
+       $App_data->citizenship =  $validatedData['citizenship'];
+       $App_data->app_submitted_from =  $validatedData['app_submitted_from'];
+       $App_data->status_in_canada =  $validatedData['status_in_canada'];
+       $App_data->sponcership_gov =  $validatedData['sponcership_gov'];
+       $App_data->receive_scholarship =  $validatedData['receive_scholarship'];
+       $App_data->medical_agreement =  $validatedData['medical_agreement'];
 
 
        $App_data->update();
@@ -424,7 +427,7 @@ class ApplicationFormController extends Controller
     // You can set any additional properties for the new record here if needed.
     $App_data->student_id = $Student->id; // For example
 
-       $education->admission_note =  $validatedData['admission_note'];
+       $App_data->admission_note =  $validatedData['admission_note'];
 
 
        $App_data->update();

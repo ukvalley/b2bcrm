@@ -13,6 +13,17 @@ class CreateDocumentsTable extends Migration
             $table->string('type');
             $table->timestamps();
         });
+
+
+
+
+
+
+
+        
+        
+
+
         DB::table('documents')->insert([
             ['name' => 'Transcripts & Certificates', 'type' => 'Application'],
             ['name' => 'Application Form', 'type' => 'Application'],
