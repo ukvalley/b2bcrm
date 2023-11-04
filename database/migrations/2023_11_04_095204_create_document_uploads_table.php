@@ -11,6 +11,8 @@ class CreateDocumentUploadsTable extends Migration
         Schema::create('document_uploads', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('document_type_id')->nullable();
+            $table->string('docType')->nullable();
+
             $table->string('document_info')->nullable();
             $table->string('file_name')->nullable();
             $table->string('institution')->nullable();

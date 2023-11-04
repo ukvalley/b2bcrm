@@ -113,6 +113,10 @@ Route::get('showApplicationForm/{id}', [App\Http\Controllers\Agent\ApplicationFo
 Route::get('DocumentsUpload/{id}', [App\Http\Controllers\Agent\ApplicationFormController::class,'DocumentsUpload'])->name('agent.DocumentsUpload');
 Route::post('/uploadDocument', [App\Http\Controllers\Agent\ApplicationFormController::class,'uploadDocument'])->name('agent.uploadDocument');
 
+Route::post('/updatedocument/{id}', [App\Http\Controllers\Agent\ApplicationFormController::class,'updatedocument'])->name('agent.updatedocument');
+
+Route::get('/deleteDocument/{id}', [App\Http\Controllers\Agent\ApplicationFormController::class,'deleteDocument'])->name('agent.deleteDocument');
+
 
 Route::post('personalApplicationForm', [App\Http\Controllers\Agent\ApplicationFormController::class, 'personalApplicationForm'])->name('agent.personalApplicationForm');
 

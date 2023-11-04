@@ -18,9 +18,15 @@ class DocumentsUpload extends Model
         'upload',
         'student_uid',
         'note',
+        'docType',
 
 
        
     ];
+    
+    public function documentType_id()
+{
+    return $this->belongsTo(Documents::class, 'document_type_id', 'id');
+}
 
 }

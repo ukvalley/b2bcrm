@@ -58,6 +58,7 @@
         <label for="file">Upload Document</label>
         <input type="file" id="file" name="document" class="form-control">
     </div>
+    <input type="hidden" value="{{$Student->id}}" name="student">
 
     <button type="submit" class="btn btn-primary">Upload Document</button>
 </form>
@@ -94,29 +95,37 @@
                     </thead>
                     <tbody>
                     @foreach ($documents as $document)
-                            <tr>
-                                <td>{{ $document->document_type_id }}</td>
-                                <td>{{ $document->document_info }}</td> <!-- Adjust this to your data structure -->
-                                <td>{{ $document->file_name }}</td> <!-- Adjust this to your data structure -->
-                                <td>{{ $document->institution }}</td> <!-- Adjust this to your data structure -->
-                                <td class="text-success">Uploaded</td>
-                                <td>
-                                    <a href="{{ asset($document->file_path) }}" title="View"><span class="bi bi-cloud-upload"></span></a>
-                                </td>
-                                <td>{{ $document->note }}</td> <!-- Adjust this to your data structure -->
-                                <td class="dropdown" style="position: static;">
-                                    <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span class="bi bi-three-dots"></span>
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                        <a class="dropdown-item" href="{{ asset($document->file_path) }}" download>Download</a>
-                                        <a class="dropdown-item" href="#">Delete</a>
-                                        <a class="dropdown-item" href="#">Replace Document</a>
-                                        <a class="dropdown-item" href="#">Upload Additional file</a>
-                                    </div>
-                                </td>
-                            </tr>
-                      @endforeach
+        <tr>
+            <td>{{ $document->documentType_id->name}}</td>
+            <td>{{ $document->document_info }}</td> <!-- Adjust this to your data structure -->
+            <td>{{ $document->file_name }}</td> <!-- Adjust this to your data structure -->
+            <td>{{ $document->institution }}</td> <!-- Adjust this to your data structure -->
+            <td class="text-success">{{ $document->status }}</td>
+            <td>
+    <!-- <a href="{{ asset($document->file_path) }}" title="View"><span class="bi bi-cloud-upload"></span></a> -->
+    <form action="{{ route('agent.updatedocument', $document->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="update_file" > <!-- Add the accepted file types -->
+        <button type="submit" class="btn btn-link">Update</button>
+    </form>
+</td>
+            <td>{{ $document->note }}</td> <!-- Adjust this to your data structure -->
+            <td class="dropdown" style="position: static;">
+                <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="bi bi-three-dots"></span>
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{{ asset($document->file_path) }}" download>Download</a>
+                    <a class="dropdown-item" href="{{ route('agent.deleteDocument', $document->id) }}"
+                      onclick="return confirm('Are you sure you want to delete this document?')">Delete</a>
+                    <a class="dropdown-item" href="#">Replace Document</a>
+                    <a class="dropdown-item" href="#">Upload Additional file</a>
+                </div>
+
+            </td>
+        </tr>
+    @endforeach
 
                     </tbody>
 
@@ -148,7 +157,7 @@
             <br>
             
             <div class="table-responsive collapse" id="additionalTable">
-                <table class="table" id="additional_doc">
+            <table class="table" id="req_doc">
                     <thead>
                         <tr>
                             <th>Document Type</th>
@@ -162,32 +171,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Document 1</td>
-                            <td>Info 1</td>
-                            <td>File 1.pdf</td>
-                            <td>Institution 1</td>
-                            <td class="text-success">Uploaded</td>
-                            <td>
-                                <a href="#" title="View"><span class="bi bi-cloud-upload"></span></a>
-                            </td>
-                            <td>Note 1</td>
-                           <td class="dropdown" style="position:static;">
-                                <a href="#" class=" dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="bi bi-three-dots"></span>
-                                </a>
-                                
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Download</a>
-                                    <a class="dropdown-item" href="#">Delete</a>
-                                    <a class="dropdown-item" href="#">Replace Document</a>
+                    @foreach ($documents as $document)
+        <tr>
+            <td>{{ $document->documentType_id->name}}</td>
+            <td>{{ $document->document_info }}</td> <!-- Adjust this to your data structure -->
+            <td>{{ $document->file_name }}</td> <!-- Adjust this to your data structure -->
+            <td>{{ $document->institution }}</td> <!-- Adjust this to your data structure -->
+            <td class="text-success">{{ $document->status }}</td>
+            <td>
+    <!-- <a href="{{ asset($document->file_path) }}" title="View"><span class="bi bi-cloud-upload"></span></a> -->
+    <form action="{{ route('agent.updatedocument', $document->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="update_file" > <!-- Add the accepted file types -->
+        <button type="submit" class="btn btn-link">Update</button>
+    </form>
+</td>
+            <td>{{ $document->note }}</td> <!-- Adjust this to your data structure -->
+            <td class="dropdown" style="position: static;">
+                <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="bi bi-three-dots"></span>
+                </a>
 
-                                    <a class="dropdown-item" href="#">Upload Additional file</a>
-                                </div>
-                            </td>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{{ asset($document->file_path) }}" download>Download</a>
+                    <a class="dropdown-item" href="{{ route('agent.deleteDocument', $document->id) }}"
+                      onclick="return confirm('Are you sure you want to delete this document?')">Delete</a>
+                    <a class="dropdown-item" href="#">Replace Document</a>
+                    <a class="dropdown-item" href="#">Upload Additional file</a>
+                </div>
 
-                        </tr>
+            </td>
+        </tr>
+    @endforeach
+
                     </tbody>
+
+                   
+
                 </table>
             </div>
         </div>
@@ -218,7 +238,7 @@
                     </a>
                 </div>
                 <div class="table-responsive collapse" id="acceptTable">
-                <table class="table" id="accept_doc">
+                <table class="table" id="req_doc">
                     <thead>
                         <tr>
                             <th>Document Type</th>
@@ -232,32 +252,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Document 1</td>
-                            <td>Info 1</td>
-                            <td>File 1.pdf</td>
-                            <td>Institution 1</td>
-                            <td class="text-success">Uploaded</td>
-                            <td>
-                                <a href="#" title="View"><span class="bi bi-cloud-upload"></span></a>
-                            </td>
-                            <td>Note 1</td>
-                           <td class="dropdown" style="position:static;">
-                                <a href="#" class=" dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="bi bi-three-dots"></span>
-                                </a>
-                                
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Download</a>
-                                    <a class="dropdown-item" href="#">Delete</a>
-                                    <a class="dropdown-item" href="#">Replace Document</a>
+                    @foreach ($documents as $document)
+        <tr>
+            <td>{{ $document->documentType_id->name}}</td>
+            <td>{{ $document->document_info }}</td> <!-- Adjust this to your data structure -->
+            <td>{{ $document->file_name }}</td> <!-- Adjust this to your data structure -->
+            <td>{{ $document->institution }}</td> <!-- Adjust this to your data structure -->
+            <td class="text-success">{{ $document->status }}</td>
+            <td>
+    <!-- <a href="{{ asset($document->file_path) }}" title="View"><span class="bi bi-cloud-upload"></span></a> -->
+    <form action="{{ route('agent.updatedocument', $document->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="update_file" > <!-- Add the accepted file types -->
+        <button type="submit" class="btn btn-link">Update</button>
+    </form>
+</td>
+            <td>{{ $document->note }}</td> <!-- Adjust this to your data structure -->
+            <td class="dropdown" style="position: static;">
+                <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="bi bi-three-dots"></span>
+                </a>
 
-                                    <a class="dropdown-item" href="#">Upload Additional file</a>
-                                </div>
-                            </td>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{{ asset($document->file_path) }}" download>Download</a>
+                    <a class="dropdown-item" href="{{ route('agent.deleteDocument', $document->id) }}"
+                      onclick="return confirm('Are you sure you want to delete this document?')">Delete</a>
+                    <a class="dropdown-item" href="#">Replace Document</a>
+                    <a class="dropdown-item" href="#">Upload Additional file</a>
+                </div>
 
-                        </tr>
+            </td>
+        </tr>
+    @endforeach
+
                     </tbody>
+
+                   
+
                 </table>
             </div>
             </div>
@@ -276,7 +307,7 @@
             <br>
             
             <div class="table-responsive collapse" id="add_acceptTable">
-                <table class="table" id="add_accept_doc">
+            <table class="table" id="req_doc">
                     <thead>
                         <tr>
                             <th>Document Type</th>
@@ -290,32 +321,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Document 1</td>
-                            <td>Info 1</td>
-                            <td>File 1.pdf</td>
-                            <td>Institution 1</td>
-                            <td class="text-success">Uploaded</td>
-                            <td>
-                                <a href="#" title="View"><span class="bi bi-cloud-upload"></span></a>
-                            </td>
-                            <td>Note 1</td>
-                           <td class="dropdown" style="position:static;">
-                                <a href="#" class=" dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="bi bi-three-dots"></span>
-                                </a>
-                                
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Download</a>
-                                    <a class="dropdown-item" href="#">Delete</a>
-                                    <a class="dropdown-item" href="#">Replace Document</a>
+                    @foreach ($documents as $document)
+        <tr>
+            <td>{{ $document->documentType_id->name}}</td>
+            <td>{{ $document->document_info }}</td> <!-- Adjust this to your data structure -->
+            <td>{{ $document->file_name }}</td> <!-- Adjust this to your data structure -->
+            <td>{{ $document->institution }}</td> <!-- Adjust this to your data structure -->
+            <td class="text-success">{{ $document->status }}</td>
+            <td>
+    <!-- <a href="{{ asset($document->file_path) }}" title="View"><span class="bi bi-cloud-upload"></span></a> -->
+    <form action="{{ route('agent.updatedocument', $document->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="update_file" > <!-- Add the accepted file types -->
+        <button type="submit" class="btn btn-link">Update</button>
+    </form>
+</td>
+            <td>{{ $document->note }}</td> <!-- Adjust this to your data structure -->
+            <td class="dropdown" style="position: static;">
+                <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="bi bi-three-dots"></span>
+                </a>
 
-                                    <a class="dropdown-item" href="#">Upload Additional file</a>
-                                </div>
-                            </td>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{{ asset($document->file_path) }}" download>Download</a>
+                    <a class="dropdown-item" href="{{ route('agent.deleteDocument', $document->id) }}"
+                      onclick="return confirm('Are you sure you want to delete this document?')">Delete</a>
+                    <a class="dropdown-item" href="#">Replace Document</a>
+                    <a class="dropdown-item" href="#">Upload Additional file</a>
+                </div>
 
-                        </tr>
+            </td>
+        </tr>
+    @endforeach
+
                     </tbody>
+
+                   
+
                 </table>
             </div>
         </div>
@@ -347,7 +389,7 @@
                     </a>
                 </div>
                 <div class="table-responsive collapse" id="visaTable">
-                <table class="table" id="visa_doc">
+                <table class="table" id="req_doc">
                     <thead>
                         <tr>
                             <th>Document Type</th>
@@ -361,32 +403,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Document 1</td>
-                            <td>Info 1</td>
-                            <td>File 1.pdf</td>
-                            <td>Institution 1</td>
-                            <td class="text-success">Uploaded</td>
-                            <td>
-                                <a href="#" title="View"><span class="bi bi-cloud-upload"></span></a>
-                            </td>
-                            <td>Note 1</td>
-                           <td class="dropdown" style="position:static;">
-                                <a href="#" class=" dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="bi bi-three-dots"></span>
-                                </a>
-                                
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Download</a>
-                                    <a class="dropdown-item" href="#">Delete</a>
-                                    <a class="dropdown-item" href="#">Replace Document</a>
+                    @foreach ($documents as $document)
+        <tr>
+            <td>{{ $document->documentType_id->name}}</td>
+            <td>{{ $document->document_info }}</td> <!-- Adjust this to your data structure -->
+            <td>{{ $document->file_name }}</td> <!-- Adjust this to your data structure -->
+            <td>{{ $document->institution }}</td> <!-- Adjust this to your data structure -->
+            <td class="text-success">{{ $document->status }}</td>
+            <td>
+    <!-- <a href="{{ asset($document->file_path) }}" title="View"><span class="bi bi-cloud-upload"></span></a> -->
+    <form action="{{ route('agent.updatedocument', $document->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="update_file" > <!-- Add the accepted file types -->
+        <button type="submit" class="btn btn-link">Update</button>
+    </form>
+</td>
+            <td>{{ $document->note }}</td> <!-- Adjust this to your data structure -->
+            <td class="dropdown" style="position: static;">
+                <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="bi bi-three-dots"></span>
+                </a>
 
-                                    <a class="dropdown-item" href="#">Upload Additional file</a>
-                                </div>
-                            </td>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{{ asset($document->file_path) }}" download>Download</a>
+                    <a class="dropdown-item" href="{{ route('agent.deleteDocument', $document->id) }}"
+                      onclick="return confirm('Are you sure you want to delete this document?')">Delete</a>
+                    <a class="dropdown-item" href="#">Replace Document</a>
+                    <a class="dropdown-item" href="#">Upload Additional file</a>
+                </div>
 
-                        </tr>
+            </td>
+        </tr>
+    @endforeach
+
                     </tbody>
+
+                   
+
                 </table>
             </div>
             </div>
@@ -405,7 +458,7 @@
             <br>
             
             <div class="table-responsive collapse" id="visa2Table">
-                <table class="table" id="visa2_doc">
+            <table class="table" id="req_doc">
                     <thead>
                         <tr>
                             <th>Document Type</th>
@@ -418,34 +471,44 @@
                             <th>Action</th>
                         </tr>
                     </thead>
-
                     <tbody>
-                        <tr>
-                            <td>Document 1</td>
-                            <td>Info 1</td>
-                            <td>File 1.pdf</td>
-                            <td>Institution 1</td>
-                            <td class="text-success">Uploaded</td>
-                            <td>
-                                <a href="#" title="View"><span class="bi bi-cloud-upload"></span></a>
-                            </td>
-                            <td>Note 1</td>
-                            <td class="dropdown" style="position:static;">
-                                <a href="#" class=" dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="bi bi-three-dots"></span>
-                                </a>
-                                
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item" href="#">Download</a>
-                                    <a class="dropdown-item" href="#">Delete</a>
-                                    <a class="dropdown-item" href="#">Replace Document</a>
+                    @foreach ($documents as $document)
+        <tr>
+            <td>{{ $document->documentType_id->name}}</td>
+            <td>{{ $document->document_info }}</td> <!-- Adjust this to your data structure -->
+            <td>{{ $document->file_name }}</td> <!-- Adjust this to your data structure -->
+            <td>{{ $document->institution }}</td> <!-- Adjust this to your data structure -->
+            <td class="text-success">{{ $document->status }}</td>
+            <td>
+    <!-- <a href="{{ asset($document->file_path) }}" title="View"><span class="bi bi-cloud-upload"></span></a> -->
+    <form action="{{ route('agent.updatedocument', $document->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="file" name="update_file" > <!-- Add the accepted file types -->
+        <button type="submit" class="btn btn-link">Update</button>
+    </form>
+</td>
+            <td>{{ $document->note }}</td> <!-- Adjust this to your data structure -->
+            <td class="dropdown" style="position: static;">
+                <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="bi bi-three-dots"></span>
+                </a>
 
-                                    <a class="dropdown-item" href="#">Upload Additional file</a>
-                                </div>
-                            </td>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="{{ asset($document->file_path) }}" download>Download</a>
+                    <a class="dropdown-item" href="{{ route('agent.deleteDocument', $document->id) }}"
+                      onclick="return confirm('Are you sure you want to delete this document?')">Delete</a>
+                    <a class="dropdown-item" href="#">Replace Document</a>
+                    <a class="dropdown-item" href="#">Upload Additional file</a>
+                </div>
 
-                        </tr>
+            </td>
+        </tr>
+    @endforeach
+
                     </tbody>
+
+                   
+
                 </table>
             </div>
         </div>

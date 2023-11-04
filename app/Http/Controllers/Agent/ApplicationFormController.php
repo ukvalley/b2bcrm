@@ -359,7 +359,9 @@ class ApplicationFormController extends Controller
     {
         $Student = Student::find($id);
         $documentTypes = Documents::get();
-        $documents= DocumentsUpload::where('student_uid')->get();
+        $documents = DocumentsUpload::where('student_uid', $Student->id)->with('documentType_id')->get();
+
+        // print_r($documents);die();
         return view('recruiter.panel.application.Documents',compact('Student','documentTypes','documents'));
     }
 
@@ -378,14 +380,50 @@ class ApplicationFormController extends Controller
         
         $document = new DocumentsUpload();
         $document->document_type_id = $request->input('documentType');
-    
+        $document->student_uid = $request->input('student');
+
+        $document->status = 'Uploaded';
+
         $storagePath = public_path('images/document');
-         $document->file_name = $request->file('document')->move($storagePath, $request->file('document')->getClientOriginalName());
+        $document->file_name = $request->file('document')->move($request->file('document')->getClientOriginalName());
 
         $document->save();
     
         return redirect()->back()->with('success', 'Document uploaded successfully');
     }
+
+    
+
+public function updatedocument(Request $request, $id)
+{
+    // Update the document based on the form data in $request.
+
+    $document = DocumentsUpload::find($id);
+    
+    // Add authorization and validation as needed.
+     
+    // Update document data and save it.
+       $storagePath = public_path('images/document');
+        $document->file_name = $request->file('update_file')->move($request->file('update_file')->getClientOriginalName());
+
+        $document->update();
+
+    return redirect()->back()->with('success', 'Document updated successfully');
+}
+
+public function deleteDocument($id)
+{
+    $document = DocumentsUpload::find($id);
+
+    if (!$document) {
+        return redirect()->back()->with('error', 'Document not found');
+    }
+
+    // Delete the document from the database
+    $document->delete();
+
+    return redirect()->back()->with('success', 'Document deleted successfully');
+}
 
 
 
