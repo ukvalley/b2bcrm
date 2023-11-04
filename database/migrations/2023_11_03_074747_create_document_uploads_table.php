@@ -10,13 +10,13 @@ class CreateDocumentUploadsTable extends Migration
     {
         Schema::create('document_uploads', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('document_type_id');
-            $table->string('document_info');
-            $table->string('file_name');
-            $table->string('institution');
-            $table->string('status');
-            $table->string('upload');
-            $table->string('student_uid'); // Add the "Student UID" field
+            $table->unsignedBigInteger('document_type_id')->nullable();
+            $table->string('document_info')->nullable();
+            $table->string('file_name')->nullable();
+            $table->string('institution')->nullable();
+            $table->string('status')->nullable();
+            $table->string('upload')->nullable();
+            $table->string('student_uid')->nullable(); // Add the "Student UID" field
             $table->text('note')->nullable();
             $table->timestamps();
 

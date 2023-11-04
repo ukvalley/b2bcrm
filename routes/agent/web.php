@@ -111,6 +111,8 @@ Route::get('ShortListView/{id}', [App\Http\Controllers\Agent\StudentController::
 
 Route::get('showApplicationForm/{id}', [App\Http\Controllers\Agent\ApplicationFormController::class,'showApplicationForm'])->name('agent.showApplicationForm');
 Route::get('DocumentsUpload/{id}', [App\Http\Controllers\Agent\ApplicationFormController::class,'DocumentsUpload'])->name('agent.DocumentsUpload');
+Route::post('/uploadDocument', [App\Http\Controllers\Agent\ApplicationFormController::class,'uploadDocument'])->name('agent.uploadDocument');
+
 
 Route::post('personalApplicationForm', [App\Http\Controllers\Agent\ApplicationFormController::class, 'personalApplicationForm'])->name('agent.personalApplicationForm');
 

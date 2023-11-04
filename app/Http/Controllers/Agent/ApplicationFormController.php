@@ -15,6 +15,7 @@ use App\Models\Timezone;
 use App\Models\Currency;
 use App\Models\CountryData;
 use App\Models\Documents;
+use App\Models\DocumentsUpload;
 use App\Models\News;
 
 use App\Models\Institution;
@@ -122,94 +123,6 @@ class ApplicationFormController extends Controller
     }
 
         
-
-//     public function personalApplicationFormUpdate(Request $request,)
-    
-//     {  
-
-//         // Validate the form data
-//         $validatedData = $request->validate([
-//             'title' => 'required',
-//             'fname' => 'required',
-//             'pname' => 'required',
-//             'dob' => 'required',
-//             'gender' => 'required',
-//             'nationality' => 'required',
-//             'ethnicity' => 'required',
-//             'born' => 'required',
-//             'address' => 'required',
-//             'city' => 'required',
-//             'province' => 'required',
-//             'postcode' => 'required',
-//             'current_country' => 'required',
-//             'email' => 'required',
-//             'phone' => 'required',
-//             'cell' => 'required',
-//             'number' => 'required',
-//             'semail' => 'required',
-//             'wid' => 'required',
-//             'e_address' => 'required',
-//             'lang_of_c' => 'required',
-//             'disablility' => 'required',
-   
-           
-//         ]);
-
-//         $validatedData2 = $request->validate([
-//             'title1' => 'required',
-//             'title2' => 'required',
-//             'address2' => 'required',
-           
-//         ]);
-      
-
-// // print_r($validatedData ); die();
-
-//         // Create a new user or institution profile in your database
-//     $personal = new ApplicationPersonal();
-//     $personal->title =  $validatedData['title'];
-//     $personal->fname =  $validatedData['fname'];
-//     $personal->pname =  $validatedData['pname'];
-//     $personal->dob =  $validatedData['dob'];
-//     $personal->gender =  $validatedData['gender'];
-//     $personal->nationality =  $validatedData['nationality'];
-//     $personal->ethnicity =  $validatedData['ethnicity'];
-//     $personal->born =  $validatedData['born'];
-//     $personal->address =  $validatedData['address'];
-//     $personal->city =  $validatedData['city'];
-//     $personal->province =  $validatedData['province'];
-//     $personal->postcode =  $validatedData['postcode'];
-//     $personal->current_country =  $validatedData['current_country'];
-//     $personal->email =  $validatedData['email'];
-//     $personal->phone =  $validatedData['phone'];
-//     $personal->cell =  $validatedData['cell'];
-//     $personal->number =  $validatedData['number'];
-//     $personal->semail =  $validatedData['semail'];
-//     $personal->wid =  $validatedData['wid'];
-//     $personal->lang_of_c =  $validatedData['lang_of_c'];
-//     $personal->disability =  $validatedData['disablility'];
-   
-//     // Add other user-specific fields as needed
-
-//     // Save the user
-//     $personal->save();
-
-//     $education = new ApplicationEducation();
-//     $education->personal_id =  $personal->id;
-//     $education->title1 =  $validatedData2['title1'];
-//     $education->title2 =  $validatedData2['title2'];
-//     $education->address2 =  $validatedData2['address2'];
-
-//     $education->save();
-//         // Redirect to the next step of the registration process
-//         return redirect()->back();
-//     }
-
-
-
-
-
-
 
     //education
 
@@ -446,11 +359,33 @@ class ApplicationFormController extends Controller
     {
         $Student = Student::find($id);
         $documentTypes = Documents::get();
-        return view('recruiter.panel.application.Documents',compact('Student','documentTypes'));
+        $documents= DocumentsUpload::where('student_uid')->get();
+        return view('recruiter.panel.application.Documents',compact('Student','documentTypes','documents'));
     }
 
 
+    public function uploadDocument(Request $request)
+    {
+
+        
+
+        $request->validate([
+            'documentType' => 'required',
+            'document' => 'required', 
+        ]);
+        // $selectedDocumentType = $request->input('documentType');
+        // print_r(  $selectedDocumentType );die();
+        
+        $document = new DocumentsUpload();
+        $document->document_type_id = $request->input('documentType');
     
+        $storagePath = public_path('images/document');
+         $document->file_name = $request->file('document')->move($storagePath, $request->file('document')->getClientOriginalName());
+
+        $document->save();
+    
+        return redirect()->back()->with('success', 'Document uploaded successfully');
+    }
 
 
 
