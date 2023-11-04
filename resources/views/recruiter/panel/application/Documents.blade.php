@@ -490,7 +490,7 @@
             <td>{{ $document->note }}</td> <!-- Adjust this to your data structure -->
             <td class="dropdown" style="position: static;">
                 <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="bi bi-three-dots"></span>
+                    <span class="bi bi-three-dots">open</span>
                 </a>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
