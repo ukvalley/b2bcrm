@@ -359,10 +359,23 @@ class ApplicationFormController extends Controller
     {
         $Student = Student::find($id);
         $documentTypes = Documents::get();
-        $documents = DocumentsUpload::where('student_uid', $Student->id)->with('documentType_id')->get();
+        $documentsA1 = DocumentsUpload::where('student_uid', $Student->id)->where('docType','=','A1')->with('documentType_id')->get();
+        $countA1 = $documentsA1->count();
+        $documentsA2 = DocumentsUpload::where('student_uid', $Student->id)->where('docType','=','A2')->with('documentType_id')->get();
+        $countA2 = $documentsA2->count();
+        $documentsB1 = DocumentsUpload::where('student_uid', $Student->id)->where('docType','=','B1')->with('documentType_id')->get();
+        $countB1 = $documentsB1->count();
+        $documentsB2 = DocumentsUpload::where('student_uid', $Student->id)->where('docType','=','B2')->with('documentType_id')->get();
+        $countB2 = $documentsB2->count();
+        $documentsC1 = DocumentsUpload::where('student_uid', $Student->id)->where('docType','=','C1')->with('documentType_id')->get();
+        $countC1 = $documentsC1->count();
+        $documentsC2 = DocumentsUpload::where('student_uid', $Student->id)->where('docType','=','C2')->with('documentType_id')->get();
+        $countC2 = $documentsC2->count();
+        $documentsD1 = DocumentsUpload::where('student_uid', $Student->id)->where('docType','=','D1')->with('documentType_id')->get();
+        $countD1 = $documentsD1->count();
 
         // print_r($documents);die();
-        return view('recruiter.panel.application.Documents',compact('Student','documentTypes','documents'));
+        return view('recruiter.panel.application.Documents', compact('Student', 'documentTypes', 'documentsA1', 'countA1', 'documentsA2', 'countA2', 'documentsB1', 'countB1', 'documentsB2', 'countB2', 'documentsC1', 'countC1', 'documentsC2', 'countC2'));
     }
 
 
@@ -377,16 +390,21 @@ class ApplicationFormController extends Controller
         ]);
         // $selectedDocumentType = $request->input('documentType');
         // print_r(  $selectedDocumentType );die();
+
+        
+        $docType = Documents::where('id', $request->input('documentType'))->first();
         
         $document = new DocumentsUpload();
         $document->document_type_id = $request->input('documentType');
+        $document->docType =  $docType->type;
+
         $document->student_uid = $request->input('student');
 
         $document->status = 'Uploaded';
 
         $storagePath = public_path('images/document');
         $document->file_name = $request->file('document')->move($request->file('document')->getClientOriginalName());
-
+         
         $document->save();
     
         return redirect()->back()->with('success', 'Document uploaded successfully');

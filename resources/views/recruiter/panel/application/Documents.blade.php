@@ -60,6 +60,9 @@
     </div>
     <input type="hidden" value="{{$Student->id}}" name="student">
 
+    <input type="hidden" value="{{$Student->id}}" name="student">
+
+
     <button type="submit" class="btn btn-primary">Upload Document</button>
 </form>
 
@@ -75,7 +78,7 @@
                 </div>
                 <div class="col-md-4">
                     <a href="#req_doc" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#uploadTable">
-                        Uploaded-(0)
+                        Uploaded-({{$countA1}})
                     </a>
                 </div>
                
@@ -94,7 +97,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($documents as $document)
+                    @foreach ($documentsA1 as $document)
         <tr>
             <td>{{ $document->documentType_id->name}}</td>
             <td>{{ $document->document_info }}</td> <!-- Adjust this to your data structure -->
@@ -148,7 +151,7 @@
                 </div>
                 <div class="col-md-4">
                     <a href="#additional_doc" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#additionalTable">
-                        Uploaded-(0)
+                        Uploaded-({{$countA2}})
                     </a>
                 </div>
                 
@@ -171,7 +174,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($documents as $document)
+                    @foreach ($documentsA2 as $document)
         <tr>
             <td>{{ $document->documentType_id->name}}</td>
             <td>{{ $document->document_info }}</td> <!-- Adjust this to your data structure -->
@@ -234,7 +237,7 @@
                 </div>
                 <div class="col-md-4">
                     <a href="#accept_doc" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#acceptTable">
-                        Uploaded-(0)
+                        Uploaded-({{$countB1}})
                     </a>
                 </div>
                 <div class="table-responsive collapse" id="acceptTable">
@@ -252,7 +255,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($documents as $document)
+                    @foreach ($documentsB1 as $document)
         <tr>
             <td>{{ $document->documentType_id->name}}</td>
             <td>{{ $document->document_info }}</td> <!-- Adjust this to your data structure -->
@@ -299,7 +302,7 @@
                 </div>
                 <div class="col-md-4">
                     <a href="#add_accept_doc" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#add_acceptTable">
-                        Uploaded-(0)
+                        Uploaded-({{$countB2}})
                     </a>
                 </div>
             </div>
@@ -321,7 +324,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($documents as $document)
+                    @foreach ($documentsB2 as $document)
         <tr>
             <td>{{ $document->documentType_id->name}}</td>
             <td>{{ $document->document_info }}</td> <!-- Adjust this to your data structure -->
@@ -385,7 +388,7 @@
                 </div>
                 <div class="col-md-4">
                     <a href="#visa_doc" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#visaTable">
-                        Uploaded-(0)
+                        Uploaded-({{$countC1}})
                     </a>
                 </div>
                 <div class="table-responsive collapse" id="visaTable">
@@ -403,7 +406,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($documents as $document)
+                    @foreach ($documentsC1 as $document)
         <tr>
             <td>{{ $document->documentType_id->name}}</td>
             <td>{{ $document->document_info }}</td> <!-- Adjust this to your data structure -->
@@ -450,7 +453,7 @@
                 </div>
                 <div class="col-md-4">
                     <a href="#visa2_doc" class="btn btn-default" data-bs-toggle="collapse" data-bs-target="#visa2Table">
-                        Uploaded-(0)
+                        Uploaded-({{$countC2}})
                     </a>
                 </div>
             </div>
@@ -472,7 +475,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @foreach ($documents as $document)
+                    @foreach ($documentsC2 as $document)
         <tr>
             <td>{{ $document->documentType_id->name}}</td>
             <td>{{ $document->document_info }}</td> <!-- Adjust this to your data structure -->
