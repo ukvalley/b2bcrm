@@ -193,6 +193,14 @@ public function updatePassword(Request $request)
     }
 
 
+    public function course_all()
+    {
+
+        return view('recruiter.panel.courseSearch.course_all');
+
+    }
+
+
     
 
 }

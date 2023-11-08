@@ -135,4 +135,9 @@ Route::post('preferenceUpdate', [App\Http\Controllers\Agent\ApplicationFormContr
 
 
 
+// all courses
+Route::get('/course_all', [App\Http\Controllers\Agent\AgentController::class,'course_all'])->name('agent.course_all');
+
+
+
 

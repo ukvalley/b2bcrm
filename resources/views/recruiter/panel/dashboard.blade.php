@@ -195,19 +195,24 @@ Students Commenced </span>
 
     <div class="row">
         <div style="margin: 5px;" class="col-md-4 card">
-            <div class="card-header bg-primary text-white"><i class="bi bi-book " ></i>Recently Added Institution</div>
+            <div class="card-header bg-primary text-white"><i class="bi bi-book " ></i> Recently Added Institution</div>
 
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
                     <div class="card-body">
                     <ol class="list-group list-group-numbered">
+
                         @foreach($institutions as $institution)
                         <li class="list-group-item d-flex justify-content-between align-items-start">
-                            <div class="ms-2 me-auto">
-                                <div class="fw-bold">{{ $institution->name}}</div>
+                            <div class="row ms-2 me-auto">
+                                <div class="col-3"><img  src="https://app.adventus.io/publicimages/{{$institution->logo}}" alt="Logo" style="width: 100%; padding:5px"></div>
+                                
+                                <div class="col-9">
+                                   <span class="fw-bold"> {{ $institution->name}} </span>
                                  @foreach (json_decode($institution->city) as $city)
-    {{$city}}
-@endforeach,<b>{{$institution->countries->name }}</b>
+                                {{$city}}
+                                @endforeach,<b>{{$institution->countries->name }}</b>
+                                </div>
                             </div>
                         </li>
                         @endforeach
@@ -218,20 +223,20 @@ Students Commenced </span>
         </div>
        
 
-        <div style="margin: 5px;" class="col-md-4 card bg-primary">
-            <div class="card-header"><i class="bi bi-book"></i>Platform Training and Tutorials</div>
+        <div style="margin: 5px;" class="col-md-4 card">
+            <div class="card-header"><i class="bi bi-book"></i> Platform Training and Tutorials</div>
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
                     <div class="card-body">
                     <ul class="list-group">
-  <li class="list-group-item active" aria-current="true">An active item</li>
-  <li class="list-group-item">A second Tutorials</li>
-  <li class="list-group-item">A third Tutorials</li>
- 
-  <li class="list-group-item">And a fifth Tutorials</li>
-</ul>
+                      <li class="list-group-item active" aria-current="true">An active item</li>
+                      <li class="list-group-item">A second Tutorials</li>
+                      <li class="list-group-item">A third Tutorials</li>
+                     
+                      <li class="list-group-item">And a fifth Tutorials</li>
+                    </ul>
                             
-                  </h5>
+                  
                        
                     </div>
                 </div>

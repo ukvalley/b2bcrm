@@ -6,18 +6,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.9/js/bootstrap-select.min.js"></script>
 
     
-        <div class="card">
+        <div class="card mb-3">
              <div class="card-body">
             <form method="GET">
                 @csrf
                 <div class="row">
                     <div class="col-md-12">
+
+                        <h6 class="mb-3">Search Courses</h6>
+
                         <div class="form-group">
                             <input type="text" name="search" class="form-control" placeholder="Search courses">
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label>Select Countries</label> <br>
                             <select multiple data-live-search="true"  name="country[]" class="form-control selectpicker">
                                 <option value="">Select Country</option>
                                 @foreach($countries as $country)
@@ -29,6 +33,7 @@
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
+                            <label>Select Intakes</label> <br>
                             <select multiple data-live-search="true" name="intake[]" class="selectpicker">
                                 <option value="">Select Intake</option>
                                 @foreach($batches as $batch)
@@ -46,6 +51,9 @@
             </form>
         </div>
     </div>
+
+
+    <span class="text-muted mt-3">Showing Results based on your Data.</span> 
 
 
 
@@ -71,7 +79,7 @@
                         </a>
 
 
-
+                    @if(isset($student))
                     <div class="float-end">
                        <form method="POST" action="{{ route('agent.shortlist.add') }}">
                         @csrf
@@ -87,6 +95,7 @@
                      </form>
 
                     </div>
+                    @endif
                     </div>
 
                     
@@ -95,19 +104,23 @@
 
 
 
-                    <div class="row  bg-light text-dark">
-                    <div class="col-md-3 bg-light d-flex  align-items-center">
-                        <img  src="https://app.adventus.io/publicimages/{{$course->institution->logo}}" alt="Logo" style="width: 100%; height: 60%; padding:5px">
-                    </div> 
+                    <div class="row  bg-white text-dark">
+                    <div class="col-md-3 d-flex  align-items-center">
+                        
+
+                     <div class="image-container1">
+                        <img src="https://app.adventus.io/publicimages/{{$course->institution->logo}}" alt="Your Image" class="centered-image1">
+                     </div>
+                 </div>
 
                     <div class="col-md-9">
                     <div class="card-body">
-                        <h5 class="card-title"><i class="bi bi-bank" style="margin-right: 5px;"></i> {{$course->institution->name}}</h5>
-                        <p class="card-text"><i class="bi bi-globe-americas" style="margin-right: 5px;"></i>{{$course->institution->country}}
-                        &nbsp&nbsp<i class="bi bi-clock" style="margin-right: 5px;"></i> {{$course->duration}} {{$course->duration_type}}
+                        <h5 class="card-title"><i class="bi bi-bank" style="margin: 5px;"></i> {{$course->institution->name}}</h5>
+                        <p class="card-text"><i class="bi bi-globe-americas" style="margin: 5px;"></i>{{$course->institution->Countries->name}} <br>
+                        <i class="bi bi-clock" style="margin: 5px;"></i> {{$course->duration}} {{$course->duration_type}} &nbsp&nbsp <i class="bi bi-cash" style="margin: 5px;"></i>{{$course->application_fees}} {{$course->currency}} | {{$course->fees_type}}
                     </p>
 
-                        <p class="card-text"><i class="bi bi-cash" style="margin-right: 5px;"></i>{{$course->application_fees}} {{$course->fees_type}}</p>
+                       
                     </div>
                     </div>
                     </div>

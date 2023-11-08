@@ -106,6 +106,14 @@
                             </a>
                         </li>
 
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{{route('agent.course_all')}}">
+                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-house-door"></i></div>
+                                <div class="col">Courses</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                                 aria-expanded="false">
@@ -166,7 +174,7 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
                                         <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar2"></i></div>
-                                        <div class="col">Submitted To Adventus</div>
+                                        <div class="col">Submitted To CIVS</div>
                                         <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                                     </a></li>
                                 <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
