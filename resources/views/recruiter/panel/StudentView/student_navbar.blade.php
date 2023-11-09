@@ -81,8 +81,8 @@
                         <a class="dropdown-item" href="{{route('agent.ShortListView', ['id' => $Student->id])}}">Shortlist</a>
                         <a class="dropdown-item" href="{{route('agent.showApplicationForm', ['id' => $Student->id])}}">Application form</a>
                         <a class="dropdown-item" href="{{route('agent.DocumentsUpload', ['id' => $Student->id])}}">Documents</a>
-                        <a class="dropdown-item" href="#">Review & Submit</a>
-                        <a class="dropdown-item" href="#">Visa Information</a>
+                        <a class="dropdown-item" href="{{route('agent.ReviewForm', ['id' => $Student->id])}}">Review & Submit</a>
+                        <a class="dropdown-item" href="{{route('agent.ViewVisaApplication', ['id' => $Student->id])}}">Visa Information</a>
                       </div>
                     </div>
                     

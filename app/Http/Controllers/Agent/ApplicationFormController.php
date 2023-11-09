@@ -17,6 +17,11 @@ use App\Models\CountryData;
 use App\Models\Documents;
 use App\Models\DocumentsUpload;
 use App\Models\News;
+use App\Models\ApplicationForm;
+
+
+use App\Models\Visa;
+use App\Models\Shortlist;
 
 use App\Models\Institution;
 
@@ -444,5 +449,170 @@ public function deleteDocument($id)
 }
 
 
+//Review
+
+public function ReviewForm($id)
+{
+    $Student = Student::find($id);
+
+    if ($Student) {
+$App_data = ApplicationPersonal::where('student_id', $Student->id)->firstOrNew();
+// You can set any additional properties for the new record here if needed.
+$App_data->student_id = $Student->id; // For example
+        
+        // Save the record
+        $App_data->save();
+
+        $Education_data = $Student->ApplicationEducation; // Assuming a relationship is set up
+
+        $Shortlist = Shortlist::join('courses', 'shortlists.course_id', '=', 'courses.id')
+        ->join('institutions', 'courses.institution_id', '=', 'institutions.id')
+        ->join('countries', 'institutions.country', '=', 'countries.id')
+        ->select('courses.id as course_id','courses.name as course_name','institutions.id as institution_id','institutions.name as institution_name','countries.name as country_name')
+        ->where('shortlists.student_id',$Student->id)
+        ->get();
+
+        $courseIds=Shortlist::where('student_id','=',$Student->id)->get();
+        // print_r( $courseIds);die();
+        $Documents = DocumentsUpload::where('student_uid', $Student->id)->get();
+        $ManditoryDocuments = Documents::where('manditory','=','m')->get();
+        $ManditoryCount = Documents::where('manditory','=','m')->count();
+        $SelectedCourse = ApplicationForm::where('student_id','=',$Student->id)->get();
+
+        $MandatoryCount1 = Documents::where('manditory', 'm')
+    ->join('document_uploads', 'documents.id', '=', 'document_uploads.document_type_id')
+    ->where('document_uploads.student_uid', $Student->id)
+    ->count();
+
+        // print_r($Shortlist );die();
+
+    } else {
+              // Handle the case where the Student with the given ID doesn't exist
+    }
+
+    
+    return view('recruiter.panel.application.ReviewForm',compact('Student','App_data','Education_data','SelectedCourse','Shortlist','courseIds','Documents','ManditoryDocuments','ManditoryCount','MandatoryCount1'));
+}
+
+
+public function ViewVisaApplication($id)
+{
+    $Student = Student::find($id);
+
+   
+    $Visa = Visa::where('student_id','=',$Student->id)->first();
+
+    
+    return view('recruiter.panel.application.VisaApplication',compact('Student','Visa'));
+}
+
+
+public function VisaApplicationForm(Request $request)
+{  
+    //   print_r('Migration Not Available');die();
+    // Validate the form data
+    $validatedData = $request->validate([
+        'current_visa' => 'required',
+        'current_visa_application' => 'required',
+        'criminal_activity' => 'required',
+        'old_visa' => 'required',
+        'sibling' => 'required',
+        'married' => 'required',
+        'spouse' => 'required',
+        'child' => 'required',
+        'funding' => 'required',
+        's_fund' => 'required',
+        'r_sponcer' => 'required',
+        'award' => 'required',
+        's_occupation' => 'required',
+        'visa_funding' => 'required',
+        'student_id' => 'required',
+      
+       
+    ]);
+
+  
+
+// print_r($validatedData ); die();
+
+    // Create a new user or institution profile in your database
+$visa = Visa::where('student_id','=',$request->input('student_id'))->firstOrNew();
+$visa->current_visa =  $validatedData['current_visa'];
+$visa->current_visa_application =  $validatedData['current_visa_application'];
+$visa->criminal_activity =  $validatedData['criminal_activity'];
+$visa->old_visa =  $validatedData['old_visa'];
+$visa->sibling =  $validatedData['sibling'];
+$visa->married =  $validatedData['married'];
+$visa->spouse =  $validatedData['spouse'];
+$visa->child =  $validatedData['child'];
+$visa->funding =  $validatedData['funding'];
+$visa->s_fund =  $validatedData['s_fund'];
+$visa->r_sponcer =  $validatedData['r_sponcer'];
+$visa->award =  $validatedData['award'];
+$visa->s_occupation =  $validatedData['s_occupation'];
+$visa->visa_funding =  $validatedData['visa_funding'];
+$visa->student_id =  $validatedData['student_id'];
+
+
+
+
+
+// Add other user-specific fields as needed
+
+// Save the user
+$visa->save();
+
+
+    return redirect()->back();
+}
+
+
+public function VisaUpdate(Request $request)
+    
+{   
+     $id=$request->input('student_id');
+
+   
+   $Student = Student::find($id);
+
+    if ($Student) {
+$visa = Visa::where('student_id', $Student->id)->firstOrNew();
+// You can set any additional properties for the new record here if needed.
+$visa->note =  $request->input('note');
+   $visa->update();
+} else {
+          // Handle the case where the Student with the given ID doesn't exist
+}
+return redirect()->back();
+}
+
+
+public function SubmitApplicationForm(Request $request)
+    {
+        // Validate the request data as needed
+        $request->validate([
+            'selected_courses' => 'required|array',
+            'selected_courses.*' => 'integer', // Ensure each selected course ID is an integer
+        ]);
+
+        // Get the selected course IDs from the request
+        $selectedCourseIds = $request->input('selected_courses');
+       
+        
+        // $jsonData = json_encode($selectedCourseIds); die();
+        // Insert the selected course IDs into your application form table
+        foreach ($selectedCourseIds as $courseId) {
+            // You can use your Eloquent model to insert the data
+            ApplicationForm::create([
+                'student_id' => $request->input('student_id'),
+                'course_id' => $courseId,
+                'institution_id' => $request->input('institution_id'),
+                // Other fields you need to insert
+            ]);
+        }
+
+        // Redirect or return a response as needed
+        return redirect()->back()->with('success', 'Application Submitted successfully');
+    }
 
 }
