@@ -588,31 +588,38 @@ return redirect()->back();
 
 
 public function SubmitApplicationForm(Request $request)
-    {
-        // Validate the request data as needed
-        $request->validate([
-            'selected_courses' => 'required|array',
-            'selected_courses.*' => 'integer', // Ensure each selected course ID is an integer
+{
+    // Validate the request data as needed
+    $request->validate([
+        'selected_courses' => 'required|array',
+        'selected_courses.*' => 'integer', // Ensure each selected course ID is an integer
+    ]);
+
+    // Get the selected course IDs from the request
+    $selectedCourseIds = $request->input('selected_courses');
+    
+
+    // Check if the selected courses already exist in the application form table
+    $existingCourseIds = ApplicationForm::where('student_id', $request->input('student_id'))
+        ->whereIn('course_id', $selectedCourseIds)
+        ->pluck('course_id')
+        ->toArray();
+
+    // Filter out courses that already exist in the application form
+    $newCourseIds = array_diff($selectedCourseIds, $existingCourseIds);
+
+    // Insert the selected course IDs into your application form table for new courses
+    foreach ($newCourseIds as $courseId) {
+        // You can use your Eloquent model to insert the data
+        ApplicationForm::create([
+            'student_id' => $request->input('student_id'),
+            'course_id' => $courseId,
+            'institution_id' => $request->input('institution_id'),
+            // Other fields you need to insert
         ]);
-
-        // Get the selected course IDs from the request
-        $selectedCourseIds = $request->input('selected_courses');
-       
-        
-        // $jsonData = json_encode($selectedCourseIds); die();
-        // Insert the selected course IDs into your application form table
-        foreach ($selectedCourseIds as $courseId) {
-            // You can use your Eloquent model to insert the data
-            ApplicationForm::create([
-                'student_id' => $request->input('student_id'),
-                'course_id' => $courseId,
-                'institution_id' => $request->input('institution_id'),
-                // Other fields you need to insert
-            ]);
-        }
-
-        // Redirect or return a response as needed
-        return redirect()->back()->with('success', 'Application Submitted successfully');
     }
 
+    // Redirect or return a response as needed
+    return redirect()->back()->with('success', 'Application Submitted successfully');
+}
 }

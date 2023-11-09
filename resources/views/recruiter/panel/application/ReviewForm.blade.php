@@ -74,7 +74,7 @@
                     <th>Institution</th>
                     <th>Course Title</th>
                     <th>Country</th>
-                    <th>Select</th>
+                    <!-- <th>Select</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -86,12 +86,14 @@
                     <th>{{ $course->institution_name }}</th>
                     <th>{{ $course->course_name }}</th>
                     <th>{{ $course->country_name }}</th>
-                    <th> 
-                    <input type="checkbox" name="selected_courses[]" value="{{ $course->course_id }}">
-                        <input type="hidden" name="course_id[]" value="{{ $course->course_id }}">
-                        <input type="hidden" value="{{$Student->id}}" class="form-control" id="student_id" name="student_id"
-                        />
-                        <input type="hidden" value="{{ $course->institution_id }}" class="form-control" id="institution_id" name="institution_id"/>
+                   
+                   
+                    <input type="hidden" name="selected_courses[]" value="{{ $course->course_id }}">
+            <!-- Visible checkbox for styling -->
+            <!-- <input type="checkbox" class="hidden-checkbox" checked> -->
+            <input type="hidden" value="{{$Student->id}}" class="form-control" id="student_id" name="student_id" />
+            <input type="hidden" value="{{ $course->institution_id }}" class="form-control" id="institution_id" name="institution_id" />
+            <!-- <input type="hidden" name="selected_institutions[]" value="{{ $course->institution_id }}"> -->
 
 
                     </th>
@@ -444,7 +446,7 @@
                 <li>{{$Mdocument->name}}</li>
                 @endforeach
                
-              </p>
+               </p>
               
             </div>
           </div>
@@ -578,4 +580,4 @@
 
 
 
-  
+

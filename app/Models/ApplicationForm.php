@@ -11,7 +11,7 @@ class ApplicationForm extends Model
     protected $fillable = [
         'course_id',
         'student_id',
-        'a',
+        'institution_id',
        
     ];
 }
