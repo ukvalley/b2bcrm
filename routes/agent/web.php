@@ -117,6 +117,16 @@ Route::post('/updatedocument/{id}', [App\Http\Controllers\Agent\ApplicationFormC
 
 Route::get('/deleteDocument/{id}', [App\Http\Controllers\Agent\ApplicationFormController::class,'deleteDocument'])->name('agent.deleteDocument');
 
+//review Documents
+Route::get('ReviewForm/{id}', [App\Http\Controllers\Agent\ApplicationFormController::class,'ReviewForm'])->name('agent.ReviewForm');
+
+//ViewVisaApplication
+Route::get('ViewVisaApplication/{id}', [App\Http\Controllers\Agent\ApplicationFormController::class,'ViewVisaApplication'])->name('agent.ViewVisaApplication');
+Route::post('VisaApplicationForm', [App\Http\Controllers\Agent\ApplicationFormController::class, 'VisaApplicationForm'])->name('agent.VisaApplicationForm');
+Route::post('/VisaUpdate', [App\Http\Controllers\Agent\ApplicationFormController::class,'VisaUpdate'])->name('agent.VisaUpdate');
+
+Route::post('SubmitApplicationForm', [App\Http\Controllers\Agent\ApplicationFormController::class, 'SubmitApplicationForm'])->name('agent.SubmitApplicationForm');
+
 
 Route::post('personalApplicationForm', [App\Http\Controllers\Agent\ApplicationFormController::class, 'personalApplicationForm'])->name('agent.personalApplicationForm');
 

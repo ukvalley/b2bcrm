@@ -470,7 +470,7 @@
 
 
 
-    <label for="address"> <b>Please list two emergency contacts below. (Indicate relationship and contact information for both.)</b>
+    <label for="e_address"> <b>Please list two emergency contacts below. (Indicate relationship and contact information for both.)</b>
 </label>
    <textarea class="form-control" type="text"  id="e_address" name="e_address" placeholder="Monica-monicaaf308@gmail.com- 6285173227299-agent">{{ old('e_address', $App_data->e_address ?? '') }}</textarea>
     <p> Please list details of an emergency contact: Name, Relationship, Full Address, Phone landline & Mobile, Email etc. </p>
