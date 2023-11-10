@@ -7,8 +7,16 @@ use Illuminate\Http\Request;
 use App\Models\Timezone;
 use Illuminate\Support\Facades\Storage;
 use App\Models\CountryData;
-
+use App\Models\ApplicationForm;
+use App\Models\DocumentsUpload;
+use App\Models\Documents;
+use App\Models\Shortlist;
+use App\Models\Note;
+use App\Models\Task;
+use App\Models\Timeline;
+use App\Models\Course;
 use App\Models\Institution;
+use App\Models\ApplicationPersonal;
 use Illuminate\Support\Facades\Artisan;
 use App\Models\News;
 use App\Models\Student;
@@ -30,7 +38,7 @@ class AgentController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Show t    application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
@@ -46,8 +54,7 @@ class AgentController extends Controller
        $news = News::latest('created_at')->take(6)->get();
        $youtube = CountryData::where('youtube_link','<>',null)->latest('created_at')->take(6)->get();
 
-       $application_submitted = Student::where('application_submitted','=','completed')->count();
-
+       $application_submitted = ApplicationForm::distinct('student_id')->count();
        $lodge_institution = Student::where('lodge_institution','<>','completed')->count();
 
        $offer_received = Student::where('offer_received','=','completed')->count();
@@ -57,7 +64,7 @@ class AgentController extends Controller
         $student_commenced = Student::where('student_commenced','=','completed')->count();
 
 
-       $application_not_submitted = Student::where('application_submitted','=','pending')->count();
+       $application_not_submitted = ApplicationPersonal::where('id','<>','id')->count();
 
        $lodge_not_institution = Student::where('lodge_institution','<>','pending')->count();
 
@@ -81,8 +88,7 @@ class AgentController extends Controller
        $insights['student_not_commenced'] = $student_not_commenced;
 
 
-
-        return view('recruiter.panel.dashboard', compact('institutions','insights'));
+       return view('recruiter.panel.dashboard', compact('institutions','insights'));
 
     }
 

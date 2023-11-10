@@ -5,6 +5,8 @@ use App\Http\Controllers\RecruiterRegistrationController;
 // dashboard routes
 
 Route::get('home', [App\Http\Controllers\Agent\AgentController::class, 'index'])->name('agent.home');
+Route::get('DashboardDataCount', [App\Http\Controllers\Agent\AgentController::class, 'DashboardDataCount'])->name('agent.DashboardDataCount');
+
 
 // profile routes
 

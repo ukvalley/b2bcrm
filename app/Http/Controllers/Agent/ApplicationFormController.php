@@ -500,7 +500,7 @@ public function ViewVisaApplication($id)
     $Student = Student::find($id);
 
    
-    $Visa = Visa::where('student_id','=',$Student->id)->first();
+    $Visa = Visa::where('student_id','=',$Student->id)->firstOrNew();
 
     
     return view('recruiter.panel.application.VisaApplication',compact('Student','Visa'));
@@ -622,4 +622,18 @@ public function SubmitApplicationForm(Request $request)
     // Redirect or return a response as needed
     return redirect()->back()->with('success', 'Application Submitted successfully');
 }
+
+
+
+public function DashboardDataCount()
+{
+
+   $ApplicationSubmitted=ApplicationForm::count();
+     
+
+    print_r($ApplicationSubmitted);die();
+    return view('recruiter.panel.dashboard',compact());
+}
+
+
 }
