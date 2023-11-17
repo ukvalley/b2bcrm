@@ -40,5 +40,8 @@ class Course extends Model
 {
     return $this->hasMany(CourseBatch::class);
 }
+  
+
+
    
 }

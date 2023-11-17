@@ -8,6 +8,7 @@ use Illuminate\View\Component;
 use App\Models\Course;
 use App\Models\Batch;
 use App\Models\Country;
+use App\Models\institution;
 
 
 
@@ -50,8 +51,14 @@ class CourseFilterView extends Component
     $courses = Course::query();
 
 if (isset($this->search)) {
-    $courses->where('name', 'like', "%{$this->search}%");
+    $courses = $courses->where(function ($query) {
+        $query->where('name', 'like', "%{$this->search}%")
+            ->orWhereHas('institution', function ($query) {
+                $query->where('name', 'like', "%{$this->search}%");
+            });
+    });
 }
+
 
 if (isset($this->country)) {
     $courses->whereIn('country', $this->country);

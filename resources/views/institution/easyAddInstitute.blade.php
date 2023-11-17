@@ -24,10 +24,10 @@
     <div class="col-10 col-md-8 col-lg-5 col-xl-6 mx-auto align-self-center text-center py-4">
       <div class="card">
         <div class="card-header">
-          <h1>{{ __('Institution Registration - Step 1') }}</h1>
+          <h1>{{ __('Institution + Course Registration - Simple all in One') }}</h1>
         </div>
         <div class="card-body">
-          <form method="POST" action="{{ route('institution.registration.step2') }}" class="was-validated">
+          <form method="POST" action="{{ route('easyAddInstitutePost') }}" class="was-validated">
             @csrf
             <div class="form-floating is-valid mb-3">
               <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Name" required>
@@ -47,15 +47,7 @@
               </span>
               @enderror
             </div>
-            <div class="form-floating is-valid mb-3">
-              <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" placeholder="Password" required>
-              <label for="password">{{ __('Password') }}</label>
-              @error('password')
-              <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-              </span>
-              @enderror
-            </div>
+            
             <div class="form-floating is-valid mb-3">
               <input id="phone_number" type="text" class="form-control @error('phone_number') is-invalid @enderror" name="phone_number" value="{{ old('phone_number') }}" placeholder="Phone Number" required>
               <label for="phone_number">{{ __('Phone Number') }}</label>
@@ -65,6 +57,7 @@
               </span>
               @enderror
             </div>
+
             <div class="form-floating is-valid mb-3">
                   <select class="form-control @error('country') is-invalid @enderror" name="country" id="country">
               @foreach($country as $country)
@@ -80,8 +73,9 @@
               </span>
               @enderror
             </div>
+
             <div class="form-floating is-valid mb-3">
-              <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" placeholder="City" required>
+              <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" placeholder="City" >
               <label for="city">{{ __('City') }}</label>
               @error('city')
               <span class="invalid-feedback" role="alert">
@@ -89,8 +83,9 @@
               </span>
               @enderror
             </div>
+
             <div class="form-floating is-valid mb-3">
-              <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" placeholder="Address" required>
+              <input id="address" type="text" class="form-control @error('address') is-invalid @enderror" name="address" value="{{ old('address') }}" placeholder="Address" >
               <label for="address">{{ __('Address') }}</label>
               @error('address')
               <span class="invalid-feedback" role="alert">
@@ -98,6 +93,8 @@
               </span>
               @enderror
             </div>
+
+
             <button type="submit" class="btn btn-lg btn-default w-100 mb-4 shadow">
               {{ __('Next') }}
             </button>

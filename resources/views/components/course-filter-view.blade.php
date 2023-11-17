@@ -74,7 +74,7 @@
 
                         <i class="bi bi-book" style="margin-right: 5px;"></i>
 
-                        {{$course->name}}
+                        {{$course->name}} @if($course->institution->premium == 1) |  <span class="bg-green" style="text-dark;">Premium</span> @endif
 
                         </a>
 
@@ -109,7 +109,12 @@
                         
 
                      <div class="image-container1">
+                        @if(isset($course->institution->logo))
                         <img src="https://app.adventus.io/publicimages/{{$course->institution->logo}}" alt="Your Image" class="centered-image1">
+                        @else
+                        <img src="https://cdn.vectorstock.com/i/preview-1x/82/99/no-image-available-like-missing-picture-vector-43938299.jpg" alt="Your Image" class="centered-image1">
+
+                        @endif
                      </div>
                  </div>
 

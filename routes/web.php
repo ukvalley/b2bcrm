@@ -31,6 +31,10 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 
 
+Route::get('/easyAddInstitute', [RecruiterRegistrationController::class, 'easyAddInstitute']);
+
+Route::post('/easyAddInstitutePost', [RecruiterRegistrationController::class, 'easyAddInstitutePost'])->name('easyAddInstitutePost');
+
 
 
 // routes for agent registration

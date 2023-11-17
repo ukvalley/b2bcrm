@@ -42,9 +42,9 @@
         <div class="row h-100">
             <div class="col-10 col-md-6 col-lg-5 col-xl-3 mx-auto text-center align-self-center">
                 <div class="loader-cube-wrap loader-cube-animate mx-auto">
-                    <img src="assets/img/logo.png" alt="Logo">
+                    <img src="https://civs.online/wp-content/uploads/2023/01/CIVS-White-01-1024x285.png" alt="Logo">
                 </div>
-                <p class="mt-4">It's time for track budget<br><strong>Please wait...</strong></p>
+                <p class="mt-4">Your Journey to Success<br><strong>Starts Here!</strong></p>
             </div>
         </div>
     </div>

@@ -9,6 +9,13 @@ use App\Models\Recruiter;
 use App\Models\User; // Import the Recruiter model
 use App\Models\UserType; 
 
+use App\Models\Country; 
+use App\Models\Institution; 
+use App\Models\Course; 
+
+use DB;
+
+
 class RecruiterRegistrationController extends Controller
 {
     public function step1()
@@ -155,5 +162,100 @@ class RecruiterRegistrationController extends Controller
 
         // Redirect to the next step (step 5) or complete the registration process
       //  return view('recruiter.auth.step5');
+    }
+
+
+    public function easyAddInstitute()
+    {
+        $country = Country::get();
+        return view('institution.easyAddInstitute',compact('country'));
+    }
+
+    public function easyAddInstitutePost(Request $request)
+    {
+        // Validate the data for step 2
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'email|unique:users',
+            'mobile_number' => 'string|max:15',
+            'country'=>'required',
+                    ]);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator) // Pass the validator with errors
+                ->withInput(); // Pass the old input data
+        }
+
+         DB::beginTransaction(); // Start a database transaction
+
+
+         $institution = Institution::firstOrNew(['name' => $request->input('name')]);
+
+
+                if (!$institution->exists) {
+                    // Create a new user and institution only if it doesn't exist
+                    $user = new User();
+                    $user->name = $request->input('name');
+                    // Add other user-specific fields as needed
+
+                    $user->email = $request->input('email'); // You can define this function
+                    $user->password = bcrypt($user->email);
+
+                    $user->save();
+                    $user->userType()->associate(UserType::where('name', 'Institution')->first());
+                    $user->save();
+
+                    $institution->user_id = $user->id;
+                    $institution->name = $request->input('name');
+                    $institution->email = $user->email; // Set the email from the user
+                    $institution->phone_number = $request->input('phone_number');
+                    $institution->password = $user->password;
+
+                    $institution->logo = null;
+
+                    
+
+                    $country = Country::find($request->input('country'));
+
+                    // if (!$country->exists) {
+                    //     $country->code = $validatedData['_source']['institution_country'];
+                    //     $country->save();
+                    // }
+
+
+                    $institution->country = $country->id;
+                    $institution->city = '[]';
+                    $institution->premium = 1;
+
+                    $institution->save();
+                }
+
+
+                $course = new Course();
+                $course->country = $institution->country;
+                $course->institution_id = $institution->id;
+                $course->name = $request->input('name');
+                $course->tuition_fee = 0;
+                $course->application_fees = 0;
+                $course->duration = 0;
+                $course->duration_type = null;
+                $course->summary = $request->input('name');
+                $course->currency = null;
+                $course->fees_type = null;
+                $course->attendance_pattern = null;
+                $course->attendance_pattern = null;
+                $course->level =null;
+                $course->institution_type = null;
+
+                $course->save();
+
+
+
+                DB::commit(); // Commit the transaction
+
+
+
     }
 }

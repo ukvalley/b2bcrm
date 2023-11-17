@@ -124,6 +124,8 @@ class ImportDataNew extends Command
 
                 DB::commit(); // Commit the transaction
 
+                return redirect()->back();
+
             }
 
             

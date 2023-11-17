@@ -51,6 +51,9 @@ class AgentController extends Controller
        // return view('home');
 
        $institutions = Institution::latest('created_at')->take(6)->get();
+
+       $institutions_prime = Institution::where('premium','=',1)->inRandomOrder()->take(6)->get();
+
        $news = News::latest('created_at')->take(6)->get();
        $youtube = CountryData::where('youtube_link','<>',null)->latest('created_at')->take(6)->get();
 
@@ -75,20 +78,26 @@ class AgentController extends Controller
 
        $student_not_commenced = Student::where('student_commenced','=','pending')->count();
 
+       $studentCount = Student::count();
+
+       $insights['total_student'] = $studentCount;
        $insights['application_submitted'] = $application_submitted;
+
+        $insights['application_not_submitted'] = $studentCount-$application_submitted;
+
        $insights['lodge_institution'] = $lodge_institution;
        $insights['offer_received'] = $offer_received;
        $insights['visa_granted'] = $visa_granted;
        $insights['student_commenced'] = $student_commenced;
 
-       $insights['application_not_submitted'] = $application_not_submitted;
+     //  $insights['application_not_submitted'] = $application_not_submitted;
        $insights['lodge_not_institution'] = $lodge_not_institution;
        $insights['offer_not_received'] = $offer_not_recieved;
        $insights['visa_not_granted'] = $visa_not_granted;
        $insights['student_not_commenced'] = $student_not_commenced;
 
 
-       return view('recruiter.panel.dashboard', compact('institutions','insights'));
+       return view('recruiter.panel.dashboard', compact('institutions','insights','institutions_prime'));
 
     }
 

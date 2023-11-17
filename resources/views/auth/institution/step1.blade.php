@@ -6,12 +6,12 @@
       <header class="header">
         <div class="row">
           <div class="col-auto">
-            <a href="signin.html" target="_self" class="btn btn-light btn-44">
+            <a href="{{url('/')}}/" target="_self" class="btn btn-light btn-44">
               <i class="bi bi-arrow-left"></i>
             </a>
           </div>
           <div class="col align-self-center">
-            <h5>{{ $siteName }}</h5>
+            <h5 class="text-white">{{ $siteName }}</h5>
           </div>
           <div class="col-auto">
             <a class="btn btn-light btn-44 invisible"></a>

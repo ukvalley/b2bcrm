@@ -13882,6 +13882,7 @@ a.card {
   background: radial-gradient(ellipse at 30% 30%, #c6c6c6 0%, #ffffff 50%, #c3c3c3 100%)
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='var(--fimobile-theme-color-grad-1)', endColorstr='var(--fimobile-theme-color-grad-3)',GradientType=1 );
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+  color: black;
 }
 
 

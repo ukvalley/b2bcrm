@@ -213,7 +213,13 @@ Students Commenced </span>
                         @foreach($institutions as $institution)
                         <li class="list-group-item d-flex justify-content-between align-items-start">
                             <div class="row ms-2 me-auto">
-                                <div class="col-3"><img  src="https://app.adventus.io/publicimages/{{$institution->logo}}" alt="Logo" style="width: 100%; padding:5px"></div>
+                                <div class="col-3">
+                                    @if(isset($institution->logo))
+                                    <img  src="https://app.adventus.io/publicimages/{{$institution->logo}}" alt="Logo" style="width: 100%; padding:5px">
+                                    @else
+                                    <img  src="https://cdn.vectorstock.com/i/preview-1x/82/99/no-image-available-like-missing-picture-vector-43938299.jpg" alt="Logo" style="width: 100%; padding:5px">
+                                    @endif
+                                </div>
                                 
                                 <div class="col-9">
                                    <span class="fw-bold"> {{ $institution->name}} </span>
@@ -231,25 +237,42 @@ Students Commenced </span>
         </div>
        
 
+        
+
         <div style="margin: 5px;" class="col-md-4 card">
-            <div class="card-header"><i class="bi bi-book"></i> Platform Training and Tutorials</div>
+            <div class="card-header bg-primary text-white"><i class="bi bi-book " ></i> Our Premium Partners</div>
+
             <div class="row  bg-light text-dark">
                 <div class="col-md-12">
                     <div class="card-body">
-                    <ul class="list-group">
-                      <li class="list-group-item active" aria-current="true">An active item</li>
-                      <li class="list-group-item">A second Tutorials</li>
-                      <li class="list-group-item">A third Tutorials</li>
-                     
-                      <li class="list-group-item">And a fifth Tutorials</li>
-                    </ul>
-                            
-                  
-                       
+                    <ol class="list-group list-group-numbered">
+
+                        @foreach($institutions_prime as $institutions_prime)
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="row ms-2 me-auto">
+                                <div class="col-3">
+                                    @if(isset($institutions_prime->logo))
+                                    <img  src="https://app.adventus.io/publicimages/{{$institutions_prime->logo}}" alt="Logo" style="width: 100%; padding:5px">
+                                    @else
+                                    <img  src="https://cdn.vectorstock.com/i/preview-1x/82/99/no-image-available-like-missing-picture-vector-43938299.jpg" alt="Logo" style="width: 100%; padding:5px">
+                                    @endif
+                                </div>
+                                
+                                <div class="col-9">
+                                   <span class="fw-bold"> {{ $institutions_prime->name}} </span>
+                                 
+                                </div>
+                            </div>
+                        </li>
+                        @endforeach
+                    </ol>
                     </div>
                 </div>
             </div>
         </div>
+
+
+
     </div>
 
 

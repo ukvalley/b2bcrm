@@ -619,6 +619,8 @@ public function SubmitApplicationForm(Request $request)
         ]);
     }
 
+    
+
     // Redirect or return a response as needed
     return redirect()->back()->with('success', 'Application Submitted successfully');
 }

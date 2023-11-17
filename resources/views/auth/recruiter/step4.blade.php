@@ -14,7 +14,7 @@
                         </a>
                     </div>
                     <div class="col align-self-center">
-                        <h5>Recruiter Registration - Step 4</h5>
+                        <h5 class="text-white">Recruiter Registration - Step 4</h5>
                     </div>
                     <div class="col-auto">
                         <a class="btn btn-light btn-44 invisible"></a>

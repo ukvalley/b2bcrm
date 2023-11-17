@@ -6,7 +6,7 @@
       <header class="header">
         <div class="row">
           <div class="col-auto">
-            <a href="signin.html" target="_self" class="btn btn-light btn-44">
+            <a href="{{url('/')}}/" target="_self" class="btn btn-light btn-44">
               <i class="bi bi-arrow-left"></i>
             </a>
           </div>

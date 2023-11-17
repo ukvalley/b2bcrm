@@ -8,9 +8,9 @@
             <header class="header">
                 <div class="row">
                     <div class="col-auto">
-                        <a href="{{ route('recruiter.registration.step2') }}" target="_self" class="btn btn-light btn-44">
+                       <!--  <a href="{{ route('recruiter.registration.step2') }}" target="_self" class="btn btn-light btn-44">
                             <i class="bi bi-arrow-left"></i>
-                        </a>
+                        </a> -->
                     </div>
                     <div class="col align-self-center">
                         <h5>{{$siteName}}</h5>

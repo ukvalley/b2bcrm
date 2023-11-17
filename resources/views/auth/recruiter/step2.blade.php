@@ -12,7 +12,7 @@
                         </a>
                     </div>
                     <div class="col align-self-center">
-                        <h5>{{ $siteName }}</h5>
+                        <h5 class="text-white">{{ $siteName }}</h5>
                     </div>
                     <div class="col-auto">
                         <a class="btn btn-light btn-44 invisible"></a>

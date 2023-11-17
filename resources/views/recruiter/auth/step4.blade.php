@@ -9,9 +9,9 @@
             <header class="header">
                 <div class="row">
                     <div class="col-auto">
-                        <a href="{{ route('recruiter.registration.step4') }}" target="_self" class="btn btn-light btn-44">
+                        <!-- <a href="{{ route('recruiter.registration.step4') }}" target="_self" class="btn btn-light btn-44">
                             <i class="bi bi-arrow-left"></i>
-                        </a>
+                        </a> -->
                     </div>
                     <div class="col align-self-center">
                         <h5>Recruiter Registration - Step 4</h5>
