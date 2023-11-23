@@ -14,7 +14,8 @@
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <div class="col-md-12">
-                            <h1>Edit Institution Data</h1>
+                            <h1>{{$institution->name}}</h1>
+                            <h5>Edit</h5>
                             
 </div>
 
