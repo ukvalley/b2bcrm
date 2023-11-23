@@ -65,21 +65,7 @@
               </span>
               @enderror
             </div>
-            <div class="form-floating is-valid mb-3">
-                  <select class="form-control @error('country') is-invalid @enderror" name="country" id="country">
-              @foreach($country as $country)
-                  <option value="{{ $country->id }}">{{ $country->name }}</option>
-              @endforeach
-              <label for="city">{{ __('country') }}</label>
-
-          </select>
-
-              @error('country')
-              <span class="invalid-feedback" role="alert">
-                <strong>{{ $message }}</strong>
-              </span>
-              @enderror
-            </div>
+           
             <div class="form-floating is-valid mb-3">
               <input id="city" type="text" class="form-control @error('city') is-invalid @enderror" name="city" value="{{ old('city') }}" placeholder="City" required>
               <label for="city">{{ __('City') }}</label>

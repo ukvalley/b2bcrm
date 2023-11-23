@@ -15,7 +15,7 @@ class Institution extends Model
     'user_id',
     'email',
     'phone_number',
-    'password'
+    'password','city', 'address', 'website', 'contact_person', 'contact_email', 'contact_phone', 'institution_type', 'number_of_students', 'year_founded', 'description',
     ];
 
     public function user()
