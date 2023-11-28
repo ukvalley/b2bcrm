@@ -25,9 +25,13 @@
           <h1>{{ __('Recruiter Registration') }}</h1>
         </div>
         <div class="card-body">
-          <form method="POST" action="{{ route('recruiter.registration.step2') }}" class="was-validated"> @csrf <div class="form-floating is-valid mb-3">
+          <form method="POST" action="{{ route('recruiter.registration.step2') }}" class="was-validated"> 
+            @csrf
+            <div class="form-floating is-valid mb-3">
               <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Name" required autofocus>
-              <label for="name">{{ __('Name') }}</label> @error('name') <span class="invalid-feedback" role="alert">
+              <label for="name">
+                {{ __('Name') }}
+              </label> @error('name') <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
               </span> @enderror
             </div>

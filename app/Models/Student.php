@@ -49,6 +49,7 @@ class Student extends Model
     'signup_state_province',
     'status',
     'current_status',
+    'Lead_parent',
     ];
 
 
