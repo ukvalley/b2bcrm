@@ -30,6 +30,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Action</th>
+                                <th>Action</th>
                                 <!-- Add more headers for additional columns -->
                             </tr>
                         </thead>
@@ -38,6 +39,9 @@
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->first_name }}</td>
                             <td>{{ $item->email }}</td>
+                           
+
+                            
                             <!-- Add more data columns as needed -->
                         </tr>
                         @endforeach --}}
@@ -86,9 +90,16 @@ j(document).ready(function () {
             { data: null, 
             render: function(data, type, row) {
             return '<a href="{{url('/')}}/admin/institutions/institutionView/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a>';
-            // return '<a href="{{url('/')}}/agent/StudentBasicUpdate/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a> <a href="{{url('/')}}/agent/PreviewStudents/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a>';
+            // return '<a href="{{url('/')}}/agent/StudentBasicUpdate/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a> ';
 
             } },
+
+            {
+                    data: null,
+                    render: function(data, type, row) {
+                        return '<a href="{{url('/')}}/admin/institutions/institutionEdit/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a>';
+                    }
+                }
 
             // Add more columns as needed
         ]

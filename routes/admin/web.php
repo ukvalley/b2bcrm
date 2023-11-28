@@ -24,6 +24,14 @@ Route::get('getinstitutions','App\Http\Controllers\Admin\AdminController@getinst
 Route::get('institutions/institutionView/{institution_id}', [App\Http\Controllers\Admin\AdminController::class,'institutionById'])->name('admin.institutionView');
 
 
+Route::get('institutions/institutionEdit/{institution_id}', [App\Http\Controllers\Admin\AdminController::class,'editInstitutionById'])->name('admin.institutionEdit');
+
+Route::post('institutions/updateInstitution/{institution_id}', [App\Http\Controllers\Admin\AdminController::class, 'updateInstitutionById'])->name('admin.updateInstitution');
+
+
+
+
+
 //Agents data
 Route::get('agents','App\Http\Controllers\Admin\AdminController@agents')->name('admin.agents'); //view agents page
 Route::get('getagents','App\Http\Controllers\Admin\AdminController@getagents')->name('admin.getagents'); // get all agents data

@@ -65,6 +65,7 @@ class AdminController extends Controller
 
 
     // Get the currently authenticated recruiter
+
     $recruiter = auth()->user()->recruiter;
 
      $recruiter->update([
@@ -80,15 +81,17 @@ class AdminController extends Controller
         if ($recruiter->avatar) {
             Storage::disk('public')->delete($recruiter->avatar);
         }
-
+          
         
         
             $file = $request->file('avatar');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('images/avtar'), $fileName); // Store in the root folder
+            
+
 
            
-        
+            
 
         
         $recruiter->update(['avatar' => $fileName]);
@@ -175,6 +178,43 @@ public function updatePassword(Request $request)
     {
         $institution = Institution::find($institution_id);
         return view('admin.panel.institution.view',compact('institution'));
+    }
+
+    public function editInstitutionById($institution_id)
+    {
+        $institution = Institution::find($institution_id);
+        return view('admin.panel.institution.editInstitution',compact('institution'));
+    }
+
+        public function updateInstitutionById(Request $request, $institution_id)
+        {
+
+            // dd($request->all());
+
+            // Find the institution by ID
+            $institution = Institution::findOrFail($institution_id);
+
+            // dd($institution);
+
+        
+            // Update the institution data
+            $institution->update([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'phone_number' => $request->input('phone_number'),
+                'city' => $request->input('city'),
+                'address' => $request->input('address'),
+                'website' => $request->input('website'),
+                'contact_person' => $request->input('contact_person'),
+                'contact_email' => $request->input('contact_email'),
+                'contact_phone' => $request->input('contact_phone'),
+                'institution_type' => $request->input('institution_type'),
+                'number_of_students' => $request->input('number_of_students'),
+                'year_founded' => $request->input('year_founded'),
+                'description' => $request->input('description'),
+            ]);
+     
+        return redirect()->route('admin.institutionView', ['institution_id' => $institution_id])->with('success', 'Institution updated successfully.');
     }
 
     public function getagents(Request $request)
