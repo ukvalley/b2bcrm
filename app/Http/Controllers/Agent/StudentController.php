@@ -594,4 +594,10 @@ class StudentController extends Controller
 
         return view('recruiter.panel.courseSearch.ShortList', compact('Student', 'Shortlist'));
     }
+
+   
+    
+    
+
+  
 }
