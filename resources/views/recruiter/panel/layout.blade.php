@@ -393,7 +393,7 @@
     <!-- page level custom script -->
     <script src="{{ asset('theme/js/app.js') }}"></script>
 
-
+    @yield('footerScript')
     
 </body>
 

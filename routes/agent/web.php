@@ -153,8 +153,9 @@ Route::get('/course_all', [App\Http\Controllers\Agent\AgentController::class,'co
 //message
 Route::get('message', [App\Http\Controllers\messageController::class, 'message'])->name('message');
 Route::get('message/{id}/{student_id}', [App\Http\Controllers\messageController::class, 'messageView'])->name('message_view');
-Route::get('MessageStudents/{student_id}', [App\Http\Controllers\messageController::class, 'MessageStudents'])->name('agent.MessageStudents');
+Route::post('send-message', [App\Http\Controllers\messageController::class, 'messagesend'])->name('messagesend');
 
+Route::post('fetch-messages', [App\Http\Controllers\messageController::class, 'fetchMessages'])->name('fetchMessages');
 
 
 

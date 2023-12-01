@@ -1,5 +1,6 @@
 /* Basic styling */
 .chat-container {
+    background-color:whitesmoke;
     width: 100%;
     margin: 20px auto;
     border: 1px solid #ccc;
@@ -7,11 +8,38 @@
     overflow: hidden;
 }
 
+/* Styles for chat message container */
 .chat-messages {
-    padding: 10px;
-    height: calc(100vh - 350px);
-    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
 }
+
+/* Styles for sent messages */
+.sent-message {
+    background-color: #DCF8C6;
+    padding: 8px;
+    margin: 4px 0;
+    border-radius: 10px 10px 0px 10px;
+    align-self:flex-end;
+    max-width: 70%;
+    margin-right: 10px;
+}
+
+/* Styles for received messages */
+.received-message {
+    /* background-color: #E8E8E8; */
+    background-color: #DCF8C6;
+    padding: 8px;
+    margin: 4px 0;
+    border-radius: 10px 10px 10px 0px;
+    align-self: flex-start;
+    max-width: 70%;
+    margin-left: 10px;
+}
+
+
+
+
 
 .message {
     background-color: #f1f0f0;
