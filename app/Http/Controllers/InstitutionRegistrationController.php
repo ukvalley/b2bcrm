@@ -20,40 +20,39 @@ class InstitutionRegistrationController extends Controller
     }
 
     public function step2(Request $request)
-    {
-        if ($request->isMethod('get')) {
+    { 
+        if ($request->isMethod('get')) { 
             return view('institution.auth.step2');
         }
-
+        
         // Validate the data for step 2
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:institutions,email|unique:users,email',
             'password' => 'required|min:8',
             'phone_number' => 'required|string|max:15',
-            'country' => 'required|string|max:255',
+           // 'country' => 'required|string|max:255',
             'city' => 'required|string|max:255',
             'address' => 'required|string|max:255',
             // Add other validation rules as needed
         ]);
-
+        
         // Check if validation fails
         if ($validator->fails()) {
             return redirect()->back()
                 ->withErrors($validator) // Pass the validator with errors
                 ->withInput(); // Pass the old input data
         }
-
         // Store data in session
         $request->session()->put('institution_step1_data', $request->all());
-
+        
         return view('institution.auth.step2');
     }
 
     public function step3(Request $request)
     {
         if ($request->isMethod('get')) {
-            return view('institution.auth.step3');
+            return view('institution.auth.step4');
         }
 
         // Validate the data for step 3
@@ -157,7 +156,8 @@ public function step5(Request $request)
     $institution->email = $step1Data['email'];
     $institution->password = bcrypt($step1Data['password']);
     $institution->phone_number = $step1Data['phone_number'];
-    $institution->country = $step1Data['country'];
+    // $institution->country = $step1Data['country'];
+    $institution->country = '-';
     $institution->city = $step1Data['city'];
     $institution->address = $step1Data['address'];
     $institution->website = $step2Data['website'];
