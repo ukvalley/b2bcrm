@@ -25,6 +25,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+Route::get('/check', function () {
+    return view('welcome1');
+});
+
 Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 

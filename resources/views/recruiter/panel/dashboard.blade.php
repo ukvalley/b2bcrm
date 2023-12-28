@@ -259,7 +259,7 @@
                                         </div>
 
                                         <div class="col-9">
-                                            <span class="fw-bold"> <a href="https://{{ $institutions_prime->website }}" target="_blank">{{ $institutions_prime->name}}</a> </span>
+                                            <span class="fw-bold"> <a href="https://{{$institutions_prime->website }}" target="_blank">{{ $institutions_prime->name}}</a> </span>
 
                                         </div>
                                     </div>
