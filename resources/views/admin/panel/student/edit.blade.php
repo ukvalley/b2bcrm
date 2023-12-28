@@ -21,7 +21,7 @@
 
     <div class="card-body">
 
-    <form method="POST" action="{{ route('admin.country-data.update', ['country_data' => $countryData->id]) }}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('admin.updatestudent', ['student_id' => $student->id]) }}" enctype="multipart/form-data">
         @csrf
         @method('PUT') <!-- Use the PUT method for updates -->
 
@@ -38,18 +38,48 @@
 </div>
 
         <div class="form-group">
-            <label for="country_name">Country Name</label>
-            <input type="text" name="country_name" class="form-control" value="{{ $countryData->country_name }}">
+            <label for="first_name">Student Name</label>
+            <input type="text" name="first_name" class="form-control" value="{{ $student->first_name }}">
         </div>
 
         <div class="form-group">
-            <label for="country_header_image">Country Header Image</label>
-            <input type="file" name="country_header_image" class="form-control-file">
+            <label for="date_of_birth">Date Of Birth</label>
+            <input type="text" name="date_of_birth" class="form-control" value="{{ $student->date_of_birth }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="gender">Gender</label>
+            <input type="text" name="gender" class="form-control" value="{{ $student->gender }}">
         </div>
 
         <div class="form-group">
-            <label for="youtube_link">YouTube Link</label>
-            <input type="text" name="youtube_link" class="form-control" value="{{ $countryData->youtube_link }}">
+            <label for="nationality">Nationality</label>
+            <input type="text" name="nationality" class="form-control" value="{{ $student->nationality }}">
+        </div>
+        
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" name="address" class="form-control" value="{{ $student->address }}">
+        </div>
+
+        <div class="form-group">
+            <label for="phone_number">Phone Number</label>
+            <input type="text" name="phone_number" class="form-control" value="{{ $student->phone_number }}">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" class="form-control" value="{{ $student->email }}">
+        </div>
+
+        <div class="form-group">
+            <label for="current_school">Current School</label>
+            <input type="text" name="current_school" class="form-control" value="{{ $student->current_school }}">
+        </div>
+
+        <div class="form-group">
+            <label for="field_of_study">Field of study</label>
+            <input type="text" name="field_of_study" class="form-control" value="{{ $student->field_of_study }}">
         </div>
             <button type="submit" class="btn btn-primary">Update</button>
     </form>

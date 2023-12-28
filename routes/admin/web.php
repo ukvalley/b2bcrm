@@ -16,6 +16,8 @@ Route::put('setting/{id}','App\Http\Controllers\Admin\ProjectController@update')
 Route::get('students','App\Http\Controllers\Admin\AdminController@students')->name('admin.students'); //view students page
 Route::get('getstudents','App\Http\Controllers\Admin\AdminController@getstudents')->name('admin.getStudents'); // get all students data
 Route::get('students/studentView/{student_id}', [App\Http\Controllers\Admin\AdminController::class,'studentById'])->name('admin.studentView');
+Route::get('students/studentEdit/{student_id}', [App\Http\Controllers\Admin\AdminController::class,'studentEdit'])->name('admin.studentEdit');
+Route::put('students/updatestudent/{student_id}', [App\Http\Controllers\Admin\AdminController::class,'studentupdate'])->name('admin.updatestudent');
 
 
 //Institutions data
