@@ -38,7 +38,17 @@ Route::post('institutions/updateInstitution/{institution_id}', [App\Http\Control
 Route::get('agents','App\Http\Controllers\Admin\AdminController@agents')->name('admin.agents'); //view agents page
 Route::get('getagents','App\Http\Controllers\Admin\AdminController@getagents')->name('admin.getagents'); // get all agents data
 Route::get('agents/agentView/{agent_id}', [App\Http\Controllers\Admin\AdminController::class,'agentById'])->name('admin.agentView');
+Route::get('agents/agentEdit/{agent_id}', [App\Http\Controllers\Admin\AdminController::class,'agentEdit'])->name('admin.agentEdit');
+Route::put('agents/agentUpdate/{agent_id}', [App\Http\Controllers\Admin\AdminController::class,'agentUpdate'])->name('admin.agentUpdate');
 
+//Course
+Route::get('CourseBasic',[App\Http\Controllers\Admin\CourseController::class, 'CourseBasic'])->name('admin.course_basic');
+Route::get('CourseBasic2/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasic2'])->name('admin.course_Basic2');
+Route::get('CourseBasic3/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasic3'])->name('admin.course_basic3');
+
+Route::post('CourseBasicRegistration', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicRegistration'])->name('admin.course_basic_registration');
+Route::post('CourseBasicRegistration2/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourceBasicResistration2'])->name('admin.course_basic_registration2');
+Route::post('CourseBasicRegistration3/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicRegistration3'])->name('admin.course_basic_registration3');
 
 //NEWS ROUTE
 Route::get('country-data/news', 'App\Http\Controllers\Admin\NewsController@newsindex')->name('country-data.news.index'); // List all Country Data`s News records
@@ -85,6 +95,11 @@ Route::get('message', [App\Http\Controllers\messageController::class, 'message']
 Route::get('message/{id}/{student_id}', [App\Http\Controllers\messageController::class, 'messageView'])->name('message_view');
 Route::post('send-message', [App\Http\Controllers\messageController::class, 'messagesend'])->name('messagesend');
 Route::post('fetch-messages', [App\Http\Controllers\messageController::class, 'fetchMessages'])->name('fetchMessages');
+Route::get('CourseBasicUpdate/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicUpdate'])->name('admin.CourseBasicUpdate');
+Route::get('batchesDetails/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'batchesDetails'])->name('admin.batchesDetails');
+Route::get('batchesDetail', [App\Http\Controllers\Admin\CourseController::class, 'batchesDetailsView'])->name('admin.batchesDetail');
+Route::post('CourseBasicUpdateRegistration/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicUpdateRegistration'])->name('admin.CourseBasicUpdateRegistration');
+
 
 //notification
 Route::get('notification',function(){

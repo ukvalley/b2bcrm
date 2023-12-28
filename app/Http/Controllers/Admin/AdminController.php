@@ -266,6 +266,33 @@ public function updatePassword(Request $request)
         return view('admin.panel.agent.edit',compact('agent'));
     }
 
+    public function agentUpdate(Request $request, $agent_id)
+    {
+       // dd($request->all());
+
+            // Find the institution by ID
+            $agent = Recruiter::findOrFail($agent_id);
+
+            // dd($institution);
+
+        
+            // Update the institution data
+            $agent->update([
+                
+                'company_name' => $request->input('company_name'),
+                'company_short_name' => $request->input('company_short_name'),
+                'client_id' => $request->input('client_id'),
+                'your_role' => $request->input('your_role'),
+                'country_count' => $request->input('country_count'),
+                'employee_count' => $request->input('employee_count'),
+                'students_sent_count' => $request->input('students_sent_count'),
+                'aimed_students_count' => $request->input('aimed_students_count'),
+                
+            ]);
+     
+        return redirect()->route('admin.agentView', ['agent_id' => $agent_id])->with('success', 'Agent updated successfully.'); 
+    }
+
 
 
     

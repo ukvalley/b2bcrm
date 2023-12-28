@@ -32,7 +32,7 @@
                 <div class="card-body">
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Overview</button>
+                            <button class="nav-link active" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">Edit</button>
                         </li>
                         {{-- <li class="nav-item" role="presentation">
                             <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
@@ -56,98 +56,114 @@
                             <div class="mt-3 ml-3">
                                 <h5>Agents Particulars</h5>
 
-                                <h6 class="mt-3">Company Name</h6>
-                                <div class="form-floating is-valid mb-3">
-                                    <input id="company_name" type="text" class="form-control @error('company_name') is-invalid @enderror" name="company_name" value="{{$agent->company_name}}" placeholder=" Company Name">
-                                    <label for="company_name">{{ __('Company Name') }}</label>
-                                    @error('company_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                                <form method="POST" action="{{ route('admin.agentUpdate', ['agent_id' => $agent->id]) }}" enctype="multipart/form-data">
+                                    @csrf
+                                    @method('PUT') <!-- Use the PUT method for updates -->
 
-                                <h6 class="mt-3">Company Sort Name</h6>
-                                <div class="form-floating is-valid mb-3">
-                                    <input id="company_short_name" type="text" class="form-control @error('company_short_name') is-invalid @enderror" name="company_short_name" value="{{$agent->company_short_name}}" placeholder=" Company Short Name">
-                                    <label for="company_short_name">{{ __('Company Short Name') }}</label>
-                                    @error('company_short_name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                                    <div class="validation-errors">
+                                        @if ($errors->any())
+                                        <div class="alert alert-danger">
+                                            <ul>
+                                                @foreach ($errors->all() as $error)
+                                                <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                        @endif
+                                        <h6 class="mt-3">Company Name</h6>
+                                        <div class="form-floating is-valid mb-3">
+                                            <input id="company_name" type="text" class="form-control @error('company_name') is-invalid @enderror" name="company_name" value="{{$agent->company_name}}" placeholder=" Company Name">
+                                            <label for="company_name">{{ __('Company Name') }}</label>
+                                            @error('company_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
 
-                                <h6 class="mt-3">Client Id</h6>
-                                <div class="form-floating is-valid mb-3">
-                                    <input id="client_id" type="text" class="form-control @error('client_id') is-invalid @enderror" name="client_id" value="{{$agent->client_id}}" placeholder=" Client Id">
-                                    <label for="client_id">{{ __('Client_Id') }}</label>
-                                    @error('client_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                                        <h6 class="mt-3">Company Sort Name</h6>
+                                        <div class="form-floating is-valid mb-3">
+                                            <input id="company_short_name" type="text" class="form-control @error('company_short_name') is-invalid @enderror" name="company_short_name" value="{{$agent->company_short_name}}" placeholder=" Company Short Name">
+                                            <label for="company_short_name">{{ __('Company Short Name') }}</label>
+                                            @error('company_short_name')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
 
-
-                                <h6 class="mt-3">Role</h6>
-                                <div class="form-floating is-valid mb-3">
-                                    <input id="your_role" type="text" class="form-control @error('your_role') is-invalid @enderror" name="your_role" value="{{$agent->your_role}}" placeholder="Your Role">
-                                    <label for="your_role">{{ __('Your Role') }}</label>
-                                    @error('your_role')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-
-
-                                <h6 class="mt-3">Country Count</h6>
-                                <div class="form-floating is-valid mb-3">
-                                    <input id="country_count" type="text" class="form-control @error('country_count') is-invalid @enderror" name="country_count" value="{{$agent->country_count}}" placeholder="country count">
-                                    <label for="country_count">{{ __('country count') }}</label>
-                                    @error('country_count')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                                        <h6 class="mt-3">Client Id</h6>
+                                        <div class="form-floating is-valid mb-3">
+                                            <input id="client_id" type="text" class="form-control @error('client_id') is-invalid @enderror" name="client_id" value="{{$agent->client_id}}" placeholder=" Client Id">
+                                            <label for="client_id">{{ __('Client_Id') }}</label>
+                                            @error('client_id')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
 
 
-                                <h6 class="mt-3">Employee Count</h6>
-                                <div class="form-floating is-valid mb-3">
-                                    <input id="employee_count" type="text" class="form-control @error('employee_count') is-invalid @enderror" name="employee_count" value="{{$agent->employee_count}}" placeholder="Employee Count">
-                                    <label for="employee_count">{{ __('Employee Count') }}</label>
-                                    @error('employee_count')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                
+                                        <h6 class="mt-3">Role</h6>
+                                        <div class="form-floating is-valid mb-3">
+                                            <input id="your_role" type="text" class="form-control @error('your_role') is-invalid @enderror" name="your_role" value="{{$agent->your_role}}" placeholder="Your Role">
+                                            <label for="your_role">{{ __('Your Role') }}</label>
+                                            @error('your_role')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
 
-                                <h6 class="mt-3">Students Sent Count</h6>
-                                <div class="form-floating is-valid mb-3">
-                                    <input id="students_sent_count" type="text" class="form-control @error('students_sent_count') is-invalid @enderror" name="students_sent_count" value="{{$agent->students_sent_count}}" placeholder="Students Sent Count">
-                                    <label for="students_sent_count">{{ __('Students Sent Count') }}</label>
-                                    @error('students_sent_count')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
-                                
 
-                                <h6 class="mt-3">Aimed Students Count</h6>
-                                <div class="form-floating is-valid mb-3">
-                                    <input id="aimed_students_count" type="text" class="form-control @error('aimed_students_count') is-invalid @enderror" name="aimed_students_count" value="{{$agent->aimed_students_count}}" placeholder="Aimed Students Count">
-                                    <label for="aimed_students_count">{{ __('Aimed Students Count') }}</label>
-                                    @error('aimed_students_count')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                                        <h6 class="mt-3">Country Count</h6>
+                                        <div class="form-floating is-valid mb-3">
+                                            <input id="country_count" type="text" class="form-control @error('country_count') is-invalid @enderror" name="country_count" value="{{$agent->country_count}}" placeholder="country count">
+                                            <label for="country_count">{{ __('country count') }}</label>
+                                            @error('country_count')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+
+                                        <h6 class="mt-3">Employee Count</h6>
+                                        <div class="form-floating is-valid mb-3">
+                                            <input id="employee_count" type="text" class="form-control @error('employee_count') is-invalid @enderror" name="employee_count" value="{{$agent->employee_count}}" placeholder="Employee Count">
+                                            <label for="employee_count">{{ __('Employee Count') }}</label>
+                                            @error('employee_count')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+
+                                        <h6 class="mt-3">Students Sent Count</h6>
+                                        <div class="form-floating is-valid mb-3">
+                                            <input id="students_sent_count" type="text" class="form-control @error('students_sent_count') is-invalid @enderror" name="students_sent_count" value="{{$agent->students_sent_count}}" placeholder="Students Sent Count">
+                                            <label for="students_sent_count">{{ __('Students Sent Count') }}</label>
+                                            @error('students_sent_count')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+
+                                        <h6 class="mt-3">Aimed Students Count</h6>
+                                        <div class="form-floating is-valid mb-3">
+                                            <input id="aimed_students_count" type="text" class="form-control @error('aimed_students_count') is-invalid @enderror" name="aimed_students_count" value="{{$agent->aimed_students_count}}" placeholder="Aimed Students Count">
+                                            <label for="aimed_students_count">{{ __('Aimed Students Count') }}</label>
+                                            @error('aimed_students_count')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Update</button>
+                                </form>
 
                             </div>
                         </div>
