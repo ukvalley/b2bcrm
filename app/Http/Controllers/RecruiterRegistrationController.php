@@ -226,7 +226,7 @@ class RecruiterRegistrationController extends Controller
 
 
                     $institution->country = $country->id;
-                    $institution->city = '[]';
+                    //$institution->city = '[]';
                     $institution->premium = 1;
 
                     $institution->save();

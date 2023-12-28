@@ -17,5 +17,6 @@ class ProjectSetting extends Model
         'primary_color',
         'secondary_color',
         'footer_text',
+        'youtube_link'
     ];
 }

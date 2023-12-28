@@ -12,8 +12,14 @@ class MessageController extends Controller
 {
     public function Message()
     {
-        $user_id = Auth::id();
-        $students = Student::where('Lead_parent', $user_id)->get();
+        if(Auth::user()->userType->name =='student'){
+            $user_id = Auth::id();
+            $students = Student::where('Lead_parent', $user_id)->get();
+        }
+        else{
+            $user_id = Auth::id();
+            $students = Student::all();
+        }
 
         return view('message.index', compact('students'));
     }

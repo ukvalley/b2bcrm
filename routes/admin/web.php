@@ -38,7 +38,6 @@ Route::post('institutions/updateInstitution/{institution_id}', [App\Http\Control
 Route::get('agents','App\Http\Controllers\Admin\AdminController@agents')->name('admin.agents'); //view agents page
 Route::get('getagents','App\Http\Controllers\Admin\AdminController@getagents')->name('admin.getagents'); // get all agents data
 Route::get('agents/agentView/{agent_id}', [App\Http\Controllers\Admin\AdminController::class,'agentById'])->name('admin.agentView');
-Route::get('agents/agentEdit/{agent_id}', [App\Http\Controllers\Admin\AdminController::class,'agentEdit'])->name('admin.agentEdit');
 
 
 //NEWS ROUTE
@@ -81,4 +80,13 @@ Route::delete('country-data/{id}', 'App\Http\Controllers\Admin\CountryDataContro
 
 Route::get('migrate_db', 'App\Http\Controllers\Admin\CountryDataController@migrate_db')->name('migrate_db');
 
+//messages
+Route::get('message', [App\Http\Controllers\messageController::class, 'message'])->name('message');
+Route::get('message/{id}/{student_id}', [App\Http\Controllers\messageController::class, 'messageView'])->name('message_view');
+Route::post('send-message', [App\Http\Controllers\messageController::class, 'messagesend'])->name('messagesend');
+Route::post('fetch-messages', [App\Http\Controllers\messageController::class, 'fetchMessages'])->name('fetchMessages');
 
+//notification
+Route::get('notification',function(){
+    return view('index')->name('notification');
+});
