@@ -37,8 +37,15 @@ Route::get('agents','App\Http\Controllers\Admin\AdminController@agents')->name('
 Route::get('getagents','App\Http\Controllers\Admin\AdminController@getagents')->name('admin.getagents'); // get all agents data
 Route::get('agents/agentView/{agent_id}', [App\Http\Controllers\Admin\AdminController::class,'agentById'])->name('admin.agentView');
 Route::get('agents/agentEdit/{agent_id}', [App\Http\Controllers\Admin\AdminController::class,'agentEdit'])->name('admin.agentEdit');
+Route::put('agents/agentUpdate/{agent_id}', [App\Http\Controllers\Admin\AdminController::class,'agentUpdate'])->name('admin.agentUpdate');
 
+//Course
+Route::get('CourseBasic',[App\Http\Controllers\Admin\CourseController::class, 'CourseBasic'])->name('admin.course_basic');
+Route::get('CourseBasic2/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasic2'])->name('admin.course_Basic2');
+Route::get('CourseBasic3/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasic3'])->name('institution.course_basic3');
 
+Route::post('CourseBasicRegistration', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicRegistration'])->name('admin.course_basic_registration');
+Route::post('CourseBasicRegistration2/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourceBasicResistration2'])->name('admin.course_basic_registration2');
 //NEWS ROUTE
 Route::get('country-data/news', 'App\Http\Controllers\Admin\NewsController@newsindex')->name('country-data.news.index'); // List all Country Data`s News records
 Route::get('country-data/news/{id}/edit', 'App\Http\Controllers\Admin\NewsController@newsedit')->name('country-data.news.edit'); // Display the form to edit a specific Country Data`s News record

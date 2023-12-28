@@ -223,9 +223,7 @@
 
                                         <div class="col-9">
                                             <span class="fw-bold"> {{ $institution->name}} </span>
-                                            @foreach (json_decode($institution->city) as $city)
-                                            {{$city}}
-                                            @endforeach,<b>{{$institution->countries->name }}</b>
+                                           
                                         </div>
                                     </div>
                                 </li>

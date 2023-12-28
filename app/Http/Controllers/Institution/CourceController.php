@@ -173,10 +173,8 @@ class CourceController extends Controller
         $Course->save();
 
         
-
-        return redirect()->back();
-
-
+        return redirect()->route('institution.course_Basic3', ['course_id' => $Course->id]);
+        // return redirect()->back();
             
     }
 
