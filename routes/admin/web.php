@@ -38,6 +38,7 @@ Route::post('institutions/updateInstitution/{institution_id}', [App\Http\Control
 Route::get('agents','App\Http\Controllers\Admin\AdminController@agents')->name('admin.agents'); //view agents page
 Route::get('getagents','App\Http\Controllers\Admin\AdminController@getagents')->name('admin.getagents'); // get all agents data
 Route::get('agents/agentView/{agent_id}', [App\Http\Controllers\Admin\AdminController::class,'agentById'])->name('admin.agentView');
+Route::get('agents/agentEdit/{agent_id}', [App\Http\Controllers\Admin\AdminController::class,'agentEdit'])->name('admin.agentEdit');
 
 
 //NEWS ROUTE

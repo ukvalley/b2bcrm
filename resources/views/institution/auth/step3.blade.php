@@ -49,7 +49,7 @@
             </div>
 
             <div class="form-floating is-valid mb-3">
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $institution->name) }}" placeholder="Name" required>
+                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" placeholder="Name" required>
                             <label for="name">{{ __('Name') }}</label>
                             @error('name')
                             <span class="invalid-feedback" role="alert">
@@ -59,7 +59,7 @@
                         </div>
                         
                         <div class="form-floating is-valid mb-3">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $institution->email) }}" placeholder="Email" required>
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Email" required>
                             <label for="email">{{ __('Email Address') }}</label>
                             @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -71,7 +71,7 @@
                         <!-- ... (previous form fields) ... -->
 
                         <div class="form-floating is-valid mb-3">
-                            <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Description">{{ old('description', $institution->description) }}</textarea>
+                            <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" placeholder="Description">{{ old('description') }}</textarea>
                             <label for="description">{{ __('Description') }}</label>
                             @error('description')
                             <span class="invalid-feedback" role="alert">

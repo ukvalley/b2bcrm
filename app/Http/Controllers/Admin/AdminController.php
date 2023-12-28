@@ -260,6 +260,11 @@ public function updatePassword(Request $request)
         $agent = Recruiter::find($agent_id);
         return view('admin.panel.agent.view',compact('agent'));
     }
+    public function agentEdit($agent_id)
+    {
+        $agent = Recruiter::find($agent_id);
+        return view('admin.panel.agent.edit',compact('agent'));
+    }
 
 
 
