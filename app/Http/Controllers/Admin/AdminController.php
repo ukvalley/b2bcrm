@@ -163,6 +163,33 @@ public function updatePassword(Request $request)
         return view('admin.panel.student.view',compact('student'));
     }
 
+    public function studentEdit($student_id)
+    {
+        $student = Student::find($student_id);
+        return view('admin.panel.student.edit',compact('student'));
+    }
+
+    public function studentupdate(Request $request,$student_id)
+    {
+        $student = Student::where('id',$student_id);
+
+        $data=[
+            'first_name' => $request->input('first_name'),
+            'date_of_birth' => $request->input('date_of_birth'),
+            'gender' => $request->input('gender'),
+            'nationality' => $request->input('nationality'),
+            'address' => $request->input('address'),
+            'phone_number' => $request->input('phone_number'),
+            'email' => $request->input('email'),
+            'current_school' => $request->input('current_school'),
+            'field_of_study' => $request->input('field_of_study'),
+        ];
+
+        student::where('id',$student_id)->update($data);
+        
+        return redirect()->route('admin.students', ['student_id' => $student_id])->with('success', 'Student updated successfully.');
+    }
+
     public function getinstitutions(Request $request)
     {
         $institutions = Institution::all();
