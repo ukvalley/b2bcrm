@@ -44,10 +44,12 @@ Route::put('agents/agentUpdate/{agent_id}', [App\Http\Controllers\Admin\AdminCon
 //Course
 Route::get('CourseBasic',[App\Http\Controllers\Admin\CourseController::class, 'CourseBasic'])->name('admin.course_basic');
 Route::get('CourseBasic2/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasic2'])->name('admin.course_Basic2');
-Route::get('CourseBasic3/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasic3'])->name('institution.course_basic3');
+Route::get('CourseBasic3/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasic3'])->name('admin.course_basic3');
 
 Route::post('CourseBasicRegistration', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicRegistration'])->name('admin.course_basic_registration');
 Route::post('CourseBasicRegistration2/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourceBasicResistration2'])->name('admin.course_basic_registration2');
+Route::post('CourseBasicRegistration3/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicRegistration3'])->name('admin.course_basic_registration3');
+
 //NEWS ROUTE
 Route::get('country-data/news', 'App\Http\Controllers\Admin\NewsController@newsindex')->name('country-data.news.index'); // List all Country Data`s News records
 Route::get('country-data/news/{id}/edit', 'App\Http\Controllers\Admin\NewsController@newsedit')->name('country-data.news.edit'); // Display the form to edit a specific Country Data`s News record
@@ -87,5 +89,10 @@ Route::delete('country-data/{id}', 'App\Http\Controllers\Admin\CountryDataContro
 
 
 Route::get('migrate_db', 'App\Http\Controllers\Admin\CountryDataController@migrate_db')->name('migrate_db');
+
+Route::get('CourseBasicUpdate/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicUpdate'])->name('admin.CourseBasicUpdate');
+Route::get('batchesDetails/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'batchesDetails'])->name('admin.batchesDetails');
+Route::get('batchesDetail', [App\Http\Controllers\Admin\CourseController::class, 'batchesDetailsView'])->name('admin.batchesDetail');
+Route::post('CourseBasicUpdateRegistration/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicUpdateRegistration'])->name('admin.CourseBasicUpdateRegistration');
 
 

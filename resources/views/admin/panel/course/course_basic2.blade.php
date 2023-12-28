@@ -17,7 +17,7 @@
                 <div class="card-body">
 
 
-                    <!-- @include('institution.panel.course.nav_pill_course') -->
+                    @include('admin.panel.course.nav_pill_course')
 
 
                     <h4 class="card-title"> Course Information</h4>

@@ -141,7 +141,7 @@
                       @if (Route::has('login'))
 
                       @auth
-                      <a href="{{ route('/home') }}" class="btn btn-solid btn-md font-bold btn-icon-right btn-hover-reveal whitespace-nowrap text-16 rounded-4 text-secondary bg-primary py-15 px-55 hover:text-white hover:bg-secondary animation-element" data-localscroll="true">
+                      <a href="{{ route('home') }}" class="btn btn-solid btn-md font-bold btn-icon-right btn-hover-reveal whitespace-nowrap text-16 rounded-4 text-secondary bg-primary py-15 px-55 hover:text-white hover:bg-secondary animation-element" data-localscroll="true">
                         <span class="btn-txt text-white" data-text="Get a quote">Home</span>
 
                       @else
