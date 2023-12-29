@@ -6,9 +6,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\RecruiterRegistrationController;
 use App\Http\Controllers\InstitutionRegistrationController;
-
-
-
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,6 +108,7 @@ Route::group(["prefix" => "/admin" , "middleware" => "CheckUserRole:Admin"], fun
     // ...
 });
 
-
+//notification
+Route::get('/notification', [NotificationController::class, 'index'])->name('notification');
 
 

@@ -100,8 +100,3 @@ Route::get('batchesDetails/{course_id}', [App\Http\Controllers\Admin\CourseContr
 Route::get('batchesDetail', [App\Http\Controllers\Admin\CourseController::class, 'batchesDetailsView'])->name('admin.batchesDetail');
 Route::post('CourseBasicUpdateRegistration/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicUpdateRegistration'])->name('admin.CourseBasicUpdateRegistration');
 
-
-//notification
-Route::get('notification',function(){
-    return view('index')->name('notification');
-});

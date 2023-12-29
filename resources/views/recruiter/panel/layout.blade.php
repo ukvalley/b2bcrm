@@ -156,9 +156,10 @@
                         </li> 
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('message')}}" tabindex="-1">
+                            <a class="nav-link" href="{{route('agent.message')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
-                                <div class="col">Message</div>                                
+                                <div class="col">Message</div> 
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>                               
                             </a>
                         </li>
 
