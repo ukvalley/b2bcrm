@@ -24,7 +24,20 @@
                         <div class="col mb-3">
                             <h6>Basic Information</h6>
                         </div>
-
+                        <div class="mb-3">
+                            <label for="institution" class="form-label">Institution</label>
+                            <select class="form-select @error('institution') is-invalid @enderror" id="institution" name="institution" required>
+                                <option value="">Select Institution</option>
+                                @foreach($institution as $i)
+                                <option value="{{$i->id}}">{{$i->name}}</option>
+                                @endforeach
+                            </select>
+                            @error('level')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                         <div class="mb-3">
                             <label for="full_name" class="form-label">Course Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" required>
