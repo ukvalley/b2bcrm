@@ -1,4 +1,4 @@
 @extends('recruiter.panel.layout')
 @section('content')
-<h1>hello</h1>
+<h1>Hello</h1>
 @endsection
