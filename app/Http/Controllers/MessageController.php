@@ -12,13 +12,12 @@ class MessageController extends Controller
 {
     public function Message()
     {
-        if(Auth::user()->userType->name =='Agent'){
-            $user_id = Auth::id();
-            $students = Student::where('Lead_parent', $user_id)->get();
+        if(Auth::user()->userType->name =='Admin'){            
+            $students = Student::all();
         }
         else{
             $user_id = Auth::id();
-            $students = Student::all();
+            $students = Student::where('Lead_parent', $user_id)->get();
         }
 
         return view('message.index', compact('students'));

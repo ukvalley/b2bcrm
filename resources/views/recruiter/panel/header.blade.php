@@ -12,7 +12,7 @@
                     
                 </div>
                 <div class="col-auto">
-                    <a href="{{url('/')}}/notification" target="_self" class="btn btn-light btn-44">
+                    <a href="{{url('/notification')}}" target="_self" class="btn btn-light btn-44">
                         <i class="bi bi-bell"></i>
                         <span class="count-indicator"></span>
                     </a>
