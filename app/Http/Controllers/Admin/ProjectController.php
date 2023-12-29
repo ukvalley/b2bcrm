@@ -26,12 +26,14 @@ class ProjectController extends Controller
             'site_description' => 'nullable|string|max:65535',
             'secondary_color' => 'nullable|string|max:255',
             'primary_color' => 'nullable|string|max:255',
+            'youtube_link' => 'nullable|string|max:255',
             // 'site_logo' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             // 'site_favicon' => 'sometimes|nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         // Update the existing record.
         $data = ProjectSetting::find($id);
+        
         $data->update($validatedData);
 
         if ($request->hasFile('site_logo')) {
@@ -64,6 +66,7 @@ class ProjectController extends Controller
             $data->update(['site_favicon' => '' . $faviconfileName]);
         }
 
+        
         return redirect()->route('project.show')->with('success', 'Record updated successfully.');
     }
 

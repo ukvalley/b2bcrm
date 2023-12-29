@@ -223,7 +223,7 @@
 
                                         <div class="col-9">
                                             <span class="fw-bold"> {{ $institution->name}} </span>
-                                           
+                                            
                                         </div>
                                     </div>
                                 </li>

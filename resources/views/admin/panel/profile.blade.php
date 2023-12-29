@@ -64,6 +64,11 @@
             <input type="color" name="secondary_color" class="form-control" value="{{ $data->secondary_color }}">
         </div>
 
+        <div class="form-group">
+            <label for="youtube_link">Youtube Link</label>
+            <input type="text" name="youtube_link" class="form-control" value="{{ $data->youtube_link }}">
+        </div>
+
         <button type="submit" class="btn btn-primary">Update</button>
     </form>
     

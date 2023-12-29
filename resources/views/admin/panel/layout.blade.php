@@ -159,6 +159,15 @@
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('message')}}" tabindex="-1">
+                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-paperclip"></i></div>
+                                <div class="col">Messages</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('admin.course_basic')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
@@ -172,7 +181,6 @@
                             <a class="nav-link" href="{{route('institution.course')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
                                 <div class="col">Course</div>
-                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
                         </li>
                         

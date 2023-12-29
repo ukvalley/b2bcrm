@@ -1,6 +1,9 @@
+<?php
+	$settings = DB::table('project_settings')->first();
+?>
 <!DOCTYPE html>
 <html lang="en">
-  <!-- Mirrored from hubhtml.liquid-themes.com/index-company.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 Dec 2023 11:23:17 GMT -->
+	<!-- Mirrored from hubhtml.liquid-themes.com/index-company.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 02 Dec 2023 11:23:17 GMT -->
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -169,7 +172,7 @@
                 </div>
                 <div class="w-45percent flex lg:w-full items-center p-0" data-custom-animations="true" data-ca-options="{&quot;animationTarget&quot;: &quot;.animation-element&quot;, &quot;duration&quot; : 1800 , &quot;startDelay&quot; : 1500 , &quot;delay&quot; : 100 , &quot;ease&quot;: &quot;power4.out&quot;, &quot;initValues&quot;: {&quot;scaleX&quot; : 2.05 , &quot;scaleY&quot; : 2.05 , &quot;opacity&quot; : 0} , &quot;animations&quot;: {&quot;scaleX&quot; : 1 , &quot;scaleY&quot; : 1 , &quot;opacity&quot; : 1}}">
                   <div class="w-full items-center justify-end relative flex pr-100 lg:justify-start module-btn-circle animation-element">
-                    <a href="https://www.youtube.com/watch?v=QxdxYr6CRN4&amp;ab_channel=Intapp" class="btn btn-naked top btn-icon-circle btn-icon-custom-size btn-icon-bordered btn-icon-border-thickest text-white text-15 whitespace-nowrap fresco">
+                    <a href="{{$settings->youtube_link}}" class="btn btn-naked top btn-icon-circle btn-icon-custom-size btn-icon-bordered btn-icon-border-thickest text-white text-15 whitespace-nowrap fresco">
                       <span class="btn-icon m-0 text-1/5em tracking-0 border-solid w-95 h-95 border-white">
                         <i aria-hidden="true" class="lqd-icn-ess icon-ion-ios-play"></i>
                       </span>
