@@ -8,13 +8,15 @@ use App\Models\Country;
 use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CourseBatch;
+use App\Models\Institution;
 
 class CourseController extends Controller
 {
     public function CourseBasic()
     {
         $country = Country::get();
-        return view('admin.panel.course.course_basic_profile', compact('country'));
+        $institution = Institution::get();
+        return view('admin.panel.course.course_basic_profile', compact('country', 'institution'));
     }
 
     public function  CourseBasicRegistration(Request $request)
@@ -26,6 +28,7 @@ class CourseController extends Controller
             'course_code' => 'required',
             'duration' => 'required|string|max:15',
             'country' => 'required',
+            'institution' => 'required',
         ]);
 
         // Create a new user or institution profile in your database
@@ -37,7 +40,7 @@ class CourseController extends Controller
         $course->country = $validatedData['country'];
         // Add other user-specific fields as needed
         // dd(Auth::user()->id);
-        $course->institution_id = Auth::user()->id;
+        $course->institution_id = $validatedData['institution'];
 
         // Save the user
         $course->save();
