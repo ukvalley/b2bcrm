@@ -151,7 +151,7 @@ Route::post('preferenceUpdate', [App\Http\Controllers\Agent\ApplicationFormContr
 Route::get('/course_all', [App\Http\Controllers\Agent\AgentController::class,'course_all'])->name('agent.course_all');
 
 //message
-Route::get('message', [App\Http\Controllers\messageController::class, 'message'])->name('message');
+Route::get('message', [App\Http\Controllers\messageController::class, 'message'])->name('agent.message');
 Route::get('message/{id}/{student_id}', [App\Http\Controllers\messageController::class, 'messageView'])->name('message_view');
 Route::post('send-message', [App\Http\Controllers\messageController::class, 'messagesend'])->name('messagesend');
 

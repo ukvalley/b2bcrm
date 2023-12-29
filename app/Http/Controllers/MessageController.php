@@ -12,7 +12,7 @@ class MessageController extends Controller
 {
     public function Message()
     {
-        if(Auth::user()->userType->name =='student'){
+        if(Auth::user()->userType->name =='Agent'){
             $user_id = Auth::id();
             $students = Student::where('Lead_parent', $user_id)->get();
         }
