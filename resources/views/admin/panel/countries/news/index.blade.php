@@ -36,7 +36,7 @@
                     <tr>
                         {{-- <td>{{ $country->country_name }}</td> --}}
                         <td>{{ $new->title }}</td>
-                        <td>{{ $new->content }}</td> 
+                        <td>{!! $new->content !!}</td>
                         <td>
                             {{-- <a href="{{ route('country-data.news.show', $new->id) }}" class="btn btn-info">View</a> --}}
                             <a href="{{ route('country-data.show', $new->country_id) }}" class="btn btn-info">View</a>
