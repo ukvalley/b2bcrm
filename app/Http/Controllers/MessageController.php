@@ -8,22 +8,19 @@ use App\Models\Message;
 use App\Models\Newmessage;
 use Auth;
 
+
 class MessageController extends Controller
 {
     public function Message()
     {
-<<<<<<< HEAD
-        if(Auth::user()->userType->name =='Admin'){
-            $students = Student::all();
-            
-=======
         if(Auth::user()->userType->name =='Admin'){            
             $students = Student::all();
->>>>>>> 56ce28f2b4f174080fe23ee246498725a1e16697
+            
         }
         else{
             $user_id = Auth::id();
             $students = Student::where('Lead_parent', $user_id)->get();
+            
         }
 
         return view('message.index', compact('students'));
