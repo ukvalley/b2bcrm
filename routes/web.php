@@ -115,4 +115,3 @@ Route::get('message', [App\Http\Controllers\MessageController::class, 'message']
 Route::get('message/{id}/{student_id}', [App\Http\Controllers\MessageController::class, 'messageView'])->name('message_view');
 Route::post('send-message', [App\Http\Controllers\MessageController::class, 'messagesend'])->name('messagesend');
 Route::post('fetch-messages', [App\Http\Controllers\MessageController::class, 'fetchMessages'])->name('fetchMessages');
-
