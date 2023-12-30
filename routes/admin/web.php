@@ -91,10 +91,7 @@ Route::delete('country-data/{id}', 'App\Http\Controllers\Admin\CountryDataContro
 Route::get('migrate_db', 'App\Http\Controllers\Admin\CountryDataController@migrate_db')->name('migrate_db');
 
 //messages
-Route::get('message', [App\Http\Controllers\MessageController::class, 'message'])->name('message');
-Route::get('message/{id}/{student_id}', [App\Http\Controllers\MessageController::class, 'messageView'])->name('message_view');
-Route::post('send-message', [App\Http\Controllers\MessageController::class, 'messagesend'])->name('messagesend');
-Route::post('fetch-messages', [App\Http\Controllers\MessageController::class, 'fetchMessages'])->name('fetchMessages');
+
 Route::get('CourseBasicUpdate/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicUpdate'])->name('admin.CourseBasicUpdate');
 Route::get('batchesDetails/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'batchesDetails'])->name('admin.batchesDetails');
 Route::get('batchesDetail', [App\Http\Controllers\Admin\CourseController::class, 'batchesDetailsView'])->name('admin.batchesDetail');
