@@ -13,7 +13,7 @@ $(document).ready(function () {
     } else {
         $('#btn-layout-modes-light').prop('checked', true);
         $('#btn-layout-modes-dark').prop('checked', false);
-        //html.removeClass('dark-mode');
+        html.removeClass('dark-mode');
     }
 
     $('#btn-layout-modes-light').on('click', function () {

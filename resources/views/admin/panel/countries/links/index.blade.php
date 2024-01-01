@@ -35,12 +35,14 @@
                 @foreach($links as $link)
                     <tr>
                         {{-- <td>{{ $country->country_name }}</td> --}}
-                        <td>{{ $link->title }}</td>
-                        <td>{{ $link->url }}</td> 
+                        <!-- <td>{{ $link->title }}</td> -->
+                        <td>{{ strlen($link->title) > 50 ? substr($link->title, 0, 50) . '...' : $link->title }}</td> 
+                        <td>{{ strlen($link->url) > 50 ? substr($link->url, 0, 50) . '...' : $link->url }}</td> 
+                        <!-- <td>{{ $link->url }}</td>  -->
                         <td>
                             {{-- <a href="{{ route('country-data.links.show', $link->id) }}" class="btn btn-info">View</a> --}}
                             <a href="{{ route('country-data.show', $link->country_id) }}" class="btn btn-info">View</a>
-                            <a href="{{ route('country-data.links.edit', $link->id) }}" class="btn btn-primary">Edit</a>
+                            <a href="{{ route('country-data.links.edit', $link->id) }}" class="btn btn-primary" target="_blank">Edit</a>
                             <!-- <form action="{{ route('country-data.destroy', $link->id) }}" method="POST" style="display: inline;">
                                 @csrf
                                 @method('DELETE')

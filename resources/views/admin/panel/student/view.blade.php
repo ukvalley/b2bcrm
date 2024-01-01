@@ -92,7 +92,29 @@
                                 <h6 class="mt-3">Field of study</h6>
                                 <p>{{$student->field_of_study}}</p>
                                 
+                                <h6 class="mt-3">Expected Graduation Year</h6>
+                                <p>{{$student->expected_graduation_year}}</p>
 
+                                <h6 class="mt-3">Academic Interest</h6>
+                                <p>{{$student->academic_interests}}</p>
+
+                                <h6 class="mt-3">GPA</h6>
+                                <p>{{$student->gpa}}</p>
+
+                                <h6 class="mt-3">Language Spoken</h6>
+                                <p>{{$student->languages_spoken}}</p>
+
+                                <h6 class="mt-3">Language Proficiency Levels</h6>
+                                <p>{{$student->language_proficiency_levels}}</p>
+
+                                <h6 class="mt-3">Test Scores</h6>
+                                <p>{{$student->test_scores}}</p>
+
+                                <h6 class="mt-3">test Dates</h6>
+                                <p>{{$student->test_dates}}</p>
+
+                                <h6 class="mt-3">Leadership Role</h6>
+                                <p>{{$student->leadership_roles}}</p>
                             </div>
                         </div>
 

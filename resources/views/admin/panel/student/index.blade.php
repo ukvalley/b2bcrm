@@ -29,7 +29,7 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Action</th>
+                               
                                 <!-- Add more headers for additional columns -->
                             </tr>
                         </thead>
@@ -82,6 +82,7 @@ j(document).ready(function () {
             { data: 'id', name: 'id' },
             { data: 'first_name', name: 'first_name' },
             { data: 'email', name: 'email' },
+           
 
             { data: null, 
             render: function(data, type, row) {

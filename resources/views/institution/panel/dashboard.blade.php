@@ -30,11 +30,11 @@
                 <div class="col-12">
                     <div class="card shadow-sm">
                         <div class="card-body">
-                            <div class="form-check form-switch">
+                            <!-- <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" id="darkmodeswitch">
                                 <label class="form-check-label text-muted px-2 " for="darkmodeswitch">Activate Dark
                                     Mode</label>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

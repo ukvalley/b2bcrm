@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en" class="h-100">
 
@@ -15,9 +14,9 @@
     <link rel="manifest" href="manifest.json" />
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="{{ asset('theme/img/favicon180.png') }}" sizes="180x180">
-    <link rel="icon" href="{{ asset('theme/img/favicon32.png') }}" sizes="32x32" type="image/png">
-    <link rel="icon" href="{{ asset('theme/img/favicon16.png') }}" sizes="16x16" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/projects/site_favicon/') }}/{{$siteFavicon}}" sizes="180x180">
+    <link rel="icon" href="{{ asset('images/projects/site_favicon/') }}/{{$siteFavicon}}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{{ asset('images/projects/site_favicon/') }}/{{$siteFavicon}}" sizes="16x16" type="image/png" alt="{{$siteLogo}}">
 
     <!-- Google fonts-->
 
@@ -26,16 +25,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- bootstrap icons -->
-    
+
 
     <!-- style css for this template -->
 
 
-         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-    
+
     <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet" id="style">
     <link href="{{ asset('theme/vendor/swiperjs-6.6.2/swiper-bundle.min.css') }}" rel="stylesheet" id="style">
 
@@ -53,7 +52,7 @@
         <div class="row h-100">
             <div class="col-10 col-md-6 col-lg-5 col-xl-3 mx-auto text-center align-self-center">
                 <div class="loader-cube-wrap loader-cube-animate mx-auto">
-                    <img src="https://civs.online/wp-content/uploads/2023/01/CIVS-White-01-1024x285.png" alt="Logo">
+                    <img src="{{ asset('images/projects/logo/') }}/{{$siteLogo}}" alt="Logo">
                 </div>
                 <p class="mt-4">Your Journey to Success<br><strong>Starts from Here!</strong></p>
             </div>
@@ -62,7 +61,7 @@
     <!-- loader section ends -->
 
 
-     <!-- Sidebar main menu -->
+    <!-- Sidebar main menu -->
     <div class="sidebar-wrap  sidebar-pushcontent">
         <!-- Add overlay or fullmenu instead overlay -->
         <div class="closemenu text-muted">Close Menu</div>
@@ -89,7 +88,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -98,6 +97,21 @@
             <div class="row">
                 <div class="col-12">
                     <ul class="nav nav-pills">
+                        <li class="nav-item">
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <div class="card shadow-sm">
+                                        <div class="card-body">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="darkmodeswitch">
+                                                <label class="form-check-label text-muted px-2 " for="darkmodeswitch">Activate Dark
+                                                    Mode</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{route('admin.home')}}">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-house-door"></i></div>
@@ -113,7 +127,7 @@
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('country-data.index')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-globe"></i></div>
@@ -183,7 +197,7 @@
                                 <div class="col">Course</div>
                             </a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-box-arrow-right"></i></div>
@@ -199,15 +213,15 @@
     <!-- Sidebar main menu ends -->
 
 
-         @include('admin.panel.header')
+    @include('admin.panel.header')
 
-        @yield('content')
-
-
+    @yield('content')
 
 
-        <!-- Footer -->
-   <!--  <footer class="footer">
+
+
+    <!-- Footer -->
+    <!--  <footer class="footer">
         <div class="container">
             <ul class="nav nav-pills nav-justified">
                 <li class="nav-item">
@@ -301,46 +315,19 @@
 
 
 
-    <script>
-    // Get all elements with the "nav-link" class
-    const navLinks = document.querySelectorAll('.nav-item');
-
-    // Add click event listeners to each nav link
-    navLinks.forEach(navLink => {
-        navLink.addEventListener('click', function (event) {
-            // Check if the clicked nav link has a dropdown-menu
-            console.log('hi');
-            const dropdownMenu = navLink.querySelector('.dropdown-menu');
-            
-            if (dropdownMenu) {
-                // Toggle the "show" class for the dropdown-menu
-                dropdownMenu.classList.toggle('show');
-            }
-        });
-    });
-
-    // Close the menu when clicking on the "Close Menu" button
-    const closeMenuButton = document.querySelector('.closemenu');
-    closeMenuButton.addEventListener('click', function () {
-        // Find all dropdown menus and hide them
-        const dropdownMenus = document.querySelectorAll('.dropdown-menu');
-        dropdownMenus.forEach(dropdownMenu => {
-            dropdownMenu.classList.remove('show');
-        });
-    });
-</script>
+    
 
 
 
     <!-- Required jquery and libraries -->
-    
+
     <script src="{{ asset('theme/js/jquery-3.3.1.min.js') }}"></script>
 
     <script src="{{ asset('theme/js/popper.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/bootstrap-5/js/bootstrap.bundle.min.js') }}"></script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!-- cookie js -->
     <script src="{{ asset('theme/js/jquery.cookie.js') }}"></script>
@@ -356,6 +343,34 @@
 
     <!-- page level custom script -->
     <script src="{{ asset('theme/js/app.js') }}"></script>
+    <script>
+        // Get all elements with the "nav-link" class
+        const navLinks = document.querySelectorAll('.nav-item');
+
+        // Add click event listeners to each nav link
+        navLinks.forEach(navLink => {
+            navLink.addEventListener('click', function(event) {
+                // Check if the clicked nav link has a dropdown-menu
+                console.log('hi');
+                const dropdownMenu = navLink.querySelector('.dropdown-menu');
+
+                if (dropdownMenu) {
+                    // Toggle the "show" class for the dropdown-menu
+                    dropdownMenu.classList.toggle('show');
+                }
+            });
+        });
+
+        // Close the menu when clicking on the "Close Menu" button
+        const closeMenuButton = document.querySelector('.closemenu');
+        closeMenuButton.addEventListener('click', function() {
+            // Find all dropdown menus and hide them
+            const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+            dropdownMenus.forEach(dropdownMenu => {
+                dropdownMenu.classList.remove('show');
+            });
+        });
+    </script>
 </body>
 
 </html>
