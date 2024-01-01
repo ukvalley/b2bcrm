@@ -6,23 +6,21 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Message;
 use App\Models\Newmessage;
-use App\Models\User;
 use Auth;
+
 
 class MessageController extends Controller
 {
     public function Message()
     {
-        if(Auth::user()->userType->name =='Admin'){
+        if(Auth::user()->userType->name =='Admin'){            
             $students = Student::all();
             
         }
         else{
             $user_id = Auth::id();
-            $students = Student::where('Lead_parent', $user_id)->select('first_name', 'user_id', 'id')->get();
-            $admin = User::where('user_type_id', 4)->select('name as first_name', 'id as user_id', 'id')->get();
-            $combinedData = $students->concat($admin);
-            $students = $combinedData;
+            $students = Student::where('Lead_parent', $user_id)->get();
+            
         }
 
         return view('message.index', compact('students'));

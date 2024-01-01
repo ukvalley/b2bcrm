@@ -90,7 +90,6 @@ Route::delete('country-data/{id}', 'App\Http\Controllers\Admin\CountryDataContro
 
 Route::get('migrate_db', 'App\Http\Controllers\Admin\CountryDataController@migrate_db')->name('migrate_db');
 
-//messages
 
 Route::get('CourseBasicUpdate/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicUpdate'])->name('admin.CourseBasicUpdate');
 Route::get('batchesDetails/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'batchesDetails'])->name('admin.batchesDetails');
