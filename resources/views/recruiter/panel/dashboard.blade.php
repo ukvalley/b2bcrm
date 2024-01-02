@@ -25,7 +25,7 @@
 
         </div>
 
-        <div class="col"><a href="{{route('agent.student_basic')}}"><button class="btn btn-primary float-end">Add Student</button></div>
+        <!-- <div class="col"><a href="{{route('agent.student_basic')}}"><button class="btn btn-primary float-end">Add Student</button></div> -->
     </div>
 
 
@@ -37,7 +37,7 @@
 
 
             <!--  -->
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
                 <div class="card bg-light mb-3" style="max-width: 18rem;">
                     <div class="card-header " style="background: #d5d5d5; "> <img src="{{url('/')}}/theme/icons/contact-form.png" style="width: 20%;" alt="">
                         <strong>{{$insights['application_submitted']}}</strong> <span style="font-size: 11px;">Application Submitted </span>
@@ -60,25 +60,26 @@
 
                 </div>
 
-            </div>
+            </div> -->
             <!--  -->
             <div class="col-md-3">
                 <div class="card bg-light mb-3" style="max-width: 18rem;">
                     <div class="card-header " style="background: #d5d5d5; "> <img src="{{url('/')}}/theme/icons/institution.png" style="width: 20%;" alt="">
-                        <strong>{{$insights['lodge_institution']}}</strong> <span style="font-size: 11px;">Lodged with institutions </span>
+                        <!-- <strong>{{$insights['lodge_institution']}}</strong> <span style="font-size: 11px;">Lodged with institutions </span> -->
+                        <span style="font-size: 11px;">Institutes </span>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-
-                                <h5 class="card-title">{{$insights['lodge_not_institution']}}</h5>
+                            <h5 class="card-title">{{ $totalInstitutions }}</h5>
+                                <!-- <h5 class="card-title">{{$insights['lodge_not_institution']}}</h5> -->
                             </div>
                             <div class="col-7">
-
-                                <p class="card-text" style="font-size: 11px;">Missing info or documents</p>
+                            <p class="card-text" style="font-size: 11px;">Total Institutes</p>
+                                <!-- <p class="card-text" style="font-size: 11px;">Missing info or documents</p> -->
                             </div>
                             <div class="col-5">
-                                <a href="" class="btn btn-default btn-sm" style="font-size:10px;">Add now</a>
+                                <!-- <a href="" class="btn btn-default btn-sm" style="font-size:10px;">Add now</a> -->
                             </div>
                         </div>
                     </div>
@@ -89,20 +90,21 @@
             <div class="col-md-3">
                 <div class="card bg-light mb-3" style="max-width: 18rem;">
                     <div class="card-header " style="background: #d5d5d5; "> <img src="{{url('/')}}/theme/icons/contract.png" style="width: 20%;" alt="">
-                        <strong>{{$insights['offer_received']}}</strong> <span style="font-size: 11px;">Offer received </span>
+                        <!-- <strong>{{$insights['offer_received']}}</strong> <span style="font-size: 11px;">Offer received </span> -->
+                        <span style="font-size: 11px;">Cources </span>
                     </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-
-                                <h5 class="card-title">{{$insights['offer_not_received']}}</h5>
+                            <h5 class="card-title">{{ $totalCourses }}</h5>
+                                <!-- <h5 class="card-title">{{$insights['offer_not_received']}}</h5> -->
                             </div>
                             <div class="col-6">
-
-                                <p class="card-text" style="font-size: 11px;">Offers not yet accepted</p>
+                            <p class="card-text" style="font-size: 11px;">Total Cources</p>
+                                <!-- <p class="card-text" style="font-size: 11px;">Offers not yet accepted</p> -->
                             </div>
                             <div class="col-6">
-                                <a href="" class="btn btn-default btn-sm" style="font-size:10px;">Accept now</a>
+                                <!-- <a href="" class="btn btn-default btn-sm" style="font-size:10px;">Accept now</a> -->
                             </div>
                         </div>
                     </div>
@@ -110,7 +112,7 @@
                 </div>
 
             </div>
-            <div class="col-md-3">
+            <!-- <div class="col-md-3">
                 <div class="card bg-light mb-3" style="max-width: 18rem;">
                     <div class="card-header " style="background: #d5d5d5; "> <img src="{{url('/')}}/theme/icons/travel.png" style="width: 20%;" alt="">
                         <strong>{{$insights['visa_granted']}}</strong> <span style="font-size: 11px;">
@@ -134,22 +136,25 @@
 
                 </div>
 
-            </div>
+            </div> -->
             <div class="col-md-3">
                 <div class="card bg-light mb-3" style="max-width: 18rem;">
                     <div class="card-header " style="background: #d5d5d5; "> <img src="{{url('/')}}/theme/icons/graduated.png" style="width: 20%;" alt="">
-                        <strong>{{$insights['student_commenced']}}</strong> <span style="font-size: 11px;">
-                            Students Commenced </span>
-                    </div>
+                        <!-- <strong>{{$insights['student_commenced']}}</strong> <span style="font-size: 11px;">
+                            Students Commenced </span> -->
+                            <span style="font-size: 11px;">Students </span>
+                        </div>
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-6">
-
-                                <h5 class="card-title">{{$insights['student_not_commenced']}}</h5>
+                            <div class="col-12">
+                                <h5 class="card-title">{{ $totalStudents }}</h5>
+                                <!-- <h5 class="card-title">{{$insights['student_not_commenced']}}</h5> -->
                             </div>
-
-                            <div class="col-6">
-                                <img src="{{url('/')}}/theme/icons/chitr.png" style="width: 100%;" alt="">
+                            <div class="col-8">
+                                <p class="card-text" style="font-size: 11px;">Total Students</p>
+                            </div>
+                            <div class="col-4">
+                                <!-- <img src="{{url('/')}}/theme/icons/chitr.png" style="width: 100%;" alt=""> -->
 
 
                             </div>

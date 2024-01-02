@@ -15,9 +15,9 @@
     <link rel="manifest" href="manifest.json" />
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="{{ asset('theme/img/favicon180.png') }}" sizes="180x180">
-    <link rel="icon" href="{{ asset('theme/img/favicon32.png') }}" sizes="32x32" type="image/png">
-    <link rel="icon" href="{{ asset('theme/img/favicon16.png') }}" sizes="16x16" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/projects/site_favicon/') }}/{{$siteFavicon}}" sizes="180x180">
+    <link rel="icon" href="{{ asset('images/projects/site_favicon/') }}/{{$siteFavicon}}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{{ asset('images/projects/site_favicon/') }}/{{$siteFavicon}}" sizes="16x16" type="image/png">
 
     <!-- Google fonts-->
 
@@ -54,7 +54,7 @@
         <div class="row h-100">
             <div class="col-10 col-md-6 col-lg-5 col-xl-3 mx-auto text-center align-self-center">
                 <div class="loader-cube-wrap loader-cube-animate mx-auto">
-                    <img src="https://civs.online/wp-content/uploads/2023/01/CIVS-White-01-1024x285.png" alt="Logo">
+                <img src="{{ asset('images/projects/logo/') }}/{{$siteLogo}}" width="200px" alt="">
                 </div>
                 <p class="mt-4">Your Journey to Success<br><strong>Starts Here!</strong></p>
             </div>
@@ -95,10 +95,25 @@
                 </div>
             </div>
 
-            <!-- user emnu navigation -->
+            <!-- user menu navigation -->
             <div class="row">
                 <div class="col-12">
                     <ul class="nav nav-pills">
+                    <li class="nav-item">
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <div class="card shadow-sm">
+                                        <div class="card-body">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="darkmodeswitch">
+                                                <label class="form-check-label text-muted px-2 " for="darkmodeswitch">Activate Dark
+                                                    Mode</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{route('agent.home')}}">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-house-door"></i></div>

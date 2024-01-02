@@ -49,6 +49,9 @@ class AgentController extends Controller
     public function index()
     {
        // return view('home');
+        $totalInstitutions = institution::count();
+        $totalStudents = Student::count();
+        $totalCourses = Course::count();
 
        $institutions = Institution::latest('created_at')->take(6)->get();
 
@@ -97,7 +100,7 @@ class AgentController extends Controller
        $insights['student_not_commenced'] = $student_not_commenced;
 
 
-       return view('recruiter.panel.dashboard', compact('institutions','insights','institutions_prime'));
+       return view('recruiter.panel.dashboard', compact('institutions','insights','institutions_prime','totalInstitutions','totalStudents','totalCourses'));
 
     }
 

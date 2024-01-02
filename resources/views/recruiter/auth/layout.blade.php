@@ -15,9 +15,9 @@
     <link rel="manifest" href="manifest.json" />
 
     <!-- Favicons -->
-    <link rel="apple-touch-icon" href="{{ asset('theme/img/favicon180.png') }}" sizes="180x180">
-    <link rel="icon" href="{{ asset('theme/img/favicon32.png') }}" sizes="32x32" type="image/png">
-    <link rel="icon" href="{{ asset('theme/img/favicon16.png') }}" sizes="16x16" type="image/png">
+    <link rel="apple-touch-icon" href="{{ asset('images/projects/site_favicon/') }}/{{$siteFavicon}}" sizes="180x180">
+    <link rel="icon" href="{{ asset('images/projects/site_favicon/') }}/{{$siteFavicon}}" sizes="32x32" type="image/png">
+    <link rel="icon" href="{{ asset('images/projects/site_favicon/') }}/{{$siteFavicon}}" sizes="16x16" type="image/png">
 
     <!-- Google fonts-->
 
