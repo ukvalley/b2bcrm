@@ -93,9 +93,6 @@ class InstitutionRegistrationController extends Controller
         'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate logo upload
     ]);
 
-    $uploadedFile = $request->file('logo');
-    $filePath = $uploadedFile->store('uploads'); 
-
     // Check if validation fails
     if ($validator->fails()) {
         return redirect()->back()
@@ -103,8 +100,22 @@ class InstitutionRegistrationController extends Controller
             ->withInput(); // Pass the old input data
     }
 
+    // Check if logo is uploaded
+    if ($request->hasFile('logo')) {
+        $uploadedFile = $request->file('logo');
+        // Store the file in a unique directory
+        $filePath = $uploadedFile->store('uploads'); 
+    } else {
+        $filePath = null; // If logo is not uploaded, set filePath to null or handle accordingly
+    }
+
     // Store data in session
-    $request->session()->put('institution_step3_data', ['logo' => $filePath,'description'=>$request->input('description')]);
+    $institutionData = [
+        'logo' => $filePath,
+        'description' => $request->input('description'),
+    ];
+
+    $request->session()->put('institution_step4_data', $institutionData);
 
     return view('institution.auth.step4');
 }
@@ -168,9 +179,17 @@ public function step5(Request $request)
     $institution->accreditation_status = $step2Data['accreditation_status'];
     $institution->number_of_students = $step2Data['number_of_students'];
     $institution->year_founded = $step2Data['year_founded'];
-    $institution->logo = $step3Data['logo'];
-    $institution->description = $step3Data['description'];
-
+    if(isset($step3Data['logo']) && !empty($step3Data['logo'])){
+        $institution->logo = $step3Data['logo'];
+    }else{
+        $institution->logo = null;
+    } 
+    
+    if(isset($step3Data['description']) && !empty($step3Data['description'])){
+        $institution->description = $step3Data['description'];
+    }else{
+        $institution->description = null;
+    }
     $institution->accept_terms = $request->has('accept_terms') ? 1 : 0;
     $institution->authorized_signup = $request->has('authorized_signup') ? 1 : 0;
 

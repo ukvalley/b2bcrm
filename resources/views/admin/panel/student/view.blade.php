@@ -65,56 +65,22 @@
                                 <h6 class="mt-3">First Name</h6>
                                 <p>{{$student->first_name}}</p>
 
-                                <h6 class="mt-3">Last Name</h6>
-                                <p>{{$student->last_name}}</p>
-
-                                <h6 class="mt-3">DOB</h6>
-                                <p>{{$student->date_of_birth}}</p>
-
-                                <h6 class="mt-3">Gender</h6>
-                                <p>{{$student->gender}}</p>
-
-                                <h6 class="mt-3">Nationality</h6>
-                                <p>{{$student->nationality}}</p>
-
-                                <h6 class="mt-3">Address</h6>
-                                <p>{{$student->address}}</p>
+                                <h6 class="mt-3">Email</h6>
+                                <p>{{$student->email}}</p>
 
                                 <h6 class="mt-3">Phone Number</h6>
                                 <p>{{$student->phone_number}}</p>
 
-                                <h6 class="mt-3">Email</h6>
-                                <p>{{$student->email}}</p>
+                                <h6 class="mt-3">Country Of Residence</h6>
+                                <p>{{$student->signup_country}}</p>
 
-                                <h6 class="mt-3">Current School</h6>
-                                <p>{{$student->current_school}}</p>
+                                <h6 class="mt-3">Nationality</h6>
+                                <p>{{$student->nationality}}</p>
 
-                                <h6 class="mt-3">Field of study</h6>
+                                <h6 class="mt-3">Highest Educational Qualification</h6>
                                 <p>{{$student->field_of_study}}</p>
+
                                 
-                                <h6 class="mt-3">Expected Graduation Year</h6>
-                                <p>{{$student->expected_graduation_year}}</p>
-
-                                <h6 class="mt-3">Academic Interest</h6>
-                                <p>{{$student->academic_interests}}</p>
-
-                                <h6 class="mt-3">GPA</h6>
-                                <p>{{$student->gpa}}</p>
-
-                                <h6 class="mt-3">Language Spoken</h6>
-                                <p>{{$student->languages_spoken}}</p>
-
-                                <h6 class="mt-3">Language Proficiency Levels</h6>
-                                <p>{{$student->language_proficiency_levels}}</p>
-
-                                <h6 class="mt-3">Test Scores</h6>
-                                <p>{{$student->test_scores}}</p>
-
-                                <h6 class="mt-3">test Dates</h6>
-                                <p>{{$student->test_dates}}</p>
-
-                                <h6 class="mt-3">Leadership Role</h6>
-                                <p>{{$student->leadership_roles}}</p>
                             </div>
                         </div>
 
