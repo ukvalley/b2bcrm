@@ -19,7 +19,9 @@ class Recruiter extends Model
         'students_sent_count',
         'aimed_students_count',
         'timezone',
-        'avatar'
+        'avatar',
+        'email',
+        'mobile_number'
         
     ];
 

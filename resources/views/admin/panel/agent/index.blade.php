@@ -29,6 +29,8 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Client ID</th>
+                                <th>Email</th>
+                                <th>Contact No</th>
                                 <th>Action</th>
                                 <!-- Add more headers for additional columns -->
                             </tr>
@@ -82,6 +84,8 @@ j(document).ready(function () {
             { data: 'id', name: 'id' },
             { data: 'company_name', company_name: 'company_name' },
             { data: 'client_id', client_id: 'client_id' },
+            { data: 'email', email: 'email' },
+            { data: 'mobile_number', mobile_number: 'mobile_number' },
 
             { data: null, 
             render: function(data, type, row) {

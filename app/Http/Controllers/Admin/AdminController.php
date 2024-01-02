@@ -11,6 +11,8 @@ use App\Models\Student;
 use App\Models\Recruiter;
 use App\Models\Institution;
 use DataTables;
+use App\Models\User;
+use App\Models\Course;
 
 
 
@@ -33,108 +35,109 @@ class AdminController extends Controller
      */
     public function index()
     {
-       // return view('home');
-        return view('admin.panel.dashboard');
+        // return view('home');
+        $totalInstitutions = institution::count();
+        $totalAgents = User::where('user_type_id', 2)->count();
+        $totalStudents = Student::count();
+        $totalCourses = Course::count();
+        return view('admin.panel.dashboard', compact('totalInstitutions', 'totalAgents', 'totalStudents', 'totalCourses'));
     }
 
     public function EditProfile()
     {
-         // Get the currently authenticated recruiter
+        // Get the currently authenticated recruiter
         $recruiter = auth()->user()->recruiter;
         $timezones = TimeZone::get();
 
-       // print_r($recruiter);
-       // die();
+        // print_r($recruiter);
+        // die();
 
-        return view('recruiter.panel.profile.edit_profile', compact('recruiter','timezones'));
-
+        return view('recruiter.panel.profile.edit_profile', compact('recruiter', 'timezones'));
     }
     public function UpdateProfile(Request $request)
     {
         // Validate the update data
-    $request->validate([
-        'company_name' => 'required|string|max:255',
-        'company_short_name' => 'required|string|max:255',
-        'client_id' => 'required|string|max:255',
-        'your_role' => 'required|string|max:255',
-        'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate avatar upload
-        'timezone' => 'required|string|exists:timezones,timezone', // Validate timezone exists in the timezones table
-    ]);
-  
+        $request->validate([
+            'company_name' => 'required|string|max:255',
+            'company_short_name' => 'required|string|max:255',
+            'client_id' => 'required|string|max:255',
+            'your_role' => 'required|string|max:255',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate avatar upload
+            'timezone' => 'required|string|exists:timezones,timezone', // Validate timezone exists in the timezones table
+        ]);
 
 
 
-    // Get the currently authenticated recruiter
 
-    $recruiter = auth()->user()->recruiter;
+        // Get the currently authenticated recruiter
 
-     $recruiter->update([
-        'company_name' => $request->input('company_name'),
-        'company_short_name' => $request->input('company_short_name'),
-        'client_id' => $request->input('client_id'),
-        'your_role' => $request->input('your_role'),
-        'timezone' => $request->input('timezone'), // Assign the selected timezone
-    ]);
+        $recruiter = auth()->user()->recruiter;
 
-     if ($request->hasFile('avatar')) {
-        // Delete the old avatar if it exists
-        if ($recruiter->avatar) {
-            Storage::disk('public')->delete($recruiter->avatar);
-        }
-          
-        
-        
+        $recruiter->update([
+            'company_name' => $request->input('company_name'),
+            'company_short_name' => $request->input('company_short_name'),
+            'client_id' => $request->input('client_id'),
+            'your_role' => $request->input('your_role'),
+            'timezone' => $request->input('timezone'), // Assign the selected timezone
+        ]);
+
+        if ($request->hasFile('avatar')) {
+            // Delete the old avatar if it exists
+            if ($recruiter->avatar) {
+                Storage::disk('public')->delete($recruiter->avatar);
+            }
+
+
+
             $file = $request->file('avatar');
             $fileName = time() . '_' . $file->getClientOriginalName();
             $file->move(public_path('images/avtar'), $fileName); // Store in the root folder
-            
 
 
-           
-            
 
-        
-        $recruiter->update(['avatar' => $fileName]);
-    }
 
-    
 
-    return redirect()->route('agent.edit')->with('success', 'Profile updated successfully!');
 
+
+            $recruiter->update(['avatar' => $fileName]);
+        }
+
+
+
+        return redirect()->route('agent.edit')->with('success', 'Profile updated successfully!');
     }
 
 
     public function editPassword()
-{
-    return view('recruiter.panel.profile.update_password');
-}
+    {
+        return view('recruiter.panel.profile.update_password');
+    }
 
-public function updatePassword(Request $request)
-{
-    $request->validate([
-        'current_password' => 'required',
-        'password' => 'required|string|min:8|confirmed',
-    ]);
-
-    $user = Auth::user();
-
-    if (Hash::check($request->current_password, $user->password)) {
-        $user->update([
-            'password' => Hash::make($request->password),
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
-        return redirect()->route('user.editPassword')->with('success', 'Password changed successfully.');
-    } else {
-        return back()->withErrors(['current_password' => 'Incorrect current password.'])->withInput();
+        $user = Auth::user();
+
+        if (Hash::check($request->current_password, $user->password)) {
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+
+            return redirect()->route('user.editPassword')->with('success', 'Password changed successfully.');
+        } else {
+            return back()->withErrors(['current_password' => 'Incorrect current password.'])->withInput();
+        }
     }
-}
 
 
     public function countries()
     {
         $CountryData = CountryData::get();
-        return view('recruiter.panel.countries.countries',compact('CountryData'));
-
+        return view('recruiter.panel.countries.countries', compact('CountryData'));
     }
 
     public function country_details($id)
@@ -142,8 +145,7 @@ public function updatePassword(Request $request)
         $CountryData = CountryData::find($id);
         $news = $CountryData->news()->get();
         $links = $CountryData->links()->get();
-        return view('recruiter.panel.countries.country_details',compact('CountryData','news','links'));
-
+        return view('recruiter.panel.countries.country_details', compact('CountryData', 'news', 'links'));
     }
 
     public function getstudents(Request $request)
@@ -160,20 +162,20 @@ public function updatePassword(Request $request)
     public function studentById($student_id)
     {
         $student = Student::find($student_id);
-        return view('admin.panel.student.view',compact('student'));
+        return view('admin.panel.student.view', compact('student'));
     }
 
     public function studentEdit($student_id)
     {
         $student = Student::find($student_id);
-        return view('admin.panel.student.edit',compact('student'));
+        return view('admin.panel.student.edit', compact('student'));
     }
 
-    public function studentupdate(Request $request,$student_id)
+    public function studentupdate(Request $request, $student_id)
     {
-        $student = Student::where('id',$student_id);
+        $student = Student::where('id', $student_id);
 
-        $data=[
+        $data = [
             'first_name' => $request->input('first_name'),
             'date_of_birth' => $request->input('date_of_birth'),
             'gender' => $request->input('gender'),
@@ -185,8 +187,8 @@ public function updatePassword(Request $request)
             'field_of_study' => $request->input('field_of_study'),
         ];
 
-        student::where('id',$student_id)->update($data);
-        
+        student::where('id', $student_id)->update($data);
+
         return redirect()->route('admin.students', ['student_id' => $student_id])->with('success', 'Student updated successfully.');
     }
 
@@ -204,43 +206,43 @@ public function updatePassword(Request $request)
     public function institutionById($institution_id)
     {
         $institution = Institution::find($institution_id);
-        return view('admin.panel.institution.view',compact('institution'));
+        return view('admin.panel.institution.view', compact('institution'));
     }
 
     public function editInstitutionById($institution_id)
     {
         $institution = Institution::find($institution_id);
-        return view('admin.panel.institution.editInstitution',compact('institution'));
+        return view('admin.panel.institution.editInstitution', compact('institution'));
     }
 
-        public function updateInstitutionById(Request $request, $institution_id)
-        {
+    public function updateInstitutionById(Request $request, $institution_id)
+    {
 
-            // dd($request->all());
+        // dd($request->all());
 
-            // Find the institution by ID
-            $institution = Institution::findOrFail($institution_id);
+        // Find the institution by ID
+        $institution = Institution::findOrFail($institution_id);
 
-            // dd($institution);
+        // dd($institution);
 
-        
-            // Update the institution data
-            $institution->update([
-                'name' => $request->input('name'),
-                'email' => $request->input('email'),
-                'phone_number' => $request->input('phone_number'),
-                'city' => $request->input('city'),
-                'address' => $request->input('address'),
-                'website' => $request->input('website'),
-                'contact_person' => $request->input('contact_person'),
-                'contact_email' => $request->input('contact_email'),
-                'contact_phone' => $request->input('contact_phone'),
-                'institution_type' => $request->input('institution_type'),
-                'number_of_students' => $request->input('number_of_students'),
-                'year_founded' => $request->input('year_founded'),
-                'description' => $request->input('description'),
-            ]);
-     
+
+        // Update the institution data
+        $institution->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone_number' => $request->input('phone_number'),
+            'city' => $request->input('city'),
+            'address' => $request->input('address'),
+            'website' => $request->input('website'),
+            'contact_person' => $request->input('contact_person'),
+            'contact_email' => $request->input('contact_email'),
+            'contact_phone' => $request->input('contact_phone'),
+            'institution_type' => $request->input('institution_type'),
+            'number_of_students' => $request->input('number_of_students'),
+            'year_founded' => $request->input('year_founded'),
+            'description' => $request->input('description'),
+        ]);
+
         return redirect()->route('admin.institutionView', ['institution_id' => $institution_id])->with('success', 'Institution updated successfully.');
     }
 
@@ -258,43 +260,38 @@ public function updatePassword(Request $request)
     public function agentById($agent_id)
     {
         $agent = Recruiter::find($agent_id);
-        return view('admin.panel.agent.view',compact('agent'));
+        return view('admin.panel.agent.view', compact('agent'));
     }
     public function agentEdit($agent_id)
     {
         $agent = Recruiter::find($agent_id);
-        return view('admin.panel.agent.edit',compact('agent'));
+        return view('admin.panel.agent.edit', compact('agent'));
     }
 
     public function agentUpdate(Request $request, $agent_id)
     {
-       // dd($request->all());
+        // dd($request->all());
 
-            // Find the institution by ID
-            $agent = Recruiter::findOrFail($agent_id);
+        // Find the institution by ID
+        $agent = Recruiter::findOrFail($agent_id);
 
-            // dd($institution);
+        // dd($institution);
 
-        
-            // Update the institution data
-            $agent->update([
-                
-                'company_name' => $request->input('company_name'),
-                'company_short_name' => $request->input('company_short_name'),
-                'client_id' => $request->input('client_id'),
-                'your_role' => $request->input('your_role'),
-                'country_count' => $request->input('country_count'),
-                'employee_count' => $request->input('employee_count'),
-                'students_sent_count' => $request->input('students_sent_count'),
-                'aimed_students_count' => $request->input('aimed_students_count'),
-                
-            ]);
-     
-        return redirect()->route('admin.agentView', ['agent_id' => $agent_id])->with('success', 'Agent updated successfully.'); 
+
+        // Update the institution data
+        $agent->update([
+
+            'company_name' => $request->input('company_name'),
+            'company_short_name' => $request->input('company_short_name'),
+            'client_id' => $request->input('client_id'),
+            'your_role' => $request->input('your_role'),
+            'country_count' => $request->input('country_count'),
+            'employee_count' => $request->input('employee_count'),
+            'students_sent_count' => $request->input('students_sent_count'),
+            'aimed_students_count' => $request->input('aimed_students_count'),
+
+        ]);
+
+        return redirect()->route('admin.agentView', ['agent_id' => $agent_id])->with('success', 'Agent updated successfully.');
     }
-
-
-
-    
-
 }
