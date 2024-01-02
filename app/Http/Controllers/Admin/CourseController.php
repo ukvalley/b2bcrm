@@ -9,6 +9,8 @@ use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use App\Models\CourseBatch;
 use App\Models\Institution;
+use App\Models\CountryData;
+use DataTables;
 
 class CourseController extends Controller
 {
@@ -186,5 +188,52 @@ class CourseController extends Controller
         $course->save();
 
         return redirect()->route('admin.course_Basic2', ['course_id' => $course->id]);
+    }
+
+    public function course()
+    {
+        return view('admin.panel.course_view.course');
+    }
+
+    public function getCourse(Request $request)
+    {
+
+        if ($request->ajax()) {
+            $data = Course::select('*')->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+
+                    $btn = '<a href="javascript:void(0)" class="edit btn btn-primary btn-sm">View</a>';
+
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+        // $course = Course::get();
+        //  return view('institution.panel.course_view.course',compact('course'));
+    }
+
+    public function courseView()
+    {
+        return view('admin.panel.course_view.course_view');
+    }
+
+    public function courseById($course_id)
+    {
+        $course = Course::find($course_id);
+
+        $institution = $course->institution;
+        $country = $institution->Countries;
+        $countryData = CountryData::where('country_name', '=', $country->name)->first();
+        $news = [];
+        $links = [];
+        if (isset($countrydata)) {
+            $news = $countryData->news;
+            $links = $countryData->links;
+        }
+
+        return view('admin.panel.course_view.course_view', compact('course', 'countryData', 'news', 'links'));
     }
 }

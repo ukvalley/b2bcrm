@@ -95,4 +95,6 @@ Route::get('CourseBasicUpdate/{course_id}', [App\Http\Controllers\Admin\CourseCo
 Route::get('batchesDetails/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'batchesDetails'])->name('admin.batchesDetails');
 Route::get('batchesDetail', [App\Http\Controllers\Admin\CourseController::class, 'batchesDetailsView'])->name('admin.batchesDetail');
 Route::post('CourseBasicUpdateRegistration/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicUpdateRegistration'])->name('admin.CourseBasicUpdateRegistration');
-
+Route::get('course', [App\Http\Controllers\Admin\CourseController::class, 'course'])->name('admin.course');
+Route::get('getCourse', [App\Http\Controllers\Admin\CourseController::class,'getCourse'])->name('admin.getCourse');
+Route::get('courseView/{course_id}', [App\Http\Controllers\Admin\CourseController::class,'courseById'])->name('admin.courseView');

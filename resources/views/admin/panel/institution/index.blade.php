@@ -106,7 +106,7 @@
                 {
                     data: null,
                     render: function(data, type, row) {
-                        return '<a href="{{url(' / ')}}/admin/institutions/institutionView/' + row.id + '"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a>';
+                        return '<a href="{{url('/')}}/admin/institutions/institutionView/' + row.id + '"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a>';
                         // return '<a href="{{url('/')}}/agent/StudentBasicUpdate/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a> ';
 
                     }
@@ -115,7 +115,7 @@
                 {
                     data: null,
                     render: function(data, type, row) {
-                        return '<a href="{{url(' / ')}}/admin/institutions/institutionEdit/' + row.id + '"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a>';
+                        return '<a href="{{url('/')}}/admin/institutions/institutionEdit/' + row.id + '"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a>';
                     }
                 }
 

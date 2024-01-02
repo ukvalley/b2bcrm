@@ -45,16 +45,22 @@
 
 <div class="col-12">
 
-  <div class="card shadow-sm">
+  <!-- <div class="card shadow-sm">
     <div class="card-body" style="background:#3c63e2">
       <h4>{{ $ManditoryCount - $MandatoryCount1 }}
         Mandatory documents missing</h4>
     </div>
-  </div>
+  </div> -->
 
   <br>
+
   <div class="card shadow-sm">
     <div class="card-body">
+      @if (session('success'))
+      <div class="alert alert-success" role="alert">
+        {{ session('success') }}
+      </div>
+      @endif
       <h4>Review Application</h4>
       <p>Please review all information before submitting. As soon as this form is sent, our in-country representatives will review and be in touch.</p>
 
@@ -433,7 +439,7 @@
       <h3>Documents</h3>
       <hr>
 
-      <div class="col-md-">
+      <!-- <div class="col-md-">
         <h5 href="#doc1" data-bs-toggle="collapse" data-bs-target="#docv1"> Missing Documents
         </h5>
         <hr>
@@ -443,7 +449,7 @@
         <div class="table" id="doc1">
           <div class="card shadow-sm">
             <div class="card-body" style="color: white;
-    background: cornflowerblue">
+              background: cornflowerblue">
               <p class="form1">
                 <b>Not yet uploaded ({{$MandatoryCount1 }} of {{$ManditoryCount}})</b>
                 @foreach ($ManditoryDocuments as $Mdocument)
@@ -456,7 +462,7 @@
           </div>
           <br>
         </div>
-      </div>
+      </div> -->
 
       <div class="col-md-12">
         <h5 href="#doc2" data-bs-toggle="collapse" data-bs-target="#docv2"> Uploaded Documents
