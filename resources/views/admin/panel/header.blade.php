@@ -7,10 +7,12 @@
                         <i class="bi bi-list"></i>
                     </a>
                 </div>
+                
                 <div class="col align-self-center text-center">
-                    <img src="https://civs.online/wp-content/uploads/2023/01/CIVS-White-01-1024x285.png" width="200px" alt="">
-                    
+                    <!-- <img src="https://civs.online/wp-content/uploads/2023/01/CIVS-White-01-1024x285.png" width="200px" alt=""> -->
+                    <img src="{{ url('/') }}/images/projects/logo" width="50px" alt="site_logo">
                 </div>
+                
                 <div class="col-auto">
                     <a href="{{url('/')}}/notification" target="_self" class="btn btn-light btn-44">
                         <i class="bi bi-bell"></i>

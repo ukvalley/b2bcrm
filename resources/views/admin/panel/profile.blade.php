@@ -48,12 +48,12 @@
         </div>
         <div class="form-group">
             <label for="site_logo">Site Logo</label>
-            <input type="file" name="site_logo" class="form-control-file">
+            <input type="file" name="site_logo" class="form-control-file" value="{{ $data->site_logo }}">
         </div>
 
         <div class="form-group">
             <label for="site_favicon">Favicon</label>
-            <input type="file" name="site_favicon" class="form-control-file">
+            <input type="file" name="site_favicon" class="form-control-file" value="{{ $data->site_favicon }}">
         </div>
         <div class="form-group">
             <label for="primary_color">Primary Color</label>
