@@ -15,8 +15,9 @@
             </div>
         </div>
         <div class="col align-self-center ps-0">
-            <h4 class="text-color-theme"><span class="fw-normal">Hi</span>, {{ Auth::user()->name }}!</h4>
-            <p class="text-muted">Welcome back, we're happy to have you here!</p>
+            <h5 class="text-color-theme"><span class="fw-normal">Hi</span> , </h5>
+            <!-- {{ Auth::user()->name }}! -->
+            <p class="text-muted">Welcome to the Central Admin Panel </p>
         </div>
     </div>
     <div class="row">
