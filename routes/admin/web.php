@@ -98,3 +98,7 @@ Route::post('CourseBasicUpdateRegistration/{course_id}', [App\Http\Controllers\A
 Route::get('course', [App\Http\Controllers\Admin\CourseController::class, 'course'])->name('admin.course');
 Route::get('getCourse', [App\Http\Controllers\Admin\CourseController::class,'getCourse'])->name('admin.getCourse');
 Route::get('courseView/{course_id}', [App\Http\Controllers\Admin\CourseController::class,'courseById'])->name('admin.courseView');
+
+
+//student csv
+Route::get('/export-csv', [App\Http\Controllers\Admin\AdminController::class, 'exportCSV'])->name('admin.exportCSV');
