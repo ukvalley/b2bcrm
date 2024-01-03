@@ -345,4 +345,46 @@ class AdminController extends Controller
 
             return response()->stream($callback, 200, $headers);
         }
+
+        public function agentexportCSV(Request $request)
+    {
+        
+        $fileName = 'agent.csv';
+        $Agents = Recruiter::all();
+
+                $headers = array(
+                    "Content-type"        => "text/csv",
+                    "Content-Disposition" => "attachment; filename=$fileName",
+                    "Pragma"              => "no-cache",
+                    "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+                    "Expires"             => "0"
+                );
+
+                $columns = array('SrNo.','Company Name','Company Short Name', 'Email', 'Mobile' ,'Cliet id','Role','Country Count','Student Sent Count');
+
+                $callback = function() use($Agents, $columns) {
+                    $file = fopen('php://output', 'w');
+                    fputcsv($file, $columns);
+                    $counter=1;
+                    foreach ($Agents as $Agent) {
+                        $row['SrNo'] = $counter;
+                        $row['Company Name']  = $Agent->company_name;
+                        $row['Company Short Name']  = $Agent->company_short_name;
+                        $row['Email']    = $Agent->email;
+                        $row['Mobile']    = $Agent->mobile_number;
+                        $row['Cliet id']  = $Agent->client_id;
+                        $row['Role']  = $Agent->your_role;
+                        $row['Country Count']  = $Agent->country_count;
+                        $row['Student Sent Count']  = $Agent->students_sent_count;
+                       
+
+                        fputcsv($file, array($row['SrNo'], $row['Company Name'],$row['Company Short Name'], $row['Email'], $row['Mobile'],$row['Cliet id'],$row['Role'],$row['Country Count'],$row['Student Sent Count']));
+                        $counter++;
+                    }
+
+                    fclose($file);
+                };
+
+            return response()->stream($callback, 200, $headers);
+        }
 }

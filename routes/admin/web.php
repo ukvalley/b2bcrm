@@ -102,3 +102,4 @@ Route::get('courseView/{course_id}', [App\Http\Controllers\Admin\CourseControlle
 
 //student csv
 Route::get('/export-csv', [App\Http\Controllers\Admin\AdminController::class, 'exportCSV'])->name('admin.exportCSV');
+Route::get('/agent-export-csv', [App\Http\Controllers\Admin\AdminController::class, 'agentexportCSV'])->name('admin.agentexportCSV');
