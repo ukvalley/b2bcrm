@@ -107,6 +107,9 @@ Route::get('CourseDetails/{id}', [App\Http\Controllers\Agent\StudentController::
 
 Route::get('ShortListView/{id}', [App\Http\Controllers\Agent\StudentController::class, 'ShortListView'])->name('agent.ShortListView');
 
+//student csv
+Route::get('/export-csv', [App\Http\Controllers\Agent\StudentController::class, 'exportCSV'])->name('agent.exportCSV');
+
 // student application form
 
 

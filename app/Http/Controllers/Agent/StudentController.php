@@ -25,6 +25,7 @@ use App\Models\Timeline;
 use App\Models\Course;
 use App\Models\Shortlist;
 use Auth;
+use App\Http\Controllers\Agent\ExportUsers;
 
 
 
@@ -595,7 +596,47 @@ class StudentController extends Controller
         return view('recruiter.panel.courseSearch.ShortList', compact('Student', 'Shortlist'));
     }
 
-   
+
+    public function exportCSV(Request $request)
+    {
+        
+        $fileName = 'students.csv';
+        $Students = Student::all();
+
+                $headers = array(
+                    "Content-type"        => "text/csv",
+                    "Content-Disposition" => "attachment; filename=$fileName",
+                    "Pragma"              => "no-cache",
+                    "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+                    "Expires"             => "0"
+                );
+
+                $columns = array('SrNo.','Name','email', 'date_of_birth', 'Address' ,'nationality','phone_number','nationality');
+
+                $callback = function() use($Students, $columns) {
+                    $file = fopen('php://output', 'w');
+                    fputcsv($file, $columns);
+                    $counter=1;
+                    foreach ($Students as $Student) {
+                        $row['SrNo'] = $counter;
+                        $row['first_name']  = $Student->first_name;
+                        $row['email']  = $Student->email;
+                        $row['date_of_birth']    = $Student->date_of_birth;
+                        $row['address']    = $Student->address;
+                        $row['nationality']  = $Student->nationality;
+                        $row['phone_number']  = $Student->signup_country;
+                        $row['nationality']  = $Student->nationality;
+                        // $row['nationality']  = $Student->start_at;
+
+                        fputcsv($file, array($row['SrNo'], $row['first_name'], $row['date_of_birth'], $row['address'],$row['nationality'],$row['phone_number'],$row['nationality']));
+                        $counter++;
+                    }
+
+                    fclose($file);
+                };
+
+            return response()->stream($callback, 200, $headers);
+        }
     
     
 

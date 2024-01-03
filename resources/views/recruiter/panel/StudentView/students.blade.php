@@ -19,6 +19,7 @@
 
 
                     <h4 class="card-title">Students</h4>
+                    <span data-href="{{url('/')}}/agent/export-csv" id="export" class="btn btn-success btn-sm" onclick ="exportStudents (event.target);">Export</span>
                         <p class="card-text"></p>
                         <hr>
 
@@ -54,10 +55,19 @@
     <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
 <script>
+   
+</script>
+
+<script>
     var j = jQuery.noConflict();
 </script>
 <script type="text/javascript">
 
+function exportStudents(_this) {
+      let _url = $(_this).data('href');
+     // alert(_url);
+      window.location.href = _url;
+   }
 
 
 j(document).ready(function () {
@@ -72,8 +82,8 @@ j(document).ready(function () {
             { data: 'created_at', name: 'created_at' },
             { data: null, 
             render: function(data, type, row) {
-            return '<a href="{{url('/')}}/agent/StudentBasicUpdate/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a> <a href="{{url('/')}}/agent/PreviewStudents/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a>';
-
+            return '<a href="{{url('/')}}/agent/StudentBasicUpdate/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a> <a href="{{url('/')}}/agent/PreviewStudents/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a> ';
+    
             } },
 
             // Add more columns as needed

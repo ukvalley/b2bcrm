@@ -12,7 +12,7 @@
         "laravel/tinker": "^2.8",
         "laravel/ui": "^4.2",
         "livewire/livewire": "^3.0",
-        "maatwebsite/excel": "^3.1.48",
+        "maatwebsite/excel": "^3.1",
         "phpoffice/phpspreadsheet": "^1.29",
         "pragmarx/countries": "*",
         "psr/simple-cache": "^2.0",
