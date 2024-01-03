@@ -326,4 +326,43 @@ class AdminController extends Controller
 
         return redirect()->route('admin.agentView', ['agent_id' => $agent_id])->with('success', 'Agent updated successfully.');
     }
+
+    public function exportCSV(Request $request)
+    {
+        
+        $fileName = 'students.csv';
+        $Students = Student::all();
+
+                $headers = array(
+                    "Content-type"        => "text/csv",
+                    "Content-Disposition" => "attachment; filename=$fileName",
+                    "Pragma"              => "no-cache",
+                    "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+                    "Expires"             => "0"
+                );
+
+                $columns = array('SrNo.','Name','email', 'date_of_birth', 'Address' ,'phone_number','nationality');
+
+                $callback = function() use($Students, $columns) {
+                    $file = fopen('php://output', 'w');
+                    fputcsv($file, $columns);
+                    $counter=1;
+                    foreach ($Students as $Student) {
+                        $row['SrNo'] = $counter;
+                        $row['first_name']  = $Student->first_name;
+                        $row['email']  = $Student->email;
+                        $row['date_of_birth']    = $Student->date_of_birth;
+                        $row['address']    = $Student->address;
+                        $row['nationality']  = $Student->nationality;
+                        $row['phone_number']  = $Student->phone_number;
+
+                        fputcsv($file, array($row['SrNo'], $row['first_name'],$row['email'], $row['date_of_birth'], $row['address'],$row['phone_number'],$row['nationality']));
+                        $counter++;
+                    }
+
+                    fclose($file);
+                };
+
+            return response()->stream($callback, 200, $headers);
+        }
 }
