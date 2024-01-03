@@ -76,7 +76,14 @@ j(document).ready(function () {
         serverSide: true,
         ajax: '{!! route('agent.getStudents') !!}',
         columns: [
-            { data: 'id', name: 'id' },
+            { 
+                data: 'id', 
+                name: 'id',
+                render: function(data, type, row, meta) {
+                    // 'meta' contains additional information about the row
+                    return meta.row + meta.settings._iDisplayStart + 1; // Adding 1 for the serial number
+                }
+            },
             { data: 'first_name', first_name: 'first_name' },
             { data: 'email', name: 'email' },
             { data: 'created_at', name: 'created_at' },
