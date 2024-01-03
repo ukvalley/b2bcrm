@@ -69,7 +69,12 @@ j(document).ready(function () {
         serverSide: true,
         ajax: '{!! route('admin.getCourse') !!}',
         columns: [
-            { data: 'id', name: 'id' },
+            {
+                    data: null,
+                    render: function(data, type, row, meta) {
+                        return meta.row + 1;
+                    }
+                },
             { data: 'name', name: 'name' },
             { data: 'level', name: 'level' },
             { data: 'course_code', name: 'course_code' },

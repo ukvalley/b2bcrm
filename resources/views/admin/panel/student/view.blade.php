@@ -80,7 +80,17 @@
                                 <h6 class="mt-3">Highest Educational Qualification</h6>
                                 <p>{{$student->field_of_study}}</p>
 
-                                
+                                <h6 class="mt-3">Interested Course</h6>
+                                <p>{{$student->intended_course_level}}</p>
+
+                                <h6 class="mt-3">Interested Destination 1</h6>
+                                <p>{{$student->intended_destination_1}}</p>
+
+                                <h6 class="mt-3">Interested Destination 2</h6>
+                                <p>{{$student->intended_destination_2}}</p>
+
+                                <h6 class="mt-3">Interested Destination 3</h6>
+                                <p>{{$student->intended_destination_3}}</p>
                             </div>
                         </div>
 
