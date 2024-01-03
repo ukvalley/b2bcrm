@@ -79,7 +79,13 @@ j(document).ready(function () {
         "processing": true,
         ajax: '{!! route('admin.getStudents') !!}',
         columns: [
-            { data: 'id', name: 'id' },
+            {
+                data: null,
+                render: function (data, type, row, meta) {
+                    return meta.row + 1;
+                }
+            },
+            // { data: 'id', name: 'id' },
             { data: 'first_name', name: 'first_name' },
             { data: 'email', name: 'email' },
            

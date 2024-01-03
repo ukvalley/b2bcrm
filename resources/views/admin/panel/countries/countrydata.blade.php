@@ -50,7 +50,7 @@
                                 @foreach($countryData->news as $news_data)
                                 <div>
 
-                                    <h4 style="style=color: green;">{{$news_data->title}}</h4>
+                                    <h4 style="color: light-blue;">{{$news_data->title}}</h4>
                                     <p>{{$news_data->content}}</p>
                                     <hr>
                                 </div>

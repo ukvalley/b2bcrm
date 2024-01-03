@@ -81,7 +81,12 @@ j(document).ready(function () {
         "processing": true,
         ajax: '{!! route('admin.getagents') !!}',
         columns: [
-            { data: 'id', name: 'id' },
+            {
+                    data: null,
+                    render: function(data, type, row, meta) {
+                        return meta.row + 1;
+                    }
+                },
             { data: 'company_name', company_name: 'company_name' },
             { data: 'client_id', client_id: 'client_id' },
             { data: 'email', email: 'email' },

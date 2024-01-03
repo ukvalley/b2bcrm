@@ -163,6 +163,26 @@ class AdminController extends Controller
     public function studentById($student_id)
     {
         $student = Student::find($student_id);
+        if (isset($student->intended_destination_1) && !empty($student->intended_destination_1)) {
+            $country = Country::find($student->intended_destination_1);
+            if (isset($country) && !empty($country)) {
+                $student->intended_destination_1 = $country->name;
+            }
+        }
+
+        if (isset($student->intended_destination_2) && !empty($student->intended_destination_2)) {
+            $country = Country::find($student->intended_destination_2);
+            if (isset($country) && !empty($country)) {
+                $student->intended_destination_2 = $country->name;
+            }
+        }
+
+        if (isset($student->intended_destination_3) && !empty($student->intended_destination_3)) {
+            $country = Country::find($student->intended_destination_3);
+            if (isset($country) && !empty($country)) {
+                $student->intended_destination_3 = $country->name;
+            }
+        }
         return view('admin.panel.student.view', compact('student'));
     }
 
