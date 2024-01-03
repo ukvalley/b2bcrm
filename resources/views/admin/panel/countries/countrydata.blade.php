@@ -38,9 +38,7 @@
                             <div class="col-md-8">
 
                                 {!! $countryData->information_data !!}
-                                
-                                
-
+   
                                 
                             </div>
                             <div class="col-md-4">

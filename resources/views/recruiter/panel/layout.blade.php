@@ -161,15 +161,6 @@
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
                         </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{route('agent.student_basic')}}" tabindex="-1">
-                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
-                                <div class="col">Add Student</div>
-                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
-                            </a>
-                        </li> 
-
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('message')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
@@ -177,6 +168,13 @@
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>                               
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{route('agent.student_basic')}}" tabindex="-1">
+                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
+                                <div class="col">Add Student</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>                        
 
 
                          <li class="nav-item">
