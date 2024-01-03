@@ -15,8 +15,9 @@
             </div>
         </div>
         <div class="col align-self-center ps-0">
-            <h4 class="text-color-theme"><span class="fw-normal">Hi</span>, {{ Auth::user()->name }}!</h4>
-            <p class="text-muted">Welcome back, we're happy to have you here!</p>
+            <h5 class="text-color-theme"><span class="fw-normal">Hi</span> , </h5>
+            <!-- {{ Auth::user()->name }}! -->
+            <p class="text-muted">Welcome to the Central Admin Panel </p>
         </div>
     </div>
     <div class="row">
@@ -26,7 +27,7 @@
                 <div class="card-body">
                     <!-- <h5 class="card-title">Info card title</h5> -->
                     <h5 class="card-title">{{ $totalAgents }}</h5>
-                    <p class="card-text">Total agents</p>
+                    <p class="card-text">Total Agents</p>
                     <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                 </div>
             </div>
@@ -55,10 +56,10 @@
         </div>
         <div class="col-3">
             <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-                <div class="card-header">Cources</div>
+                <div class="card-header">Courses</div>
                 <div class="card-body">
                 <h5 class="card-title">{{$totalCourses}}</h5>
-                    <p class="card-text">Total Cources</p>
+                    <p class="card-text">Total Courses</p>
                     <!-- <h5 class="card-title">Info card title</h5>
                     <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
                 </div>

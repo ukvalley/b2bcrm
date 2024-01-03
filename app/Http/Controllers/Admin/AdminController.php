@@ -13,6 +13,7 @@ use App\Models\Institution;
 use DataTables;
 use App\Models\User;
 use App\Models\Course;
+use App\Models\Country;
 
 
 
@@ -194,13 +195,24 @@ class AdminController extends Controller
 
     public function getinstitutions(Request $request)
     {
-        $institutions = Institution::all();
+        // $institutions = Institution::all();
+        // return response()->json(['data' => $institutions]);
+
+        $countryId = $request->input('country_id');
+        // Fetch institutions based on the selected country ID
+        if ($countryId) {
+            $institutions = Institution::where('country', $countryId)->get();
+        } else {
+            $institutions = Institution::all();
+        }
+    
         return response()->json(['data' => $institutions]);
     }
 
     public function institutions()
     {
-        return view('admin.panel.institution.index');
+        $country=Country::all();
+        return view('admin.panel.institution.index', compact('country'));
     }
 
     public function institutionById($institution_id)
