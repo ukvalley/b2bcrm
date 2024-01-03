@@ -54,23 +54,23 @@
 
                         {{-- Number of Destination Countries for Students --}}
                         <div class="form-floating is-valid mb-3">
-                            <select name="students_destination_count" id="students_destination_count" class="form-control" required>
-                                <option value="1">1</option>
+                            <input type="text" name="students_destination_count" id="students_destination_count" class="form-control" required>
+                                <!-- <option value="1">1</option>
                                 <option value="2">2</option>
-                                <option value="3">3</option>
+                                <option value="3">3</option> -->
                                 {{-- Add more options as needed --}}
-                            </select>
+                            <!-- </select> -->
                             <label for="students_destination_count">We Send Students to (How Many Destination Countries):</label>
                         </div>
 
                         {{-- Number of Students Aimed to Send Next Year --}}
                         <div class="form-floating is-valid mb-3">
-                            <select name="students_next_year_count" id="students_next_year_count" class="form-control" required>
-                                <option value="1-10">1-10</option>
+                            <input type="text" name="students_next_year_count" id="students_next_year_count" class="form-control" required>
+                                <!-- <option value="1-10">1-10</option>
                                 <option value="11-50">11-50</option>
-                                <option value="51-100">51-100</option>
+                                <option value="51-100">51-100</option> -->
                                 {{-- Add more options as needed --}}
-                            </select>
+                            <!-- </select> -->
                             <label for="students_next_year_count">We Aim to Send (How Many Students Next Year):</label>
                         </div>
 
