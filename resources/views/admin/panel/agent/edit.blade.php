@@ -81,6 +81,28 @@
                                             @enderror
                                         </div>
 
+                                        <h6 class="mt-3">Email</h6>
+                                        <div class="form-floating is-valid mb-3">
+                                            <input id="email" type="text" class="form-control @error('email') is-invalid @enderror" name="email" value="{{$agent->email}}" placeholder="Email">
+                                            <label for="email">{{ __('Email') }}</label>
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
+                                        <h6 class="mt-3">Phone Number</h6>
+                                        <div class="form-floating is-valid mb-3">
+                                            <input id="mobile_number" type="text" class="form-control @error('mobile_number') is-invalid @enderror" name="mobile_number" value="{{$agent->mobile_number}}" placeholder=" Mobile Number">
+                                            <label for="mobile_number">{{ __('Mobile Number') }}</label>
+                                            @error('mobile_number')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                            @enderror
+                                        </div>
+
                                         <h6 class="mt-3">Company Sort Name</h6>
                                         <div class="form-floating is-valid mb-3">
                                             <input id="company_short_name" type="text" class="form-control @error('company_short_name') is-invalid @enderror" name="company_short_name" value="{{$agent->company_short_name}}" placeholder=" Company Short Name">

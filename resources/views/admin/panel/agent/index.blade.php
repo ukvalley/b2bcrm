@@ -99,7 +99,7 @@ j(document).ready(function () {
             { data: null, 
             render: function(data, type, row) {
             // return '<a href="{{url('/')}}/admin/agents/agentView/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View1</button></a>';
-            return '<a href="{{url('/')}}/admin/agents/agentEdit/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a> <a href="{{url('/')}}/admin/agents/agentView/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a>';
+            return '<a href="{{url('/')}}/admin/agents/agentEdit/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a> <a href="{{url('/')}}/admin/agents/agentView/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a> <a href="{{url('/')}}/admin/agents/agentdestroy/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Remove</button></a>';
 
             } },
 

@@ -40,7 +40,7 @@ Route::get('getagents','App\Http\Controllers\Admin\AdminController@getagents')->
 Route::get('agents/agentView/{agent_id}', [App\Http\Controllers\Admin\AdminController::class,'agentById'])->name('admin.agentView');
 Route::get('agents/agentEdit/{agent_id}', [App\Http\Controllers\Admin\AdminController::class,'agentEdit'])->name('admin.agentEdit');
 Route::put('agents/agentUpdate/{agent_id}', [App\Http\Controllers\Admin\AdminController::class,'agentUpdate'])->name('admin.agentUpdate');
-
+Route::get('agents/agentdestroy/{agent_id}', [App\Http\Controllers\Admin\AdminController::class,'agentdestroy'])->name('admin.agentdestroy');
 //Course
 Route::get('CourseBasic',[App\Http\Controllers\Admin\CourseController::class, 'CourseBasic'])->name('admin.course_basic');
 Route::get('CourseBasic2/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasic2'])->name('admin.course_Basic2');

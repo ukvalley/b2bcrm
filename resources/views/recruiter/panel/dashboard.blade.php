@@ -15,7 +15,31 @@
     <div class="row mb-4">
         <div class="col-auto">
             <div class="avatar avatar-50 shadow rounded-10">
-                <img src="{{url('/')}}/theme/img/user1.jpg" alt="">
+                <?php
+                $user = auth()->user();
+
+                // Check if the user has a recruiter relationship
+                if ($user->recruiter) {
+                    // Assuming the image field is named 'avatar' in your 'recruiters' table
+                    $recruiterImage = $user->recruiter->avatar;
+                } else {
+                    // Handle the case where the user doesn't have a recruiter
+                    $recruiterImage = ''; // Set a default image or leave it empty based on your requirements
+                }
+                ?>
+
+                <div class="col-auto">
+                    <a href="{{url('/')}}/agent/EditProfile" target="_self" class="btn btn-light btn-44">
+                        @if($recruiterImage)
+                        <img src="{{url('/')}}/images/avtar/{{$recruiterImage}}" alt="Recruiter Image" style="width: -webkit-fill-available;">
+                        @else
+                        <!-- If no image is available, you can use a default image or display some placeholder -->
+                        <i class="bi bi-person"></i> <!-- Assuming you want to use a person icon for the profile -->
+                        @endif
+                    </a>
+                </div>
+
+                <!-- <img src="{{url('/')}}/theme/img/user1.jpg" alt=""> -->
             </div>
         </div>
         <div class="col align-self-center ps-0">
@@ -71,11 +95,11 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                            <h5 class="card-title">{{ $totalInstitutions }}</h5>
+                                <h5 class="card-title">{{ $totalInstitutions }}</h5>
                                 <!-- <h5 class="card-title">{{$insights['lodge_not_institution']}}</h5> -->
                             </div>
                             <div class="col-7">
-                            <p class="card-text" style="font-size: 11px;">Total Institutes</p>
+                                <p class="card-text" style="font-size: 11px;">Total Institutes</p>
                                 <!-- <p class="card-text" style="font-size: 11px;">Missing info or documents</p> -->
                             </div>
                             <div class="col-5">
@@ -96,11 +120,11 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
-                            <h5 class="card-title">{{ $totalCourses }}</h5>
+                                <h5 class="card-title">{{ $totalCourses }}</h5>
                                 <!-- <h5 class="card-title">{{$insights['offer_not_received']}}</h5> -->
                             </div>
                             <div class="col-6">
-                            <p class="card-text" style="font-size: 11px;">Total Cources</p>
+                                <p class="card-text" style="font-size: 11px;">Total Cources</p>
                                 <!-- <p class="card-text" style="font-size: 11px;">Offers not yet accepted</p> -->
                             </div>
                             <div class="col-6">
@@ -142,8 +166,8 @@
                     <div class="card-header " style="background: #d5d5d5; "> <img src="{{url('/')}}/theme/icons/graduated.png" style="width: 20%;" alt="">
                         <!-- <strong>{{$insights['student_commenced']}}</strong> <span style="font-size: 11px;">
                             Students Commenced </span> -->
-                            <span style="font-size: 11px;">Students </span>
-                        </div>
+                        <span style="font-size: 11px;">Students </span>
+                    </div>
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12">
@@ -228,7 +252,7 @@
 
                                         <div class="col-9">
                                             <span class="fw-bold"> {{ $institution->name}} </span>
-                                            
+
                                         </div>
                                     </div>
                                 </li>
