@@ -93,7 +93,7 @@
                         <!-- Signup Country -->
                         <div class="form-group mb-3">
                             <label for="signup_country">Signup Country</label>
-                            <input type="text" class="form-control" id="signup_country" name="signup_country" value="{{ old('signup_country', $student->signup_country) }}">
+                            <input type="text" class="form-control" id="signup_country" name="signup_country" value="{{ old('signup_country', $student->signup_country) }}" required>
                         </div>
 
                         <!-- Signup City -->

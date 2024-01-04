@@ -41,26 +41,26 @@
 
     <div class="mb-3">
         <label for="date_of_birth" class="form-label">Date of Birth</label>
-        <input type="date" class="form-control @error('date_of_birth') is-invalid @enderror" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth', $student->date_of_birth) }}" required>
-        @error('date_of_birth')
+        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth', $student->date_of_birth) }}" required>
+        <!-- @error('date_of_birth')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror -->
     </div>
 
     <div class="mb-3">
         <label for="gender" class="form-label">Gender</label>
-        <select class="form-select @error('gender') is-invalid @enderror" id="gender" name="gender" required>
+        <select class="form-select" id="gender" name="gender" required>
             <option value="male">Male</option>
             <option value="female">Female</option>
             <option value="other">Other</option>
         </select>
-        @error('gender')
+        <!-- @error('gender')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror -->
     </div>
 
     <div class="mb-3">
@@ -75,12 +75,12 @@
 
     <div class="mb-3">
         <label for="address" class="form-label">Address</label>
-        <textarea class="form-control @error('address') is-invalid @enderror" id="address" name="address" rows="3"  required>{{ old('address', $student->address) }}</textarea>
-        @error('address')
+        <textarea class="form-control" id="address" name="address" rows="3"  required>{{ old('address', $student->address) }}</textarea>
+        <!-- @error('address')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror -->
     </div>
 
     <div class="mb-3">

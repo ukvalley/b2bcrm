@@ -62,10 +62,10 @@ class StudentController extends Controller
         // Validate the form data
         $validatedData = $request->validate([
             'full_name' => 'required|string|max:255',
-            'date_of_birth' => 'required|date',
-            'gender' => 'required|in:male,female,other',
+            'date_of_birth' => 'date',
+            'gender' => 'in:male,female,other',
             'nationality' => 'required|string|max:255',
-            'address' => 'required|string|max:255',
+            'address' => 'string|max:255',
             'phone_number' => 'required|string|max:15',
             'email' => 'required|email|unique:users'
         ]);
@@ -124,7 +124,7 @@ class StudentController extends Controller
         $validatedData = $request->validate([
             'current_school' => 'nullable|string|max:255',
             'field_of_study' => 'nullable|string|max:255',
-            'expected_graduation_year' => 'nullable|integer|min:1900|max:' . (date('Y') + 10),
+            //'expected_graduation_year' => 'nullable|integer|min:1900|max:' . (date('Y') + 10),
             'academic_interests' => 'nullable|string|max:65535',
             'gpa' => 'nullable|string|max:65535',
             'languages_spoken' => 'nullable|string|max:65535',
@@ -206,19 +206,19 @@ class StudentController extends Controller
     {
         // Validate the incoming data
         $validatedData = $request->validate([
-            'intended_area_of_study' => 'required|string|max:255',
+            'intended_area_of_study' => 'string|max:255',
             'intended_course_level' => 'required|string|max:255',
-            'courses_or_fields_comments' => 'nullable|string|max:65535',
-            'career_paths' => 'nullable|string|max:65535',
-            'intended_institution' => 'required|string|max:255',
-            'intended_intake_quarter' => 'required|string|max:255',
-            'intended_intake_year' => 'required|integer|min:' . date('Y') . '|max:' . (date('Y') + 10),
-            'intended_intake_comments' => 'nullable|string|max:65535',
-            'funding_source' => 'required|string|max:255',
-            'intended_destination_1' => 'required|string|max:255',
-            'intended_destination_2' => 'nullable|string|max:255',
-            'intended_destination_3' => 'nullable|string|max:255',
-            'intended_destination_comments' => 'nullable|string|max:65535',
+            'courses_or_fields_comments' => 'string|max:65535',
+            'career_paths' => 'string|max:65535',
+            'intended_institution' => 'string|max:255',
+            'intended_intake_quarter' => 'string|max:255',
+            'intended_intake_year' => 'integer|min:' . date('Y') . '|max:' . (date('Y') + 10),
+            'intended_intake_comments' => 'string|max:65535',
+            'funding_source' => 'string|max:255',
+            'intended_destination_1' => 'string|max:255',
+            'intended_destination_2' => 'string|max:255',
+            'intended_destination_3' => 'string|max:255',
+            'intended_destination_comments' => 'string|max:65535',
         ]);
 
         // Create a new Student instance and fill it with the validated data
@@ -261,13 +261,13 @@ class StudentController extends Controller
 
         // Validate the incoming data
         $validatedData = $request->validate([
-            'lead_status' => 'required|string|max:255',
-            'prospect_rating' => 'required|string|max:255',
+            'lead_status' => 'string|max:255',
+            'prospect_rating' => 'string|max:255',
             'preferred_appointment_date' => 'date',
             'preferred_appointment_time' => 'date_format:H:i',
             'lead_source' => 'string|max:255',
             'candidate_comments' => 'string',
-            'signup_country' => 'string|max:255',
+            'signup_country' => 'required|string|max:255',
             'signup_city' => 'string|max:255',
             'signup_state_province' => 'string|max:255',
             'Lead_parent' => 'string|max:255',
@@ -317,16 +317,16 @@ class StudentController extends Controller
         // print_r($student); die();
 
         $validatedData = $request->validate([
-            'address1' => 'required|string',
+            'address1' => 'string',
             'address2' => 'nullable|string',
-            'city' => 'required|string',
-            'state_province' => 'required|string',
+            'city' => 'string',
+            'state_province' => 'string',
             'country' => 'required|string', // Validate that the selected country exists in the "countries" table.
-            'postcode' => 'required|string',
-            'date_of_birth' => 'required|date',
-            'marital_status' => 'required|string',
-            'timezone' => 'required|string',
-            'currency' => 'required|string',
+            'postcode' => 'string',
+            'date_of_birth' => 'date',
+            'marital_status' => 'string',
+            'timezone' => 'string',
+            'currency' => 'string',
             'image_profile' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate image upload if needed.
         ]);
 

@@ -4,7 +4,7 @@
                     @if(isset($student))
 
 
-                     <a class="nav-link {{ request()->routeIs('agent.StudentBasicUpdate') ? 'active' : '' }}" href="{{ route('agent.StudentBasicUpdate', ['student_id' => $student->id]) }}">Academic Achievement</a>
+                     <a class="nav-link {{ request()->routeIs('agent.StudentBasicUpdate') ? 'active' : '' }}" href="{{ route('agent.StudentBasicUpdate', ['student_id' => $student->id]) }}">Personal Information</a>
 
                     <a class="nav-link {{ request()->routeIs('agent.student_academic') ? 'active' : '' }}" href="{{ route('agent.student_academic', ['student_id' => $student->id]) }}">Academic Achievement</a>
 

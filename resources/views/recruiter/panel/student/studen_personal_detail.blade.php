@@ -55,45 +55,45 @@
     <!-- Address 1 -->
     <div class="mb-3">
         <label for="address_1" class="form-label">Address 1</label>
-        <input type="text" class="form-control" id="address1" name="address1" value="{{ old('address1',$personaDetail->address1) }}" required >
-        @error('address1')
+        <input type="text" class="form-control" id="address1" name="address1" value="{{ old('address1',$personaDetail->address1) }}" >
+        <!-- @error('address1')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror -->
     </div>
 
     <!-- Address 2 -->
     <div class="mb-3">
         <label for="address_2" class="form-label">Address 2</label>
         <input type="text" class="form-control" id="address2" name="address2" value="{{ old('address2',$personaDetail->address2) }}">
-        @error('address2')
+        <!-- @error('address2')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror -->
     </div>
 
     <!-- City -->
     <div class="mb-3">
         <label for="city" class="form-label">City</label>
-        <input type="text" class="form-control" id="city" name="city" value="{{ old('city',$personaDetail->city) }}" required>
-        @error('city')
+        <input type="text" class="form-control" id="city" name="city" value="{{ old('city',$personaDetail->city) }}">
+        <!-- @error('city')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror -->
     </div>
 
     <!-- State / Province -->
     <div class="mb-3">
         <label for="state_province" class="form-label">State / Province</label>
-        <input type="text" class="form-control" id="state_province" name="state_province" value="{{ old('state_province',$personaDetail->state_province) }}" required>
-        @error('state_province')
+        <input type="text" class="form-control" id="state_province" name="state_province" value="{{ old('state_province',$personaDetail->state_province) }}">
+        <!-- @error('state_province')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror -->
     </div>
 
     <!-- Country (Select Option) -->
@@ -121,23 +121,23 @@
     <!-- Postcode / Zipcode -->
     <div class="mb-3">
         <label for="postcode" class="form-label">Postcode / Zipcode</label>
-        <input type="text" class="form-control" id="postcode" name="postcode" value="{{ old('postcode',$personaDetail->postcode) }}" required>
-        @error('postcode')
+        <input type="text" class="form-control" id="postcode" name="postcode" value="{{ old('postcode',$personaDetail->postcode) }}">
+        <!-- @error('postcode')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror -->
     </div>
 
     <!-- Date of Birth -->
     <div class="mb-3">
         <label for="date_of_birth" class="form-label">Date of Birth</label>
-        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth',$personaDetail->date_of_birth) }}" required>
-        @error('date_of_birth')
+        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth',$personaDetail->date_of_birth) }}">
+        <!-- @error('date_of_birth')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror -->
     </div>
 
     <!-- Marital Status (Select Option) -->
@@ -149,11 +149,11 @@
             <option value="Married" {{ old('marital_status', $personaDetail->marital_status) =='Married' ? 'selected' : '' }}>Married</option>
             <!-- Add other options as needed -->
         </select>
-        @error('marital_status')
+        <!-- @error('marital_status')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror -->
     </div>
 
     <!-- Timezone (Select Option) -->
@@ -167,11 +167,11 @@
             </option>
         @endforeach
         </select>
-        @error('timezone')
+        <!-- @error('timezone')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror -->
     </div>
 
     <!-- Currency -->
@@ -186,11 +186,11 @@
             </option>
         @endforeach
         </select>
-        @error('currency')
+        <!-- @error('currency')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror -->
     </div>
 
     <!-- Image Profile -->
@@ -198,11 +198,11 @@
         <label for="image_profile" class="form-label">Image Profile</label>
         <input type="file" class="form-control" id="image_profile" name="image_profile">
 
-        @error('image_profile')
+        <!-- @error('image_profile')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
             </span>
-        @enderror
+        @enderror -->
     </div>
 
     <div class="form-group mb-3">
