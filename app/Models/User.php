@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\UserType;
 use App\Models\Recruiter;
+use App\Models\institution;
 use App\Models\Messages;
 use App\Models\Timeline;
 

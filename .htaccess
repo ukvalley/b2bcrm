@@ -1,4 +1,8 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteRule ^(.*)$ public/$1 [L]
+    RewriteRule ^(.*)$ storage/$1 [L]
+    # Allow access to storage directory
+    RewriteRule ^storage/(.*)$ /storage/$1 [L,NC]
+
 </IfModule>

@@ -101,17 +101,26 @@ class InstitutionRegistrationController extends Controller
     }
 
     // Check if logo is uploaded
-    if ($request->hasFile('logo')) {
-        $uploadedFile = $request->file('logo');
-        // Store the file in a unique directory
-        $filePath = $uploadedFile->store('uploads'); 
-    } else {
-        $filePath = null; // If logo is not uploaded, set filePath to null or handle accordingly
-    }
+    // if ($request->hasFile('logo')) {
+    //     $uploadedFile = $request->file('logo');
+    //     // Store the file in a unique directory
+    //     $filePath = $uploadedFile->store('uploads', 'public'); 
+    // } else {
+    //     $filePath = null; // If logo is not uploaded, set filePath to null or handle accordingly
+    // }
+
+    $imageName = '';
+        if (isset($request->logo) && !empty($request->logo)) {
+            
+            $image = $request->file('logo');
+            $imageName = time() . '.' . $request->logo->extension();
+            $request->logo->move(public_path('institute_img'), $imageName);
+        }
+        
 
     // Store data in session
     $institutionData = [
-        'logo' => $filePath,
+        'logo' => $imageName,
         'description' => $request->input('description'),
     ];
 
@@ -143,7 +152,7 @@ public function step5(Request $request)
 
     $step1Data = $request->session()->get('institution_step1_data');
     $step2Data = $request->session()->get('institution_step2_data');
-    $step3Data = $request->session()->get('institution_step3_data');
+    $step3Data = $request->session()->get('institution_step4_data');
     $step4Data = $request->all(); // Data from step 4
 
 

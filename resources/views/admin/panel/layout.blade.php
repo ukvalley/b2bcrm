@@ -36,6 +36,7 @@
 
 
     <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet" id="style">
+    <link href="{{ asset('theme/css/custom.css') }}" rel="stylesheet" id="style">
     <link href="{{ asset('theme/vendor/swiperjs-6.6.2/swiper-bundle.min.css') }}" rel="stylesheet" id="style">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
