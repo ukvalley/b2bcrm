@@ -1,6 +1,6 @@
 /* Basic styling */
 .chat-container {
-    background-color:whitesmoke;
+    background-color: whitesmoke;
     width: 100%;
     margin: 20px auto;
     border: 1px solid #ccc;
@@ -20,7 +20,7 @@
     padding: 8px;
     margin: 4px 0;
     border-radius: 10px 10px 0px 10px;
-    align-self:flex-end;
+    align-self: flex-end;
     max-width: 70%;
     margin-right: 10px;
 }
@@ -81,6 +81,8 @@
     color: white;
     cursor: pointer;
 }
-.dataTables_wrapper{
+
+.dataTables_wrapper {
     overflow-x: scroll;
 }
+

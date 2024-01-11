@@ -94,7 +94,7 @@
             </button>
             <a class="navbar-brand flex relative" href="index-company.html">
               <span class="navbar-brand-inner">
-                <img class="logo-default" width="74" height="21" src="civs/assets/images/1a.png" alt="Hub WordPress Theme">
+                <img class="logo-default" src="civs/assets/images/logo.png" alt="Hub WordPress Theme">
               </span>
             </a>
           </div>
