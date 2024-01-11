@@ -109,7 +109,8 @@ Route::group(["prefix" => "/admin" , "middleware" => "CheckUserRole:Admin"], fun
 });
 
 //notification
-Route::get('/notification', [NotificationController::class, 'index'])->name('notification');
+Route::get('notification', [NotificationController::class, 'index'])->name('notification');
+
 //messages
 Route::get('message', [App\Http\Controllers\MessageController::class, 'message'])->name('message');
 Route::get('message/{id}/{student_id}', [App\Http\Controllers\MessageController::class, 'messageView'])->name('message_view');
