@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Timezone;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Institution;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class InstitutionController extends Controller
@@ -28,97 +30,95 @@ class InstitutionController extends Controller
      */
     public function index()
     {
-       // return view('home');
+        // return view('home');
         $institutions   = Institution::get();
-        return view('institution.panel.dashboard',compact('institutions'));
+        return view('institution.panel.dashboard', compact('institutions'));
     }
 
     public function EditProfile()
     {
-         // Get the currently authenticated recruiter
+        // Get the currently authenticated recruiter
         $institution = auth()->user()->institution;
-        $timezones = TimeZone::get();
+        // $timezones = TimeZone::get();
+        // print_r($recruiter);
+        // die();
 
-       // print_r($recruiter);
-       // die();
-
-        return view('institution.panel.profile.edit_profile', compact('institution','timezones'));
-
+        return view('institution.panel.profile.edit_profile', compact('institution'));
     }
     public function UpdateProfile(Request $request)
     {
         // Validate the update data
-    $request->validate([
-        'company_name' => 'required|string|max:255',
-        'company_short_name' => 'required|string|max:255',
-        'client_id' => 'required|string|max:255',
-        'your_role' => 'required|string|max:255',
-        'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate avatar upload
-        'timezone' => 'required|string|exists:timezones,timezone', // Validate timezone exists in the timezones table
-    ]);
-  
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'phone_number' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate avatar upload
+            // 'timezone' => 'required|string|exists:timezones,timezone', // Validate timezone exists in the timezones table
+        ]);
 
+        // Get the currently authenticated institute
+        $institute = auth()->user()->institution;
+        $user = $institute->user;
 
+        $institute->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone_number' => $request->input('phone_number'),
+            'city' => $request->input('city'),
+         
+        ]);
 
-    // Get the currently authenticated recruiter
-    $recruiter = auth()->user()->recruiter;
+        $user->update([
+            'name' => $request->input('name'), // Or any specific user data you want to update
+            'email' => $request->input('email'),
+            // Other user data...
+        ]);
 
-     $recruiter->update([
-        'company_name' => $request->input('company_name'),
-        'company_short_name' => $request->input('company_short_name'),
-        'client_id' => $request->input('client_id'),
-        'your_role' => $request->input('your_role'),
-        'timezone' => $request->input('timezone'), // Assign the selected timezone
-    ]);
-
-     if ($request->hasFile('avatar')) {
-        // Delete the old avatar if it exists
-        if ($recruiter->avatar) {
-            Storage::disk('public')->delete($recruiter->avatar);
-        }
-
+        if ($request->hasFile('logo')) {
+            // Delete the old avatar if it exists
+            if ($institute->logo) {
+                Storage::disk('public')->delete($institute->logo);
+            }
         
-        
-            $file = $request->file('avatar');
+            $file = $request->file('logo');
             $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('images/avtar'), $fileName); // Store in the root folder
-
-           
+            $file->move(public_path('institute_img'), $fileName); // Store in the root folder
+        
+            // Set the logo attribute and save
+            $institute->logo = $fileName;
+            $institute->save();
+        }
         
 
-        
-        $recruiter->update(['avatar' => $fileName]);
-    }
 
-    
 
-    return redirect()->route('institution.edit')->with('success', 'Profile updated successfully!');
-
+        return redirect()->route('institution.edit')->with('success', 'Profile updated successfully!');
     }
 
 
     public function editPassword()
-{
-    return view('institution.panel.profile.update_password');
-}
+    {
+        return view('institution.panel.profile.update_password');
+    }
 
-public function updatePassword(Request $request)
-{
-    $request->validate([
-        'current_password' => 'required',
-        'password' => 'required|string|min:8|confirmed',
-    ]);
-
-    $user = Auth::user();
-
-    if (Hash::check($request->current_password, $user->password)) {
-        $user->update([
-            'password' => Hash::make($request->password),
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'password' => 'required|string|min:8|confirmed',
         ]);
 
-        return redirect()->route('user.editPassword')->with('success', 'Password changed successfully.');
-    } else {
-        return back()->withErrors(['current_password' => 'Incorrect current password.'])->withInput();
+        $user = Auth::user();
+
+        if (Hash::check($request->current_password, $user->password)) {
+            $user->update([
+                'password' => Hash::make($request->password),
+            ]);
+
+            return redirect()->route('institution.editPassword')->with('success', 'Password changed successfully.');
+        } else {
+            return back()->withErrors(['current_password' => 'Incorrect current password.'])->withInput();
+        }
     }
-}
 }
