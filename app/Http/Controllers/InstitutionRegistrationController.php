@@ -9,6 +9,7 @@ use App\Models\Institution;
 use App\Models\User; // Import the Recruiter model
 use App\Models\UserType; 
 use App\Models\Country; 
+use App\Models\Notification;
 
 class InstitutionRegistrationController extends Controller
 {
@@ -195,6 +196,25 @@ public function step5(Request $request)
 
     // Save the institution profile
     $institution->save();
+
+    $adminUser = User::whereHas('userType', function ($query) {
+        $query->where('name', 'Admin');
+    })->first();
+    
+    // Check if the admin user exists
+    if ($adminUser) {
+        $adminUserId = $adminUser->id;
+    } else {
+        $adminUserId = 4; 
+    }
+
+    $notification = new Notification();
+    $notification->key = '-';
+    $notification->message = 'New agent or institution registered.';
+    $notification->user_id = $adminUserId; // Replace with the actual admin user ID
+    $notification->isread = false;
+    $notification->save();
+    
 
     // Create a new user and institution profile in your database
     // Similar to what you did in step 5 of the agent registration controller

@@ -81,3 +81,9 @@
     color: white;
     cursor: pointer;
 }
+
+.notification-header{
+    padding: 8px 15px;
+    border: none;
+    background-color:hsla(9, 100%, 64%, 0.5);
+}

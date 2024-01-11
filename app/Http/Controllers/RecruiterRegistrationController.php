@@ -12,6 +12,7 @@ use App\Models\UserType;
 use App\Models\Country;
 use App\Models\Institution;
 use App\Models\Course;
+use App\Models\Notification;
 
 use DB;
 
@@ -254,7 +255,23 @@ class RecruiterRegistrationController extends Controller
 
         $course->save();
 
-
+        $adminUser = User::whereHas('userType', function ($query) {
+            $query->where('name', 'Admin');
+        })->first();
+        
+        // Check if the admin user exists
+        if ($adminUser) {
+            $adminUserId = $adminUser->id;
+        } else {
+            $adminUserId = 4; 
+        }
+       
+        $notification = new Notification();
+        $notification->key = '-';
+        $notification->message = 'New agent or institution registered.';
+        $notification->user_id = $adminUserId; // Replace with the actual admin user ID
+        $notification->isread = false;
+        $notification->save();
 
         DB::commit(); // Commit the transaction
 
