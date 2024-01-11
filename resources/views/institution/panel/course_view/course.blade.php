@@ -69,7 +69,15 @@ j(document).ready(function () {
         serverSide: true,
         ajax: '{!! route('institution.getCourse') !!}',
         columns: [
-            { data: 'id', name: 'id' },
+            // { data: 'id', name: 'id' },
+            { 
+                    data: null,
+                    render: function (data, type, row, meta) {
+                        return meta.row + meta.settings._iDisplayStart + 1;
+                    },
+                    orderable: false,
+                    searchable: false
+                },
             { data: 'name', name: 'name' },
             { data: 'level', name: 'level' },
             { data: 'course_code', name: 'course_code' },

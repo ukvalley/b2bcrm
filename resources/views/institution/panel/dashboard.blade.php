@@ -10,9 +10,36 @@
             <!-- welcome user -->
             <div class="row mb-4">
                 <div class="col-auto">
-                    <div class="avatar avatar-50 shadow rounded-10">
+                    <!-- <div class="avatar avatar-50 shadow rounded-10">
                         <img src="{{url('/')}}/theme/img/user1.jpg" alt="">
-                    </div>
+                    </div> -->
+                    <div class="avatar avatar-60 shadow rounded-10">
+                <?php
+                $user = auth()->user();
+
+                
+                if ($user->institution) {
+                  
+                    $institutelogo = $user->institution->logo;
+                } else {
+                    
+                    $institutelogo = '';
+                }
+                ?>
+
+                <div class="col-auto">
+                    <a href="{{url('/')}}/institution/EditProfile" target="_self" class="btn btn-light btn-44">
+                        @if($institutelogo)
+                        <img src="{{url('/')}}/institute_img/{{$institutelogo}}" alt="Recruiter Image" style="width: -webkit-fill-available;">
+                        @else
+                        <!-- If no image is available, you can use a default image or display some placeholder -->
+                        <i class="bi bi-person"></i> <!-- Assuming you want to use a person icon for the profile -->
+                        @endif
+                    </a>
+                </div>
+
+                <!-- <img src="{{url('/')}}/theme/img/user1.jpg" alt=""> -->
+            </div>
                 </div>
                 <div class="col align-self-center ps-0">
                     <h4 class="text-color-theme"><span class="fw-normal">Hi</span>, {{ Auth::user()->name }}!</h4>

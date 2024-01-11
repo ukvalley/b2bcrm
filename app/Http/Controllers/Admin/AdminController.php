@@ -14,6 +14,7 @@ use DataTables;
 use App\Models\User;
 use App\Models\Course;
 use App\Models\Country;
+use DB;
 
 
 
@@ -225,13 +226,13 @@ class AdminController extends Controller
         } else {
             $institutions = Institution::all();
         }
-    
+
         return response()->json(['data' => $institutions]);
     }
 
     public function institutions()
     {
-        $country=Country::all();
+        $country = Country::all();
         return view('admin.panel.institution.index', compact('country'));
     }
 
@@ -314,6 +315,8 @@ class AdminController extends Controller
         $agent->update([
 
             'company_name' => $request->input('company_name'),
+            'email' => $request->input('email'),
+            'mobile_number' => $request->input('mobile_number'),
             'company_short_name' => $request->input('company_short_name'),
             'client_id' => $request->input('client_id'),
             'your_role' => $request->input('your_role'),
@@ -324,113 +327,142 @@ class AdminController extends Controller
 
         ]);
 
+        DB::table('users')
+            ->join('recruiters', 'users.id', '=', 'recruiters.user_id')
+            ->where('recruiters.id', $agent_id)
+            ->update([
+                'users.email' => $request->input('email'),
+
+                // Add other fields as needed
+            ]);
+
         return redirect()->route('admin.agentView', ['agent_id' => $agent_id])->with('success', 'Agent updated successfully.');
     }
 
     public function exportCSV(Request $request)
     {
-        
+
         $fileName = 'students.csv';
         $Students = Student::all();
         foreach ($Students as $student) {
-        if (isset($student->intended_destination_1) && !empty($student->intended_destination_1)) {
-            $country = Country::find($student->intended_destination_1);
-            if (isset($country) && !empty($country)) {
-                $student->intended_destination_1 = $country->name;
+            if (isset($student->intended_destination_1) && !empty($student->intended_destination_1)) {
+                $country = Country::find($student->intended_destination_1);
+                if (isset($country) && !empty($country)) {
+                    $student->intended_destination_1 = $country->name;
+                }
+            }
+
+            if (isset($student->intended_destination_2) && !empty($student->intended_destination_2)) {
+                $country = Country::find($student->intended_destination_2);
+                if (isset($country) && !empty($country)) {
+                    $student->intended_destination_2 = $country->name;
+                }
+            }
+
+            if (isset($student->intended_destination_3) && !empty($student->intended_destination_3)) {
+                $country = Country::find($student->intended_destination_3);
+                if (isset($country) && !empty($country)) {
+                    $student->intended_destination_3 = $country->name;
+                }
             }
         }
 
-        if (isset($student->intended_destination_2) && !empty($student->intended_destination_2)) {
-            $country = Country::find($student->intended_destination_2);
-            if (isset($country) && !empty($country)) {
-                $student->intended_destination_2 = $country->name;
-            }
-        }
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
 
-        if (isset($student->intended_destination_3) && !empty($student->intended_destination_3)) {
-            $country = Country::find($student->intended_destination_3);
-            if (isset($country) && !empty($country)) {
-                $student->intended_destination_3 = $country->name;
+        $columns = array('SrNo.', 'Name', 'email', 'date_of_birth', 'Address', 'phone_number', 'nationality', 'Interested Course', 'Interested Destination 1', 'Interested Destination 2', 'Interested Destination 3');
+
+        $callback = function () use ($Students, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+            $counter = 1;
+            foreach ($Students as $Student) {
+                $row['SrNo'] = $counter;
+                $row['first_name']  = $Student->first_name;
+                $row['email']  = $Student->email;
+                $row['date_of_birth']    = $Student->date_of_birth;
+                $row['address']    = $Student->address;
+                $row['nationality']  = $Student->nationality;
+                $row['phone_number']  = $Student->phone_number;
+                $row['intrested_Cource']  = $Student->intended_course_level;
+                $row['interested_destination_1']  = $Student->intended_destination_1;
+                $row['interested_destination_2']  = $Student->intended_destination_2;
+                $row['interested_destination_3']  = $Student->intended_destination_3;
+
+                fputcsv($file, array($row['SrNo'], $row['first_name'], $row['email'], $row['date_of_birth'], $row['address'], $row['phone_number'], $row['nationality'], $row['intrested_Cource'], $row['interested_destination_1'], $row['interested_destination_2'], $row['interested_destination_3']));
+                $counter++;
             }
-        }
+
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
     }
 
-                $headers = array(
-                    "Content-type"        => "text/csv",
-                    "Content-Disposition" => "attachment; filename=$fileName",
-                    "Pragma"              => "no-cache",
-                    "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
-                    "Expires"             => "0"
-                );
-
-                $columns = array('SrNo.','Name','email', 'date_of_birth', 'Address' ,'phone_number','nationality','Interested Course','Interested Destination 1','Interested Destination 2','Interested Destination 3');
-
-                $callback = function() use($Students, $columns) {
-                    $file = fopen('php://output', 'w');
-                    fputcsv($file, $columns);
-                    $counter=1;
-                    foreach ($Students as $Student) {
-                        $row['SrNo'] = $counter;
-                        $row['first_name']  = $Student->first_name;
-                        $row['email']  = $Student->email;
-                        $row['date_of_birth']    = $Student->date_of_birth;
-                        $row['address']    = $Student->address;
-                        $row['nationality']  = $Student->nationality;
-                        $row['phone_number']  = $Student->phone_number;
-                        $row['intrested_Cource']  = $Student->intended_course_level;
-                        $row['interested_destination_1']  = $Student->intended_destination_1;
-                        $row['interested_destination_2']  = $Student->intended_destination_2;
-                        $row['interested_destination_3']  = $Student->intended_destination_3;
-
-                        fputcsv($file, array($row['SrNo'], $row['first_name'],$row['email'], $row['date_of_birth'], $row['address'],$row['phone_number'],$row['nationality'],$row['intrested_Cource'],$row['interested_destination_1'],$row['interested_destination_2'],$row['interested_destination_3']));
-                        $counter++;
-                    }
-
-                    fclose($file);
-                };
-
-            return response()->stream($callback, 200, $headers);
-        }
-
-        public function agentexportCSV(Request $request)
+    public function agentexportCSV(Request $request)
     {
-        
+
         $fileName = 'agent.csv';
         $Agents = Recruiter::all();
 
-                $headers = array(
-                    "Content-type"        => "text/csv",
-                    "Content-Disposition" => "attachment; filename=$fileName",
-                    "Pragma"              => "no-cache",
-                    "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
-                    "Expires"             => "0"
-                );
+        $headers = array(
+            "Content-type"        => "text/csv",
+            "Content-Disposition" => "attachment; filename=$fileName",
+            "Pragma"              => "no-cache",
+            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
+            "Expires"             => "0"
+        );
 
-                $columns = array('SrNo.','Company Name','Company Short Name', 'Email', 'Mobile' ,'Cliet id','Role','Country Count','Student Sent Count');
+        $columns = array('SrNo.', 'Company Name', 'Company Short Name', 'Email', 'Mobile', 'Cliet id', 'Role', 'Country Count', 'Student Sent Count');
 
-                $callback = function() use($Agents, $columns) {
-                    $file = fopen('php://output', 'w');
-                    fputcsv($file, $columns);
-                    $counter=1;
-                    foreach ($Agents as $Agent) {
-                        $row['SrNo'] = $counter;
-                        $row['Company Name']  = $Agent->company_name;
-                        $row['Company Short Name']  = $Agent->company_short_name;
-                        $row['Email']    = $Agent->email;
-                        $row['Mobile']    = $Agent->mobile_number;
-                        $row['Cliet id']  = $Agent->client_id;
-                        $row['Role']  = $Agent->your_role;
-                        $row['Country Count']  = $Agent->country_count;
-                        $row['Student Sent Count']  = $Agent->students_sent_count;
-                       
+        $callback = function () use ($Agents, $columns) {
+            $file = fopen('php://output', 'w');
+            fputcsv($file, $columns);
+            $counter = 1;
+            foreach ($Agents as $Agent) {
+                $row['SrNo'] = $counter;
+                $row['Company Name']  = $Agent->company_name;
+                $row['Company Short Name']  = $Agent->company_short_name;
+                $row['Email']    = $Agent->email;
+                $row['Mobile']    = $Agent->mobile_number;
+                $row['Cliet id']  = $Agent->client_id;
+                $row['Role']  = $Agent->your_role;
+                $row['Country Count']  = $Agent->country_count;
+                $row['Student Sent Count']  = $Agent->students_sent_count;
 
-                        fputcsv($file, array($row['SrNo'], $row['Company Name'],$row['Company Short Name'], $row['Email'], $row['Mobile'],$row['Cliet id'],$row['Role'],$row['Country Count'],$row['Student Sent Count']));
-                        $counter++;
-                    }
 
-                    fclose($file);
-                };
+                fputcsv($file, array($row['SrNo'], $row['Company Name'], $row['Company Short Name'], $row['Email'], $row['Mobile'], $row['Cliet id'], $row['Role'], $row['Country Count'], $row['Student Sent Count']));
+                $counter++;
+            }
 
-            return response()->stream($callback, 200, $headers);
+            fclose($file);
+        };
+
+        return response()->stream($callback, 200, $headers);
+    }
+
+
+    public function agentdestroy($agent_id)
+    {
+        $recruiter = Recruiter::findOrFail($agent_id);
+        if (isset($recruiter) && !empty($recruiter)) {
+            // $students = Student::where('lead_parent', $agent_id)->get();
+            // foreach ($students as $student) {
+            //     $studentExist = Student::where('lead_parent', $student->user_id)->get();
+            //     foreach ($studentExist as $stud) {
+            //         $stud->delete();
+            //     }
+            //     $student->delete();
+            // }
+            $user = User::findOrFail($recruiter->user_id);
+            $recruiter->delete();
+            $user->delete();
         }
+        return back()->with('success', 'Agent deleted successfully.');
+    }
 }

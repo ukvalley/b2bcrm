@@ -49,7 +49,7 @@
                                 <div>
 
                                     <h4 style="color: light-blue;">{{$news_data->title}}</h4>
-                                    <p>{{$news_data->content}}</p>
+                                    <p>{!!$news_data->content!!}</p>
                                     <hr>
                                 </div>
                                 @endforeach
