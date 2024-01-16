@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Student;
-use App\Models\Message;
 use App\Models\Newmessage;
 use Auth;
 
@@ -23,13 +23,13 @@ class MessageController extends Controller
             
         }
 
-        return view('message.index', compact('students'));
+        return view('admin.panel.message.index', compact('students'));
     }
 
     public function MessageView($reciever_id, $student_id)
     { 
 
-        return view('message.view', compact('reciever_id', 'student_id'));
+        return view('admin.panel.message.view', compact('reciever_id', 'student_id'));
     }
 
 

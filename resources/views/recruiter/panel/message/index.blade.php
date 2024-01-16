@@ -34,7 +34,7 @@
                                 <td>{{$key+1}}</td>
                                 <td>{{$student->first_name}}</td>
                                 <td>
-                                    <a href="{{ route('message_view', [$student->id, $student->user_id]) }}">
+                                    <a href="{{ route('agent.message_view', [$student->id, $student->user_id]) }}">
                                         <button class="btn btn-primary">Message</button>
                                     </a>
                                 </td>

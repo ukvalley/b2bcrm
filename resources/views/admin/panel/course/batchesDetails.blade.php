@@ -31,11 +31,40 @@
                                 <th scope="col">Months</th>
                                 <th scope="col">Action</th>
 
+<<<<<<< HEAD
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($courseBatch as $key=>$item)
                             <tr>
+=======
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                    @foreach($courseBatch as $key=>$item)
+                        <tr>
+                        
+                        <th scope="row">{{$key+1}}</th>
+                        <td>{{$item->batch->year}}</td>
+                        <td>{{$item->batch->quarter}}</td>
+                        <td>{{$item->batch->months}}</td>
+                        
+                        <td>
+                            <form action="{{ route('admin.updateStatus', $item->id) }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <select name="status" id="status">
+                                <!-- <option value="diploma" @if($course->level == "Diploma") Selected @endif>Diploma</option> -->
+                                    <option value="Active" @if($item->status == 'Active') Selected @endif>Active</option>
+                                    <option value="Inactive" @if($item->status == 'Inactive') Selected @endif>Inactive</option>
+                                    <option value="Batch_full" @if($item->status == 'Batch_full' ) Selected @endif>Batch Full</option>
+                                </select>
+                                <button type="submit" class="btn btn-primary">Update</button>
+                            </form>
+                        </td>
+                       
+>>>>>>> f193e502f1af40d5675e6adaf5a69c5714f1b2ef
 
                                 <th scope="row">{{$key+1}}</th>
                                 <td>{{$item->batch->year}}</td>

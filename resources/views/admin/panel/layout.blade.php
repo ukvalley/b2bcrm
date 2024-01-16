@@ -36,11 +36,12 @@
 
 
     <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet" id="style">
-    <link href="{{ asset('theme/css/custom.css') }}" rel="stylesheet" id="style">
     <link href="{{ asset('theme/vendor/swiperjs-6.6.2/swiper-bundle.min.css') }}" rel="stylesheet" id="style">
+    <link href="{{ asset('theme/css/custom.css') }}" rel="stylesheet" id="style">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -176,7 +177,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('message')}}" tabindex="-1">
+                            <a class="nav-link" href="{{route('admin.message')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-paperclip"></i></div>
                                 <div class="col">Messages</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
@@ -322,7 +323,7 @@
 
     <!-- Required jquery and libraries -->
 
-    <script src="{{ asset('theme/js/jquery-3.3.1.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script src="{{ asset('theme/js/popper.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/bootstrap-5/js/bootstrap.bundle.min.js') }}"></script>
@@ -372,6 +373,7 @@
             });
         });
     </script>
+    @yield('footerScript')
 </body>
 
 </html>

@@ -26,7 +26,11 @@ use App\Models\Course;
 use App\Models\Shortlist;
 use Auth;
 use App\Http\Controllers\Agent\ExportUsers;
+<<<<<<< HEAD
 use App\Models\Recruiter;
+=======
+use Illuminate\Support\Facades\Auth as FacadesAuth;
+>>>>>>> f193e502f1af40d5675e6adaf5a69c5714f1b2ef
 
 class StudentController extends Controller
 {
@@ -411,7 +415,11 @@ class StudentController extends Controller
 
     public function getStudents(Request $request)
     {
-        return (new StudentsDataTable())->ajax();
+        $id =Auth::id();
+        $students= Student::where('Lead_parent',$id)->get();
+        // dd($students);
+        // return (new StudentsDataTable())->ajax();
+        return response()->json(['data' => $students]);
     }
 
 

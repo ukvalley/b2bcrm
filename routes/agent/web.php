@@ -153,6 +153,14 @@ Route::post('preferenceUpdate', [App\Http\Controllers\Agent\ApplicationFormContr
 // all courses
 Route::get('/course_all', [App\Http\Controllers\Agent\AgentController::class,'course_all'])->name('agent.course_all');
 
+//notification
+Route::get('notification', [App\Http\Controllers\Agent\NotificationController::class, 'index'])->name('agent.notification');
+
+//messages
+Route::get('message', [App\Http\Controllers\Agent\MessageController::class, 'message'])->name('agent.message');
+Route::get('message/{id}/{student_id}', [App\Http\Controllers\Agent\MessageController::class, 'messageView'])->name('agent.message_view');
+Route::post('send-message', [App\Http\Controllers\Agent\MessageController::class, 'messagesend'])->name('agent.messagesend');
+Route::post('fetch-messages', [App\Http\Controllers\Agent\MessageController::class, 'fetchMessages'])->name('agent.fetchMessages');
 
 
 

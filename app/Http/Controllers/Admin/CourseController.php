@@ -11,6 +11,7 @@ use App\Models\CourseBatch;
 use App\Models\Institution;
 use App\Models\CountryData;
 use DataTables;
+use DB;
 
 class CourseController extends Controller
 {
@@ -160,6 +161,24 @@ class CourseController extends Controller
     // {
     //     return view('admin.panel.course.batchesDetails');
     // }
+
+    public function updateStatus($course_id)
+    {
+        $courseBatch = CourseBatch::find($course_id);
+                // dd($courseBatch);
+                if ($courseBatch) {
+                    $validatedData = request()->validate([
+                        'status' => 'required|in:Active,Inactive,Batch_full',
+                    ]);
+            
+                    $courseBatch->status = $validatedData['status'];
+                    $courseBatch->save();
+            
+                    return redirect()->back()->with('success', 'Status updated successfully');
+                } else {
+                    return redirect()->back()->with('error', 'Course batch not found');
+                }
+    }
 
     public function CourseBasicUpdate($course_id)
     {

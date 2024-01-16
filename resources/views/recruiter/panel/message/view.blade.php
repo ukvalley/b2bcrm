@@ -10,7 +10,7 @@
 
                     <p class="card-text"></p>
                     <hr>
-                    <form method="POST" action="{{ route('messagesend') }}">
+                    <form method="POST" action="{{ route('agent.messagesend') }}">
                         @csrf
                         <div class="row">
                             <!-- <div class="col-3">
@@ -46,7 +46,7 @@
 
         $.ajax({
             type: 'POST',
-            url: "{{route('fetchMessages')}}",
+            url: "{{route('agent.fetchMessages')}}",
             data: {
                 _token: '{{ csrf_token() }}',
                 receiver_id: '{{$reciever_id}}',
@@ -64,6 +64,7 @@
             }
         });
 
+<<<<<<< HEAD:resources/views/message/view.blade.php
         function sendMessage() {
         var messageContent = $('#messageInput').val();
         $.ajax({
@@ -102,6 +103,35 @@
             sendMessage();
         }
     });
+=======
+        $('#SendMessage').on('click', function() {
+            $('#SendMessage').show();
+            var messageContent = $('#messageInput').val();
+            $.ajax({
+                type: 'POST',
+                url: "{{route('agent.messagesend')}}",
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    receiver_id: '{{$reciever_id}}',
+                    student_id: '{{$student_id}}',
+                    content: messageContent
+                },
+                success: function(response) {
+                    // Handle success response (if needed)
+                    console.log('Message sent successfully');
+                    $('#SendMessage').hide();
+                    // Optionally, you can update the UI here to show the sent message
+                    $('#chatMessages').append('<div class="sent-message">' + messageContent + '</div>');
+                    $('#messageInput').val(' ');
+                },
+                error: function(xhr, status, error) {
+                    // Handle error (if needed)
+                    console.error(error);
+                    $('#SendMessage').show();
+                }
+            })
+        })
+>>>>>>> f193e502f1af40d5675e6adaf5a69c5714f1b2ef:resources/views/recruiter/panel/message/view.blade.php
 
 
     });

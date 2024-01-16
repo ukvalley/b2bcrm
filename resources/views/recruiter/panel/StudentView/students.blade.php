@@ -36,6 +36,15 @@
                             </tr>
                         </thead>
 
+                        {{-- @foreach($students as $item)
+                        <tr>
+                            <td>{{ $item->id }}</td>
+                            <td>{{ $item->first_name }}</td>
+                            <td>{{ $item->email }}</td>
+                            <td>{{ $item->created_at }}</td>
+                            <!-- Add more data columns as needed -->
+                        </tr>
+                        @endforeach --}}
                     </table>
 
       
