@@ -34,6 +34,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        
                     @foreach($courseBatch as $key=>$item)
                         <tr>
                         
@@ -43,13 +44,14 @@
                         <td>{{$item->batch->months}}</td>
                         
                         <td>
-                            <form action="{{ route('updateStatus', $item->id) }}" method="POST">
+                            <form action="{{ route('admin.updateStatus', $item->id) }}" method="POST">
                                 @csrf
                                 @method('PUT')
                                 <select name="status" id="status">
-                                    <option value="Active" {{ $item->status === 'Active' ? 'selected' : '' }}>Active</option>
-                                    <option value="Inactive" {{ $item->status === 'Inactive' ? 'selected' : '' }}>Inactive</option>
-                                    <option value="Batch_full" {{ $item->status === 'Batch_full' ? 'selected' : '' }}>Batch Full</option>
+                                <!-- <option value="diploma" @if($course->level == "Diploma") Selected @endif>Diploma</option> -->
+                                    <option value="Active" @if($item->status == 'Active') Selected @endif>Active</option>
+                                    <option value="Inactive" @if($item->status == 'Inactive') Selected @endif>Inactive</option>
+                                    <option value="Batch_full" @if($item->status == 'Batch_full' ) Selected @endif>Batch Full</option>
                                 </select>
                                 <button type="submit" class="btn btn-primary">Update</button>
                             </form>

@@ -10,7 +10,7 @@
 
                     <p class="card-text"></p>
                     <hr>
-                    <form method="POST" action="{{ route('messagesend') }}">
+                    <form method="POST" action="{{ route('agent.messagesend') }}">
                         @csrf
                         <div class="row">
                             <!-- <div class="col-3">
@@ -46,7 +46,7 @@
 
         $.ajax({
             type: 'POST',
-            url: "{{route('fetchMessages')}}",
+            url: "{{route('agent.fetchMessages')}}",
             data: {
                 _token: '{{ csrf_token() }}',
                 receiver_id: '{{$reciever_id}}',
@@ -65,10 +65,11 @@
         });
 
         $('#SendMessage').on('click', function() {
+            $('#SendMessage').show();
             var messageContent = $('#messageInput').val();
             $.ajax({
                 type: 'POST',
-                url: "{{route('messagesend')}}",
+                url: "{{route('agent.messagesend')}}",
                 data: {
                     _token: '{{ csrf_token() }}',
                     receiver_id: '{{$reciever_id}}',
@@ -78,6 +79,7 @@
                 success: function(response) {
                     // Handle success response (if needed)
                     console.log('Message sent successfully');
+                    $('#SendMessage').hide();
                     // Optionally, you can update the UI here to show the sent message
                     $('#chatMessages').append('<div class="sent-message">' + messageContent + '</div>');
                     $('#messageInput').val(' ');
@@ -85,6 +87,7 @@
                 error: function(xhr, status, error) {
                     // Handle error (if needed)
                     console.error(error);
+                    $('#SendMessage').show();
                 }
             })
         })

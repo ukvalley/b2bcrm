@@ -94,6 +94,7 @@ Route::get('migrate_db', 'App\Http\Controllers\Admin\CountryDataController@migra
 Route::get('CourseBasicUpdate/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicUpdate'])->name('admin.CourseBasicUpdate');
 Route::get('batchesDetails/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'batchesDetails'])->name('admin.batchesDetails');
 Route::get('batchesDetail', [App\Http\Controllers\Admin\CourseController::class, 'batchesDetailsView'])->name('admin.batchesDetail');
+Route::put('updateStatus/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'updateStatus'])->name('admin.updateStatus');
 Route::post('CourseBasicUpdateRegistration/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseBasicUpdateRegistration'])->name('admin.CourseBasicUpdateRegistration');
 Route::get('course', [App\Http\Controllers\Admin\CourseController::class, 'course'])->name('admin.course');
 Route::get('getCourse', [App\Http\Controllers\Admin\CourseController::class,'getCourse'])->name('admin.getCourse');
@@ -103,3 +104,13 @@ Route::get('courseView/{course_id}', [App\Http\Controllers\Admin\CourseControlle
 //student csv
 Route::get('/export-csv', [App\Http\Controllers\Admin\AdminController::class, 'exportCSV'])->name('admin.exportCSV');
 Route::get('/agent-export-csv', [App\Http\Controllers\Admin\AdminController::class, 'agentexportCSV'])->name('admin.agentexportCSV');
+
+
+//notification
+Route::get('notification', [App\Http\Controllers\Admin\NotificationController::class, 'index'])->name('admin.notification');
+
+//messages
+Route::get('message', [App\Http\Controllers\Admin\MessageController::class, 'message'])->name('admin.message');
+Route::get('message/{id}/{student_id}', [App\Http\Controllers\Admin\MessageController::class, 'messageView'])->name('admin.message_view');
+Route::post('send-message', [App\Http\Controllers\Admin\MessageController::class, 'messagesend'])->name('admin.messagesend');
+Route::post('fetch-messages', [App\Http\Controllers\Admin\MessageController::class, 'fetchMessages'])->name('admin.fetchMessages');
