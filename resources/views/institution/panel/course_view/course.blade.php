@@ -22,7 +22,7 @@
                         <p class="card-text"></p>
                         <hr>
 
-                    <table id="students-table" class="table table-container">
+                    <table id="students-table" class="table table-container table-striped">
                        
                         <thead>
                             <tr>
@@ -85,7 +85,7 @@ j(document).ready(function () {
             // { data: 'created_at', name: 'created_at' },
             { data: null, 
             render: function(data, type, row) {
-            return '<a href="{{url('/')}}/institution/CourseBasicUpdate/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a> <a href="{{url('/')}}/institution/courseView/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a>';
+            return '<a href="{{url('/')}}/institution/CourseBasicUpdate/'+row.id+'"><button class="btn btn-info edit-button" data-id="' + row.id + '">Edit</button></a> <a href="{{url('/')}}/institution/courseView/'+row.id+'"><button class="btn btn-primary view-button" data-id="' + row.id + '">View</button></a>';
 
             } },
 

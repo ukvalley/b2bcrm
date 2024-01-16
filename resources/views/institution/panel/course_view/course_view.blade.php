@@ -73,20 +73,20 @@
                                 <p>{{$course->currency}}</p>
                                 <h6 class="mt-3">Tuition Fee</h6>
                                 <p>{{$course->tuition_fee}}</p>
-                                <h6 class="mt-3">Delivery</h6>
-                                <p>{{$course->name}}</p>
+                                <!-- <h6 class="mt-3">Delivery</h6>
+                                <p>{{$course->name}}</p> -->
                                 <h6 class="mt-3">Duration</h6>
                                 <p>{{$course->duration}} {{$course->duration_type}}</p>
                                 <h6 class="mt-3">Application Fee</h6>
                                 <p>{{$course->application_fees}} {{$course->fees_type}}</p>
-                                <h6 class="mt-3">Adventus Code</h6>
-                                <p>{{$course->name}}</p>
+                                <!-- <h6 class="mt-3">Adventus Code</h6>
+                                <p>{{$course->name}}</p> -->
                                 <h6 class="mt-3">Summary</h6>
                                 <p>{{$course->summary}}</p>
                                 <h6 class="mt-3">Attendance pattern</h6>
                                 <p>{{$course->attendance_pattern}}</p>
-                                <h6 class="mt-3">Language of Tuition</h6>
-                                <p>{{$course->name}}</p>
+                                <!-- <h6 class="mt-3">Language of Tuition</h6>
+                                <p>{{$course->name}}</p> -->
 
                             </div>
                         </div>

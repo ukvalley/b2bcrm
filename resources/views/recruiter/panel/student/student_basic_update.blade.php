@@ -22,7 +22,7 @@
 
                         <h4 class="card-title">Step 1: Personal Information</h4>
                         <p class="card-text">Please provide your personal information.</p>
-                       <form class="mt-3" method="POST" action="{{ route('agent.student_basic_registration',['id' => $student->id]) }}">
+                       <form class="mt-3" method="POST" action="{{ route('agent.StudentBasicUpdateRegistration',['id' => $student->id]) }}">
     @csrf
 
     <div class="col mb-3">

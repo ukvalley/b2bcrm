@@ -1,4 +1,4 @@
-@extends('institution.panel.layout')
+@extends('admin.panel.layout')
 
 @section('content')
 

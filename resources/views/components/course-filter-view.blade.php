@@ -121,7 +121,12 @@
                     <div class="col-md-9">
                     <div class="card-body">
                         <h5 class="card-title"><i class="bi bi-bank" style="margin: 5px;"></i> {{$course->institution->name}}</h5>
-                        <p class="card-text"><i class="bi bi-globe-americas" style="margin: 5px;"></i>{{$course->institution->Countries->name}} <br>
+                        
+                        <p class="card-text"><i class="bi bi-globe-americas" style="margin: 5px;"></i>
+                        @if(isset($course->institution->Countries) && !empty($course->institution->Countries))
+                        {{$course->institution->Countries->name}}
+                        @endif
+                         <br>
                         <i class="bi bi-clock" style="margin: 5px;"></i> {{$course->duration}} {{$course->duration_type}} &nbsp&nbsp <i class="bi bi-cash" style="margin: 5px;"></i>{{$course->application_fees}} {{$course->currency}} | {{$course->fees_type}}
                     </p>
 

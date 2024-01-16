@@ -23,7 +23,7 @@
                         <p class="card-text"></p>
                         <hr>
 
-                    <table id="students-table" class="table table-container">
+                    <table id="students-table" class="table table-container table-striped">
                        
                         <thead>
                             <tr>

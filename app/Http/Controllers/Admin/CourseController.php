@@ -156,15 +156,34 @@ class CourseController extends Controller
         return view('admin.panel.course.batchesDetails', compact('course', 'courseBatch'));
     }
 
-    public function batchesDetailsView()
-    {
-        return view('admin.panel.course.batchesDetails');
-    }
+    // public function batchesDetailsView()
+    // {
+    //     return view('admin.panel.course.batchesDetails');
+    // }
 
     public function CourseBasicUpdate($course_id)
     {
         $course = Course::findOrFail($course_id);
         return view('admin.panel.course.course_basic_update', compact('course'));
+    }
+
+    public function CourseUpdate(Request $request, $course_id)
+    {
+        try {
+            $batch = CourseBatch::findOrFail($course_id);
+
+            // Validate the request data if needed
+            $request->validate([
+                'status' => 'required|in:Active,Inactive,Batch_full',
+            ]);
+
+            $batch->status = $request->input('status');
+            $batch->save();
+
+            return redirect()->back()->with('success', 'Status updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Error updating status. ' . $e->getMessage());
+        }
     }
 
     public function CourseBasicUpdateRegistration(Request $request, $course_id)

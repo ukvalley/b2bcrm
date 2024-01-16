@@ -99,6 +99,21 @@
             <div class="row">
                 <div class="col-12">
                     <ul class="nav nav-pills">
+                    <li class="nav-item">
+                            <div class="row mb-4">
+                                <div class="col-12">
+                                    <div class="card shadow-sm">
+                                        <div class="card-body">
+                                            <div class="form-check form-switch">
+                                                <input class="form-check-input" type="checkbox" id="darkmodeswitch">
+                                                <label class="form-check-label text-muted px-2 " for="darkmodeswitch">Activate Dark
+                                                    Mode</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{{route('institution.home')}}">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-house-door"></i></div>

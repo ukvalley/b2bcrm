@@ -22,7 +22,7 @@
                         <p class="card-text"></p>
                         <hr>
 
-                    <table id="students-table" class="table table-container">
+                    <table id="students-table" class="table table-striped">
                        
                         <thead>
                             <tr>
@@ -70,11 +70,12 @@ j(document).ready(function () {
         ajax: '{!! route('admin.getCourse') !!}',
         columns: [
             {
-                    data: null,
-                    render: function(data, type, row, meta) {
-                        return meta.row + 1;
-                    }
-                },
+                data: null,
+                render: function (data, type, row, meta) {
+                    // Calculate the correct serial number based on current page and page length
+                    return meta.row + meta.settings._iDisplayStart + 1;
+                }
+            },
             { data: 'name', name: 'name' },
             { data: 'level', name: 'level' },
             { data: 'course_code', name: 'course_code' },

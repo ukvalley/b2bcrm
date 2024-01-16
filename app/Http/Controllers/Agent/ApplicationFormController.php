@@ -18,6 +18,8 @@ use App\Models\Documents;
 use App\Models\DocumentsUpload;
 use App\Models\News;
 use App\Models\ApplicationForm;
+use App\Models\Recruiter;
+use Auth;
 
 
 use App\Models\Visa;
@@ -380,9 +382,9 @@ class ApplicationFormController extends Controller
         $countC2 = $documentsC2->count();
         $documentsD1 = DocumentsUpload::where('student_uid', $Student->id)->where('docType', '=', 'D1')->with('documentType_id')->get();
         $countD1 = $documentsD1->count();
-
+        $recruiter = Recruiter::where('user_id', Auth::user()->id)->first();
         // print_r($documents);die();
-        return view('recruiter.panel.application.Documents', compact('Student', 'documentTypes', 'documentsA1', 'countA1', 'documentsA2', 'countA2', 'documentsB1', 'countB1', 'documentsB2', 'countB2', 'documentsC1', 'countC1', 'documentsC2', 'countC2'));
+        return view('recruiter.panel.application.Documents', compact('Student', 'documentTypes', 'documentsA1', 'countA1', 'documentsA2', 'countA2', 'documentsB1', 'countB1', 'documentsB2', 'countB2', 'documentsC1', 'countC1', 'documentsC2', 'countC2', 'recruiter'));
     }
 
 
@@ -456,6 +458,8 @@ class ApplicationFormController extends Controller
     public function ReviewForm($id)
     {
         $Student = Student::find($id);
+        $recruiter = Recruiter::where('user_id', Auth::user()->id)->first();
+
 
         if ($Student) {
             $App_data = ApplicationPersonal::where('student_id', $Student->id)->firstOrNew();
@@ -496,7 +500,7 @@ class ApplicationFormController extends Controller
         }
 
 
-        return view('recruiter.panel.application.ReviewForm', compact('Student', 'App_data', 'Education_data', 'SelectedCourse', 'Shortlist', 'courseIds', 'Documents', 'ManditoryDocuments', 'ManditoryCount', 'MandatoryCount1'));
+        return view('recruiter.panel.application.ReviewForm', compact('Student', 'App_data', 'Education_data', 'SelectedCourse', 'Shortlist', 'courseIds', 'Documents', 'ManditoryDocuments', 'ManditoryCount', 'MandatoryCount1', 'recruiter'));
     }
 
 
@@ -504,11 +508,12 @@ class ApplicationFormController extends Controller
     {
         $Student = Student::find($id);
 
+        $recruiter = Recruiter::where('user_id', Auth::user()->id)->first();
 
         $Visa = Visa::where('student_id', '=', $Student->id)->firstOrNew();
 
 
-        return view('recruiter.panel.application.VisaApplication', compact('Student', 'Visa'));
+        return view('recruiter.panel.application.VisaApplication', compact('Student', 'Visa', 'recruiter'));
     }
 
 
@@ -599,7 +604,7 @@ class ApplicationFormController extends Controller
             'selected_courses' => 'required|array',
             'selected_courses.*' => 'integer', // Ensure each selected course ID is an integer
         ]);
-        
+
         // Get the selected course IDs from the request
         $selectedCourseIds = $request->input('selected_courses');
 
@@ -609,12 +614,12 @@ class ApplicationFormController extends Controller
             ->whereIn('course_id', $selectedCourseIds)
             ->pluck('course_id')
             ->toArray();
-            
+
         // Filter out courses that already exist in the application form
         $newCourseIds = array_diff($selectedCourseIds, $existingCourseIds);
-        
+
         // Insert the selected course IDs into your application form table for new courses
-        
+
         foreach ($newCourseIds as $courseId) {
             // You can use your Eloquent model to insert the data
             ApplicationForm::create([

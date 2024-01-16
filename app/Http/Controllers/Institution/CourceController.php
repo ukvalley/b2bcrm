@@ -70,7 +70,7 @@ class CourceController extends Controller
 
         $institution = $course->institution;
         $country = $institution->Countries;
-        $countryData = CountryData::where('country_name', '=', $country->name)->first();
+        // $countryData = CountryData::where('country_name', '=', $country->name)->first();
         $news = [];
         $links = [];
         if (isset($countrydata)) {
@@ -78,7 +78,7 @@ class CourceController extends Controller
             $links = $countryData->links;
         }
 
-        return view('institution.panel.course_view.course_view', compact('course', 'countryData', 'news', 'links'));
+        return view('institution.panel.course_view.course_view', compact('course',  'news', 'links'));
     }
 
     public function getCourse(Request $request)
@@ -87,10 +87,18 @@ class CourceController extends Controller
         if ($request->ajax()) {
             if (Auth::user()->userType->name == 'admin') {
                 $data = Course::select('*')->get();
-            } else {
-                $data = Course::select('*')->join('institutions as i', 'i.id', '=', 'courses.institution_id')->where('i.user_id', Auth::user()->id)->get();
+            }else {
+                $data = Course::select('courses.*', 'i.name as institution_name')
+                ->join('institutions as i', 'i.id', '=', 'courses.institution_id')
+                ->where('i.user_id', Auth::user()->id)
+                ->get();
+            
             }
-            $data = Course::select('*')->join('institutions as i', 'i.id', '=', 'courses.institution_id')->where('i.user_id', Auth::user()->id)->get();
+            $data = Course::select('courses.*', 'i.name as institution_name')
+            ->join('institutions as i', 'i.id', '=', 'courses.institution_id')
+            ->where('i.user_id', Auth::user()->id)
+            ->get();
+        
             return Datatables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {

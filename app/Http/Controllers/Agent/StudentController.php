@@ -26,11 +26,7 @@ use App\Models\Course;
 use App\Models\Shortlist;
 use Auth;
 use App\Http\Controllers\Agent\ExportUsers;
-
-
-
-
-
+use App\Models\Recruiter;
 
 class StudentController extends Controller
 {
@@ -392,11 +388,19 @@ class StudentController extends Controller
         $student->nationality = $validatedData['nationality'];
         $student->address = $validatedData['address'];
         $student->phone_number = $validatedData['phone_number'];
+        $student->email = $request['email'];
 
         // You can add more fields and data saving logic as needed
 
         // Save the student profile
         $student->save();
+
+        $user = $student->user;
+        if ($user) {
+            $user->name = $validatedData['full_name'];
+            $user->email = $request['email']; // You need to get the email value from your form
+            $user->save();
+        }
 
         $this->logTimelineEntry($student, "Basic Information Updated");
 
@@ -419,6 +423,7 @@ class StudentController extends Controller
     public function PreviewStudents($id)
     {
         $Student = Student::find($id);
+        $recruiter=Recruiter::where('user_id', Auth::user()->id)->first();
 
         // $Student->addDefaultTasks();
 
@@ -429,7 +434,7 @@ class StudentController extends Controller
 
         // print_r($timeline); die();
 
-        return view('recruiter.panel.studentView.PreviewStudents', compact('Student', 'notes', 'messages', 'tasks', 'timeline'));
+        return view('recruiter.panel.studentView.PreviewStudents', compact('Student', 'notes', 'messages', 'tasks', 'timeline','recruiter'));
     }
 
 
@@ -495,6 +500,7 @@ class StudentController extends Controller
     public function CourseSearch($id)
     {
         $Student = Student::find($id);
+        $recruiter = Recruiter::where('user_id', Auth::user()->id)->first();
 
         // $Student->addDefaultTasks();
 
@@ -511,7 +517,7 @@ class StudentController extends Controller
 
 
 
-        return view('recruiter.panel.courseSearch.CourseSearch', compact('Student', 'notes', 'messages', 'tasks', 'timeline', 'courses'));
+        return view('recruiter.panel.courseSearch.CourseSearch', compact('Student', 'notes', 'messages', 'tasks', 'timeline', 'courses', 'recruiter'));
     }
 
 
@@ -585,6 +591,7 @@ class StudentController extends Controller
     public function ShortListView($id)
     {
         $Student = Student::find($id);
+        $recruiter = Recruiter::where('user_id', Auth::user()->id)->first();
         $Shortlist = Shortlist::join('courses', 'shortlists.course_id', '=', 'courses.id')
             ->join('institutions', 'courses.institution_id', '=', 'institutions.id')
             ->join('countries', 'institutions.country', '=', 'countries.id')
@@ -593,7 +600,7 @@ class StudentController extends Controller
             ->get();
 
 
-        return view('recruiter.panel.courseSearch.ShortList', compact('Student', 'Shortlist'));
+        return view('recruiter.panel.courseSearch.ShortList', compact('Student', 'Shortlist', 'recruiter'));
     }
 
 
