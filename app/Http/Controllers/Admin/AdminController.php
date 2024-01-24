@@ -15,6 +15,9 @@ use App\Models\User;
 use App\Models\Course;
 use App\Models\Country;
 use DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\QueryException;
 
 
 
@@ -48,71 +51,51 @@ class AdminController extends Controller
     public function EditProfile()
     {
         // Get the currently authenticated recruiter
-        $recruiter = auth()->user()->recruiter;
-        $timezones = TimeZone::get();
+        $admin = auth()->user();
+        // dd($admin);
+
 
         // print_r($recruiter);
         // die();
 
-        return view('recruiter.panel.profile.edit_profile', compact('recruiter', 'timezones'));
+        return view('admin.panel.profile.edit_profile', compact('admin'));
     }
     public function UpdateProfile(Request $request)
     {
         // Validate the update data
         $request->validate([
-            'company_name' => 'required|string|max:255',
-            'company_short_name' => 'required|string|max:255',
-            'client_id' => 'required|string|max:255',
-            'your_role' => 'required|string|max:255',
-            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate avatar upload
-            'timezone' => 'required|string|exists:timezones,timezone', // Validate timezone exists in the timezones table
+            'name' => 'required|string|max:255',
+            'email' => 'required',
+
         ]);
-
-
-
 
         // Get the currently authenticated recruiter
+        try {
+            $admin = auth()->user();
 
-        $recruiter = auth()->user()->recruiter;
+            $admin->update([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
 
-        $recruiter->update([
-            'company_name' => $request->input('company_name'),
-            'company_short_name' => $request->input('company_short_name'),
-            'client_id' => $request->input('client_id'),
-            'your_role' => $request->input('your_role'),
-            'timezone' => $request->input('timezone'), // Assign the selected timezone
-        ]);
+            ]);
 
-        if ($request->hasFile('avatar')) {
-            // Delete the old avatar if it exists
-            if ($recruiter->avatar) {
-                Storage::disk('public')->delete($recruiter->avatar);
+            return redirect()->route('admin.edit')->with('success', 'Profile updated successfully!');
+        } catch (QueryException $e) {
+            // Handle duplicate email error
+            $errorCode = $e->errorInfo[1];
+
+            if ($errorCode == 1062) {
+                // Error code 1062 corresponds to a duplicate entry violation
+                return redirect()->route('admin.edit')->with('error', 'Email already taken. Please choose a different email.');
             }
 
-
-
-            $file = $request->file('avatar');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('images/avtar'), $fileName); // Store in the root folder
-
-
-
-
-
-
-
-            $recruiter->update(['avatar' => $fileName]);
+            // If it's a different database error, you can handle it accordingly
+            return redirect()->route('admin.edit')->with('error', 'An error occurred while updating the profile.');
         }
-
-
-
-        return redirect()->route('agent.edit')->with('success', 'Profile updated successfully!');
     }
-
-
     public function editPassword()
     {
-        return view('recruiter.panel.profile.update_password');
+        return view('admin.panel.profile.update_password');
     }
 
     public function updatePassword(Request $request)
@@ -120,6 +103,7 @@ class AdminController extends Controller
         $request->validate([
             'current_password' => 'required',
             'password' => 'required|string|min:8|confirmed',
+            'password_confirmation' => 'required',
         ]);
 
         $user = Auth::user();
@@ -129,7 +113,7 @@ class AdminController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
-            return redirect()->route('user.editPassword')->with('success', 'Password changed successfully.');
+            return redirect()->route('admin.editPassword')->with('success', 'Password changed successfully.');
         } else {
             return back()->withErrors(['current_password' => 'Incorrect current password.'])->withInput();
         }
@@ -150,9 +134,13 @@ class AdminController extends Controller
         return view('recruiter.panel.countries.country_details', compact('CountryData', 'news', 'links'));
     }
 
+
     public function getstudents(Request $request)
     {
-        $students = Student::all();
+        $students = Student::leftJoin('users', 'students.Lead_parent', '=', 'users.id')
+            ->select('students.*', 'users.name as agent_name')
+            ->get();
+
         return response()->json(['data' => $students]);
     }
 
@@ -163,7 +151,11 @@ class AdminController extends Controller
 
     public function studentById($student_id)
     {
-        $student = Student::find($student_id);
+        $student = Student::join('users', 'students.Lead_parent', '=', 'users.id')
+            ->where('students.id', $student_id)
+            ->select('students.*', 'users.name as agent_name')
+            ->first();
+        // $student = Student::find($student_id);
         if (isset($student->intended_destination_1) && !empty($student->intended_destination_1)) {
             $country = Country::find($student->intended_destination_1);
             if (isset($country) && !empty($country)) {

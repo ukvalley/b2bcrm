@@ -22,6 +22,7 @@ use App\Models\News;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 
 
@@ -53,7 +54,9 @@ class AgentController extends Controller
     {
         // return view('home');
         $totalInstitutions = institution::count();
-        $totalStudents = Student::count();
+        $id = Auth::id();
+        $totalStudents = Student::where('Lead_parent', $id)->count();
+        // $totalStudents = Student::count();
         $totalCourses = Course::count();
 
         $institutions = Institution::latest('created_at')->take(6)->get();
@@ -123,6 +126,7 @@ class AgentController extends Controller
         $request->validate([
             'company_name' => 'required|string|max:255',
             'company_short_name' => 'required|string|max:255',
+            'email' => 'required',
             'client_id' => 'required|string|max:255',
             'your_role' => 'required|string|max:255',
             'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // Validate avatar upload
@@ -131,11 +135,25 @@ class AgentController extends Controller
 
 
 
-
-        // Get the currently authenticated recruiter
+        $user = auth()->user();
         $recruiter = auth()->user()->recruiter;
 
+        if ($request->input('email') !== $user->email && User::where('email', $request->input('email'))->exists()) {
+            return redirect()->route('agent.edit')->withErrors(['email' => 'The entered email is already in use. Please choose a different one.']);
+        }
+
+        // Update email in the users table
+
+        $user->update([
+            'email' => $request->input('email'),
+        ]);
+
+
+        // Get the currently authenticated recruiter
+
+
         $recruiter->update([
+            'email' => $request->input('email'),
             'company_name' => $request->input('company_name'),
             'company_short_name' => $request->input('company_short_name'),
             'client_id' => $request->input('client_id'),
@@ -178,6 +196,7 @@ class AgentController extends Controller
         $request->validate([
             'current_password' => 'required',
             'password' => 'required|string|min:8|confirmed',
+            'password_confirmation' => 'required',
         ]);
 
         $user = Auth::user();
@@ -187,11 +206,18 @@ class AgentController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
+            if ($user->recruiter) {
+                $user->recruiter->update([
+                    'password' => Hash::make($request->password),
+                ]);
+            }
+
             return redirect()->route('agent.editPassword')->with('success', 'Password changed successfully.');
         } else {
-            return back()->withErrors(['current_password' => 'Incorrect current password.'])->withInput();
+            return back()->withErrors(['error' => 'Incorrect current password.'])->withInput();
         }
     }
+
 
 
     public function countries()

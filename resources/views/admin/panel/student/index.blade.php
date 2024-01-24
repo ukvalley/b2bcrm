@@ -29,8 +29,9 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Agent Name</th>
                                 <th>Action</th>
-                                <th>Action</th>
+                                <!-- <th>Action</th> -->
                                
                                 <!-- Add more headers for additional columns -->
                             </tr>
@@ -40,6 +41,7 @@
                             <td>{{ $item->id }}</td>
                             <td>{{ $item->first_name }}</td>
                             <td>{{ $item->email }}</td>
+                            
                             <!-- Add more data columns as needed -->
                         </tr>
                         @endforeach --}}
@@ -93,20 +95,28 @@ j(document).ready(function () {
             // { data: 'id', name: 'id' },
             { data: 'first_name', name: 'first_name' },
             { data: 'email', name: 'email' },
+            { data: 'agent_name', name: 'agent_name' },
            
 
             { data: null, 
             render: function(data, type, row) {
-            return '<a href="{{url('/')}}/admin/students/studentView/'+row.id+'"><button class="btn btn-info edit-button" data-id="' + row.id + '">View</button></a>';
-            //return '<a href="{{url('/')}}/agent/StudentBasicUpdate/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a> <a href="{{url('/')}}/agent/PreviewStudents/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a>'; } },
-            }},
+            return '<a href="{{url('/')}}/admin/students/studentView/'+row.id+'"><button class="btn btn-info edit-button" data-id="' + row.id + '">View</button></a> <a href="{{url('/')}}/admin/students/studentEdit/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a>';
+           
+            }
+        },
 
-            { data: null, 
-            render: function(data, type, row) {
-            return '<a href="{{url('/')}}/admin/students/studentEdit/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a>';
-            } },
-            // Add more columns as needed
-        ]
+        ],
+        createdRow: function (row, data, dataIndex) {
+            j(row).addClass('custom-row-class');
+        },
+        drawCallback: function (settings) {
+            var startIndex = this.api().page.info().start;
+            var visibleRows = this.api().rows({ search: 'applied' }).nodes();
+
+            j(visibleRows).each(function (index) {
+                j(this).find('td:first').html(startIndex + index + 1);
+            });
+        }
     });
 
     console.log("After DataTables Initialization");

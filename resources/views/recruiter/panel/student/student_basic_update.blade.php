@@ -41,7 +41,7 @@
 
     <div class="mb-3">
         <label for="date_of_birth" class="form-label">Date of Birth</label>
-        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth', $student->date_of_birth) }}" required>
+        <input type="date" class="form-control" id="date_of_birth" name="date_of_birth" value="{{ old('date_of_birth', $student->date_of_birth) }}" >
         <!-- @error('date_of_birth')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>
@@ -51,10 +51,10 @@
 
     <div class="mb-3">
         <label for="gender" class="form-label">Gender</label>
-        <select class="form-select" id="gender" name="gender" required>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
+        <select class="form-select" id="gender" name="gender" value="{{ old('gender', $student->gender) }}" required>
+            <option value="male" @if($student->gender == 'male') selected @endif >Male</option>
+            <option value="female" @if($student->gender == 'female') selected @endif >Female</option>
+            <option value="other" @if($student->gender == 'other') selected @endif >Other</option>
         </select>
         <!-- @error('gender')
             <span class="invalid-feedback" role="alert">
@@ -75,7 +75,7 @@
 
     <div class="mb-3">
         <label for="address" class="form-label">Address</label>
-        <textarea class="form-control" id="address" name="address" rows="3"  required>{{ old('address', $student->address) }}</textarea>
+        <textarea class="form-control" id="address" name="address" rows="3" >{{ old('address', $student->address) }}</textarea>
         <!-- @error('address')
             <span class="invalid-feedback" role="alert">
                 <strong>{{ $message }}</strong>

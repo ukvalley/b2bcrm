@@ -7,8 +7,10 @@ use Illuminate\Http\Request;
 use App\Models\Timezone;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Institution;
+use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 
 class InstitutionController extends Controller
@@ -32,7 +34,12 @@ class InstitutionController extends Controller
     {
         // return view('home');
         $institutions   = Institution::get();
-        return view('institution.panel.dashboard', compact('institutions'));
+        $totalCourse = Course::select('courses.*', 'i.name as institution_name')
+        ->join('institutions as i', 'i.id', '=', 'courses.institution_id')
+        ->where('i.user_id', Auth::user()->id)
+        ->count();
+        // dd($totalCourse);
+        return view('institution.panel.dashboard', compact('institutions', 'totalCourse'));
     }
 
     public function EditProfile()
@@ -60,6 +67,12 @@ class InstitutionController extends Controller
         // Get the currently authenticated institute
         $institute = auth()->user()->institution;
         $user = $institute->user;
+
+        $existingUser = User::where('email', $request->input('email'))->where('id', '!=', $user->id)->first();
+
+        if ($existingUser) {
+            return redirect()->route('institution.edit')->with('error', 'Email is already in use. Please choose a different email.');
+        }
 
         $institute->update([
             'name' => $request->input('name'),
@@ -107,6 +120,7 @@ class InstitutionController extends Controller
         $request->validate([
             'current_password' => 'required',
             'password' => 'required|string|min:8|confirmed',
+            'password_confirmation' => 'required',
         ]);
 
         $user = Auth::user();
@@ -118,7 +132,7 @@ class InstitutionController extends Controller
 
             return redirect()->route('institution.editPassword')->with('success', 'Password changed successfully.');
         } else {
-            return back()->withErrors(['current_password' => 'Incorrect current password.'])->withInput();
+            return back()->withErrors(['error' => 'Incorrect current password.'])->withInput();
         }
     }
 }

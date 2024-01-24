@@ -1,4 +1,4 @@
-@extends('recruiter.panel.layout')
+@extends('admin.panel.layout')
 
 @section('content')
 
@@ -13,14 +13,14 @@
         <div class="col-md-12">
             <div class="card">
 
-                <div class="card-header">{{ __('Edit Recruiter Profile') }}</div>
+                <div class="card-header">{{ __('Edit Admin Profile') }}</div>
 
 
                 <div class="card-body">
 
                     <nav class="nav nav-pills">
-                        <a class="nav-link {{ request()->routeIs('agent.edit') ? 'active' : '' }}" href="{{ route('agent.edit') }}">Basic Details</a>
-                        <a class="nav-link {{ request()->routeIs('agent.editPassword') ? 'active' : '' }}" href="{{ route('agent.editPassword') }}">Security</a>
+                        <a class="nav-link {{ request()->routeIs('admin.edit') ? 'active' : '' }}" href="{{ route('admin.edit') }}">Basic Details</a>
+                        <a class="nav-link {{ request()->routeIs('admin.editPassword') ? 'active' : '' }}" href="{{ route('admin.editPassword') }}">Security</a>
                     </nav>
 
                     <hr>
@@ -35,7 +35,6 @@
                     </div>
                     @endif
 
-
                     @if ($message = Session::get('success'))
                     <div class="alert alert-success">
                         <p>{{ $message }}</p>
@@ -43,7 +42,7 @@
                     @endif
 
 
-                    <form method="POST" action="{{ route('agent.updatePassword') }}">
+                    <form method="POST" action="{{ route('admin.updatePassword') }}">
                         @csrf
 
                         <!-- Current Password -->

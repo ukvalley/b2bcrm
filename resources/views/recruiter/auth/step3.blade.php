@@ -32,17 +32,19 @@
 
                         {{-- Number of Countries Operated --}}
                         <div class="form-floating is-valid mb-3">
-                            <select name="country_count" id="country_count" class="form-control" required>
+                        <input type="text" name="country_count" id="country_count" class="form-control" required>
+                            <!-- <select name="country_count" id="country_count" class="form-control" required>
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                                 {{-- Add more options as needed --}}
-                            </select>
+                            </select> -->
                             <label for="country_count">We Operate in (How Many Countries):</label>
                         </div>
 
                         {{-- Number of Employees --}}
                         <div class="form-floating is-valid mb-3">
+                        <!-- <input type="text" name="employee_count" id="employee_count" class="form-control" required> -->
                             <select name="employee_count" id="employee_count" class="form-control" required>
                                 <option value="1-10">1-10</option>
                                 <option value="11-50">11-50</option>

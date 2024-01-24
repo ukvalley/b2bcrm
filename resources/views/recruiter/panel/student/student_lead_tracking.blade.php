@@ -34,9 +34,9 @@
 
                         <!-- Lead Status -->
                         <div class="form-group mb-3">
-                            <label for="lead_source">Lead Parent</label>
-                            <select name="lead_parent" class="form-control">
-                                <option value="">Select Lead Parent</option>
+                            <label for="lead_source">Lead Agent</label>
+                            <select name="lead_parent" class="form-control" required>
+                                <option value="">Select Lead Agent</option>
                                 
                                 @foreach($students as $key => $name)
                                 <option value="{{ $key }}" @if ($student->Lead_parent == $key) selected @endif >{{ $name }}</option>

@@ -122,7 +122,18 @@
                 }
 
                 // Add more columns as needed
-            ]
+            ],
+            createdRow: function (row, data, dataIndex) {
+            j(row).addClass('custom-row-class');
+        },
+        drawCallback: function (settings) {
+            var startIndex = this.api().page.info().start;
+            var visibleRows = this.api().rows({ search: 'applied' }).nodes();
+
+            j(visibleRows).each(function (index) {
+                j(this).find('td:first').html(startIndex + index + 1);
+            });
+        }
         });
 
        

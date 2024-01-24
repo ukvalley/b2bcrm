@@ -152,7 +152,15 @@
 
                                         <h6 class="mt-3">Employee Count</h6>
                                         <div class="form-floating is-valid mb-3">
-                                            <input id="employee_count" type="text" class="form-control @error('employee_count') is-invalid @enderror" name="employee_count" value="{{$agent->employee_count}}" placeholder="Employee Count">
+                                            <!-- <input id="employee_count" type="text" class="form-control @error('employee_count') is-invalid @enderror" name="employee_count" value="{{$agent->employee_count}}" placeholder="Employee Count"> -->
+
+                                            <select name="employee_count" id="employee_count" class="form-control" required>
+                                                <option value="1-10" @if($agent->employee_count == '1-10') selected @endif >1-10</option>
+                                                <option value="11-50"  @if($agent->employee_count == '11-50') selected @endif >11-50</option>
+                                                <option value="51-100" @if($agent->employee_count == '51-100') selected @endif >51-100</option>
+                                                {{-- Add more options as needed --}}
+                                            </select>
+                                            <!-- <label for="employee_count">We Have (How Many Employees):</label> -->
                                             <label for="employee_count">{{ __('Employee Count') }}</label>
                                             @error('employee_count')
                                             <span class="invalid-feedback" role="alert">

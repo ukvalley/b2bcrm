@@ -68,6 +68,9 @@
                                 <h6 class="mt-3">Email</h6>
                                 <p>{{$student->email}}</p>
 
+                                <h6 class="mt-3">Agent Name</h6>
+                                <p>{{$student->agent_name}}</p>
+
                                 <h6 class="mt-3">Phone Number</h6>
                                 <p>{{$student->phone_number}}</p>
 

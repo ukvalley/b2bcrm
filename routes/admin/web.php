@@ -19,6 +19,11 @@ Route::get('students/studentView/{student_id}', [App\Http\Controllers\Admin\Admi
 Route::get('students/studentEdit/{student_id}', [App\Http\Controllers\Admin\AdminController::class,'studentEdit'])->name('admin.studentEdit');
 Route::put('students/updatestudent/{student_id}', [App\Http\Controllers\Admin\AdminController::class,'studentupdate'])->name('admin.updatestudent');
 
+// profile routes
+Route::get('EditProfile', [App\Http\Controllers\Admin\AdminController::class, 'EditProfile'])->name('admin.edit');
+Route::put('UpdateProfile', [App\Http\Controllers\Admin\AdminController::class, 'UpdateProfile'])->name('admin.UpdateProfile');
+Route::get('PasswordChange', [App\Http\Controllers\Admin\AdminController::class, 'editPassword'])->name('admin.editPassword');
+Route::post('PasswordUpdate', [App\Http\Controllers\Admin\AdminController::class, 'updatePassword'])->name('admin.updatePassword');
 
 //Institutions data
 Route::get('institutions','App\Http\Controllers\Admin\AdminController@institutions')->name('admin.institutions'); //view institutions page

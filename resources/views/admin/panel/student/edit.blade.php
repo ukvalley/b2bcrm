@@ -44,12 +44,17 @@
 
         <div class="form-group">
             <label for="date_of_birth">Date Of Birth</label>
-            <input type="text" name="date_of_birth" class="form-control" value="{{ $student->date_of_birth }}">
+            <input type="date" name="date_of_birth" class="form-control" value="{{ $student->date_of_birth }}">
         </div>
         
         <div class="form-group">
             <label for="gender">Gender</label>
-            <input type="text" name="gender" class="form-control" value="{{ $student->gender }}">
+            <!-- <input type="text" name="gender" class="form-control" value="{{ $student->gender }}"> -->
+            <select class="form-select" id="gender" name="gender" required>
+            <option value="male" @if($student->gender == 'male') selected @endif > Male</option>
+            <option value="female" @if($student->gender == 'female') selected @endif > Female</option>
+            <option value="other" @if($student->gender == 'other') selected @endif > Other</option>
+        </select>
         </div>
 
         <div class="form-group">

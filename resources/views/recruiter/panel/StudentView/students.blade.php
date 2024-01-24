@@ -106,10 +106,23 @@ j(document).ready(function () {
             render: function(data, type, row) {
             return '<a href="{{url('/')}}/agent/StudentBasicUpdate/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">Edit</button></a> <a href="{{url('/')}}/agent/PreviewStudents/'+row.id+'"><button class="btn btn-primary edit-button" data-id="' + row.id + '">View</button></a> ';
     
-            } },
+            } 
+        },
 
             // Add more columns as needed
-        ]
+        ],
+        createdRow: function (row, data, dataIndex) {
+            j(row).addClass('custom-row-class');
+        },
+        drawCallback: function (settings) {
+            var startIndex = this.api().page.info().start;
+            var visibleRows = this.api().rows({ search: 'applied' }).nodes();
+
+            j(visibleRows).each(function (index) {
+                j(this).find('td:first').html(startIndex + index + 1);
+            });
+        }
+
     });
 });
 </script>

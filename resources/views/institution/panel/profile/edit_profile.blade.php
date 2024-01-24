@@ -45,11 +45,17 @@
                         </nav>
 
                         <hr>
+                        @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                        @endif
+                        
                         @if ($message = Session::get('success'))
-                    <div class="alert alert-success">
-                        <p>{{ $message }}</p>
-                    </div>
-                    @endif
+                        <div class="alert alert-success">
+                            <p>{{ $message }}</p>
+                        </div>
+                        @endif
 
 
                         <form class="mt-3" method="POST" action="{{ route('institution.UpdateProfile') }}" enctype="multipart/form-data">

@@ -304,7 +304,9 @@
                     <div class="form-group">
 
                         <input type="hidden" value="{{$Student->id}}" class="form-control" id="student_id" name="student_id" />
-                        <input type="hidden" value="{{$recruiter->id}}" class="form-control" id="recruiter_id" name="recruiter_id" />
+                        <?php if (isset($recruiter) && !empty($recruiter)) {  ?>
+                            <input type="hidden" value="{{$recruiter->id}}" class="form-control" id="recruiter_id" name="recruiter_id" />
+                        <?php } ?>
                     </div>
 
                     <div class="form-group">

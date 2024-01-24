@@ -111,7 +111,7 @@ class AdminController extends Controller
 
     public function editPassword()
     {
-        return view('recruiter.panel.profile.update_password');
+        return view('admin.panel.profile.update_password');
     }
 
     public function updatePassword(Request $request)

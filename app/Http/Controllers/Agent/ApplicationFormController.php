@@ -54,6 +54,12 @@ class ApplicationFormController extends Controller
 
             $Education_data = $Student->ApplicationEducation; // Assuming a relationship is set up
 
+            if (!$Education_data) {
+                $Education_data = new ApplicationEducation();
+                // Set any default values if needed
+                // $Education_data->title1 = 'No';
+            }
+
         } else {
             // Handle the case where the Student with the given ID doesn't exist
         }
@@ -383,8 +389,9 @@ class ApplicationFormController extends Controller
         $documentsD1 = DocumentsUpload::where('student_uid', $Student->id)->where('docType', '=', 'D1')->with('documentType_id')->get();
         $countD1 = $documentsD1->count();
         $recruiter = Recruiter::where('user_id', Auth::user()->id)->first();
+        $profileImage = PersonaDetail::where('student_id', $Student->id)->first();
         // print_r($documents);die();
-        return view('recruiter.panel.application.Documents', compact('Student', 'documentTypes', 'documentsA1', 'countA1', 'documentsA2', 'countA2', 'documentsB1', 'countB1', 'documentsB2', 'countB2', 'documentsC1', 'countC1', 'documentsC2', 'countC2', 'recruiter'));
+        return view('recruiter.panel.application.Documents', compact('Student', 'documentTypes', 'documentsA1', 'countA1', 'documentsA2', 'countA2', 'documentsB1', 'countB1', 'documentsB2', 'countB2', 'documentsC1', 'countC1', 'documentsC2', 'countC2', 'recruiter', 'profileImage'));
     }
 
 
@@ -459,6 +466,7 @@ class ApplicationFormController extends Controller
     {
         $Student = Student::find($id);
         $recruiter = Recruiter::where('user_id', Auth::user()->id)->first();
+        $profileImage = PersonaDetail::where('student_id', $Student->id)->first();
 
 
         if ($Student) {
@@ -500,7 +508,7 @@ class ApplicationFormController extends Controller
         }
 
 
-        return view('recruiter.panel.application.ReviewForm', compact('Student', 'App_data', 'Education_data', 'SelectedCourse', 'Shortlist', 'courseIds', 'Documents', 'ManditoryDocuments', 'ManditoryCount', 'MandatoryCount1', 'recruiter'));
+        return view('recruiter.panel.application.ReviewForm', compact('Student', 'App_data', 'Education_data', 'SelectedCourse', 'Shortlist', 'courseIds', 'Documents', 'ManditoryDocuments', 'ManditoryCount', 'MandatoryCount1', 'recruiter', 'profileImage'));
     }
 
 
@@ -509,11 +517,12 @@ class ApplicationFormController extends Controller
         $Student = Student::find($id);
 
         $recruiter = Recruiter::where('user_id', Auth::user()->id)->first();
+        $profileImage = PersonaDetail::where('student_id', $Student->id)->first();
 
         $Visa = Visa::where('student_id', '=', $Student->id)->firstOrNew();
 
 
-        return view('recruiter.panel.application.VisaApplication', compact('Student', 'Visa', 'recruiter'));
+        return view('recruiter.panel.application.VisaApplication', compact('Student', 'Visa', 'recruiter', 'profileImage'));
     }
 
 

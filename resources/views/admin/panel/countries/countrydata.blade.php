@@ -87,7 +87,7 @@
                                                     </button>
                                                     <!-- 16:9 aspect ratio -->
                                                     <div class="embed-responsive embed-responsive-16by9">
-                                                        <iframe class="embed-responsive-item" src="" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
+                                                        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/58385453?badge=0&autoplay=1&loop=1" id="video" allowscriptaccess="always" allow="autoplay"></iframe>
                                                     </div>
 
 
@@ -96,6 +96,9 @@
                                             </div>
                                         </div>
                                     </div>
+
+
+
 
 
                                     {!! $countryData->youtube_link !!}
@@ -137,11 +140,18 @@
         </div>
 
 
+
+
+
     </div>
     <!-- main page content ends -->
 
 
     </main>
     <!-- Page ends-->
+
+
+
+
 
     @endsection
