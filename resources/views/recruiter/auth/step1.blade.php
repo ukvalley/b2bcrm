@@ -7,7 +7,18 @@
         <div class="row">
           <div class="col-auto">
             <a href="{{url('/')}}/" target="_self" class="btn btn-light btn-44">
-              <i class="bi bi-arrow-left"></i>
+              <!-- <i class="bi bi-arrow-left"></i> -->
+              
+              <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15px" height="15px" viewBox="0 0 400.004 400.004" xml:space="preserve">
+                <g>
+                  <path d="M382.688,182.686H59.116l77.209-77.214c6.764-6.76,6.764-17.726,0-24.485c-6.764-6.764-17.73-6.764-24.484,0L5.073,187.757
+		c-6.764,6.76-6.764,17.727,0,24.485l106.768,106.775c3.381,3.383,7.812,5.072,12.242,5.072c4.43,0,8.861-1.689,12.242-5.072
+		c6.764-6.76,6.764-17.726,0-24.484l-77.209-77.218h323.572c9.562,0,17.316-7.753,17.316-17.315
+		C400.004,190.438,392.251,182.686,382.688,182.686z" />
+                </g>
+              </svg>
+
+            
             </a>
           </div>
           <div class="col align-self-center">
@@ -19,6 +30,17 @@
         </div>
       </header>
     </div>
+
+    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
     <div class="col-10 col-md-8 col-lg-5 col-xl-6 mx-auto align-self-center text-center py-4">
       <div class="card">
         <div class="card-header">
@@ -64,7 +86,7 @@
               </div>
               <div class="col-md-6">
                 <div class="form-floating is-invalid mb-3">
-                  <input id="confirmpassword" type="password" class="form-control" placeholder="Confirm Password">
+                  <input id="confirmpassword" type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
                   <label for="confirmpassword">{{ __('Confirm Password') }}</label>
                   <button type="button" class="btn btn-link text-danger tooltip-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="Enter valid Password" id="passworderror">
                     <i class="bi bi-info-circle"></i>

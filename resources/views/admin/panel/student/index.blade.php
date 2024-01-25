@@ -106,17 +106,21 @@ j(document).ready(function () {
         },
 
         ],
-        createdRow: function (row, data, dataIndex) {
-            j(row).addClass('custom-row-class');
-        },
+        // createdRow: function (row, data, dataIndex) {
+        //     j(row).addClass('custom-row-class');
+        // },
         drawCallback: function (settings) {
-            var startIndex = this.api().page.info().start;
-            var visibleRows = this.api().rows({ search: 'applied' }).nodes();
+            var api = this.api();
+            var startIndex = api.context[0]._iDisplayStart;
+            var visibleRows = api.rows({ search: 'applied' }).nodes();
+
+            var pageStart = startIndex;
 
             j(visibleRows).each(function (index) {
-                j(this).find('td:first').html(startIndex + index + 1);
+                j(this).find('td:first').html(pageStart + index + 1);
             });
         }
+
     });
 
     console.log("After DataTables Initialization");

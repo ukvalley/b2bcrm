@@ -134,7 +134,6 @@ class AdminController extends Controller
         return view('recruiter.panel.countries.country_details', compact('CountryData', 'news', 'links'));
     }
 
-
     public function getstudents(Request $request)
     {
         $students = Student::leftJoin('users', 'students.Lead_parent', '=', 'users.id')
@@ -335,7 +334,9 @@ class AdminController extends Controller
     {
 
         $fileName = 'students.csv';
-        $Students = Student::all();
+        $Students = Student::leftJoin('users', 'students.Lead_parent', '=', 'users.id')
+            ->select('students.*', 'users.name as agent_name')
+            ->get();
         foreach ($Students as $student) {
             if (isset($student->intended_destination_1) && !empty($student->intended_destination_1)) {
                 $country = Country::find($student->intended_destination_1);
@@ -367,7 +368,7 @@ class AdminController extends Controller
             "Expires"             => "0"
         );
 
-        $columns = array('SrNo.', 'Name', 'email', 'date_of_birth', 'Address', 'phone_number', 'nationality', 'Interested Course', 'Interested Destination 1', 'Interested Destination 2', 'Interested Destination 3');
+        $columns = array('SrNo.', 'Name', 'email', 'Address', 'Country', 'Agent Name', 'phone_number', 'nationality');
 
         $callback = function () use ($Students, $columns) {
             $file = fopen('php://output', 'w');
@@ -377,16 +378,14 @@ class AdminController extends Controller
                 $row['SrNo'] = $counter;
                 $row['first_name']  = $Student->first_name;
                 $row['email']  = $Student->email;
-                $row['date_of_birth']    = $Student->date_of_birth;
+
                 $row['address']    = $Student->address;
+                $row['Country']    = $Student->signup_country;
+                $row['Agent Name']    = $Student->agent_name;
                 $row['nationality']  = $Student->nationality;
                 $row['phone_number']  = $Student->phone_number;
-                $row['intrested_Cource']  = $Student->intended_course_level;
-                $row['interested_destination_1']  = $Student->intended_destination_1;
-                $row['interested_destination_2']  = $Student->intended_destination_2;
-                $row['interested_destination_3']  = $Student->intended_destination_3;
 
-                fputcsv($file, array($row['SrNo'], $row['first_name'], $row['email'], $row['date_of_birth'], $row['address'], $row['phone_number'], $row['nationality'], $row['intrested_Cource'], $row['interested_destination_1'], $row['interested_destination_2'], $row['interested_destination_3']));
+                fputcsv($file, array($row['SrNo'], $row['first_name'], $row['email'],  $row['address'], $row['Country'], $row['Agent Name'], $row['phone_number'], $row['nationality']));
                 $counter++;
             }
 

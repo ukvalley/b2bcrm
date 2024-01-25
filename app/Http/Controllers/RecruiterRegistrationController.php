@@ -13,6 +13,8 @@ use App\Models\Country;
 use App\Models\Institution;
 use App\Models\Course;
 use App\Models\Notification;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestMail;
 
 use DB;
 
@@ -37,6 +39,9 @@ class RecruiterRegistrationController extends Controller
             'email' => 'required|email|unique:users',
             'mobile_number' => 'required|string|max:15',
             'password' => 'required|min:8',
+            'confirm_password' => 'required|min:8|same:password',
+        ], [
+            'confirm_password.same' => 'The password confirmation does not match.',
         ]);
 
         // Check if validation fails
@@ -151,6 +156,24 @@ class RecruiterRegistrationController extends Controller
         // Save the recruiter profile
         $Recruiter->save();
 
+        $adminUser = User::whereHas('userType', function ($query) {
+            $query->where('name', 'Admin');
+        })->get();
+
+        if ($adminUser->count() > 0) {
+            foreach ($adminUser as $adminUser) {
+                $notification = new Notification();
+                $notification->key = '-';
+                $notification->message = 'New agent or institution registered.';
+                $notification->user_id = $adminUser->id; // Replace with the actual admin user ID
+                $notification->isread = false;
+                $notification->save();
+            }
+        }
+        $toEmail= $step1Data['email'];
+        // dd($toEmail);
+        Mail::to($toEmail)->send(new TestMail());
+
         // Additional logic and registration process using the collected data
 
         // Clear session data
@@ -255,23 +278,9 @@ class RecruiterRegistrationController extends Controller
 
         $course->save();
 
-        $adminUser = User::whereHas('userType', function ($query) {
-            $query->where('name', 'Admin');
-        })->first();
-        
-        // Check if the admin user exists
-        if ($adminUser) {
-            $adminUserId = $adminUser->id;
-        } else {
-            $adminUserId = 4; 
-        }
-       
-        $notification = new Notification();
-        $notification->key = '-';
-        $notification->message = 'New agent or institution registered.';
-        $notification->user_id = $adminUserId; // Replace with the actual admin user ID
-        $notification->isread = false;
-        $notification->save();
+
+
+        // return 'Test email sent successfully!';
 
         DB::commit(); // Commit the transaction
 
