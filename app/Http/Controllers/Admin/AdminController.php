@@ -596,11 +596,12 @@ class AdminController extends Controller
             'logo' => $imageName,
             'description' => $request->input('description'),
         ];
+        $password= $this->generatePassword();
 
         $user = new User();
         $user->name = $request['name'];
         $user->email = $request['email'];
-        $user->password = bcrypt($request['password']);
+        $user->password = $password;
         // Add other user-specific fields as needed
 
         // Save the user
@@ -609,7 +610,7 @@ class AdminController extends Controller
         $user->userType()->associate(UserType::where('name', 'Institution')->first());
         $user->save();
 
-        Mail::to($request['email'])->send(new TestMail($request['name']));
+        Mail::to($request['email'])->send(new TestMail($request['name'], $request['email'], $password));
 
         $institution = new Institution();
         $institution->user_id = $user->id;
