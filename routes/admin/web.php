@@ -117,6 +117,10 @@ Route::get('/agent-export-csv', [App\Http\Controllers\Admin\AdminController::cla
 //notification
 Route::get('notification', [App\Http\Controllers\Admin\NotificationController::class, 'index'])->name('admin.notification');
 
+//addagent
+Route::get('/recruiter/registration', [App\Http\Controllers\Admin\AdminController::class, 'registration'])->name('admin.registration');
+Route::post('/recruiter/registrationStore', [App\Http\Controllers\Admin\AdminController::class, 'registrationStore'])->name('admin.registrationStore');
+
 //messages
 Route::get('message', [App\Http\Controllers\Admin\MessageController::class, 'message'])->name('admin.message');
 Route::get('message/{id}/{student_id}', [App\Http\Controllers\Admin\MessageController::class, 'messageView'])->name('admin.message_view');

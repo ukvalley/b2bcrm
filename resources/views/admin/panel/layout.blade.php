@@ -201,7 +201,7 @@
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link" href="{{ url('recruiter/registration/step1') }}" tabindex="-1">
+                        <a class="nav-link" href="{{route('admin.registration')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-paperclip"></i></div>
                                 <div class="col">Add Agents</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>

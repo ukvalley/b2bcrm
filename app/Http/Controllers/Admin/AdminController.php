@@ -18,6 +18,10 @@ use DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
+use App\Models\UserType;
+use App\Mail\TestMail;
+use Illuminate\Support\Facades\Mail;
 
 
 
@@ -456,4 +460,96 @@ class AdminController extends Controller
         }
         return back()->with('success', 'Agent deleted successfully.');
     }
+
+    public function registration()
+    {
+        // $Recruiter = new \App\Models\Recruiter();
+        return view('admin.panel.addagent.registration');
+    }
+
+    public function registrationStore(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users',
+            'mobile_number' => 'required|string|max:15',
+            'company_name' => 'required|string|max:255',
+            'company_short_name' => 'required|string|max:50',
+            'client_id' => 'required|string|max:50',
+            'your_role' => 'required|string|max:255',
+            'country_count' => 'required|numeric',
+            'employee_count' => 'required|string',
+            'students_destination_count' => 'required|numeric',
+            'students_next_year_count' => 'required|string'
+        ]);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator) // Pass the validator with errors
+                ->withInput(); // Pass the old input data
+        }
+        $password= $this->generatePassword();;
+        $user = new User();
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->password =$password;
+        // Add other user-specific fields as needed
+
+        // Save the user
+        $user->save();
+
+        $user->userType()->associate(UserType::where('name', 'Agent')->first());
+        $user->save();
+
+        Mail::to($request['email'])->send(new TestMail($request['name']));
+
+        $Recruiter = new Recruiter();
+        $Recruiter->user_id = $user->id;
+        $Recruiter->company_name = $request['company_name'];
+        $Recruiter->company_short_name = $request['company_short_name'];
+        $Recruiter->client_id = $request['client_id'];
+        $Recruiter->your_role = $request['your_role'];
+        // Add other recruiter-specific fields as needed
+
+        $Recruiter->country_count = $request['country_count'];
+        $Recruiter->employee_count = $request['employee_count'];
+        $Recruiter->students_sent_count = $request['students_destination_count'];
+        $Recruiter->aimed_students_count = $request['students_next_year_count'];
+
+        $Recruiter->email = $request['email'];
+        $Recruiter->mobile_number = $request['mobile_number'];
+        // Save the recruiter profile
+        $Recruiter->save();
+        return redirect()->route('admin.agents')->with('success', 'Recruiter added successfully.');
+    }
+    
+    function generatePassword($length = 12) {
+        // Define character sets
+        $lowercase = 'abcdefghijklmnopqrstuvwxyz';
+        $uppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $numbers = '0123456789';
+        $specialChars = '!@#$%^&*()-_+=<>?';
+    
+        // Concatenate all character sets
+        $allChars = $lowercase . $uppercase . $numbers . $specialChars;
+    
+        // Get the total length of all characters
+        $charsLength = strlen($allChars);
+    
+        // Initialize the password variable
+        $password = '';
+    
+        // Generate random password using the character set
+        for ($i = 0; $i < $length; $i++) {
+            // Get a random index to retrieve a character from the set
+            $randomIndex = rand(0, $charsLength - 1);
+    
+            // Append the randomly selected character to the password
+            $password .= $allChars[$randomIndex];
+        }
+    
+        return $password;
+    }
+    
 }
