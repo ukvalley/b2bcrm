@@ -23,6 +23,7 @@ use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use App\models\Recruiter;
 
 
 
@@ -113,17 +114,20 @@ class AgentController extends Controller
     {
         // Get the currently authenticated recruiter
         $recruiter = auth()->user()->recruiter;
+        $agent=user::where ('id', $recruiter->user_id)->first();
         $timezones = TimeZone::get();
+// dd($agent);
 
         // print_r($recruiter);
         // die();
 
-        return view('recruiter.panel.profile.edit_profile', compact('recruiter', 'timezones'));
+        return view('recruiter.panel.profile.edit_profile', compact('recruiter', 'timezones','agent'));
     }
     public function UpdateProfile(Request $request)
     {
         // Validate the update data
         $request->validate([
+            'name'=>'required',
             'company_name' => 'required|string|max:255',
             'company_short_name' => 'required|string|max:255',
             'email' => 'required',
@@ -146,6 +150,7 @@ class AgentController extends Controller
 
         $user->update([
             'email' => $request->input('email'),
+            'name'=>$request->input('name')
         ]);
 
 

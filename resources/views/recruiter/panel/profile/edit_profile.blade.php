@@ -40,9 +40,21 @@
                         </div>
 
                         <div class="row">
+                            <div class="col-12 col-md-6 col-lg-4">
+                                <div class="form-floating form-group mb-3">
 
-                        <!-- Email -->
-                        <div class="col-12 col-md-6 col-lg-4">
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $agent->name) }}" required placeholder="Agent Name">
+                                    <label for="name">{{ __('Agent Name') }}</label>
+                                    @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="col-12 col-md-6 col-lg-4">
                                 <div class="form-floating form-group mb-3">
 
                                     <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $recruiter->email) }}" placeholder="Email" required>

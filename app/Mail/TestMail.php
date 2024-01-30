@@ -28,6 +28,7 @@ class TestMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.test'); // Assuming you have a corresponding blade view at resources/views/emails/test.blade.php
+        $user=Auth()->User();
+        return $this->view('emails.test',compact('user')); // Assuming you have a corresponding blade view at resources/views/emails/test.blade.php
     }
 }

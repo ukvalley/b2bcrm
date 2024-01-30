@@ -50,7 +50,7 @@
     <div class="row">
         <div class="col-3">
             <div class="card text-white bg-info mb-3" style="max-width: 18rem;">
-                <div class="card-header">Agents</div>
+                <div class="card-header">Course</div>
                 <div class="card-body">
                     <!-- <h5 class="card-title">Info card title</h5> -->
                     <h5 class="card-title">{{ $totalCourse }}</h5>
