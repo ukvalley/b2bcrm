@@ -489,7 +489,7 @@ class AdminController extends Controller
                 ->withErrors($validator) // Pass the validator with errors
                 ->withInput(); // Pass the old input data
         }
-        $password= $this->generatePassword();;
+        $password= $this->generatePassword();
         $user = new User();
         $user->name = $request['name'];
         $user->email = $request['email'];
