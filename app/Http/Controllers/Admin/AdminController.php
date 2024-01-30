@@ -551,5 +551,8 @@ class AdminController extends Controller
     
         return $password;
     }
-    
+    public function addinstitution(Request $request)
+    {
+        return view('admin.panel.addinstitution.institutionregistration');
+    }
 }
