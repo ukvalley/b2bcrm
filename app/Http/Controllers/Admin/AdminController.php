@@ -551,8 +551,99 @@ class AdminController extends Controller
     
         return $password;
     }
-    public function addinstitution(Request $request)
+    public function addinstitution()
     {
         return view('admin.panel.addinstitution.institutionregistration');
+    }
+
+    public function institutionstore(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:institutions,email|unique:users,email',
+            'phone_number' => 'required|string|max:15',
+            'city' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'website' => 'nullable|string|url',
+            'contact_person' => 'required|string|max:255',
+            'contact_email' => 'required|email',
+            'contact_phone' => 'required|string|max:15',
+            'institution_type' => 'required|string|max:255',
+            'accreditation_status' => 'required|boolean',
+            'number_of_students' => 'required|integer',
+            'year_founded' => 'required|integer',
+            'description' => 'nullable|string',
+            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()
+                ->withErrors($validator) // Pass the validator with errors
+                ->withInput(); // Pass the old input data
+        }
+
+        $imageName = '';
+        if (isset($request->logo) && !empty($request->logo)) {
+            
+            $image = $request->file('logo');
+            $imageName = time() . '.' . $request->logo->extension();
+            $request->logo->move(public_path('institute_img'), $imageName);
+        }
+        
+
+        // Store data in session
+        $institutionData = [
+            'logo' => $imageName,
+            'description' => $request->input('description'),
+        ];
+
+        $user = new User();
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        $user->password = bcrypt($request['password']);
+        // Add other user-specific fields as needed
+
+        // Save the user
+        $user->save();
+
+        $user->userType()->associate(UserType::where('name', 'Institution')->first());
+        $user->save();
+
+        Mail::to($request['email'])->send(new TestMail($request['name']));
+
+        $institution = new Institution();
+        $institution->user_id = $user->id;
+        $institution->name = $request['name'];
+        $institution->email = $request['email'];
+        $institution->password = bcrypt($request['password']);
+        $institution->phone_number = $request['phone_number'];
+        // $institution->country = $step1Data['country'];
+        $institution->country = '-';
+        $institution->city = $request['city'];
+        $institution->address = $request['address'];
+        $institution->website = $request['website'];
+        $institution->contact_person = $request['contact_person'];
+        $institution->contact_email = $request['contact_email'];
+        $institution->contact_phone = $request['contact_phone'];
+        $institution->institution_type = $request['institution_type'];
+        $institution->accreditation_status = $request['accreditation_status'];
+        $institution->number_of_students = $request['number_of_students'];
+        $institution->year_founded = $request['year_founded'];
+        if(isset($request['logo']) && !empty($request['logo'])){
+            $institution->logo = $request['logo'];
+        }else{
+            $institution->logo = null;
+        } 
+        
+        if(isset($request['description']) && !empty($request['description'])){
+            $institution->description = $request['description'];
+        }else{
+            $institution->description = null;
+        }
+
+        // Save the institution profile
+        $institution->save();
+
+        return redirect()->route('admin.institutions')->with('success', 'Institution added successfully.'); 
     }
 }
