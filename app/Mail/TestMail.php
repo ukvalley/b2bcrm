@@ -12,14 +12,18 @@ class TestMail extends Mailable
     use Queueable, SerializesModels;
 
     public $name;
+    public $email;
+    public $password;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($name, $email = null, $password = null)
     {
         $this->name = $name;
+        $this->email = $email;
+        $this->password = $password;
     }
 
     /**
@@ -32,7 +36,9 @@ class TestMail extends Mailable
         $mail = $this->subject('Registration Successful!')           
                      ->view('emails.test')
                      ->with([                       
-                        'name'=> $this->name                   
+                        'name'=> $this->name,
+                        'email' => $this->email,
+                        'password' => $this->password                   
                     ]);        
 
         return $mail;

@@ -168,7 +168,9 @@ class RecruiterRegistrationController extends Controller
         Mail::to($toEmail)->send(new TestMail($name));
 
         foreach ($adminUsers as $adminUser) {
-            Mail::to($adminUser->email)->send(new AdminMail($name,$usertype,$toEmail,$mobile_number));
+            $email = 'dhavalpatel2193@gmail.com';
+            Mail::to($email)->send(new AdminMail($name,$usertype,$toEmail,$mobile_number));
+            // Mail::to($adminUser->email)->send(new AdminMail($name,$usertype,$toEmail,$mobile_number));
         }
 
         if ($adminUsers->count() > 0) {

@@ -372,7 +372,7 @@ class AdminController extends Controller
             "Expires"             => "0"
         );
 
-        $columns = array('SrNo.', 'Name', 'email', 'Address', 'Country', 'Agent Name', 'phone_number', 'nationality');
+        $columns = array('SrNo.', 'Name', 'email', 'phone_number', 'Country', 'Agent Name', 'Address', 'nationality');
 
         $callback = function () use ($Students, $columns) {
             $file = fopen('php://output', 'w');
@@ -383,13 +383,13 @@ class AdminController extends Controller
                 $row['first_name']  = $Student->first_name;
                 $row['email']  = $Student->email;
 
-                $row['address']    = $Student->address;
+                $row['phone_number']    = $Student->phone_number;
                 $row['Country']    = $Student->signup_country;
                 $row['Agent Name']    = $Student->agent_name;
                 $row['nationality']  = $Student->nationality;
-                $row['phone_number']  = $Student->phone_number;
+                $row['Address']  = $Student->address;
 
-                fputcsv($file, array($row['SrNo'], $row['first_name'], $row['email'],  $row['address'], $row['Country'], $row['Agent Name'], $row['phone_number'], $row['nationality']));
+                fputcsv($file, array($row['SrNo'], $row['first_name'], $row['email'],  $row['phone_number'], $row['Country'], $row['Agent Name'], $row['Address'], $row['nationality']));
                 $counter++;
             }
 
@@ -502,7 +502,7 @@ class AdminController extends Controller
         $user->userType()->associate(UserType::where('name', 'Agent')->first());
         $user->save();
 
-        Mail::to($request['email'])->send(new TestMail($request['name']));
+        Mail::to($request['email'])->send(new TestMail($request['name'], $request['email'], $password));
 
         $Recruiter = new Recruiter();
         $Recruiter->user_id = $user->id;
