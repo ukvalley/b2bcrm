@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\TestMail;
 use App\Mail\AdminMail;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 
 class RecruiterRegistrationController extends Controller
@@ -159,13 +160,12 @@ class RecruiterRegistrationController extends Controller
         $adminUsers = User::whereHas('userType', function ($query) {
             $query->where('name', 'Admin');
         })->get();
-        $agentUsers = User::whereHas('userType', function ($query) {
-            $query->where('name', 'Agent');
-        })->get();
-        // dd($agentUsers);
-        foreach ($adminUsers as $adminUser) {
-            Mail::to($adminUser->email)->send(new AdminMail($agentUsers));
-        }
+        $name = $step1Data['name'];
+    //    $agentuser= Auth::user()->userType->name == 'agent';
+    //    dd($agentuser);
+        // foreach ($adminUsers as $adminUser) {
+        //     Mail::to($adminUser->email)->send(new AdminMail($name));
+        // }
         if ($adminUsers->count() > 0) {
             foreach ($adminUsers as $adminUser) {
                 $notification = new Notification();

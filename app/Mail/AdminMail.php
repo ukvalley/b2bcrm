@@ -13,17 +13,15 @@ class AdminMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $agentuser;
-    public $institutionUsers;
+    public $name;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($agentUsers,$institutionUsers)
+    public function __construct($name)
     {
-        $this->agentuser = $agentUsers;
-        $this->institutionUsers = $institutionUsers;
+        $this->name = $name;
     }
 
     /**
@@ -36,8 +34,7 @@ class AdminMail extends Mailable
         $mail = $this->subject('New User Registered Successful!')           
                      ->view('emails.admin')
                      ->with([                       
-                        'agentuser'=> $this->agentuser,
-                        'institutionUsers'=> $this->institutionUsers                        
+                        'name'=> $this->name                    
                     ]);        
 
         return $mail;

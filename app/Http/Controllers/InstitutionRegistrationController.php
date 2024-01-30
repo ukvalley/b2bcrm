@@ -13,6 +13,7 @@ use App\Models\Notification;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TestMail;
 use App\Mail\AdminMail;
+use Illuminate\Support\Facades\Auth;
 
 class InstitutionRegistrationController extends Controller
 {
@@ -212,12 +213,11 @@ public function step5(Request $request)
         $adminUsers = User::whereHas('userType', function ($query) {
             $query->where('name', 'Admin');
         })->get();
-        $institutionUsers = User::whereHas('userType', function ($query) {
-            $query->where('name', 'Institution');
-        })->get();
-        foreach ($adminUsers as $adminUser) {
-            Mail::to($adminUser->email)->send(new AdminMail($institutionUsers));
-        }
+        $name = $step1Data['name'];
+       
+        // foreach ($adminUsers as $adminUser) {
+            // Mail::to($adminUser->email)->send(new AdminMail($name));
+        // }
 
     if ($adminUsers->count() > 0) {
         foreach ($adminUsers as $adminUser) {
@@ -230,7 +230,9 @@ public function step5(Request $request)
         }
     }
     $toEmail= $step1Data['email'];
-    $name = $step1Data['name'];
+    
+    
+    //    dd($institutionUsers);
     // dd($toEmail);
         Mail::to($toEmail)->send(new TestMail($name));
 
