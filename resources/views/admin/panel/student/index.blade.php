@@ -29,6 +29,7 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Contact Number</th>
                                 <th>Agent Name</th>
                                 <th>Action</th>
                                 <!-- <th>Action</th> -->
@@ -95,6 +96,7 @@ j(document).ready(function () {
             // { data: 'id', name: 'id' },
             { data: 'first_name', name: 'first_name' },
             { data: 'email', name: 'email' },
+            { data: 'phone_number', name: 'phone_number' },
             { data: 'agent_name', name: 'agent_name' },
            
 

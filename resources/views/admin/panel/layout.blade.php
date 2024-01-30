@@ -9,7 +9,7 @@
     <meta name="generator" content="">
     <title>{{ $siteName }}</title>
 
-    <!-- manifest meta -->  
+    <!-- manifest meta -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="manifest" href="manifest.json" />
 
@@ -30,7 +30,7 @@
     <!-- style css for this template -->
 
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
@@ -84,9 +84,11 @@
                                     <p class="text-muted size-12"></p>
                                 </div>
                                 <div class="col-auto">
-                                    <button class="btn btn-44 btn-light">
-                                        <i class="bi bi-box-arrow-right"></i>
-                                    </button>
+                                    <a class="nav-link" href="{{ route('logout') }}" tabindex="-1">
+                                        <button class="btn btn-44 btn-light">
+                                            <i class="bi bi-box-arrow-right"></i>
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -131,8 +133,7 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-person"></i></div>
                                 <div class="col">Account</div>
                                 <div class="arrow"><i class="bi bi-plus plus"></i> <i class="bi bi-dash minus"></i>
@@ -192,6 +193,14 @@
                         </li>
 
                         <li class="nav-item">
+                        <a class="nav-link" href="{{ url('recruiter/registration/step1') }}" tabindex="-1">
+                                <div class="avatar avatar-40 rounded icon"><i class="bi bi-paperclip"></i></div>
+                                <div class="col">Add Agents</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
                             <a class="nav-link" href="{{route('admin.agents')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-paperclip"></i></div>
                                 <div class="col">Agents</div>
@@ -238,9 +247,9 @@
     <!-- Sidebar main menu ends -->
 
 
-        @include('admin.panel.header')
-        
-        @yield('content')
+    @include('admin.panel.header')
+
+    @yield('content')
 
 
 
@@ -340,7 +349,7 @@
 
 
 
-    
+
 
 
 

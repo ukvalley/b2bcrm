@@ -39,8 +39,7 @@
     <link href="{{ asset('theme/css/custom.css') }}" rel="stylesheet" id="style">
     <link href="{{ asset('theme/vendor/swiperjs-6.6.2/swiper-bundle.min.css') }}" rel="stylesheet" id="style">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css"
-        integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css" integrity="sha384-b6lVK+yci+bfDmaY1u0zE8YYJt0TZxLEAFyYSLHId4xoVvsrQu3INevFKo+Xir8e" crossorigin="anonymous">
 
 
 
@@ -84,9 +83,11 @@
                                     <p class="text-muted size-12"></p>
                                 </div>
                                 <div class="col-auto">
-                                    <button class="btn btn-44 btn-light">
-                                        <i class="bi bi-box-arrow-right"></i>
-                                    </button>
+                                    <a class="nav-link" href="{{ route('logout') }}" tabindex="-1">
+                                        <button class="btn btn-44 btn-light">
+                                            <i class="bi bi-box-arrow-right"></i>
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -99,7 +100,7 @@
             <div class="row">
                 <div class="col-12">
                     <ul class="nav nav-pills">
-                    <li class="nav-item">
+                        <li class="nav-item">
                             <div class="row mb-4">
                                 <div class="col-12">
                                     <div class="card shadow-sm">
@@ -126,8 +127,7 @@
 
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-person"></i></div>
                                 <div class="col">Account</div>
                                 <div class="arrow"><i class="bi bi-plus plus"></i> <i class="bi bi-dash minus"></i>
@@ -218,23 +218,19 @@
                             <img src="{{ asset('theme/img/centerbutton.svg') }}" class="nav-icon" alt="" />
                         </span>
                         <div class="nav-menu-popover justify-content-between">
-                            <button type="button" class="btn btn-lg btn-icon-text"
-                                onclick="window.location.replace('{{route('institution.home')}}');">
+                            <button type="button" class="btn btn-lg btn-icon-text" onclick="window.location.replace('{{route('institution.home')}}');">
                                 <i class="bi bi-credit-card size-32"></i><span>Add Student</span>
                             </button>
 
-                            <button type="button" class="btn btn-lg btn-icon-text"
-                                onclick="window.location.replace('{{route('institution.home')}}');">
+                            <button type="button" class="btn btn-lg btn-icon-text" onclick="window.location.replace('{{route('institution.home')}}');">
                                 <i class="bi bi-arrow-up-right-circle size-32"></i><span>Submit Application</span>
                             </button>
 
-                            <button type="button" class="btn btn-lg btn-icon-text"
-                                onclick="window.location.replace('{{route('institution.home')}}');">
+                            <button type="button" class="btn btn-lg btn-icon-text" onclick="window.location.replace('{{route('institution.home')}}');">
                                 <i class="bi bi-receipt size-32"></i><span>Add Missing info</span>
                             </button>
 
-                            <button type="button" class="btn btn-lg btn-icon-text"
-                                onclick="window.location.replace('{{route('institution.home')}}');">
+                            <button type="button" class="btn btn-lg btn-icon-text" onclick="window.location.replace('{{route('institution.home')}}');">
                                 <i class="bi bi-arrow-down-left-circle size-32"></i><span>Accept Offers</span>
                             </button>
                         </div>
@@ -287,32 +283,32 @@
 
 
     <script>
-    // Get all elements with the "nav-link" class
-    const navLinks = document.querySelectorAll('.nav-item');
+        // Get all elements with the "nav-link" class
+        const navLinks = document.querySelectorAll('.nav-item');
 
-    // Add click event listeners to each nav link
-    navLinks.forEach(navLink => {
-        navLink.addEventListener('click', function(event) {
-            // Check if the clicked nav link has a dropdown-menu
-            console.log('hi');
-            const dropdownMenu = navLink.querySelector('.dropdown-menu');
+        // Add click event listeners to each nav link
+        navLinks.forEach(navLink => {
+            navLink.addEventListener('click', function(event) {
+                // Check if the clicked nav link has a dropdown-menu
+                console.log('hi');
+                const dropdownMenu = navLink.querySelector('.dropdown-menu');
 
-            if (dropdownMenu) {
-                // Toggle the "show" class for the dropdown-menu
-                dropdownMenu.classList.toggle('show');
-            }
+                if (dropdownMenu) {
+                    // Toggle the "show" class for the dropdown-menu
+                    dropdownMenu.classList.toggle('show');
+                }
+            });
         });
-    });
 
-    // Close the menu when clicking on the "Close Menu" button
-    const closeMenuButton = document.querySelector('.closemenu');
-    closeMenuButton.addEventListener('click', function() {
-        // Find all dropdown menus and hide them
-        const dropdownMenus = document.querySelectorAll('.dropdown-menu');
-        dropdownMenus.forEach(dropdownMenu => {
-            dropdownMenu.classList.remove('show');
+        // Close the menu when clicking on the "Close Menu" button
+        const closeMenuButton = document.querySelector('.closemenu');
+        closeMenuButton.addEventListener('click', function() {
+            // Find all dropdown menus and hide them
+            const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+            dropdownMenus.forEach(dropdownMenu => {
+                dropdownMenu.classList.remove('show');
+            });
         });
-    });
     </script>
 
 
@@ -325,8 +321,7 @@
     <script src="{{ asset('theme/vendor/bootstrap-5/js/bootstrap.bundle.min.js') }}"></script>
 
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
     </script>
 
     <!-- cookie js -->
