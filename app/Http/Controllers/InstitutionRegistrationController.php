@@ -230,8 +230,9 @@ public function step5(Request $request)
         }
     }
     $toEmail= $step1Data['email'];
+    $name = $step1Data['name'];
     // dd($toEmail);
-        Mail::to($toEmail)->send(new TestMail());
+        Mail::to($toEmail)->send(new TestMail($name));
 
     //     return 'Test email sent successfully!';
 

@@ -171,8 +171,9 @@ class RecruiterRegistrationController extends Controller
             }
         }
         $toEmail= $step1Data['email'];
+        $name = $step1Data['name'];
         // dd($toEmail);
-        Mail::to($toEmail)->send(new TestMail());
+        Mail::to($toEmail)->send(new TestMail($name));
 
         // Additional logic and registration process using the collected data
 

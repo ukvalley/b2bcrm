@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> Email</title>
+    <title>Thank You</title>
 </head>
 <body>
-    <h1>Hello!</h1>
-    <p>Congratulation...</p>
-    <p>
-        You have successfully registered.
-    </p>
+    <p>Dear {{ $name }},</p>
+
+    <p>Thank you for registering with our platform. Your account has been successfully created.
+		 We look forward to providing you with a great experience. If you have any questions or need assistance, feel free to contact us.</p>
+
+    <p>Best regards,</p>
+    <p>{{ $name }}</p>
 </body>
 </html>
