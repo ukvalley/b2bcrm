@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en" class="h-100">
 
@@ -26,16 +25,16 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 
     <!-- bootstrap icons -->
-    
+
 
     <!-- style css for this template -->
 
 
-         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
     <link href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-    
+
     <link href="{{ asset('theme/css/style.css') }}" rel="stylesheet" id="style">
     <link href="{{ asset('theme/vendor/swiperjs-6.6.2/swiper-bundle.min.css') }}" rel="stylesheet" id="style">
     <link href="{{ asset('theme/css/custom.css') }}" rel="stylesheet" id="style">
@@ -54,7 +53,7 @@
         <div class="row h-100">
             <div class="col-10 col-md-6 col-lg-5 col-xl-3 mx-auto text-center align-self-center">
                 <div class="loader-cube-wrap loader-cube-animate mx-auto">
-                <img src="{{ asset('images/projects/logo/') }}/{{$siteLogo}}" width="200px" alt="">
+                    <img src="{{ asset('images/projects/logo/') }}/{{$siteLogo}}" width="200px" alt="">
                 </div>
                 <p class="mt-4">Your Journey to Success<br><strong>Starts Here!</strong></p>
             </div>
@@ -63,7 +62,7 @@
     <!-- loader section ends -->
 
 
-     <!-- Sidebar main menu -->
+    <!-- Sidebar main menu -->
     <div class="sidebar-wrap  sidebar-pushcontent">
         <!-- Add overlay or fullmenu instead overlay -->
         <div class="closemenu text-muted">Close Menu</div>
@@ -84,13 +83,15 @@
                                     <p class="text-muted size-12"></p>
                                 </div>
                                 <div class="col-auto">
-                                    <button class="btn btn-44 btn-light">
-                                        <i class="bi bi-box-arrow-right"></i>
-                                    </button>
+                                    <a class="nav-link" href="{{ route('logout') }}" tabindex="-1">
+                                        <button class="btn btn-44 btn-light">
+                                            <i class="bi bi-box-arrow-right"></i>
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -99,7 +100,7 @@
             <div class="row">
                 <div class="col-12">
                     <ul class="nav nav-pills">
-                    <li class="nav-item">
+                        <li class="nav-item">
                             <div class="row mb-4">
                                 <div class="col-12">
                                     <div class="card shadow-sm">
@@ -131,8 +132,7 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-person"></i></div>
                                 <div class="col">Account</div>
                                 <div class="arrow"><i class="bi bi-plus plus"></i> <i class="bi bi-dash minus"></i>
@@ -164,8 +164,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{route('agent.message')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
-                                <div class="col">Message</div> 
-                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>                               
+                                <div class="col">Message</div>
+                                <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -174,10 +174,10 @@
                                 <div class="col">Add Student</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
-                        </li>                        
+                        </li>
 
 
-                         <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{route('agent.Students')}}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-chat-text"></i></div>
                                 <div class="col">Student</div>
@@ -186,8 +186,7 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                                aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-person"></i></div>
                                 <div class="col">Application Stages</div>
                                 <div class="arrow"><i class="bi bi-plus plus"></i> <i class="bi bi-dash minus"></i>
@@ -205,25 +204,25 @@
                                         <div class="col">Lodged With Institutions</div>
                                         <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                                     </a></li>
-                                    <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
+                                <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
                                         <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar-check"></i>
                                         </div>
                                         <div class="col">Offers Received</div>
                                         <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                                     </a></li>
-                                    <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
+                                <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
                                         <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar-check"></i>
                                         </div>
                                         <div class="col">Visas Granted</div>
                                         <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                                     </a></li>
-                                    <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
+                                <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
                                         <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar-check"></i>
                                         </div>
                                         <div class="col">Students Commenced</div>
                                         <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                                     </a></li>
-                                    <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
+                                <li><a class="dropdown-item nav-link" href="{{route('agent.Students')}}">
                                         <div class="avatar avatar-40 rounded icon"><i class="bi bi-calendar-check"></i>
                                         </div>
                                         <div class="col">Students Deferred</div>
@@ -232,14 +231,14 @@
                             </ul>
                         </li>
 
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}" tabindex="-1">
                                 <div class="avatar avatar-40 rounded icon"><i class="bi bi-box-arrow-right"></i></div>
                                 <div class="col">{{ __('Logout') }}</div>
                                 <div class="arrow"><i class="bi bi-chevron-right"></i></div>
                             </a>
-                            
+
                         </li>
                     </ul>
                 </div>
@@ -249,14 +248,14 @@
     <!-- Sidebar main menu ends -->
 
 
-         @include('recruiter.panel.header')
+    @include('recruiter.panel.header')
 
-        @yield('content')
-
-
+    @yield('content')
 
 
-        <!-- Footer -->
+
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <ul class="nav nav-pills nav-justified">
@@ -283,23 +282,19 @@
                             <img src="{{ asset('theme/img/centerbutton.svg') }}" class="nav-icon" alt="" />
                         </span>
                         <div class="nav-menu-popover justify-content-between">
-                            <button type="button" class="btn btn-lg btn-icon-text"
-                                onclick="window.location.replace('{{route('agent.student_basic')}}');">
+                            <button type="button" class="btn btn-lg btn-icon-text" onclick="window.location.replace('{{route('agent.student_basic')}}');">
                                 <i class="bi bi-credit-card size-32"></i><span>Add Student</span>
                             </button>
 
-                            <button type="button" class="btn btn-lg btn-icon-text"
-                                onclick="window.location.replace('{{route('agent.student_basic')}}');">
+                            <button type="button" class="btn btn-lg btn-icon-text" onclick="window.location.replace('{{route('agent.student_basic')}}');">
                                 <i class="bi bi-arrow-up-right-circle size-32"></i><span>Submit Application</span>
                             </button>
 
-                            <button type="button" class="btn btn-lg btn-icon-text"
-                                onclick="window.location.replace('{{route('agent.student_basic')}}');">
+                            <button type="button" class="btn btn-lg btn-icon-text" onclick="window.location.replace('{{route('agent.student_basic')}}');">
                                 <i class="bi bi-receipt size-32"></i><span>Add Missing info</span>
                             </button>
 
-                            <button type="button" class="btn btn-lg btn-icon-text"
-                                onclick="window.location.replace('{{route('agent.student_basic')}}');">
+                            <button type="button" class="btn btn-lg btn-icon-text" onclick="window.location.replace('{{route('agent.student_basic')}}');">
                                 <i class="bi bi-arrow-down-left-circle size-32"></i><span>Accept Offers</span>
                             </button>
                         </div>
@@ -352,43 +347,43 @@
 
 
     <script>
-    // Get all elements with the "nav-link" class
-    const navLinks = document.querySelectorAll('.nav-item');
+        // Get all elements with the "nav-link" class
+        const navLinks = document.querySelectorAll('.nav-item');
 
-    // Add click event listeners to each nav link
-    navLinks.forEach(navLink => {
-        navLink.addEventListener('click', function (event) {
-            // Check if the clicked nav link has a dropdown-menu
-            console.log('hi');
-            const dropdownMenu = navLink.querySelector('.dropdown-menu');
-            
-            if (dropdownMenu) {
-                // Toggle the "show" class for the dropdown-menu
-                dropdownMenu.classList.toggle('show');
-            }
-        });
-    });
+        // Add click event listeners to each nav link
+        navLinks.forEach(navLink => {
+            navLink.addEventListener('click', function(event) {
+                // Check if the clicked nav link has a dropdown-menu
+                console.log('hi');
+                const dropdownMenu = navLink.querySelector('.dropdown-menu');
 
-    // Close the menu when clicking on the "Close Menu" button
-    const closeMenuButton = document.querySelector('.closemenu');
-    closeMenuButton.addEventListener('click', function () {
-        // Find all dropdown menus and hide them
-        const dropdownMenus = document.querySelectorAll('.dropdown-menu');
-        dropdownMenus.forEach(dropdownMenu => {
-            dropdownMenu.classList.remove('show');
+                if (dropdownMenu) {
+                    // Toggle the "show" class for the dropdown-menu
+                    dropdownMenu.classList.toggle('show');
+                }
+            });
         });
-    });
-</script>
+
+        // Close the menu when clicking on the "Close Menu" button
+        const closeMenuButton = document.querySelector('.closemenu');
+        closeMenuButton.addEventListener('click', function() {
+            // Find all dropdown menus and hide them
+            const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+            dropdownMenus.forEach(dropdownMenu => {
+                dropdownMenu.classList.remove('show');
+            });
+        });
+    </script>
 
     <!-- Required jquery and libraries -->
-    
+
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 
     <script src="{{ asset('theme/js/popper.min.js') }}"></script>
     <script src="{{ asset('theme/vendor/bootstrap-5/js/bootstrap.bundle.min.js') }}"></script>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <!-- cookie js -->
     <script src="{{ asset('theme/js/jquery.cookie.js') }}"></script>
@@ -406,7 +401,7 @@
     <script src="{{ asset('theme/js/app.js') }}"></script>
 
     @yield('footerScript')
-    
+
 </body>
 
 </html>

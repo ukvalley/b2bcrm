@@ -85,10 +85,13 @@
                 </div>
               </div>
               <div class="col-md-6">
-                <div class="form-floating is-invalid mb-3">
+                <div class="form-floating is-valid mb-3">
                   <input id="confirmpassword" type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
                   <label for="confirmpassword">{{ __('Confirm Password') }}</label>
-                  <button type="button" class="btn btn-link text-danger tooltip-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="Enter valid Password" id="passworderror">
+                  @error('confirmpassword') <span class="invalid-feedback" role="alert" >
+                  <strong>{{ $message }}</strong>
+                  </span> @enderror
+                  <button type="button" class="btn btn-link  tooltip-btn" data-bs-toggle="tooltip" data-bs-placement="left" title="Enter valid Password" id="passworderror">
                     <i class="bi bi-info-circle"></i>
                   </button>
                 </div>

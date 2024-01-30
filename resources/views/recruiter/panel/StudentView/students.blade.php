@@ -19,7 +19,7 @@
 
 
                     <h4 class="card-title">Students</h4>
-                    <span data-href="{{url('/')}}/agent/export-csv" id="export" class="btn btn-success btn-sm" onclick ="exportStudents (event.target);">Export</span>
+                    <!-- <span data-href="{{url('/')}}/agent/export-csv" id="export" class="btn btn-success btn-sm" onclick ="exportStudents (event.target);">Export</span> -->
                         <p class="card-text"></p>
                         <hr>
 
@@ -30,6 +30,7 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Email</th>
+                                <th>Contact No</th>
                                 <th>Created At</th>
                                 <th>Action</th>
                                 <!-- Add more headers for additional columns -->
@@ -101,6 +102,7 @@ j(document).ready(function () {
             },
             { data: 'first_name', first_name: 'first_name' },
             { data: 'email', name: 'email' },
+            { data: 'phone_number', name: 'phone_number' },
             { data: 'created_at', name: 'created_at' },
             { data: null, 
             render: function(data, type, row) {
