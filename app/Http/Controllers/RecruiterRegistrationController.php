@@ -15,7 +15,7 @@ use App\Models\Course;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TestMail;
-
+use App\Mail\AdminMail;
 use DB;
 
 
@@ -156,12 +156,18 @@ class RecruiterRegistrationController extends Controller
         // Save the recruiter profile
         $Recruiter->save();
 
-        $adminUser = User::whereHas('userType', function ($query) {
+        $adminUsers = User::whereHas('userType', function ($query) {
             $query->where('name', 'Admin');
         })->get();
-
-        if ($adminUser->count() > 0) {
-            foreach ($adminUser as $adminUser) {
+        $agentUsers = User::whereHas('userType', function ($query) {
+            $query->where('name', 'Agent');
+        })->get();
+        // dd($agentUsers);
+        foreach ($adminUsers as $adminUser) {
+            Mail::to($adminUser->email)->send(new AdminMail($agentUsers));
+        }
+        if ($adminUsers->count() > 0) {
+            foreach ($adminUsers as $adminUser) {
                 $notification = new Notification();
                 $notification->key = '-';
                 $notification->message = 'New agent or institution registered.';
@@ -171,9 +177,11 @@ class RecruiterRegistrationController extends Controller
             }
         }
         $toEmail= $step1Data['email'];
-        $name = $step1Data['name'];
+        
         // dd($toEmail);
         Mail::to($toEmail)->send(new TestMail($name));
+
+        
 
         // Additional logic and registration process using the collected data
 

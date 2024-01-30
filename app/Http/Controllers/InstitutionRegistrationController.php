@@ -12,6 +12,7 @@ use App\Models\Country;
 use App\Models\Notification;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TestMail;
+use App\Mail\AdminMail;
 
 class InstitutionRegistrationController extends Controller
 {
@@ -208,19 +209,18 @@ public function step5(Request $request)
     // Save the institution profile
     $institution->save();
 
-    $adminUser = User::whereHas('userType', function ($query) {
-        $query->where('name', 'Admin');
-    })->get();
-    
-    // Check if the admin user exists
-    // if ($adminUser) {
-    //     $adminUserId = $adminUser->id;
-    // }
-    // else {
-    //     $adminUserId = 4; 
-    // }
-    if ($adminUser->count() > 0) {
-        foreach ($adminUser as $adminUser) {
+        $adminUsers = User::whereHas('userType', function ($query) {
+            $query->where('name', 'Admin');
+        })->get();
+        $institutionUsers = User::whereHas('userType', function ($query) {
+            $query->where('name', 'Institution');
+        })->get();
+        foreach ($adminUsers as $adminUser) {
+            Mail::to($adminUser->email)->send(new AdminMail($institutionUsers));
+        }
+
+    if ($adminUsers->count() > 0) {
+        foreach ($adminUsers as $adminUser) {
     $notification = new Notification();
     $notification->key = '-';
     $notification->message = 'New agent or institution registered.';
@@ -234,7 +234,7 @@ public function step5(Request $request)
     // dd($toEmail);
         Mail::to($toEmail)->send(new TestMail($name));
 
-    //     return 'Test email sent successfully!';
+    
 
     // Create a new user and institution profile in your database
     // Similar to what you did in step 5 of the agent registration controller
