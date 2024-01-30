@@ -213,11 +213,17 @@ public function step5(Request $request)
         $adminUsers = User::whereHas('userType', function ($query) {
             $query->where('name', 'Admin');
         })->get();
+        
         $name = $step1Data['name'];
-       
-        // foreach ($adminUsers as $adminUser) {
-            // Mail::to($adminUser->email)->send(new AdminMail($name));
-        // }
+        $usertype = 'Institution';
+        $toEmail= $step1Data['email'];
+        $mobile_number = $step1Data['mobile_number'];
+        // dd($toEmail);
+        Mail::to($toEmail)->send(new TestMail($name));
+
+        foreach ($adminUsers as $adminUser) {
+            Mail::to($adminUser->email)->send(new AdminMail($name,$usertype,$toEmail,$mobile_number));
+        }
 
     if ($adminUsers->count() > 0) {
         foreach ($adminUsers as $adminUser) {
@@ -229,15 +235,7 @@ public function step5(Request $request)
     $notification->save();
         }
     }
-    $toEmail= $step1Data['email'];
     
-    
-    //    dd($institutionUsers);
-    // dd($toEmail);
-        Mail::to($toEmail)->send(new TestMail($name));
-
-    
-
     // Create a new user and institution profile in your database
     // Similar to what you did in step 5 of the agent registration controller
 

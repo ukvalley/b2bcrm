@@ -27,12 +27,12 @@ class TestMail extends Mailable
      *
      * @return $this
      */
-    public function build()//Registration Successful!
+    public function build()
     {
         $mail = $this->subject('Registration Successful!')           
                      ->view('emails.test')
                      ->with([                       
-                        'name'=> $this->name                       
+                        'name'=> $this->name                   
                     ]);        
 
         return $mail;

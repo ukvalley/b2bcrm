@@ -456,4 +456,9 @@ class AdminController extends Controller
         }
         return back()->with('success', 'Agent deleted successfully.');
     }
+
+    public function addinstitution(Request $request)
+    {
+        return view('admin.panel.addinstitution.institutionregistration');
+    }
 }
