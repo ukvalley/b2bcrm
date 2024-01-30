@@ -161,11 +161,16 @@ class RecruiterRegistrationController extends Controller
             $query->where('name', 'Admin');
         })->get();
         $name = $step1Data['name'];
-    //    $agentuser= Auth::user()->userType->name == 'agent';
-    //    dd($agentuser);
-        // foreach ($adminUsers as $adminUser) {
-        //     Mail::to($adminUser->email)->send(new AdminMail($name));
-        // }
+        $usertype = 'Agent';
+        $toEmail= $step1Data['email'];
+        $mobile_number = $step1Data['mobile_number'];
+        // dd($toEmail);
+        Mail::to($toEmail)->send(new TestMail($name));
+
+        foreach ($adminUsers as $adminUser) {
+            Mail::to($adminUser->email)->send(new AdminMail($name,$usertype,$toEmail,$mobile_number));
+        }
+
         if ($adminUsers->count() > 0) {
             foreach ($adminUsers as $adminUser) {
                 $notification = new Notification();
@@ -176,13 +181,7 @@ class RecruiterRegistrationController extends Controller
                 $notification->save();
             }
         }
-        $toEmail= $step1Data['email'];
         
-        // dd($toEmail);
-        Mail::to($toEmail)->send(new TestMail($name));
-
-        
-
         // Additional logic and registration process using the collected data
 
         // Clear session data

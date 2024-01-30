@@ -35,6 +35,7 @@ Route::get('institutions/institutionEdit/{institution_id}', [App\Http\Controller
 
 Route::post('institutions/updateInstitution/{institution_id}', [App\Http\Controllers\Admin\AdminController::class, 'updateInstitutionById'])->name('admin.updateInstitution');
 
+Route::get('addinstitution',[App\Http\Controllers\Admin\AdminController::class, 'addinstitution'])->name('admin.addinstitution');
 
 
 
