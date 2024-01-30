@@ -108,8 +108,6 @@ Route::get('courseView/{course_id}', [App\Http\Controllers\Admin\CourseControlle
 Route::put('CourseUpdate/{course_id}', [App\Http\Controllers\Admin\CourseController::class, 'CourseUpdate'])
     ->name('admin.CourseUpdate');
 
-//agent registration 
-Route::get('/recruiter/registration/step1', [App\Http\Controllers\Admin\AdminController::class, 'step1']);
 
 //student csv
 Route::get('/export-csv', [App\Http\Controllers\Admin\AdminController::class, 'exportCSV'])->name('admin.exportCSV');

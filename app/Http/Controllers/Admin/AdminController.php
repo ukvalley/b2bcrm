@@ -456,10 +456,4 @@ class AdminController extends Controller
         }
         return back()->with('success', 'Agent deleted successfully.');
     }
-
-    public function step1()
-    {
-        $Recruiter = new \App\Models\Recruiter();
-        return view('recruiter.auth.step1');
-    }
 }
