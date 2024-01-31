@@ -160,6 +160,7 @@ class RecruiterRegistrationController extends Controller
         $adminUsers = User::whereHas('userType', function ($query) {
             $query->where('name', 'Admin');
         })->get();
+        // dd($adminUsers);
         $name = $step1Data['name'];
         $usertype = 'Agent';
         $toEmail= $step1Data['email'];
@@ -168,9 +169,9 @@ class RecruiterRegistrationController extends Controller
         Mail::to($toEmail)->send(new TestMail($name));
 
         foreach ($adminUsers as $adminUser) {
-            $email = 'dhavalpatel2193@gmail.com';
-            Mail::to($email)->send(new AdminMail($name,$usertype,$toEmail,$mobile_number));
-            // Mail::to($adminUser->email)->send(new AdminMail($name,$usertype,$toEmail,$mobile_number));
+            // $email = 'dhavalpatel2193@gmail.com';
+            // Mail::to($email)->send(new AdminMail($name,$usertype,$toEmail,$mobile_number));
+            Mail::to($adminUser->email)->send(new AdminMail($name,$usertype,$toEmail,$mobile_number));
         }
 
         if ($adminUsers->count() > 0) {
