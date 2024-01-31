@@ -668,7 +668,7 @@ class StudentController extends Controller
             "Expires"             => "0"
         );
 
-        $columns = array('SrNo.', 'Name', 'email', 'Address', 'Country', 'Agent Name', 'phone_number', 'nationality');
+        $columns = array('SrNo.', 'Name', 'email', 'phone_number', 'Country', 'Agent Name', 'address', 'nationality');
 
         $callback = function () use ($Students, $columns) {
             $file = fopen('php://output', 'w');
@@ -679,13 +679,13 @@ class StudentController extends Controller
                 $row['first_name']  = $Student->first_name;
                 $row['email']  = $Student->email;
 
-                $row['address']    = $Student->address;
+                $row['phone_number']    = $Student->phone_number;
                 $row['Country']    = $Student->signup_country;
                 $row['Agent Name']    = $Student->Agent_name;
                 $row['nationality']  = $Student->nationality;
-                $row['phone_number']  = $Student->phone_number;
+                $row['address']  = $Student->address;
 
-                fputcsv($file, array($row['SrNo'], $row['first_name'], $row['email'],  $row['address'], $row['Country'], $row['Agent Name'], $row['phone_number'], $row['nationality']));
+                fputcsv($file, array($row['SrNo'], $row['first_name'], $row['email'],  $row['phone_number'], $row['Country'], $row['Agent Name'], $row['address'], $row['nationality']));
                 $counter++;
             }
 

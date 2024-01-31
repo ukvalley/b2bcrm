@@ -19,7 +19,7 @@
 
 
                     <h4 class="card-title">Students</h4>
-                    <!-- <span data-href="{{url('/')}}/agent/export-csv" id="export" class="btn btn-success btn-sm" onclick ="exportStudents (event.target);">Export</span> -->
+                    <span data-href="{{url('/')}}/agent/export-csv" id="export" class="btn btn-success btn-sm" onclick ="exportStudents (event.target);">Export</span>
                         <p class="card-text"></p>
                         <hr>
 
